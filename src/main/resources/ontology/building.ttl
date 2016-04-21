@@ -12,15 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-@prefix : <http://w3id.org/seas/ontology/building#buildingVocabulary> .
+@prefix : <https://w3id.org/seas/ontology/building#buildingVocabulary> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+@base <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
-<http://w3id.org/seas/ontology/all#buildingVocabulary> rdf:type owl:Ontology ;
+<https://w3id.org/seas/ontology/all#buildingVocabulary> rdf:type owl:Ontology ;
                                               
                                               <http://protege.stanford.edu/webprotege/revision> 1 ;
                                               
@@ -58,7 +58,7 @@
                                                                                      "The SEAS-BUILDING specific energy load categories for the ITEA SEAS (Smart Energy Aware Systems) project."@en ,
                                                                                      "The SEAS-BUILDING specific energy related properties with quantities and units for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
                                               
-                                              <http://purl.org/vocab/vann/preferredNamespaceUri> <http://w3id.org/seas/ontology/all#> ;
+                                              <http://purl.org/vocab/vann/preferredNamespaceUri> <https://w3id.org/seas/ontology/all#> ;
                                               
                                               <http://purl.org/dc/terms/creator> <http://www.vtt.fi/JarmoKalaoja> .
 
@@ -70,9 +70,9 @@
 #################################################################
 
 
-###  http://w3id.org/seas/ontology/all#Volume
+###  https://w3id.org/seas/ontology/all#Volume
 
-<http://w3id.org/seas/ontology/all#Volume> rdf:type owl:AnnotationProperty ;
+<https://w3id.org/seas/ontology/all#Volume> rdf:type owl:AnnotationProperty ;
                                   
                                   rdfs:label "Volume"@en ;
                                   
@@ -80,9 +80,9 @@
                                   
                                   rdfs:comment "The volume of (a space)."@en ;
                                   
-                                  rdfs:domain <http://w3id.org/seas/ontology/all#BuildingSpace> ;
+                                  rdfs:domain <https://w3id.org/seas/ontology/all#BuildingSpace> ;
                                   
-                                  rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
+                                  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
 
 
 
@@ -125,21 +125,21 @@
 #################################################################
 
 
-###  http://w3id.org/seas/ontology/all#connectionPointOf
+###  https://w3id.org/seas/ontology/all#connectionPointOf
 
-<http://w3id.org/seas/ontology/all#connectionPointOf> rdf:type owl:ObjectProperty .
-
-
-
-###  http://w3id.org/seas/ontology/all#contains
-
-<http://w3id.org/seas/ontology/all#contains> rdf:type owl:ObjectProperty .
+<https://w3id.org/seas/ontology/all#connectionPointOf> rdf:type owl:ObjectProperty .
 
 
 
-###  http://w3id.org/seas/ontology/all#controlPointOf
+###  https://w3id.org/seas/ontology/all#contains
 
-<http://w3id.org/seas/ontology/all#controlPointOf> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#contains> rdf:type owl:ObjectProperty .
+
+
+
+###  https://w3id.org/seas/ontology/all#controlPointOf
+
+<https://w3id.org/seas/ontology/all#controlPointOf> rdf:type owl:ObjectProperty ;
                                           
                                           rdfs:label "controlPointOf"@en ;
                                           
@@ -147,17 +147,17 @@
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
-                                          rdfs:domain <http://w3id.org/seas/ontology/all#ConnectionPoint> ;
+                                          rdfs:domain <https://w3id.org/seas/ontology/all#ConnectionPoint> ;
                                           
-                                          rdfs:range <http://w3id.org/seas/ontology/all#Zone> ;
+                                          rdfs:range <https://w3id.org/seas/ontology/all#Zone> ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#hasComfortProfile
+###  https://w3id.org/seas/ontology/all#hasComfortProfile
 
-<http://w3id.org/seas/ontology/all#hasComfortProfile> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#hasComfortProfile> rdf:type owl:ObjectProperty ;
                                              
                                              rdfs:label "hasComfortProfile"@en ;
                                              
@@ -165,35 +165,35 @@
                                              
                                              rdfs:comment "Shortcut for linking comfort profile settings for typically the resident but is open to other roles such as visitors or building owner."@en ;
                                              
-                                             rdfs:range <http://w3id.org/seas/ontology/all#ComfortProfile> ;
+                                             rdfs:range <https://w3id.org/seas/ontology/all#ComfortProfile> ;
                                              
-                                             rdfs:domain <http://w3id.org/seas/ontology/all#Role> ;
+                                             rdfs:domain <https://w3id.org/seas/ontology/all#Role> ;
                                              
-                                             rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                             rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#hasOpening
+###  https://w3id.org/seas/ontology/all#hasOpening
 
-<http://w3id.org/seas/ontology/all#hasOpening> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#hasOpening> rdf:type owl:ObjectProperty ;
                                       
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                       
                                       rdfs:comment "hasOpening"@en ;
                                       
-                                      rdfs:domain <http://w3id.org/seas/ontology/all#BuildingSurface> ;
+                                      rdfs:domain <https://w3id.org/seas/ontology/all#BuildingSurface> ;
                                       
-                                      rdfs:range <http://w3id.org/seas/ontology/all#SurfaceOpening> ;
+                                      rdfs:range <https://w3id.org/seas/ontology/all#SurfaceOpening> ;
                                       
-                                      rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ;
+                                      rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ;
                                       
-                                      rdfs:subPropertyOf <http://w3id.org/seas/ontology/all#isPartOf> .
+                                      rdfs:subPropertyOf <https://w3id.org/seas/ontology/all#isPartOf> .
 
 
 
-###  http://w3id.org/seas/ontology/all#isAdjacentToSpace
+###  https://w3id.org/seas/ontology/all#isAdjacentToSpace
 
-<http://w3id.org/seas/ontology/all#isAdjacentToSpace> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#isAdjacentToSpace> rdf:type owl:ObjectProperty ;
                                              
                                              rdfs:label "isAdjacentToSpace"@en ;
                                              
@@ -201,23 +201,23 @@
                                              
                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                              
-                                             rdfs:range <http://w3id.org/seas/ontology/all#BuildingSpace> ;
+                                             rdfs:range <https://w3id.org/seas/ontology/all#BuildingSpace> ;
                                              
-                                             rdfs:domain <http://w3id.org/seas/ontology/all#BuildingSurface> ;
+                                             rdfs:domain <https://w3id.org/seas/ontology/all#BuildingSurface> ;
                                              
-                                             rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                             rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#isPartOf
+###  https://w3id.org/seas/ontology/all#isPartOf
 
-<http://w3id.org/seas/ontology/all#isPartOf> rdf:type owl:ObjectProperty .
+<https://w3id.org/seas/ontology/all#isPartOf> rdf:type owl:ObjectProperty .
 
 
 
-###  http://w3id.org/seas/ontology/all#mesurementPointOf
+###  https://w3id.org/seas/ontology/all#mesurementPointOf
 
-<http://w3id.org/seas/ontology/all#mesurementPointOf> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#mesurementPointOf> rdf:type owl:ObjectProperty ;
                                              
                                              rdfs:label "measurementPointOf"@en ;
                                              
@@ -225,49 +225,49 @@
                                              
                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                              
-                                             rdfs:domain <http://w3id.org/seas/ontology/all#ConnectionPoint> ;
+                                             rdfs:domain <https://w3id.org/seas/ontology/all#ConnectionPoint> ;
                                              
-                                             rdfs:range <http://w3id.org/seas/ontology/all#Zone> ;
+                                             rdfs:range <https://w3id.org/seas/ontology/all#Zone> ;
                                              
-                                             rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ;
+                                             rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ;
                                              
-                                             rdfs:subPropertyOf <http://w3id.org/seas/ontology/all#connectionPointOf> .
+                                             rdfs:subPropertyOf <https://w3id.org/seas/ontology/all#connectionPointOf> .
 
 
 
-###  http://w3id.org/seas/ontology/all#subControl
+###  https://w3id.org/seas/ontology/all#subControl
 
-<http://w3id.org/seas/ontology/all#subControl> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#subControl> rdf:type owl:ObjectProperty ;
                                       
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                       
                                       rdfs:comment "Controlling the control point in subControl is already handled by the higher level control poin"@en ;
                                       
-                                      rdfs:domain <http://w3id.org/seas/ontology/all#PointOfControl> ;
+                                      rdfs:domain <https://w3id.org/seas/ontology/all#PointOfControl> ;
                                       
-                                      rdfs:range <http://w3id.org/seas/ontology/all#PointOfControl> ;
+                                      rdfs:range <https://w3id.org/seas/ontology/all#PointOfControl> ;
                                       
-                                      rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ;
+                                      rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ;
                                       
-                                      rdfs:subPropertyOf <http://w3id.org/seas/ontology/all#contains> .
+                                      rdfs:subPropertyOf <https://w3id.org/seas/ontology/all#contains> .
 
 
 
-###  http://w3id.org/seas/ontology/all#subMeasurement
+###  https://w3id.org/seas/ontology/all#subMeasurement
 
-<http://w3id.org/seas/ontology/all#subMeasurement> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#subMeasurement> rdf:type owl:ObjectProperty ;
                                           
                                           rdfs:comment "The measurement in subMeasurement is contained in the value of higher level measurement"@en ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
-                                          rdfs:domain <http://w3id.org/seas/ontology/all#PointOfMeasurement> ;
+                                          rdfs:domain <https://w3id.org/seas/ontology/all#PointOfMeasurement> ;
                                           
-                                          rdfs:range <http://w3id.org/seas/ontology/all#PointOfMeasurement> ;
+                                          rdfs:range <https://w3id.org/seas/ontology/all#PointOfMeasurement> ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ;
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ;
                                           
-                                          rdfs:subPropertyOf <http://w3id.org/seas/ontology/all#contains> .
+                                          rdfs:subPropertyOf <https://w3id.org/seas/ontology/all#contains> .
 
 
 
@@ -280,135 +280,135 @@
 #################################################################
 
 
-###  http://w3id.org/seas/ontology/all#AirConditioning
+###  https://w3id.org/seas/ontology/all#AirConditioning
 
-<http://w3id.org/seas/ontology/all#AirConditioning> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#AirConditioning> rdf:type owl:Class ;
                                            
                                            rdfs:label "AirConditioning"@en ,
                                                       "Ilmastointi"@fi ;
                                            
-                                           rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingEnergyLoad> ,
-                                                           <http://w3id.org/seas/ontology/all#HVAC> ;
+                                           rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingEnergyLoad> ,
+                                                           <https://w3id.org/seas/ontology/all#HVAC> ;
                                            
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                            
                                            rdfs:comment "Air conditioning"@en ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#AirHeating
+###  https://w3id.org/seas/ontology/all#AirHeating
 
-<http://w3id.org/seas/ontology/all#AirHeating> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#AirHeating> rdf:type owl:Class ;
                                       
                                       rdfs:label "AirHeating"@en ;
                                       
-                                      rdfs:subClassOf <http://w3id.org/seas/ontology/all#CentralHeating> ;
+                                      rdfs:subClassOf <https://w3id.org/seas/ontology/all#CentralHeating> ;
                                       
                                       rdfs:comment "A (forced)-air central heating system is one which uses air as its heat transfer medium into space. "@en ;
                                       
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                       
-                                      rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                      rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#AirSourceHeatPump
+###  https://w3id.org/seas/ontology/all#AirSourceHeatPump
 
-<http://w3id.org/seas/ontology/all#AirSourceHeatPump> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#AirSourceHeatPump> rdf:type owl:Class ;
                                              
                                              rdfs:label "AirSourceHeatPump"@en ;
                                              
-                                             rdfs:subClassOf <http://w3id.org/seas/ontology/all#HeatPump> ;
+                                             rdfs:subClassOf <https://w3id.org/seas/ontology/all#HeatPump> ;
                                              
                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                              
                                              rdfs:comment "A heat pump using heat from outside air."@en ;
                                              
-                                             rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                             rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Appliance
+###  https://w3id.org/seas/ontology/all#Appliance
 
-<http://w3id.org/seas/ontology/all#Appliance> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#Appliance> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#Area
+###  https://w3id.org/seas/ontology/all#Area
 
-<http://w3id.org/seas/ontology/all#Area> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Area> rdf:type owl:Class ;
                                 
                                 rdfs:label "Area"@en ;
                                 
-                                rdfs:subClassOf <http://w3id.org/seas/ontology/all#Quantity> ,
+                                rdfs:subClassOf <https://w3id.org/seas/ontology/all#Quantity> ,
                                                 <http://www.qudt.org/qudt/owl/1.0.0/unit#Area> ;
                                 
                                 rdfs:comment "Area of (surface)."@en ;
                                 
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                 
-                                rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
+                                rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#AssemblyBuilding
+###  https://w3id.org/seas/ontology/all#AssemblyBuilding
 
-<http://w3id.org/seas/ontology/all#AssemblyBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#AssemblyBuilding> rdf:type owl:Class ;
                                             
                                             rdfs:label "AssemblyBuilding"@en ,
                                                        "Kokoontumisrakennus"@fi ;
                                             
-                                            rdfs:subClassOf <http://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
+                                            rdfs:subClassOf <https://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
                                             
                                             rdfs:comment "places used for people gathering for entertainment, worship, and eating or drinking. Examples: churches, restaurants"@en ;
                                             
                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                             
-                                            rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                            rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Balcony
+###  https://w3id.org/seas/ontology/all#Balcony
 
-<http://w3id.org/seas/ontology/all#Balcony> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Balcony> rdf:type owl:Class ;
                                    
                                    rdfs:label "Balcony"@en ;
                                    
-                                   rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingSpace> ;
+                                   rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingSpace> ;
                                    
                                    rdfs:comment "An accessible structure extending from a building, especially outside a window."@en ;
                                    
                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                    
-                                   rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                   rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Bathroom
+###  https://w3id.org/seas/ontology/all#Bathroom
 
-<http://w3id.org/seas/ontology/all#Bathroom> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Bathroom> rdf:type owl:Class ;
                                     
                                     rdfs:label "Bathroom"@en ;
                                     
-                                    rdfs:subClassOf <http://w3id.org/seas/ontology/all#Room> ;
+                                    rdfs:subClassOf <https://w3id.org/seas/ontology/all#Room> ;
                                     
                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                     
                                     rdfs:comment "Bathroom is mainly used for bathing & washing up related activities."@en ;
                                     
-                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Bedroom
+###  https://w3id.org/seas/ontology/all#Bedroom
 
-<http://w3id.org/seas/ontology/all#Bedroom> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Bedroom> rdf:type owl:Class ;
                                    
                                    rdfs:label "Bedroom"@en ;
                                    
-                                   rdfs:subClassOf <http://w3id.org/seas/ontology/all#Room> ;
+                                   rdfs:subClassOf <https://w3id.org/seas/ontology/all#Room> ;
                                    
                                    rdfs:comment "Bedroom is used mainly for bathing & related activities."@en ;
                                    
@@ -416,76 +416,76 @@
                                    
                                    rdfs:comment "Bedroom is used mainly for sleeping."@en ;
                                    
-                                   rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                   rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BooleanState
+###  https://w3id.org/seas/ontology/all#BooleanState
 
-<http://w3id.org/seas/ontology/all#BooleanState> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#BooleanState> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#BuildinPartition
+###  https://w3id.org/seas/ontology/all#BuildinPartition
 
-<http://w3id.org/seas/ontology/all#BuildinPartition> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#BuildinPartition> rdf:type owl:Class ;
                                             
                                             rdfs:label "BuildingPartition"@en ;
                                             
-                                            rdfs:subClassOf <http://w3id.org/seas/ontology/all#ZoneOfBuilding> ;
+                                            rdfs:subClassOf <https://w3id.org/seas/ontology/all#ZoneOfBuilding> ;
                                             
                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                             
                                             rdfs:comment "A collection of secific (restriction to be added) rooms such as apartement or wing."@en ;
                                             
-                                            rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                            rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Building
+###  https://w3id.org/seas/ontology/all#Building
 
-<http://w3id.org/seas/ontology/all#Building> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Building> rdf:type owl:Class ;
                                     
                                     rdfs:label "Building"@en ;
                                     
-                                    rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingSpatialStructure> ,
-                                                    <http://w3id.org/seas/ontology/all#Construction> ;
+                                    rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingSpatialStructure> ,
+                                                    <https://w3id.org/seas/ontology/all#Construction> ;
                                     
                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                     
                                     rdfs:comment "Buildings are roofed constructions which can be used separately, have been built for permanent purposes, can be entered by persons and are suitable or intended for protecting persons, animals or objects."@en ;
                                     
-                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BuildingEnergyLoad
+###  https://w3id.org/seas/ontology/all#BuildingEnergyLoad
 
-<http://w3id.org/seas/ontology/all#BuildingEnergyLoad> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#BuildingEnergyLoad> rdf:type owl:Class ;
                                               
                                               rdfs:label "BuildingEnergyLoad"@en ;
                                               
-                                              rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingSystem> ,
-                                                              <http://w3id.org/seas/ontology/all#EnergyLoad> ;
+                                              rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingSystem> ,
+                                                              <https://w3id.org/seas/ontology/all#EnergyLoad> ;
                                               
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                               
                                               rdfs:comment "Energy load in a building"@en ;
                                               
-                                              rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                              rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BuildingItem
+###  https://w3id.org/seas/ontology/all#BuildingItem
 
-<http://w3id.org/seas/ontology/all#BuildingItem> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#BuildingItem> rdf:type owl:Class ;
                                         
                                         rdfs:label "BuildingItem"@en ;
                                         
                                         owl:equivalentClass [ rdf:type owl:Class ;
-                                                              owl:unionOf ( <http://w3id.org/seas/ontology/all#Device>
-                                                                            <http://w3id.org/seas/ontology/all#Furnishing>
-                                                                            <http://w3id.org/seas/ontology/all#Resident>
+                                                              owl:unionOf ( <https://w3id.org/seas/ontology/all#Device>
+                                                                            <https://w3id.org/seas/ontology/all#Furnishing>
+                                                                            <https://w3id.org/seas/ontology/all#Resident>
                                                                           )
                                                             ] ;
                                         
@@ -493,18 +493,18 @@
                                         
                                         rdfs:comment "A generalization of all the objects contained in building spaces that can have an unique location"@en ;
                                         
-                                        rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                         <http://w3id.org/seas/ontology/all#core> .
+                                        rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                         <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BuildingRelated
+###  https://w3id.org/seas/ontology/all#BuildingRelated
 
-<http://w3id.org/seas/ontology/all#BuildingRelated> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#BuildingRelated> rdf:type owl:Class ;
                                            
                                            rdfs:label "BuildingRelated"@en ;
                                            
-                                           rdfs:subClassOf <http://w3id.org/seas/ontology/all#DeviceCategory> ;
+                                           rdfs:subClassOf <https://w3id.org/seas/ontology/all#DeviceCategory> ;
                                            
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                            
@@ -512,1347 +512,1347 @@
                                            
                                            rdfs:seeAlso <http://ontology.tno.nl/saref#BuildingRelated> ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#core> ,
-                                                            <http://w3id.org/seas/ontology/all#systemModule> .
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core> ,
+                                                            <https://w3id.org/seas/ontology/all#systemModule> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BuildingSpace
+###  https://w3id.org/seas/ontology/all#BuildingSpace
 
-<http://w3id.org/seas/ontology/all#BuildingSpace> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#BuildingSpace> rdf:type owl:Class ;
                                          
                                          rdfs:label "BuildingSpace"@en ;
                                          
-                                         rdfs:subClassOf <http://w3id.org/seas/ontology/all#PhysicalEntity> ;
+                                         rdfs:subClassOf <https://w3id.org/seas/ontology/all#PhysicalEntity> ;
                                          
                                          rdfs:comment "A Space is a 3D volume bounded by surfaces. According to the FIEMSER definition, a building space in SAREF defines the physical spaces of the building. A building space contains building items such as devices. "@en ;
                                          
                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                          
-                                         rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                          <http://w3id.org/seas/ontology/all#core> .
+                                         rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                          <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BuildingSpatialStructure
+###  https://w3id.org/seas/ontology/all#BuildingSpatialStructure
 
-<http://w3id.org/seas/ontology/all#BuildingSpatialStructure> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#BuildingSpatialStructure> rdf:type owl:Class ;
                                                     
                                                     rdfs:label "BuildingSpatialStructure"@en ;
                                                     
-                                                    rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingSpace> ;
+                                                    rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingSpace> ;
                                                     
                                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                     
                                                     rdfs:comment "A man made structure with spatial properties"@en ;
                                                     
-                                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                                     <http://w3id.org/seas/ontology/all#core> .
+                                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                                     <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BuildingStorey
+###  https://w3id.org/seas/ontology/all#BuildingStorey
 
-<http://w3id.org/seas/ontology/all#BuildingStorey> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#BuildingStorey> rdf:type owl:Class ;
                                           
                                           rdfs:label "BuildingStorey"@en ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingSpatialStructure> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingSpatialStructure> ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
                                           rdfs:comment "The storey represents a (nearly) horizontal aggregation of spaces that are vertically bound"@en ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BuildingSurface
+###  https://w3id.org/seas/ontology/all#BuildingSurface
 
-<http://w3id.org/seas/ontology/all#BuildingSurface> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#BuildingSurface> rdf:type owl:Class ;
                                            
                                            rdfs:label "BuildingSurface"@en ;
                                            
-                                           rdfs:subClassOf <http://w3id.org/seas/ontology/all#PhysicalEntity> ;
+                                           rdfs:subClassOf <https://w3id.org/seas/ontology/all#PhysicalEntity> ;
                                            
                                            rdfs:comment "Surfaces such as surface of a wall element that encloses a space. In GbXML a surface can consist of several surfaces."@en ;
                                            
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                            <http://w3id.org/seas/ontology/all#core> ;
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                            <https://w3id.org/seas/ontology/all#core> ;
                                            
                                            rdfs:seeAlso <http://www.gbxml.org/schema#Surface> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BuildingSystem
+###  https://w3id.org/seas/ontology/all#BuildingSystem
 
-<http://w3id.org/seas/ontology/all#BuildingSystem> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#BuildingSystem> rdf:type owl:Class ;
                                           
                                           rdfs:label "BuildingSystem"@en ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#System> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#System> ;
                                           
                                           rdfs:comment "Any system not directly identifiable as a single building item inside building. It can contains several BuildingItems"@en ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                           <http://w3id.org/seas/ontology/all#core> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                           <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Ceiling
+###  https://w3id.org/seas/ontology/all#Ceiling
 
-<http://w3id.org/seas/ontology/all#Ceiling> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Ceiling> rdf:type owl:Class ;
                                    
                                    rdfs:label "Ceiling"@en ;
                                    
-                                   rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingSurface> ;
+                                   rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingSurface> ;
                                    
                                    rdfs:comment "Ceiling is a downwards tilted horizontal surface"@en ;
                                    
                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                    
-                                   rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                   rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#CentralCooling
+###  https://w3id.org/seas/ontology/all#CentralCooling
 
-<http://w3id.org/seas/ontology/all#CentralCooling> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#CentralCooling> rdf:type owl:Class ;
                                           
                                           rdfs:label "CentralCooling"@en ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#Cooling> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#Cooling> ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
                                           rdfs:comment "The class of SEAS central (for several building spaces) cooling systems part of HVAC. The energy source is typically either electricity, but heat pumps or lower outside temperature can also be used."@en ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#CentralHeating
+###  https://w3id.org/seas/ontology/all#CentralHeating
 
-<http://w3id.org/seas/ontology/all#CentralHeating> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#CentralHeating> rdf:type owl:Class ;
                                           
                                           rdfs:label "CentralHeating"@en ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#Heating> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#Heating> ;
                                           
                                           rdfs:comment "The class of SEAS central (for several building spaces) heating systems part of HVAC. The energy source can be either district heating, electricity, heat pumps or direct burning of fuels such as wood or oil."@en ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#CivilEngineeringWork
+###  https://w3id.org/seas/ontology/all#CivilEngineeringWork
 
-<http://w3id.org/seas/ontology/all#CivilEngineeringWork> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#CivilEngineeringWork> rdf:type owl:Class ;
                                                 
                                                 rdfs:label "CivilEngnineeringWork"@en ;
                                                 
-                                                rdfs:subClassOf <http://w3id.org/seas/ontology/all#Construction> ;
+                                                rdfs:subClassOf <https://w3id.org/seas/ontology/all#Construction> ;
                                                 
                                                 rdfs:comment "Civil engineering works are all constructions not classified under buildings : railways, roads, bridges, highways, airport runways, dams etc."@en ;
                                                 
                                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                 
-                                                rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                                rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#ComfortProfile
+###  https://w3id.org/seas/ontology/all#ComfortProfile
 
-<http://w3id.org/seas/ontology/all#ComfortProfile> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#ComfortProfile> rdf:type owl:Class ;
                                           
                                           rdfs:label "ComfortProfile"@en ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#Profile> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#Profile> ;
                                           
                                           rdfs:comment "Comfort profile settings for the resident is defined as evaluations (a seas:profile is an evaluation). The comfortprofile is related to a room or other space with its featureOfInterest. The generatedBy links to activity that produced it."@en ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#ConnectionPoint
+###  https://w3id.org/seas/ontology/all#ConnectionPoint
 
-<http://w3id.org/seas/ontology/all#ConnectionPoint> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#ConnectionPoint> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#Construction
+###  https://w3id.org/seas/ontology/all#Construction
 
-<http://w3id.org/seas/ontology/all#Construction> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Construction> rdf:type owl:Class ;
                                         
                                         rdfs:label "Construction"@en ;
                                         
-                                        rdfs:subClassOf <http://w3id.org/seas/ontology/all#PhysicalEntity> ;
+                                        rdfs:subClassOf <https://w3id.org/seas/ontology/all#PhysicalEntity> ;
                                         
                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                         
                                         rdfs:comment "Constructions are structures connected with the ground which are made of construction materials and components and/or for which construction work is carried out."@en ;
                                         
-                                        rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                        rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Cooling
+###  https://w3id.org/seas/ontology/all#Cooling
 
-<http://w3id.org/seas/ontology/all#Cooling> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Cooling> rdf:type owl:Class ;
                                    
                                    rdfs:label "Cooling"@en ,
                                               "Jäähdytys"@fi ;
                                    
-                                   rdfs:subClassOf <http://w3id.org/seas/ontology/all#AirConditioning> ;
+                                   rdfs:subClassOf <https://w3id.org/seas/ontology/all#AirConditioning> ;
                                    
                                    rdfs:comment "Cooling"@en ;
                                    
                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                    
-                                   rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                   rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#CoolingState
+###  https://w3id.org/seas/ontology/all#CoolingState
 
-<http://w3id.org/seas/ontology/all#CoolingState> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#CoolingState> rdf:type owl:Class ;
                                         
                                         rdfs:label "CoolingState"@en ;
                                         
-                                        rdfs:subClassOf <http://w3id.org/seas/ontology/all#BooleanState> ;
+                                        rdfs:subClassOf <https://w3id.org/seas/ontology/all#BooleanState> ;
                                         
                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                         
                                         rdfs:comment "State of cooling"@en ;
                                         
-                                        rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                        rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Device
+###  https://w3id.org/seas/ontology/all#Device
 
-<http://w3id.org/seas/ontology/all#Device> rdf:type owl:Class .
-
-
-
-###  http://w3id.org/seas/ontology/all#DeviceCategory
-
-<http://w3id.org/seas/ontology/all#DeviceCategory> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#Device> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#Door
+###  https://w3id.org/seas/ontology/all#DeviceCategory
 
-<http://w3id.org/seas/ontology/all#Door> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#DeviceCategory> rdf:type owl:Class .
+
+
+
+###  https://w3id.org/seas/ontology/all#Door
+
+<https://w3id.org/seas/ontology/all#Door> rdf:type owl:Class ;
                                 
                                 rdfs:label "Door"@en ;
                                 
-                                rdfs:subClassOf <http://w3id.org/seas/ontology/all#SurfaceOpening> ;
+                                rdfs:subClassOf <https://w3id.org/seas/ontology/all#SurfaceOpening> ;
                                 
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                 
                                 rdfs:comment "A door opening in a wall use for access between spaces."@en ;
                                 
-                                rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#EducationalBuilding
+###  https://w3id.org/seas/ontology/all#EducationalBuilding
 
-<http://w3id.org/seas/ontology/all#EducationalBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#EducationalBuilding> rdf:type owl:Class ;
                                                
                                                rdfs:label "EducationalBuilding"@en ,
                                                           "Opetusrakennus"@fi ;
                                                
-                                               rdfs:subClassOf <http://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
+                                               rdfs:subClassOf <https://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
                                                
                                                rdfs:comment "Schools and day care centers."@en ;
                                                
                                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                
-                                               rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                               rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#ElectricEnergyGenerator
+###  https://w3id.org/seas/ontology/all#ElectricEnergyGenerator
 
-<http://w3id.org/seas/ontology/all#ElectricEnergyGenerator> rdf:type owl:Class .
-
-
-
-###  http://w3id.org/seas/ontology/all#ElectricLoad
-
-<http://w3id.org/seas/ontology/all#ElectricLoad> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#ElectricEnergyGenerator> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#ElectricRadiator
+###  https://w3id.org/seas/ontology/all#ElectricLoad
 
-<http://w3id.org/seas/ontology/all#ElectricRadiator> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#ElectricLoad> rdf:type owl:Class .
+
+
+
+###  https://w3id.org/seas/ontology/all#ElectricRadiator
+
+<https://w3id.org/seas/ontology/all#ElectricRadiator> rdf:type owl:Class ;
                                             
                                             rdfs:label "ElectricRadiator"@en ;
                                             
-                                            rdfs:subClassOf <http://w3id.org/seas/ontology/all#ElectricLoad> ,
-                                                            <http://w3id.org/seas/ontology/all#SpaceHeater> ;
+                                            rdfs:subClassOf <https://w3id.org/seas/ontology/all#ElectricLoad> ,
+                                                            <https://w3id.org/seas/ontology/all#SpaceHeater> ;
                                             
                                             rdfs:comment "An electric radiator"@en ;
                                             
                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                             
-                                            rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                            rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#EnergyGenerator
+###  https://w3id.org/seas/ontology/all#EnergyGenerator
 
-<http://w3id.org/seas/ontology/all#EnergyGenerator> rdf:type owl:Class .
-
-
-
-###  http://w3id.org/seas/ontology/all#EnergyLoad
-
-<http://w3id.org/seas/ontology/all#EnergyLoad> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#EnergyGenerator> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#EnergyStorage
+###  https://w3id.org/seas/ontology/all#EnergyLoad
 
-<http://w3id.org/seas/ontology/all#EnergyStorage> rdf:type owl:Class .
-
-
-
-###  http://w3id.org/seas/ontology/all#Entity
-
-<http://w3id.org/seas/ontology/all#Entity> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#EnergyLoad> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#Floor
+###  https://w3id.org/seas/ontology/all#EnergyStorage
 
-<http://w3id.org/seas/ontology/all#Floor> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#EnergyStorage> rdf:type owl:Class .
+
+
+
+###  https://w3id.org/seas/ontology/all#Entity
+
+<https://w3id.org/seas/ontology/all#Entity> rdf:type owl:Class .
+
+
+
+###  https://w3id.org/seas/ontology/all#Floor
+
+<https://w3id.org/seas/ontology/all#Floor> rdf:type owl:Class ;
                                  
                                  rdfs:label "Floor"@en ;
                                  
-                                 rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingSurface> ;
+                                 rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingSurface> ;
                                  
                                  rdfs:comment "A floor is a upwards tilted horzontal surface, could be divided to interior, exposed (outside) or raised flooor."@en ;
                                  
                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                  
-                                 rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                 rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Furnishing
+###  https://w3id.org/seas/ontology/all#Furnishing
 
-<http://w3id.org/seas/ontology/all#Furnishing> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Furnishing> rdf:type owl:Class ;
                                       
                                       rdfs:label "Furnishing"@en ;
                                       
-                                      rdfs:subClassOf <http://w3id.org/seas/ontology/all#PhysicalEntity> ;
+                                      rdfs:subClassOf <https://w3id.org/seas/ontology/all#PhysicalEntity> ;
                                       
                                       rdfs:comment "Other things such as furniture, decorations and other possibly movable articles that are typically not devices"@en ;
                                       
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                       
-                                      rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                       <http://w3id.org/seas/ontology/all#core> .
+                                      rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                       <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Garage
+###  https://w3id.org/seas/ontology/all#Garage
 
-<http://w3id.org/seas/ontology/all#Garage> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Garage> rdf:type owl:Class ;
                                   
                                   rdfs:label "Garage"@en ;
                                   
-                                  rdfs:subClassOf <http://w3id.org/seas/ontology/all#Room> ;
+                                  rdfs:subClassOf <https://w3id.org/seas/ontology/all#Room> ;
                                   
                                   rdfs:comment "Room for garage."@en ;
                                   
                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                   
-                                  rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#GeothermalHeatPump
+###  https://w3id.org/seas/ontology/all#GeothermalHeatPump
 
-<http://w3id.org/seas/ontology/all#GeothermalHeatPump> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#GeothermalHeatPump> rdf:type owl:Class ;
                                               
                                               rdfs:label "GeothermalHeatPump"@en ;
                                               
-                                              rdfs:subClassOf <http://w3id.org/seas/ontology/all#HeatPump> ;
+                                              rdfs:subClassOf <https://w3id.org/seas/ontology/all#HeatPump> ;
                                               
                                               rdfs:comment "A heat pump using geothermal heat from the ground."@en ;
                                               
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                               
-                                              rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                              rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#GrossFloorArea
+###  https://w3id.org/seas/ontology/all#GrossFloorArea
 
-<http://w3id.org/seas/ontology/all#GrossFloorArea> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#GrossFloorArea> rdf:type owl:Class ;
                                           
                                           rdfs:label "GrossFloorArea"@en ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#Area> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#Area> ;
                                           
                                           rdfs:comment "Gross floor area is generally defined by the area within the perimeter of the walls bounding the space."@en ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#HVAC
+###  https://w3id.org/seas/ontology/all#HVAC
 
-<http://w3id.org/seas/ontology/all#HVAC> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#HVAC> rdf:type owl:Class ;
                                 
                                 rdfs:label "HVAC"@en ,
                                            "LVI"@fi ;
                                 
-                                rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingEnergyLoad> ;
+                                rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingEnergyLoad> ;
                                 
                                 rdfs:comment "Wikipeida: HVAC (heating, ventilating, and air conditioning; also heating, ventilation, and air conditioning) is the technology of indoor and vehicular environmental comfort. Its goal is to provide thermal comfort and acceptable indoor air quality."@en ;
                                 
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                 
-                                rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#HeatEnergyGenerator
+###  https://w3id.org/seas/ontology/all#HeatEnergyGenerator
 
-<http://w3id.org/seas/ontology/all#HeatEnergyGenerator> rdf:type owl:Class .
-
-
-
-###  http://w3id.org/seas/ontology/all#HeatEnergyLoad
-
-<http://w3id.org/seas/ontology/all#HeatEnergyLoad> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#HeatEnergyGenerator> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#HeatPump
+###  https://w3id.org/seas/ontology/all#HeatEnergyLoad
 
-<http://w3id.org/seas/ontology/all#HeatPump> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#HeatEnergyLoad> rdf:type owl:Class .
+
+
+
+###  https://w3id.org/seas/ontology/all#HeatPump
+
+<https://w3id.org/seas/ontology/all#HeatPump> rdf:type owl:Class ;
                                     
                                     rdfs:label "HeatPump"@en ;
                                     
-                                    rdfs:subClassOf <http://w3id.org/seas/ontology/all#ElectricLoad> ,
-                                                    <http://w3id.org/seas/ontology/all#EnergyGenerator> ,
-                                                    <http://w3id.org/seas/ontology/all#SpaceCooler> ,
-                                                    <http://w3id.org/seas/ontology/all#SpaceHeater> ;
+                                    rdfs:subClassOf <https://w3id.org/seas/ontology/all#ElectricLoad> ,
+                                                    <https://w3id.org/seas/ontology/all#EnergyGenerator> ,
+                                                    <https://w3id.org/seas/ontology/all#SpaceCooler> ,
+                                                    <https://w3id.org/seas/ontology/all#SpaceHeater> ;
                                     
                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                     
                                     rdfs:comment "A heat pump is a system which transfers heat from outside to inside a building, using vapor compression refrigration consuming also electric energy. "@en ;
                                     
-                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Heating
+###  https://w3id.org/seas/ontology/all#Heating
 
-<http://w3id.org/seas/ontology/all#Heating> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Heating> rdf:type owl:Class ;
                                    
                                    rdfs:label "Heating"@en ,
                                               "Lämmitys"@fi ;
                                    
-                                   rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingEnergyLoad> ,
-                                                   <http://w3id.org/seas/ontology/all#HVAC> ;
+                                   rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingEnergyLoad> ,
+                                                   <https://w3id.org/seas/ontology/all#HVAC> ;
                                    
                                    rdfs:comment "Heating"@en ;
                                    
                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                    
-                                   rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                   rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#HeatingState
+###  https://w3id.org/seas/ontology/all#HeatingState
 
-<http://w3id.org/seas/ontology/all#HeatingState> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#HeatingState> rdf:type owl:Class ;
                                         
                                         rdfs:label "HeatingState"@en ;
                                         
-                                        rdfs:subClassOf <http://w3id.org/seas/ontology/all#BooleanState> ;
+                                        rdfs:subClassOf <https://w3id.org/seas/ontology/all#BooleanState> ;
                                         
                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                         
                                         rdfs:comment "State of heating"@en ;
                                         
-                                        rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                        rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#HolidayBuilding
+###  https://w3id.org/seas/ontology/all#HolidayBuilding
 
-<http://w3id.org/seas/ontology/all#HolidayBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#HolidayBuilding> rdf:type owl:Class ;
                                            
                                            rdfs:label "HolidayBuilding"@en ,
                                                       "VapaaAjanRakennus"@fi ;
                                            
-                                           rdfs:subClassOf <http://w3id.org/seas/ontology/all#ResidentalBuilding> ;
+                                           rdfs:subClassOf <https://w3id.org/seas/ontology/all#ResidentalBuilding> ;
                                            
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                            
                                            rdfs:comment "A secondary residential building used only occasionally during vacations such as a summerhouse or cottage. "@en ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#HotWaterRadiator
+###  https://w3id.org/seas/ontology/all#HotWaterRadiator
 
-<http://w3id.org/seas/ontology/all#HotWaterRadiator> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#HotWaterRadiator> rdf:type owl:Class ;
                                             
                                             rdfs:label "HotWaterRadiator"@en ;
                                             
-                                            rdfs:subClassOf <http://w3id.org/seas/ontology/all#HeatEnergyLoad> ,
-                                                            <http://w3id.org/seas/ontology/all#SpaceHeater> ;
+                                            rdfs:subClassOf <https://w3id.org/seas/ontology/all#HeatEnergyLoad> ,
+                                                            <https://w3id.org/seas/ontology/all#SpaceHeater> ;
                                             
                                             rdfs:comment "A hot water / liquid /steam radiator."@en ;
                                             
                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                             
-                                            rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                            rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#IndustrialBuilding
+###  https://w3id.org/seas/ontology/all#IndustrialBuilding
 
-<http://w3id.org/seas/ontology/all#IndustrialBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#IndustrialBuilding> rdf:type owl:Class ;
                                               
                                               rdfs:label "IndustrialBuilding"@en ;
                                               
-                                              rdfs:subClassOf <http://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
+                                              rdfs:subClassOf <https://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
                                               
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                               
                                               rdfs:comment "Buildings used for industrial production, e.g. factories, workshops, slaughterhouses, breweries, assembly plants, etc."@en ;
                                               
-                                              rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                              rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#InstitutionalBuilding
+###  https://w3id.org/seas/ontology/all#InstitutionalBuilding
 
-<http://w3id.org/seas/ontology/all#InstitutionalBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#InstitutionalBuilding> rdf:type owl:Class ;
                                                  
                                                  rdfs:label "InstitutionalBuilding"@en ,
                                                             "HoitoalanRakennus"@fi ;
                                                  
-                                                 rdfs:subClassOf <http://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
+                                                 rdfs:subClassOf <https://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
                                                  
                                                  rdfs:comment "Institutions such as hospitals providing medical and surgical treatment and nursing care for ill or injured people"@en ;
                                                  
                                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                  
-                                                 rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                                 rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Kitchen
+###  https://w3id.org/seas/ontology/all#Kitchen
 
-<http://w3id.org/seas/ontology/all#Kitchen> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Kitchen> rdf:type owl:Class ;
                                    
                                    rdfs:label "Kitchen"@en ;
                                    
-                                   rdfs:subClassOf <http://w3id.org/seas/ontology/all#Room> ;
+                                   rdfs:subClassOf <https://w3id.org/seas/ontology/all#Room> ;
                                    
                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                    
                                    rdfs:comment "Kitchen is a room used mainly for cooking and possibly eating."@en ;
                                    
-                                   rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                   rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Kiuas
+###  https://w3id.org/seas/ontology/all#Kiuas
 
-<http://w3id.org/seas/ontology/all#Kiuas> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Kiuas> rdf:type owl:Class ;
                                  
                                  rdfs:label "Kiuas"@en ;
                                  
-                                 rdfs:subClassOf <http://w3id.org/seas/ontology/all#SpaceHeater> ;
+                                 rdfs:subClassOf <https://w3id.org/seas/ontology/all#SpaceHeater> ;
                                  
                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                  
                                  rdfs:comment "A heat and steam source in a sauna not usually part of central heating. Heat can be generated either electric or burning wood directly."@en ;
                                  
-                                 rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                 rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Lighting
+###  https://w3id.org/seas/ontology/all#Lighting
 
-<http://w3id.org/seas/ontology/all#Lighting> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Lighting> rdf:type owl:Class ;
                                     
                                     rdfs:label "Lighting"@en ,
                                                "Valaistus"@fi ;
                                     
-                                    rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingEnergyLoad> ;
+                                    rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingEnergyLoad> ;
                                     
                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                     
                                     rdfs:comment "Wikipedia: Lighting or illumination is the deliberate use of light to achieve a practical or aesthetic effect."@en ;
                                     
-                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#LivingRoom
+###  https://w3id.org/seas/ontology/all#LivingRoom
 
-<http://w3id.org/seas/ontology/all#LivingRoom> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#LivingRoom> rdf:type owl:Class ;
                                       
                                       rdfs:label "LivingRoom"@en ;
                                       
-                                      rdfs:subClassOf <http://w3id.org/seas/ontology/all#Room> ;
+                                      rdfs:subClassOf <https://w3id.org/seas/ontology/all#Room> ;
                                       
                                       rdfs:comment "LivingRoom is the main room of daytime activity."@en ;
                                       
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                       
-                                      rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                      rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#LowEnergyHouse
+###  https://w3id.org/seas/ontology/all#LowEnergyHouse
 
-<http://w3id.org/seas/ontology/all#LowEnergyHouse> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#LowEnergyHouse> rdf:type owl:Class ;
                                           
                                           rdfs:label "LowEnergyHouse"@en ,
                                                      "Matalaenergiatalo"@fi ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#Building> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#Building> ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
                                           rdfs:comment "A house typically consuming half the energy than a norm house."@en ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#MercantileBuilding
+###  https://w3id.org/seas/ontology/all#MercantileBuilding
 
-<http://w3id.org/seas/ontology/all#MercantileBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#MercantileBuilding> rdf:type owl:Class ;
                                               
                                               rdfs:label "MercantileBuilding"@en ,
                                                          "Liikerakennus"@fi ;
                                               
-                                              rdfs:subClassOf <http://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
+                                              rdfs:subClassOf <https://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
                                               
                                               rdfs:comment "Places where goods are displayed and sold. Examples: grocery stores, department stores, and gas stations."@en ;
                                               
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                               
-                                              rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                              rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#NominalEnergyConsumption
+###  https://w3id.org/seas/ontology/all#NominalEnergyConsumption
 
-<http://w3id.org/seas/ontology/all#NominalEnergyConsumption> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#NominalEnergyConsumption> rdf:type owl:Class ;
                                                     
                                                     rdfs:label "NominalEnergyConsumption"@en ,
                                                                "Ominaisenergiankulutus"@fi ;
                                                     
-                                                    rdfs:subClassOf <http://w3id.org/seas/ontology/all#Quantity> ,
+                                                    rdfs:subClassOf <https://w3id.org/seas/ontology/all#Quantity> ,
                                                                     <http://www.qudt.org/qudt/owl/1.0.0/unit#PowerPerArea> ;
                                                     
                                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                     
                                                     rdfs:comment "Energy consumption of a building per gross floor area."@en ;
                                                     
-                                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
+                                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#NonResidentalBuilding
+###  https://w3id.org/seas/ontology/all#NonResidentalBuilding
 
-<http://w3id.org/seas/ontology/all#NonResidentalBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#NonResidentalBuilding> rdf:type owl:Class ;
                                                  
                                                  rdfs:label "NonResidentalBuilding"@en ;
                                                  
-                                                 rdfs:subClassOf <http://w3id.org/seas/ontology/all#Building> ;
+                                                 rdfs:subClassOf <https://w3id.org/seas/ontology/all#Building> ;
                                                  
                                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                  
                                                  rdfs:comment "A  non-residential building is a building at least half of which is used for other than residential purposes. "@en ;
                                                  
-                                                 rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                                 rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#NormHouse
+###  https://w3id.org/seas/ontology/all#NormHouse
 
-<http://w3id.org/seas/ontology/all#NormHouse> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#NormHouse> rdf:type owl:Class ;
                                      
                                      rdfs:label "NormHouse"@en ,
                                                 "Normitalo"@fi ;
                                      
-                                     rdfs:subClassOf <http://w3id.org/seas/ontology/all#Building> ;
+                                     rdfs:subClassOf <https://w3id.org/seas/ontology/all#Building> ;
                                      
                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                      
                                      rdfs:comment "A building fulfilling the minimal criteria for energy efficiency."@en ;
                                      
-                                     rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                     rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#OfficeBuilding
+###  https://w3id.org/seas/ontology/all#OfficeBuilding
 
-<http://w3id.org/seas/ontology/all#OfficeBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#OfficeBuilding> rdf:type owl:Class ;
                                           
                                           rdfs:label "BusinessBuilding"@en ,
                                                      "Toimistorakennus"@fi ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
                                           
                                           rdfs:comment "Places where services are provided. Examples: banks, insurance agencies"@en ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#OneDwellingBuilding
+###  https://w3id.org/seas/ontology/all#OneDwellingBuilding
 
-<http://w3id.org/seas/ontology/all#OneDwellingBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#OneDwellingBuilding> rdf:type owl:Class ;
                                                
                                                rdfs:label "OneDwellingBuilding"@en ,
                                                           "YhdenAsunnonTalo"@en ;
                                                
-                                               rdfs:subClassOf <http://w3id.org/seas/ontology/all#SmallHouse> ;
+                                               rdfs:subClassOf <https://w3id.org/seas/ontology/all#SmallHouse> ;
                                                
                                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                
                                                rdfs:comment "Detached house"@en ;
                                                
-                                               rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                               rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#PassiveHouse
+###  https://w3id.org/seas/ontology/all#PassiveHouse
 
-<http://w3id.org/seas/ontology/all#PassiveHouse> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#PassiveHouse> rdf:type owl:Class ;
                                         
                                         rdfs:label "PassiveHouse"@en ,
                                                    "Passiivitalo"@fi ;
                                         
-                                        rdfs:subClassOf <http://w3id.org/seas/ontology/all#Building> ;
+                                        rdfs:subClassOf <https://w3id.org/seas/ontology/all#Building> ;
                                         
                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                         
                                         rdfs:comment "A house typically consuming a quater of the energy than a norm house."@en ;
                                         
-                                        rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                        rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#PhotovoltaicPanel
+###  https://w3id.org/seas/ontology/all#PhotovoltaicPanel
 
-<http://w3id.org/seas/ontology/all#PhotovoltaicPanel> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#PhotovoltaicPanel> rdf:type owl:Class ;
                                              
                                              rdfs:label "PV"@en ,
                                                         "PhotoVoltaicPanel"@en ;
                                              
-                                             rdfs:subClassOf <http://w3id.org/seas/ontology/all#ElectricEnergyGenerator> ,
-                                                             <http://w3id.org/seas/ontology/all#SolarPanel> ;
+                                             rdfs:subClassOf <https://w3id.org/seas/ontology/all#ElectricEnergyGenerator> ,
+                                                             <https://w3id.org/seas/ontology/all#SolarPanel> ;
                                              
                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                              
                                              rdfs:comment "A panel outside house converting solar radiation to electricity using PV."@en ;
                                              
-                                             rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                             rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#PhysicalEntity
+###  https://w3id.org/seas/ontology/all#PhysicalEntity
 
-<http://w3id.org/seas/ontology/all#PhysicalEntity> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#PhysicalEntity> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#PlusEnergyBuilding
+###  https://w3id.org/seas/ontology/all#PlusEnergyBuilding
 
-<http://w3id.org/seas/ontology/all#PlusEnergyBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#PlusEnergyBuilding> rdf:type owl:Class ;
                                               
                                               rdfs:label "PlusEnergyBuilding"@en ,
                                                          "Plusenergiatalo"@fi ;
                                               
-                                              rdfs:subClassOf <http://w3id.org/seas/ontology/all#Building> ;
+                                              rdfs:subClassOf <https://w3id.org/seas/ontology/all#Building> ;
                                               
                                               rdfs:comment "A net plus-energy building ´is a building that over a year does generates more energy than it uses. "@en ;
                                               
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                               
-                                              rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                              rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#PointOfControl
+###  https://w3id.org/seas/ontology/all#PointOfControl
 
-<http://w3id.org/seas/ontology/all#PointOfControl> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#PointOfControl> rdf:type owl:Class ;
                                           
                                           rdfs:label "PointOfControl"@en ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#ConnectionPoint> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#ConnectionPoint> ;
                                           
                                           rdfs:comment "Access role associated with controlling a specific zone"@en ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                           <http://w3id.org/seas/ontology/all#core> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                           <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#PointOfMeasurement
+###  https://w3id.org/seas/ontology/all#PointOfMeasurement
 
-<http://w3id.org/seas/ontology/all#PointOfMeasurement> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#PointOfMeasurement> rdf:type owl:Class ;
                                               
                                               rdfs:label "PointOfMeasurement"@en ;
                                               
-                                              rdfs:subClassOf <http://w3id.org/seas/ontology/all#ConnectionPoint> ;
+                                              rdfs:subClassOf <https://w3id.org/seas/ontology/all#ConnectionPoint> ;
                                               
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                               
                                               rdfs:comment "Access role of measurement information associated with a specific zone"@en ;
                                               
-                                              rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                               <http://w3id.org/seas/ontology/all#core> .
+                                              rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                               <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#PowerOnState
+###  https://w3id.org/seas/ontology/all#PowerOnState
 
-<http://w3id.org/seas/ontology/all#PowerOnState> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#PowerOnState> rdf:type owl:Class ;
                                         
                                         rdfs:label "PowerOnState"@en ;
                                         
-                                        rdfs:subClassOf <http://w3id.org/seas/ontology/all#BooleanState> ;
+                                        rdfs:subClassOf <https://w3id.org/seas/ontology/all#BooleanState> ;
                                         
                                         rdfs:comment "State of being power on"@en ;
                                         
                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                         
-                                        rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                        rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#PowerplantBuilding
+###  https://w3id.org/seas/ontology/all#PowerplantBuilding
 
-<http://w3id.org/seas/ontology/all#PowerplantBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#PowerplantBuilding> rdf:type owl:Class ;
                                               
                                               rdfs:label "PowerplantBuilding"@en ,
                                                          "VoimalaRakennus"@fi ;
                                               
-                                              rdfs:subClassOf <http://w3id.org/seas/ontology/all#IndustrialBuilding> ;
+                                              rdfs:subClassOf <https://w3id.org/seas/ontology/all#IndustrialBuilding> ;
                                               
                                               rdfs:comment "Places housing any type of a power plants"@en ;
                                               
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                               
-                                              rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                              rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Profile
+###  https://w3id.org/seas/ontology/all#Profile
 
-<http://w3id.org/seas/ontology/all#Profile> rdf:type owl:Class .
-
-
-
-###  http://w3id.org/seas/ontology/all#Quantity
-
-<http://w3id.org/seas/ontology/all#Quantity> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#Profile> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#Resident
+###  https://w3id.org/seas/ontology/all#Quantity
 
-<http://w3id.org/seas/ontology/all#Resident> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Quantity> rdf:type owl:Class .
+
+
+
+###  https://w3id.org/seas/ontology/all#Resident
+
+<https://w3id.org/seas/ontology/all#Resident> rdf:type owl:Class ;
                                     
                                     rdfs:label "Resident"@en ;
                                     
-                                    rdfs:subClassOf <http://w3id.org/seas/ontology/all#Role> ;
+                                    rdfs:subClassOf <https://w3id.org/seas/ontology/all#Role> ;
                                     
                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                     
                                     rdfs:comment "A resident of a building (might include also pets?)"@en ;
                                     
-                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                     <http://w3id.org/seas/ontology/all#core> .
+                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                     <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#ResidentalBuilding
+###  https://w3id.org/seas/ontology/all#ResidentalBuilding
 
-<http://w3id.org/seas/ontology/all#ResidentalBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#ResidentalBuilding> rdf:type owl:Class ;
                                               
                                               rdfs:label "ResidentalBuilding"@en ,
                                                          "Asuinrakennus"@fi ;
                                               
-                                              rdfs:subClassOf <http://w3id.org/seas/ontology/all#Building> ;
+                                              rdfs:subClassOf <https://w3id.org/seas/ontology/all#Building> ;
                                               
                                               rdfs:comment "A residential building is a building at least half of which is used for residential purposes. "@en ;
                                               
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                               
-                                              rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                              rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Role
+###  https://w3id.org/seas/ontology/all#Role
 
-<http://w3id.org/seas/ontology/all#Role> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#Role> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#Roof
+###  https://w3id.org/seas/ontology/all#Roof
 
-<http://w3id.org/seas/ontology/all#Roof> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Roof> rdf:type owl:Class ;
                                 
                                 rdfs:label "Roof"@en ;
                                 
-                                rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingSurface> ;
+                                rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingSurface> ;
                                 
                                 rdfs:comment "A roof upwards tilted surface tilted up part of upper envelope of building."@en ;
                                 
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                 
-                                rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Room
+###  https://w3id.org/seas/ontology/all#Room
 
-<http://w3id.org/seas/ontology/all#Room> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Room> rdf:type owl:Class ;
                                 
                                 rdfs:label "Room"@en ;
                                 
-                                rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingSpace> ;
+                                rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingSpace> ;
                                 
                                 rdfs:comment "A room in a building space enclosed by surfaces, this could also be modelled as role of space, not subclass of the space itself."@en ;
                                 
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                 
-                                rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Sauna
+###  https://w3id.org/seas/ontology/all#Sauna
 
-<http://w3id.org/seas/ontology/all#Sauna> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Sauna> rdf:type owl:Class ;
                                  
                                  rdfs:label "Sauna"@en ;
                                  
-                                 rdfs:subClassOf <http://w3id.org/seas/ontology/all#Bathroom> ;
+                                 rdfs:subClassOf <https://w3id.org/seas/ontology/all#Bathroom> ;
                                  
                                  rdfs:comment "Sauna is a special type bathroom for enjoying heated steam."@en ;
                                  
                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                  
-                                 rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                 rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Site
+###  https://w3id.org/seas/ontology/all#Site
 
-<http://w3id.org/seas/ontology/all#Site> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Site> rdf:type owl:Class ;
                                 
                                 rdfs:label "Site"@en ;
                                 
-                                rdfs:subClassOf <http://w3id.org/seas/ontology/all#Entity> ;
+                                rdfs:subClassOf <https://w3id.org/seas/ontology/all#Entity> ;
                                 
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                 
                                 rdfs:comment "Site is a a specific locale with associated information describing its scope and context."@en ;
                                 
-                                rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#SiteOfBuilding
+###  https://w3id.org/seas/ontology/all#SiteOfBuilding
 
-<http://w3id.org/seas/ontology/all#SiteOfBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#SiteOfBuilding> rdf:type owl:Class ;
                                           
                                           rdfs:label "SiteOfBuilding"@en ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingSpatialStructure> ,
-                                                          <http://w3id.org/seas/ontology/all#Site> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingSpatialStructure> ,
+                                                          <https://w3id.org/seas/ontology/all#Site> ;
                                           
                                           rdfs:comment "Building site is a a locale containing one or more separate buildings."@en ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#SmallHouse
+###  https://w3id.org/seas/ontology/all#SmallHouse
 
-<http://w3id.org/seas/ontology/all#SmallHouse> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#SmallHouse> rdf:type owl:Class ;
                                       
                                       rdfs:label "Pientalo"@en ,
                                                  "SmallHouse"@en ;
                                       
-                                      rdfs:subClassOf <http://w3id.org/seas/ontology/all#ResidentalBuilding> ;
+                                      rdfs:subClassOf <https://w3id.org/seas/ontology/all#ResidentalBuilding> ;
                                       
                                       rdfs:comment "A detached small residental building"@en ;
                                       
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                       
-                                      rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                      rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#SolarPanel
+###  https://w3id.org/seas/ontology/all#SolarPanel
 
-<http://w3id.org/seas/ontology/all#SolarPanel> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#SolarPanel> rdf:type owl:Class ;
                                       
                                       rdfs:label "SolarPanel"@en ;
                                       
-                                      rdfs:subClassOf <http://w3id.org/seas/ontology/all#EnergyGenerator> ;
+                                      rdfs:subClassOf <https://w3id.org/seas/ontology/all#EnergyGenerator> ;
                                       
                                       rdfs:comment "A panel outside house converting solar radiation energy to other types of heat/thermal or electric energy."@en ;
                                       
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                       
-                                      rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                      rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#SolarThermalCollector
+###  https://w3id.org/seas/ontology/all#SolarThermalCollector
 
-<http://w3id.org/seas/ontology/all#SolarThermalCollector> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#SolarThermalCollector> rdf:type owl:Class ;
                                                  
                                                  rdfs:label "SolarThermalCollector"@en ;
                                                  
-                                                 rdfs:subClassOf <http://w3id.org/seas/ontology/all#HeatEnergyGenerator> ,
-                                                                 <http://w3id.org/seas/ontology/all#SolarPanel> ;
+                                                 rdfs:subClassOf <https://w3id.org/seas/ontology/all#HeatEnergyGenerator> ,
+                                                                 <https://w3id.org/seas/ontology/all#SolarPanel> ;
                                                  
                                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                  
                                                  rdfs:comment "A panel outside house converting solar radiation energy into heated water."@en ;
                                                  
-                                                 rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                                 rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#SpaceCooler
+###  https://w3id.org/seas/ontology/all#SpaceCooler
 
-<http://w3id.org/seas/ontology/all#SpaceCooler> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#SpaceCooler> rdf:type owl:Class ;
                                        
                                        rdfs:label "SpaceCooler"@en ;
                                        
-                                       rdfs:subClassOf <http://w3id.org/seas/ontology/all#Appliance> ,
-                                                       <http://w3id.org/seas/ontology/all#Cooling> ;
+                                       rdfs:subClassOf <https://w3id.org/seas/ontology/all#Appliance> ,
+                                                       <https://w3id.org/seas/ontology/all#Cooling> ;
                                        
                                        rdfs:comment "An applicance providing cooling to a building space. It is typically part of central cooling system."@en ;
                                        
                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                        
-                                       rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                       rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#SpaceHeater
+###  https://w3id.org/seas/ontology/all#SpaceHeater
 
-<http://w3id.org/seas/ontology/all#SpaceHeater> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#SpaceHeater> rdf:type owl:Class ;
                                        
                                        rdfs:label "SpaceHeater"@en ;
                                        
-                                       rdfs:subClassOf <http://w3id.org/seas/ontology/all#Appliance> ,
-                                                       <http://w3id.org/seas/ontology/all#Heating> ;
+                                       rdfs:subClassOf <https://w3id.org/seas/ontology/all#Appliance> ,
+                                                       <https://w3id.org/seas/ontology/all#Heating> ;
                                        
                                        rdfs:comment "An  applicance provideing heat to a building space by radiation or convection. It is typically part of central heating system."@en ;
                                        
                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                        
-                                       rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                       rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#StorageBuilding
+###  https://w3id.org/seas/ontology/all#StorageBuilding
 
-<http://w3id.org/seas/ontology/all#StorageBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#StorageBuilding> rdf:type owl:Class ;
                                            
                                            rdfs:label "StorageBuilding"@en ,
                                                       "VarastoRakennus"@fi ;
                                            
-                                           rdfs:subClassOf <http://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
+                                           rdfs:subClassOf <https://w3id.org/seas/ontology/all#NonResidentalBuilding> ;
                                            
                                            rdfs:comment "Places where items are stored. Examples: warehouses, reservoirs and silos."@en ;
                                            
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#StorageRoom
+###  https://w3id.org/seas/ontology/all#StorageRoom
 
-<http://w3id.org/seas/ontology/all#StorageRoom> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#StorageRoom> rdf:type owl:Class ;
                                        
                                        rdfs:label "StorageRoom"@en ;
                                        
-                                       rdfs:subClassOf <http://w3id.org/seas/ontology/all#Room> ;
+                                       rdfs:subClassOf <https://w3id.org/seas/ontology/all#Room> ;
                                        
                                        rdfs:comment "Room for storage."@en ;
                                        
                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                        
-                                       rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                       rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#SurfaceOpening
+###  https://w3id.org/seas/ontology/all#SurfaceOpening
 
-<http://w3id.org/seas/ontology/all#SurfaceOpening> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#SurfaceOpening> rdf:type owl:Class ;
                                           
                                           rdfs:label "SurfaceOpening"@en ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#PhysicalEntity> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#PhysicalEntity> ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
                                           rdfs:comment "A opening in a surface such as window or door"@en ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                           <http://w3id.org/seas/ontology/all#core> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                           <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#System
+###  https://w3id.org/seas/ontology/all#System
 
-<http://w3id.org/seas/ontology/all#System> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#System> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#UValue
+###  https://w3id.org/seas/ontology/all#UValue
 
-<http://w3id.org/seas/ontology/all#UValue> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#UValue> rdf:type owl:Class ;
                                   
                                   rdfs:label "Transmittance"@en ,
                                              "UValue"@en ;
                                   
-                                  rdfs:subClassOf <http://w3id.org/seas/ontology/all#Quantity> ,
+                                  rdfs:subClassOf <https://w3id.org/seas/ontology/all#Quantity> ,
                                                   <http://www.qudt.org/qudt/owl/1.0.0/unit#CoefficientOfHeatTransfer> ;
                                   
                                   rdfs:comment "Also known as Thermal Transmittance. The overall heat transfer coefficient U is a measure of the overall ability of a series of conductive and convective barriers to transfer heat."@en ;
                                   
                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                   
-                                  rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
+                                  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#UnderFloorHeater
+###  https://w3id.org/seas/ontology/all#UnderFloorHeater
 
-<http://w3id.org/seas/ontology/all#UnderFloorHeater> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#UnderFloorHeater> rdf:type owl:Class ;
                                             
                                             rdfs:label "UnderFloorHeater"@en ;
                                             
-                                            rdfs:subClassOf <http://w3id.org/seas/ontology/all#HeatEnergyLoad> ,
-                                                            <http://w3id.org/seas/ontology/all#SpaceHeater> ;
+                                            rdfs:subClassOf <https://w3id.org/seas/ontology/all#HeatEnergyLoad> ,
+                                                            <https://w3id.org/seas/ontology/all#SpaceHeater> ;
                                             
                                             rdfs:comment "Also known as radiant heat, underfloor heating uses a network of pipes, tubing or heating cables, buried in or attached beneath a floor to allow heat to rise into the room."@en ;
                                             
                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                             
-                                            rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                            rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#UnderFloorHeating
+###  https://w3id.org/seas/ontology/all#UnderFloorHeating
 
-<http://w3id.org/seas/ontology/all#UnderFloorHeating> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#UnderFloorHeating> rdf:type owl:Class ;
                                              
                                              rdfs:label "UnderFloorHeating"@en ;
                                              
-                                             rdfs:subClassOf <http://w3id.org/seas/ontology/all#CentralHeating> ;
+                                             rdfs:subClassOf <https://w3id.org/seas/ontology/all#CentralHeating> ;
                                              
                                              rdfs:comment "A type of central heating system using the under floor heaters instead of separate radiators as the means of providing the heat energy to space. "@en ;
                                              
                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                              
-                                             rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                             rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Unit
+###  https://w3id.org/seas/ontology/all#Unit
 
-<http://w3id.org/seas/ontology/all#Unit> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#Unit> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#UtilityRoom
+###  https://w3id.org/seas/ontology/all#UtilityRoom
 
-<http://w3id.org/seas/ontology/all#UtilityRoom> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#UtilityRoom> rdf:type owl:Class ;
                                        
                                        rdfs:label "UtilityRoom"@en ;
                                        
-                                       rdfs:subClassOf <http://w3id.org/seas/ontology/all#Room> ;
+                                       rdfs:subClassOf <https://w3id.org/seas/ontology/all#Room> ;
                                        
                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                        
                                        rdfs:comment "Room for other special utilities and hobbies."@en ;
                                        
-                                       rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                       rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Ventilation
+###  https://w3id.org/seas/ontology/all#Ventilation
 
-<http://w3id.org/seas/ontology/all#Ventilation> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Ventilation> rdf:type owl:Class ;
                                        
                                        rdfs:label "Ventilation"@en ,
                                                   "Ilmanvaihto"@fi ;
                                        
-                                       rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingEnergyLoad> ,
-                                                       <http://w3id.org/seas/ontology/all#HVAC> ;
+                                       rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingEnergyLoad> ,
+                                                       <https://w3id.org/seas/ontology/all#HVAC> ;
                                        
                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                        
                                        rdfs:comment "ventilation"@en ;
                                        
-                                       rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                       rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Volume
+###  https://w3id.org/seas/ontology/all#Volume
 
-<http://w3id.org/seas/ontology/all#Volume> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Volume> rdf:type owl:Class ;
                                   
                                   rdfs:label "Volume"@en ;
                                   
-                                  rdfs:subClassOf <http://w3id.org/seas/ontology/all#Quantity> ,
+                                  rdfs:subClassOf <https://w3id.org/seas/ontology/all#Quantity> ,
                                                   <http://www.qudt.org/qudt/owl/1.0.0/unit#Volume> ;
                                   
                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                   
                                   rdfs:comment "The volume of (a space)."@en ;
                                   
-                                  rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
+                                  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Wall
+###  https://w3id.org/seas/ontology/all#Wall
 
-<http://w3id.org/seas/ontology/all#Wall> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Wall> rdf:type owl:Class ;
                                 
                                 rdfs:label "Wall"@en ;
                                 
-                                rdfs:subClassOf <http://w3id.org/seas/ontology/all#BuildingSurface> ;
+                                rdfs:subClassOf <https://w3id.org/seas/ontology/all#BuildingSurface> ;
                                 
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                 
                                 rdfs:comment "A Wall is (tilted more than 60 percent) vertical surface could be divided to interior, exterior and underground wall"@en ;
                                 
-                                rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#WaterBoiler
+###  https://w3id.org/seas/ontology/all#WaterBoiler
 
-<http://w3id.org/seas/ontology/all#WaterBoiler> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#WaterBoiler> rdf:type owl:Class ;
                                        
                                        rdfs:label "WaterBoiler"@en ;
                                        
-                                       rdfs:subClassOf <http://w3id.org/seas/ontology/all#EnergyStorage> ,
-                                                       <http://w3id.org/seas/ontology/all#HVAC> ;
+                                       rdfs:subClassOf <https://w3id.org/seas/ontology/all#EnergyStorage> ,
+                                                       <https://w3id.org/seas/ontology/all#HVAC> ;
                                        
                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                        
                                        rdfs:comment "An storage tank for proiding heated water for use or central heating, often uses electric energy as heat source."@en ;
                                        
-                                       rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
+                                       rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Window
+###  https://w3id.org/seas/ontology/all#Window
 
-<http://w3id.org/seas/ontology/all#Window> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Window> rdf:type owl:Class ;
                                   
                                   rdfs:label "Window"@en ;
                                   
-                                  rdfs:subClassOf <http://w3id.org/seas/ontology/all#SurfaceOpening> ;
+                                  rdfs:subClassOf <https://w3id.org/seas/ontology/all#SurfaceOpening> ;
                                   
                                   rdfs:comment "A window is a typically opaque opening not used as access between spaces."@en ;
                                   
                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                   
-                                  rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> .
+                                  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#ZeroEnergyBuilding
+###  https://w3id.org/seas/ontology/all#ZeroEnergyBuilding
 
-<http://w3id.org/seas/ontology/all#ZeroEnergyBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#ZeroEnergyBuilding> rdf:type owl:Class ;
                                               
                                               rdfs:label "ZeroEnergyBuilding"@en ,
                                                          "Nollaenergiatalo"@fi ;
                                               
-                                              rdfs:subClassOf <http://w3id.org/seas/ontology/all#Building> ;
+                                              rdfs:subClassOf <https://w3id.org/seas/ontology/all#Building> ;
                                               
                                               <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                               
                                               rdfs:comment "A net zero-energy building (ZEB) is a building that over a year does not use more energy than it generates. "@en ;
                                               
-                                              rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingCategories> .
+                                              rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingCategories> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Zone
+###  https://w3id.org/seas/ontology/all#Zone
 
-<http://w3id.org/seas/ontology/all#Zone> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Zone> rdf:type owl:Class ;
                                 
                                 rdfs:label "Zone"@en ;
                                 
-                                rdfs:subClassOf <http://w3id.org/seas/ontology/all#System> ;
+                                rdfs:subClassOf <https://w3id.org/seas/ontology/all#System> ;
                                 
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                 
                                 rdfs:comment "A general aggregation of administration, control, monitoring or measurement."@en ;
                                 
-                                rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                 <http://w3id.org/seas/ontology/all#core> .
+                                rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                 <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#ZoneOfBuilding
+###  https://w3id.org/seas/ontology/all#ZoneOfBuilding
 
-<http://w3id.org/seas/ontology/all#ZoneOfBuilding> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#ZoneOfBuilding> rdf:type owl:Class ;
                                           
                                           rdfs:label "ZoneOfBuilding"@en ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#Zone> ,
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#Zone> ,
                                                           [ rdf:type owl:Restriction ;
-                                                            owl:onProperty <http://w3id.org/seas/ontology/all#contains> ;
+                                                            owl:onProperty <https://w3id.org/seas/ontology/all#contains> ;
                                                             owl:allValuesFrom [ rdf:type owl:Class ;
-                                                                                owl:unionOf ( <http://w3id.org/seas/ontology/all#BuildingItem>
-                                                                                              <http://w3id.org/seas/ontology/all#BuildingSpace>
-                                                                                              <http://w3id.org/seas/ontology/all#BuildingSurface>
-                                                                                              <http://w3id.org/seas/ontology/all#BuildingSystem>
+                                                                                owl:unionOf ( <https://w3id.org/seas/ontology/all#BuildingItem>
+                                                                                              <https://w3id.org/seas/ontology/all#BuildingSpace>
+                                                                                              <https://w3id.org/seas/ontology/all#BuildingSurface>
+                                                                                              <https://w3id.org/seas/ontology/all#BuildingSystem>
                                                                                             )
                                                                               ]
                                                           ] ;
@@ -1861,8 +1861,8 @@
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingVocabulary> ,
-                                                           <http://w3id.org/seas/ontology/all#core> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> ,
+                                                           <https://w3id.org/seas/ontology/all#core> .
 
 
 
@@ -1929,9 +1929,9 @@
 #################################################################
 
 
-###  http://w3id.org/seas/ontology/all#KiloWattPerSquareMeterGFA
+###  https://w3id.org/seas/ontology/all#KiloWattPerSquareMeterGFA
 
-<http://w3id.org/seas/ontology/all#KiloWattPerSquareMeterGFA> rdf:type <http://w3id.org/seas/ontology/all#Unit> ,
+<https://w3id.org/seas/ontology/all#KiloWattPerSquareMeterGFA> rdf:type <https://w3id.org/seas/ontology/all#Unit> ,
                                                               <http://www.qudt.org/qudt/owl/1.0.0/unit#PowerPerAreaUnit> ,
                                                               owl:NamedIndividual ;
                                                      
@@ -1945,15 +1945,15 @@
                                                      
                                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                      
-                                                     <http://www.qudt.org/qudt/owl/1.0.0/unit#quantityKind> <http://w3id.org/seas/ontology/all#NominalEnergyConsumption> ;
+                                                     <http://www.qudt.org/qudt/owl/1.0.0/unit#quantityKind> <https://w3id.org/seas/ontology/all#NominalEnergyConsumption> ;
                                                      
-                                                     rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
+                                                     rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#QubicMeter
+###  https://w3id.org/seas/ontology/all#QubicMeter
 
-<http://w3id.org/seas/ontology/all#QubicMeter> rdf:type <http://www.qudt.org/qudt/owl/1.0.0/unit#VolumeUnit> ,
+<https://w3id.org/seas/ontology/all#QubicMeter> rdf:type <http://www.qudt.org/qudt/owl/1.0.0/unit#VolumeUnit> ,
                                                owl:NamedIndividual ;
                                       
                                       rdfs:label "QubicMeter"@en ;
@@ -1966,15 +1966,15 @@
                                       
                                       <http://www.qudt.org/qudt/owl/1.0.0/unit#abbreviation> "m^3" ;
                                       
-                                      <http://www.qudt.org/qudt/owl/1.0.0/unit#quantityKind> <http://w3id.org/seas/ontology/all#Volume> ;
+                                      <http://www.qudt.org/qudt/owl/1.0.0/unit#quantityKind> <https://w3id.org/seas/ontology/all#Volume> ;
                                       
-                                      rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
+                                      rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#SquareMeter
+###  https://w3id.org/seas/ontology/all#SquareMeter
 
-<http://w3id.org/seas/ontology/all#SquareMeter> rdf:type <http://www.qudt.org/qudt/owl/1.0.0/unit#AreaUnit> ,
+<https://w3id.org/seas/ontology/all#SquareMeter> rdf:type <http://www.qudt.org/qudt/owl/1.0.0/unit#AreaUnit> ,
                                                 owl:NamedIndividual ;
                                        
                                        rdfs:label "SquareMeter"@en ;
@@ -1985,15 +1985,15 @@
                                        
                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                        
-                                       <http://www.qudt.org/qudt/owl/1.0.0/unit#quantityKind> <http://w3id.org/seas/ontology/all#Area> ;
+                                       <http://www.qudt.org/qudt/owl/1.0.0/unit#quantityKind> <https://w3id.org/seas/ontology/all#Area> ;
                                        
-                                       rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
+                                       rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#WattPerSquareMeterGFA
+###  https://w3id.org/seas/ontology/all#WattPerSquareMeterGFA
 
-<http://w3id.org/seas/ontology/all#WattPerSquareMeterGFA> rdf:type <http://www.qudt.org/qudt/owl/1.0.0/unit#PowerPerAreaUnit> ,
+<https://w3id.org/seas/ontology/all#WattPerSquareMeterGFA> rdf:type <http://www.qudt.org/qudt/owl/1.0.0/unit#PowerPerAreaUnit> ,
                                                           owl:NamedIndividual ;
                                                  
                                                  rdfs:label "WattPerSquareMeterGFA"@en ;
@@ -2008,15 +2008,15 @@
                                                  
                                                  <http://www.qudt.org/qudt/owl/1.0.0/unit#abbreviation> "W/(m^2-BRM)"@fi ;
                                                  
-                                                 <http://www.qudt.org/qudt/owl/1.0.0/unit#quantityKind> <http://w3id.org/seas/ontology/all#NominalEnergyConsumption> ;
+                                                 <http://www.qudt.org/qudt/owl/1.0.0/unit#quantityKind> <https://w3id.org/seas/ontology/all#NominalEnergyConsumption> ;
                                                  
-                                                 rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
+                                                 rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#WattPerSquareMeterKelvin
+###  https://w3id.org/seas/ontology/all#WattPerSquareMeterKelvin
 
-<http://w3id.org/seas/ontology/all#WattPerSquareMeterKelvin> rdf:type <http://www.qudt.org/qudt/owl/1.0.0/unit#CoefficientOfHeatTransferUnit> ,
+<https://w3id.org/seas/ontology/all#WattPerSquareMeterKelvin> rdf:type <http://www.qudt.org/qudt/owl/1.0.0/unit#CoefficientOfHeatTransferUnit> ,
                                                              owl:NamedIndividual ;
                                                     
                                                     rdfs:label "WattPerSquareMeterKelvin"@en ;
@@ -2029,36 +2029,36 @@
                                                     
                                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                     
-                                                    <http://www.qudt.org/qudt/owl/1.0.0/unit#quantityKind> <http://w3id.org/seas/ontology/all#UValue> ;
+                                                    <http://www.qudt.org/qudt/owl/1.0.0/unit#quantityKind> <https://w3id.org/seas/ontology/all#UValue> ;
                                                     
-                                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
+                                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#buildingCategories
+###  https://w3id.org/seas/ontology/all#buildingCategories
 
-<http://w3id.org/seas/ontology/all#buildingCategories> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
+<https://w3id.org/seas/ontology/all#buildingCategories> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
                                                        owl:NamedIndividual .
 
 
 
-###  http://w3id.org/seas/ontology/all#buildingEnergyVocabulary
+###  https://w3id.org/seas/ontology/all#buildingEnergyVocabulary
 
-<http://w3id.org/seas/ontology/all#buildingEnergyVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
+<https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
                                                              owl:NamedIndividual .
 
 
 
-###  http://w3id.org/seas/ontology/all#buildingLoadsVocabulary
+###  https://w3id.org/seas/ontology/all#buildingLoadsVocabulary
 
-<http://w3id.org/seas/ontology/all#buildingLoadsVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
+<https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
                                                             owl:NamedIndividual .
 
 
 
-###  http://w3id.org/seas/ontology/all#buildingVocabulary
+###  https://w3id.org/seas/ontology/all#buildingVocabulary
 
-<http://w3id.org/seas/ontology/all#buildingVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
+<https://w3id.org/seas/ontology/all#buildingVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
                                                        owl:NamedIndividual .
 
 

@@ -12,15 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-@prefix : <http://w3id.org/seas/ontology/all#TehnicalSystemVocabulary> .
+@prefix : <https://w3id.org/seas/ontology/all#TehnicalSystemVocabulary> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://w3id.org/seas/ontology/all#TehnicalSystemVocabulary> .
+@base <https://w3id.org/seas/ontology/all#TehnicalSystemVocabulary> .
 
-<http://w3id.org/seas/ontology/all#TehnicalSystemVocabulary> rdf:type owl:Ontology ;
+<https://w3id.org/seas/ontology/all#TehnicalSystemVocabulary> rdf:type owl:Ontology ;
                                                     
                                                     <http://protege.stanford.edu/webprotege/revision> 1 ;
                                                     
@@ -50,12 +50,12 @@
                                                     
                                                     <http://purl.org/dc/terms/description> "The Seas Architecture Vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
                                                     
-                                                    <http://purl.org/vocab/vann/preferredNamespaceUri> <http://w3id.org/seas/ontology/all#> ,
-                                                                                                       <http://w3id.org/seas/ontology/all#ArchVocabulary> ;
+                                                    <http://purl.org/vocab/vann/preferredNamespaceUri> <https://w3id.org/seas/ontology/all#> ,
+                                                                                                       <https://w3id.org/seas/ontology/all#ArchVocabulary> ;
                                                     
-                                                    <http://purl.org/vocommons/voaf#specializes> <http://w3id.org/seas/ontology/all#SystemVocabulary> ;
+                                                    <http://purl.org/vocommons/voaf#specializes> <https://w3id.org/seas/ontology/all#SystemVocabulary> ;
                                                     
-                                                    <http://purl.org/vocommons/voaf#reliesOn> <http://w3id.org/seas/ontology/all#UpperVocabulary> ;
+                                                    <http://purl.org/vocommons/voaf#reliesOn> <https://w3id.org/seas/ontology/all#UpperVocabulary> ;
                                                     
                                                     <http://purl.org/dc/terms/creator> <http://www.vtt.fi/JarmoKalaoja> .
 
@@ -82,77 +82,77 @@
 #################################################################
 
 
-###  http://w3id.org/seas/ontology/all#contains
+###  https://w3id.org/seas/ontology/all#contains
 
-<http://w3id.org/seas/ontology/all#contains> rdf:type owl:ObjectProperty .
+<https://w3id.org/seas/ontology/all#contains> rdf:type owl:ObjectProperty .
 
 
 
-###  http://w3id.org/seas/ontology/all#hasCapability
+###  https://w3id.org/seas/ontology/all#hasCapability
 
-<http://w3id.org/seas/ontology/all#hasCapability> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#hasCapability> rdf:type owl:ObjectProperty ;
                                          
                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                          
                                          rdfs:comment "hasCapability"@en ;
                                          
-                                         rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ;
+                                         rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ;
                                          
-                                         rdfs:subPropertyOf <http://w3id.org/seas/ontology/all#contains> ;
+                                         rdfs:subPropertyOf <https://w3id.org/seas/ontology/all#contains> ;
                                          
                                          rdfs:seeAlso <http://purl.org/goodrelations/v1#hasBusinessFunction> .
 
 
 
-###  http://w3id.org/seas/ontology/all#hasDataResource
+###  https://w3id.org/seas/ontology/all#hasDataResource
 
-<http://w3id.org/seas/ontology/all#hasDataResource> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#hasDataResource> rdf:type owl:ObjectProperty ;
                                            
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                            
                                            rdfs:comment "A data resource relatd to activity"@en ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#hasInput
+###  https://w3id.org/seas/ontology/all#hasInput
 
-<http://w3id.org/seas/ontology/all#hasInput> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#hasInput> rdf:type owl:ObjectProperty ;
                                     
                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                     
                                     rdfs:comment "A resource used as input by acitivity inverse of handledBy (to be added to seas-eval)"@en ;
                                     
-                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ;
+                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ;
                                     
-                                    rdfs:subPropertyOf <http://w3id.org/seas/ontology/all#hasDataResource> .
+                                    rdfs:subPropertyOf <https://w3id.org/seas/ontology/all#hasDataResource> .
 
 
 
-###  http://w3id.org/seas/ontology/all#hasOutput
+###  https://w3id.org/seas/ontology/all#hasOutput
 
-<http://w3id.org/seas/ontology/all#hasOutput> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#hasOutput> rdf:type owl:ObjectProperty ;
                                      
                                      <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                      
                                      rdfs:comment "A resource generated by activity (inverse of generatedBy in seas-eval)"@en ;
                                      
-                                     rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ;
+                                     rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ;
                                      
-                                     rdfs:subPropertyOf <http://w3id.org/seas/ontology/all#hasDataResource> .
+                                     rdfs:subPropertyOf <https://w3id.org/seas/ontology/all#hasDataResource> .
 
 
 
-###  http://w3id.org/seas/ontology/all#hasPart
+###  https://w3id.org/seas/ontology/all#hasPart
 
-<http://w3id.org/seas/ontology/all#hasPart> rdf:type owl:ObjectProperty .
+<https://w3id.org/seas/ontology/all#hasPart> rdf:type owl:ObjectProperty .
 
 
 
-###  http://w3id.org/seas/ontology/all#hasProfile
+###  https://w3id.org/seas/ontology/all#hasProfile
 
-<http://w3id.org/seas/ontology/all#hasProfile> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#hasProfile> rdf:type owl:ObjectProperty ;
                                       
                                       rdfs:label "hasProfile"@en ;
                                       
@@ -160,17 +160,17 @@
                                       
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                       
-                                      rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ActorVocabulary> ;
+                                      rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> ;
                                       
-                                      rdfs:range <http://w3id.org/seas/ontology/all#Profile> ;
+                                      rdfs:range <https://w3id.org/seas/ontology/all#Profile> ;
                                       
-                                      rdfs:subPropertyOf <http://w3id.org/seas/ontology/all#contains> .
+                                      rdfs:subPropertyOf <https://w3id.org/seas/ontology/all#contains> .
 
 
 
-###  http://w3id.org/seas/ontology/all#hasRole
+###  https://w3id.org/seas/ontology/all#hasRole
 
-<http://w3id.org/seas/ontology/all#hasRole> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#hasRole> rdf:type owl:ObjectProperty ;
                                    
                                    rdfs:label "hasRole"@en ;
                                    
@@ -178,17 +178,17 @@
                                    
                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                    
-                                   rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ActorVocabulary> ;
+                                   rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> ;
                                    
-                                   rdfs:range <http://w3id.org/seas/ontology/all#Role> ;
+                                   rdfs:range <https://w3id.org/seas/ontology/all#Role> ;
                                    
-                                   rdfs:subPropertyOf <http://w3id.org/seas/ontology/all#contains> .
+                                   rdfs:subPropertyOf <https://w3id.org/seas/ontology/all#contains> .
 
 
 
-###  http://w3id.org/seas/ontology/all#hasSubsystem
+###  https://w3id.org/seas/ontology/all#hasSubsystem
 
-<http://w3id.org/seas/ontology/all#hasSubsystem> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#hasSubsystem> rdf:type owl:ObjectProperty ;
                                         
                                         rdfs:label "hasSubsystem"@en ;
                                         
@@ -196,23 +196,23 @@
                                         
                                         <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                         
-                                        rdfs:range <http://w3id.org/seas/ontology/all#System> ;
+                                        rdfs:range <https://w3id.org/seas/ontology/all#System> ;
                                         
-                                        rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#SystemVocabulary> ;
+                                        rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#SystemVocabulary> ;
                                         
-                                        rdfs:subPropertyOf <http://w3id.org/seas/ontology/all#hasPart> .
+                                        rdfs:subPropertyOf <https://w3id.org/seas/ontology/all#hasPart> .
 
 
 
-###  http://w3id.org/seas/ontology/all#offersService
+###  https://w3id.org/seas/ontology/all#offersService
 
-<http://w3id.org/seas/ontology/all#offersService> rdf:type owl:ObjectProperty ;
+<https://w3id.org/seas/ontology/all#offersService> rdf:type owl:ObjectProperty ;
                                          
                                          <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                          
                                          rdfs:comment "offersService"@en ;
                                          
-                                         rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ;
+                                         rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ;
                                          
                                          rdfs:seeAlso <http://purl.org/goodrelations/v1#offers> .
 
@@ -227,36 +227,36 @@
 #################################################################
 
 
-###  http://w3id.org/seas/ontology/all#AbstractEntity
+###  https://w3id.org/seas/ontology/all#AbstractEntity
 
-<http://w3id.org/seas/ontology/all#AbstractEntity> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#AbstractEntity> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#Activity
+###  https://w3id.org/seas/ontology/all#Activity
 
-<http://w3id.org/seas/ontology/all#Activity> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Activity> rdf:type owl:Class ;
                                     
                                     rdfs:label "Activity"@en ;
                                     
-                                    rdfs:subClassOf <http://w3id.org/seas/ontology/all#AbstractEntity> ;
+                                    rdfs:subClassOf <https://w3id.org/seas/ontology/all#AbstractEntity> ;
                                     
                                     rdfs:comment "Activity is a continuous task or process that an entity can be performing"@en ;
                                     
                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                     
-                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ActorVocabulary> ,
-                                                     <http://w3id.org/seas/ontology/all#core> .
+                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> ,
+                                                     <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#ActuatingActivity
+###  https://w3id.org/seas/ontology/all#ActuatingActivity
 
-<http://w3id.org/seas/ontology/all#ActuatingActivity> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#ActuatingActivity> rdf:type owl:Class ;
                                              
                                              rdfs:label "ActuatingActivity"@en ;
                                              
-                                             rdfs:subClassOf <http://w3id.org/seas/ontology/all#Activity> ;
+                                             rdfs:subClassOf <https://w3id.org/seas/ontology/all#Activity> ;
                                              
                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                              
@@ -264,18 +264,18 @@
                                              
                                              rdfs:seeAlso <http://ontology.tno.nl/saref#ActuatingFunction> ;
                                              
-                                             rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                              <http://w3id.org/seas/ontology/all#core> .
+                                             rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                              <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Actuator
+###  https://w3id.org/seas/ontology/all#Actuator
 
-<http://w3id.org/seas/ontology/all#Actuator> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Actuator> rdf:type owl:Class ;
                                     
                                     rdfs:label "Actuator"@en ;
                                     
-                                    rdfs:subClassOf <http://w3id.org/seas/ontology/all#FunctionRelated> ;
+                                    rdfs:subClassOf <https://w3id.org/seas/ontology/all#FunctionRelated> ;
                                     
                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                     
@@ -283,18 +283,18 @@
                                     
                                     rdfs:seeAlso <http://ontology.tno.nl/saref#Actuator> ;
                                     
-                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                     <http://w3id.org/seas/ontology/all#core> .
+                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                     <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Applicance
+###  https://w3id.org/seas/ontology/all#Applicance
 
-<http://w3id.org/seas/ontology/all#Applicance> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Applicance> rdf:type owl:Class ;
                                       
                                       rdfs:label "Applicance"@en ;
                                       
-                                      rdfs:subClassOf <http://w3id.org/seas/ontology/all#FunctionRelated> ;
+                                      rdfs:subClassOf <https://w3id.org/seas/ontology/all#FunctionRelated> ;
                                       
                                       <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                       
@@ -302,35 +302,35 @@
                                       
                                       rdfs:seeAlso <http://ontology.tno.nl/saref#Applicance> ;
                                       
-                                      rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                       <http://w3id.org/seas/ontology/all#core> .
+                                      rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                       <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#AssesmentActivity
+###  https://w3id.org/seas/ontology/all#AssesmentActivity
 
-<http://w3id.org/seas/ontology/all#AssesmentActivity> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#AssesmentActivity> rdf:type owl:Class ;
                                              
                                              rdfs:label "AssesmentActivity"@en ;
                                              
-                                             rdfs:subClassOf <http://w3id.org/seas/ontology/all#Activity> ;
+                                             rdfs:subClassOf <https://w3id.org/seas/ontology/all#Activity> ;
                                              
                                              rdfs:comment "Activity that assesses something "@en ;
                                              
                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                              
-                                             rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ActorVocabulary> ,
-                                                              <http://w3id.org/seas/ontology/all#core> .
+                                             rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> ,
+                                                              <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BooleanActuatingActivity
+###  https://w3id.org/seas/ontology/all#BooleanActuatingActivity
 
-<http://w3id.org/seas/ontology/all#BooleanActuatingActivity> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#BooleanActuatingActivity> rdf:type owl:Class ;
                                                     
                                                     rdfs:label "BooleanActuatingActivity"@en ;
                                                     
-                                                    rdfs:subClassOf <http://w3id.org/seas/ontology/all#ActuatingActivity> ;
+                                                    rdfs:subClassOf <https://w3id.org/seas/ontology/all#ActuatingActivity> ;
                                                     
                                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                     
@@ -338,18 +338,18 @@
                                                     
                                                     rdfs:seeAlso <http://ontology.tno.nl/saref#OnOffFunction> ;
                                                     
-                                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                                     <http://w3id.org/seas/ontology/all#core> .
+                                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                                     <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BooleanControlEvaluation
+###  https://w3id.org/seas/ontology/all#BooleanControlEvaluation
 
-<http://w3id.org/seas/ontology/all#BooleanControlEvaluation> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#BooleanControlEvaluation> rdf:type owl:Class ;
                                                     
                                                     rdfs:label "BooleanControlEvaluation"@en ;
                                                     
-                                                    rdfs:subClassOf <http://w3id.org/seas/ontology/all#BooleanQuantityEvaluation> ;
+                                                    rdfs:subClassOf <https://w3id.org/seas/ontology/all#BooleanQuantityEvaluation> ;
                                                     
                                                     <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                     
@@ -357,41 +357,41 @@
                                                     
                                                     rdfs:seeAlso <http://ontology.tno.nl/saref#OnOffCommand> ;
                                                     
-                                                    rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                                     <http://w3id.org/seas/ontology/all#core> .
+                                                    rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                                     <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#BooleanQuantityEvaluation
+###  https://w3id.org/seas/ontology/all#BooleanQuantityEvaluation
 
-<http://w3id.org/seas/ontology/all#BooleanQuantityEvaluation> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#BooleanQuantityEvaluation> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#ControlActivity
+###  https://w3id.org/seas/ontology/all#ControlActivity
 
-<http://w3id.org/seas/ontology/all#ControlActivity> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#ControlActivity> rdf:type owl:Class ;
                                            
                                            rdfs:label "ControlActivity"@en ;
                                            
-                                           rdfs:subClassOf <http://w3id.org/seas/ontology/all#Activity> ;
+                                           rdfs:subClassOf <https://w3id.org/seas/ontology/all#Activity> ;
                                            
                                            rdfs:comment "Activity that in general controls something "@en ;
                                            
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ActorVocabulary> ,
-                                                            <http://w3id.org/seas/ontology/all#core> .
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> ,
+                                                            <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Device
+###  https://w3id.org/seas/ontology/all#Device
 
-<http://w3id.org/seas/ontology/all#Device> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Device> rdf:type owl:Class ;
                                   
                                   rdfs:label "Device"@en ;
                                   
-                                  rdfs:subClassOf <http://w3id.org/seas/ontology/all#PhysicalEntity> ;
+                                  rdfs:subClassOf <https://w3id.org/seas/ontology/all#PhysicalEntity> ;
                                   
                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                   
@@ -399,18 +399,18 @@
                                   
                                   rdfs:seeAlso <http://ontology.tno.nl/saref#Device> ;
                                   
-                                  rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                   <http://w3id.org/seas/ontology/all#core> .
+                                  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                   <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#DeviceCategory
+###  https://w3id.org/seas/ontology/all#DeviceCategory
 
-<http://w3id.org/seas/ontology/all#DeviceCategory> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#DeviceCategory> rdf:type owl:Class ;
                                           
                                           rdfs:label "DeviceCategory"@en ;
                                           
-                                          rdfs:subClassOf <http://w3id.org/seas/ontology/all#Role> ;
+                                          rdfs:subClassOf <https://w3id.org/seas/ontology/all#Role> ;
                                           
                                           <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                           
@@ -418,34 +418,34 @@
                                           
                                           rdfs:seeAlso <http://ontology.tno.nl/saref#DeviceCategory> ;
                                           
-                                          rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                           <http://w3id.org/seas/ontology/all#core> .
+                                          rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                           <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#EndNode
+###  https://w3id.org/seas/ontology/all#EndNode
 
-<http://w3id.org/seas/ontology/all#EndNode> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#EndNode> rdf:type owl:Class ;
                                    
                                    rdfs:label "EndNode"@en ;
                                    
-                                   rdfs:subClassOf <http://w3id.org/seas/ontology/all#Node> ;
+                                   rdfs:subClassOf <https://w3id.org/seas/ontology/all#Node> ;
                                    
                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                    
                                    rdfs:comment "The class of SEAS end nodes."@en ;
                                    
-                                   rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ArchVocabulary> .
+                                   rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ArchVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#EnergyRelated
+###  https://w3id.org/seas/ontology/all#EnergyRelated
 
-<http://w3id.org/seas/ontology/all#EnergyRelated> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#EnergyRelated> rdf:type owl:Class ;
                                          
                                          rdfs:label "EnergyRelated"@en ;
                                          
-                                         rdfs:subClassOf <http://w3id.org/seas/ontology/all#DeviceCategory> ;
+                                         rdfs:subClassOf <https://w3id.org/seas/ontology/all#DeviceCategory> ;
                                          
                                          rdfs:comment "It is a category that considers devices based on energy consumption information and profiles to optimize energy efficiency."@en ;
                                          
@@ -453,47 +453,47 @@
                                          
                                          rdfs:seeAlso <http://ontology.tno.nl/saref#EnergyRelated> ;
                                          
-                                         rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                          <http://w3id.org/seas/ontology/all#core> .
+                                         rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                          <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Entity
+###  https://w3id.org/seas/ontology/all#Entity
 
-<http://w3id.org/seas/ontology/all#Entity> rdf:type owl:Class .
-
-
-
-###  http://w3id.org/seas/ontology/all#Evaluation
-
-<http://w3id.org/seas/ontology/all#Evaluation> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#Entity> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#ForecastingActivity
+###  https://w3id.org/seas/ontology/all#Evaluation
 
-<http://w3id.org/seas/ontology/all#ForecastingActivity> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Evaluation> rdf:type owl:Class .
+
+
+
+###  https://w3id.org/seas/ontology/all#ForecastingActivity
+
+<https://w3id.org/seas/ontology/all#ForecastingActivity> rdf:type owl:Class ;
                                                
                                                rdfs:label "ForecastingActivity"@en ;
                                                
-                                               rdfs:subClassOf <http://w3id.org/seas/ontology/all#Activity> ;
+                                               rdfs:subClassOf <https://w3id.org/seas/ontology/all#Activity> ;
                                                
                                                rdfs:comment "Activity that forecasts something "@en ;
                                                
                                                <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                
-                                               rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ActorVocabulary> ,
-                                                                <http://w3id.org/seas/ontology/all#core> .
+                                               rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> ,
+                                                                <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#FunctionRelated
+###  https://w3id.org/seas/ontology/all#FunctionRelated
 
-<http://w3id.org/seas/ontology/all#FunctionRelated> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#FunctionRelated> rdf:type owl:Class ;
                                            
                                            rdfs:label "FunctionRelated"@en ;
                                            
-                                           rdfs:subClassOf <http://w3id.org/seas/ontology/all#DeviceCategory> ;
+                                           rdfs:subClassOf <https://w3id.org/seas/ontology/all#DeviceCategory> ;
                                            
                                            rdfs:comment "It is a category that considers role of devices, sensors etc. in terms of actions and resources. The category should be able to be reasoned from the activities the device has"@en ;
                                            
@@ -501,56 +501,56 @@
                                            
                                            rdfs:seeAlso <http://ontology.tno.nl/saref#FunctionRelated> ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                            <http://w3id.org/seas/ontology/all#core> .
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                            <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#IPCapableEndNode
+###  https://w3id.org/seas/ontology/all#IPCapableEndNode
 
-<http://w3id.org/seas/ontology/all#IPCapableEndNode> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#IPCapableEndNode> rdf:type owl:Class ;
                                             
                                             rdfs:label "IPCapableEndNode"@en ;
                                             
-                                            rdfs:subClassOf <http://w3id.org/seas/ontology/all#EndNode> ;
+                                            rdfs:subClassOf <https://w3id.org/seas/ontology/all#EndNode> ;
                                             
                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                             
                                             rdfs:comment "The class of IP capable SEAS end nodes."@en ;
                                             
-                                            rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ArchVocabulary> .
+                                            rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ArchVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#NetworkNode
+###  https://w3id.org/seas/ontology/all#NetworkNode
 
-<http://w3id.org/seas/ontology/all#NetworkNode> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#NetworkNode> rdf:type owl:Class ;
                                        
                                        rdfs:label "NetworkNode"@en ;
                                        
-                                       rdfs:subClassOf <http://w3id.org/seas/ontology/all#Role> ;
+                                       rdfs:subClassOf <https://w3id.org/seas/ontology/all#Role> ;
                                        
                                        rdfs:comment "Node is the abstract role of a device or system in some topology. "@en ;
                                        
                                        <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                        
-                                       rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .
+                                       rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Node
+###  https://w3id.org/seas/ontology/all#Node
 
-<http://w3id.org/seas/ontology/all#Node> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#Node> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#OnOffActivity
+###  https://w3id.org/seas/ontology/all#OnOffActivity
 
-<http://w3id.org/seas/ontology/all#OnOffActivity> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#OnOffActivity> rdf:type owl:Class ;
                                          
                                          rdfs:label "OnOffActivity"@en ;
                                          
-                                         rdfs:subClassOf <http://w3id.org/seas/ontology/all#BooleanActuatingActivity> ;
+                                         rdfs:subClassOf <https://w3id.org/seas/ontology/all#BooleanActuatingActivity> ;
                                          
                                          rdfs:comment "Activity that defines something to be actuated on or off"@en ;
                                          
@@ -558,18 +558,18 @@
                                          
                                          rdfs:seeAlso <http://ontology.tno.nl/saref#OnOffFunction> ;
                                          
-                                         rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                          <http://w3id.org/seas/ontology/all#core> .
+                                         rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                          <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#OpenCloseActivity
+###  https://w3id.org/seas/ontology/all#OpenCloseActivity
 
-<http://w3id.org/seas/ontology/all#OpenCloseActivity> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#OpenCloseActivity> rdf:type owl:Class ;
                                              
                                              rdfs:label "OpenCloseActivity"@en ;
                                              
-                                             rdfs:subClassOf <http://w3id.org/seas/ontology/all#BooleanActuatingActivity> ;
+                                             rdfs:subClassOf <https://w3id.org/seas/ontology/all#BooleanActuatingActivity> ;
                                              
                                              <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                              
@@ -577,58 +577,58 @@
                                              
                                              rdfs:seeAlso <http://ontology.tno.nl/saref#OpenCloseFunction> ;
                                              
-                                             rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                              <http://w3id.org/seas/ontology/all#core> .
+                                             rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                              <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#OptimizationActivity
+###  https://w3id.org/seas/ontology/all#OptimizationActivity
 
-<http://w3id.org/seas/ontology/all#OptimizationActivity> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#OptimizationActivity> rdf:type owl:Class ;
                                                 
                                                 rdfs:label "OptimizationActivity"@en ;
                                                 
-                                                rdfs:subClassOf <http://w3id.org/seas/ontology/all#Activity> ;
+                                                rdfs:subClassOf <https://w3id.org/seas/ontology/all#Activity> ;
                                                 
                                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                                 
                                                 rdfs:comment "Activity that opimizes something "@en ;
                                                 
-                                                rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ActorVocabulary> ,
-                                                                 <http://w3id.org/seas/ontology/all#core> .
+                                                rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> ,
+                                                                 <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#PhysicalEntity
+###  https://w3id.org/seas/ontology/all#PhysicalEntity
 
-<http://w3id.org/seas/ontology/all#PhysicalEntity> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#PhysicalEntity> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#PlanningActivity
+###  https://w3id.org/seas/ontology/all#PlanningActivity
 
-<http://w3id.org/seas/ontology/all#PlanningActivity> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#PlanningActivity> rdf:type owl:Class ;
                                             
                                             rdfs:label "PlanningActivity"@en ;
                                             
-                                            rdfs:subClassOf <http://w3id.org/seas/ontology/all#Activity> ;
+                                            rdfs:subClassOf <https://w3id.org/seas/ontology/all#Activity> ;
                                             
                                             <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                             
                                             rdfs:comment "Activity that creates plans "@en ;
                                             
-                                            rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ActorVocabulary> ,
-                                                             <http://w3id.org/seas/ontology/all#core> .
+                                            rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> ,
+                                                             <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Profile
+###  https://w3id.org/seas/ontology/all#Profile
 
-<http://w3id.org/seas/ontology/all#Profile> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Profile> rdf:type owl:Class ;
                                    
                                    rdfs:label "Profile"@en ;
                                    
-                                   rdfs:subClassOf <http://w3id.org/seas/ontology/all#Evaluation> ;
+                                   rdfs:subClassOf <https://w3id.org/seas/ontology/all#Evaluation> ;
                                    
                                    rdfs:comment "Characteristics of a system in several measurable aspects with a specific temporalContext"@en ;
                                    
@@ -636,57 +636,57 @@
                                    
                                    rdfs:seeAlso <http://ontology.tno.nl/saref#Profile> ;
                                    
-                                   rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ActorVocabulary> ,
-                                                    <http://w3id.org/seas/ontology/all#core> .
+                                   rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> ,
+                                                    <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#QuantityKind
+###  https://w3id.org/seas/ontology/all#QuantityKind
 
-<http://w3id.org/seas/ontology/all#QuantityKind> rdf:type owl:Class .
+<https://w3id.org/seas/ontology/all#QuantityKind> rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/ontology/all#ResourceManager
+###  https://w3id.org/seas/ontology/all#ResourceManager
 
-<http://w3id.org/seas/ontology/all#ResourceManager> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#ResourceManager> rdf:type owl:Class ;
                                            
                                            rdfs:label "ResourceManager"@en ;
                                            
-                                           rdfs:subClassOf <http://w3id.org/seas/ontology/all#Node> ;
+                                           rdfs:subClassOf <https://w3id.org/seas/ontology/all#Node> ;
                                            
                                            rdfs:comment "The class of SEAS resource managers."@en ;
                                            
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ArchVocabulary> .
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ArchVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Role
+###  https://w3id.org/seas/ontology/all#Role
 
-<http://w3id.org/seas/ontology/all#Role> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Role> rdf:type owl:Class ;
                                 
                                 rdfs:label "Role"@en ;
                                 
-                                rdfs:subClassOf <http://w3id.org/seas/ontology/all#AbstractEntity> ;
+                                rdfs:subClassOf <https://w3id.org/seas/ontology/all#AbstractEntity> ;
                                 
                                 <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                 
                                 rdfs:comment "Abstract role of a Endurant in some context"@en ;
                                 
-                                rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ActorVocabulary> ,
-                                                 <http://w3id.org/seas/ontology/all#core> .
+                                rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> ,
+                                                 <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#Service
+###  https://w3id.org/seas/ontology/all#Service
 
-<http://w3id.org/seas/ontology/all#Service> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#Service> rdf:type owl:Class ;
                                    
                                    rdfs:label "Service"@en ;
                                    
-                                   rdfs:subClassOf <http://w3id.org/seas/ontology/all#AbstractEntity> ;
+                                   rdfs:subClassOf <https://w3id.org/seas/ontology/all#AbstractEntity> ;
                                    
                                    <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                    
@@ -694,36 +694,36 @@
                                    
                                    rdfs:seeAlso <http://ontology.tno.nl/saref#Service> ;
                                    
-                                   rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                    <http://w3id.org/seas/ontology/all#core> ;
+                                   rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                    <https://w3id.org/seas/ontology/all#core> ;
                                    
                                    rdfs:seeAlso <http://purl.org/goodrelations/v1#Offering> .
 
 
 
-###  http://w3id.org/seas/ontology/all#ServiceProvider
+###  https://w3id.org/seas/ontology/all#ServiceProvider
 
-<http://w3id.org/seas/ontology/all#ServiceProvider> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#ServiceProvider> rdf:type owl:Class ;
                                            
                                            rdfs:label "ServiceProvider"@en ;
                                            
-                                           rdfs:subClassOf <http://w3id.org/seas/ontology/all#Role> ;
+                                           rdfs:subClassOf <https://w3id.org/seas/ontology/all#Role> ;
                                            
                                            rdfs:comment "The class of SEAS service providers."@en ;
                                            
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#ArchVocabulary> .
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ArchVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#State
+###  https://w3id.org/seas/ontology/all#State
 
-<http://w3id.org/seas/ontology/all#State> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#State> rdf:type owl:Class ;
                                  
                                  rdfs:label "BooleanState"@en ;
                                  
-                                 rdfs:subClassOf <http://w3id.org/seas/ontology/all#QuantityKind> ;
+                                 rdfs:subClassOf <https://w3id.org/seas/ontology/all#QuantityKind> ;
                                  
                                  <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                  
@@ -731,41 +731,41 @@
                                  
                                  rdfs:seeAlso <http://ontology.tno.nl/saref#State> ;
                                  
-                                 rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .
+                                 rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#System
+###  https://w3id.org/seas/ontology/all#System
 
-<http://w3id.org/seas/ontology/all#System> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#System> rdf:type owl:Class ;
                                   
                                   rdfs:label "System"@en ;
                                   
-                                  rdfs:subClassOf <http://w3id.org/seas/ontology/all#Entity> ;
+                                  rdfs:subClassOf <https://w3id.org/seas/ontology/all#Entity> ;
                                   
                                   <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                   
                                   rdfs:comment "System is an  concrete or abstract set of things composing a complex whole."@en ;
                                   
-                                  rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#SystemVocabulary> ,
-                                                   <http://w3id.org/seas/ontology/all#core> .
+                                  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#SystemVocabulary> ,
+                                                   <https://w3id.org/seas/ontology/all#core> .
 
 
 
-###  http://w3id.org/seas/ontology/all#TehcnicalSystem
+###  https://w3id.org/seas/ontology/all#TehcnicalSystem
 
-<http://w3id.org/seas/ontology/all#TehcnicalSystem> rdf:type owl:Class ;
+<https://w3id.org/seas/ontology/all#TehcnicalSystem> rdf:type owl:Class ;
                                            
                                            rdfs:label "TechnicalSystem"@en ;
                                            
-                                           rdfs:subClassOf <http://w3id.org/seas/ontology/all#System> ;
+                                           rdfs:subClassOf <https://w3id.org/seas/ontology/all#System> ;
                                            
                                            rdfs:comment "Technical system is an  concrete or abstract set of things working together as parts of a technical mechanism or an interconnecting network."@en ;
                                            
                                            <http://www.w3.org/2003/06/sw-vocab-status/ns#term_status> "testing" ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
-                                                            <http://w3id.org/seas/ontology/all#core> .
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> ,
+                                                            <https://w3id.org/seas/ontology/all#core> .
 
 
 
@@ -784,23 +784,23 @@
 #################################################################
 
 
-###  http://w3id.org/seas/ontology/all#ActorVocabulary
+###  https://w3id.org/seas/ontology/all#ActorVocabulary
 
-<http://w3id.org/seas/ontology/all#ActorVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
+<https://w3id.org/seas/ontology/all#ActorVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
                                                     owl:NamedIndividual .
 
 
 
-###  http://w3id.org/seas/ontology/all#ArchVocabulary
+###  https://w3id.org/seas/ontology/all#ArchVocabulary
 
-<http://w3id.org/seas/ontology/all#ArchVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
+<https://w3id.org/seas/ontology/all#ArchVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
                                                    owl:NamedIndividual .
 
 
 
-###  http://w3id.org/seas/ontology/all#BooleanState
+###  https://w3id.org/seas/ontology/all#BooleanState
 
-<http://w3id.org/seas/ontology/all#BooleanState> rdf:type <http://w3id.org/seas/ontology/all#State> ,
+<https://w3id.org/seas/ontology/all#BooleanState> rdf:type <https://w3id.org/seas/ontology/all#State> ,
                                                  owl:NamedIndividual ;
                                         
                                         rdfs:label "BooleanState"@en ;
@@ -812,13 +812,13 @@
                                         rdfs:seeAlso <http://ontology.tno.nl/saref#OnOffState> ,
                                                      <http://ontology.tno.nl/saref#OpenCloseState> ;
                                         
-                                        rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .
+                                        rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#EnumeratedState
+###  https://w3id.org/seas/ontology/all#EnumeratedState
 
-<http://w3id.org/seas/ontology/all#EnumeratedState> rdf:type <http://w3id.org/seas/ontology/all#State> ,
+<https://w3id.org/seas/ontology/all#EnumeratedState> rdf:type <https://w3id.org/seas/ontology/all#State> ,
                                                     owl:NamedIndividual ;
                                            
                                            rdfs:label "EnumeratedState"@en ;
@@ -829,13 +829,13 @@
                                            
                                            rdfs:seeAlso <http://ontology.tno.nl/saref#MultiLevelState> ;
                                            
-                                           rdfs:isDefinedBy <http://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .
+                                           rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .
 
 
 
-###  http://w3id.org/seas/ontology/all#TehnicalSystemVocabulary
+###  https://w3id.org/seas/ontology/all#TehnicalSystemVocabulary
 
-<http://w3id.org/seas/ontology/all#TehnicalSystemVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
+<https://w3id.org/seas/ontology/all#TehnicalSystemVocabulary> rdf:type <http://purl.org/vocommons/voaf#Vocabulary> ,
                                                              owl:NamedIndividual .
 
 

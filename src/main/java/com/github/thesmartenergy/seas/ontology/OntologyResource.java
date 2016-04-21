@@ -48,16 +48,16 @@ public class OntologyResource {
     HttpServletRequest request;
     
     @Inject
-    Ontologies ontology;
+    Ontologies ontologies;
     
     @GET
     @Produces("text/html")
     @Path("{id}")
     public Response getAsHtml(@PathParam("id") String id) {
-        String requestedUri = ontology.getBase() + id;
-        if(ontology.getOntologies().containsKey(requestedUri)) {
+        String requestedUri = ontologies.getBase() + id;
+        if(ontologies.getOntologies().containsKey(requestedUri)) {
             try {
-                return Response.seeOther(new URI("http://vowl.visualdataweb.org/webvowl/#iri=" + requestedUri + "#")).build();
+                return Response.seeOther(new URI("http://vowl.visualdataweb.org/webvowl/#iri=" + requestedUri )).build();
             } catch (URISyntaxException ex) {
                 Logger.getLogger(OntologyResource.class.getName()).log(Level.SEVERE, null, ex);
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
@@ -71,12 +71,12 @@ public class OntologyResource {
     @Path("{id}")
     public Response getAsTurtle(@PathParam("id") String id) {
         try {
-            String requestedUri = ontology.getBase() + id;
+            String requestedUri = ontologies.getBase() + id;
             System.out.println(requestedUri );
-            if(!ontology.getOntologies().containsKey(requestedUri)) {
+            if(!ontologies.getOntologies().containsKey(requestedUri)) {
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
-            File turtleFile = ontology.getOntologies().get(requestedUri);
+            File turtleFile = ontologies.getOntologies().get(requestedUri);
             Response.ResponseBuilder res = Response.ok(IOUtils.toString(new FileInputStream(turtleFile)), "text/turtle");
             res.header("Content-Disposition", "filename= seas-" + id + "." + "ttl;");
             return res.build();
@@ -91,12 +91,12 @@ public class OntologyResource {
     @Path("{id}")
     public Response getAsXML(@PathParam("id") String id) {
         try {
-            String requestedUri = ontology.getBase() + id;
+            String requestedUri = ontologies.getBase() + id;
             System.out.println(requestedUri );
-            if(!ontology.getOntologies().containsKey(requestedUri)) {
+            if(!ontologies.getOntologies().containsKey(requestedUri)) {
                 return Response.status(Response.Status.NOT_FOUND).build();
             }
-            File turtleFile = ontology.getOntologies().get(requestedUri);
+            File turtleFile = ontologies.getOntologies().get(requestedUri);
             Model model = ModelFactory.createDefaultModel().read( new FileInputStream( turtleFile ) , uri, "TTL");
             
             StringWriter sw = new StringWriter();
