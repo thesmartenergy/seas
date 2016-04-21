@@ -1,0 +1,471 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#Core languages and types 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .              #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .      #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .           #XML standard datatypes
+
+#Standard linked data terms
+@prefix skos: <http://www.w3.org/2008/05/skos#>.   #Simple Knowledge Organization System 
+@prefix cc: <http://creativecommons.org/ns#>. #Creative commons namespace
+@prefix dc: <http://purl.org/dc/terms/> .     #Dublin Core Metadata Initiative terms
+
+#Linked data documentation
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix void: <https://www.w3.org/TR/void/>. #Vocabulary of interelinked datasets 
+
+#Seas specific namespaces (Target is to have just one)
+@prefix seas: <http://w3id.org/seas/ontology/all#>.
+@prefix ts: <http://w3id.org/seas/ontology/timeseries#>.
+
+#Vocabulary definition
+<http://w3id.org/seas/ontology/timeseries#> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:description "SEAS-TIMESERIES ontology that helps to define simple time-series as evaluluation."@en ;
+  dc:issued "2016-03-17"^^xsd:date ;
+  dc:modified "2016-04-21"^^xsd:date ;
+  dc:title "SEAS-TIMESERIES to simplify writing time-series data"@en ;
+  vann:preferredNamespacePrefix "ts"; 
+  vann:preferredNamespaceUri <http://w3id.org/seas/ontology/timeseries#> ;
+  owl:versionInfo "v0.2" .
+
+#A simple evaluation dataset can contain either single value or complex value such as timeseries or distribution
+ts:Evaluation a owl:Class ;
+  rdfs:label "Evaluation"@en ;
+  rdfs:comment "The class of evaluations as a dataset."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subClassOf seas:Evaluation;
+  vs:term_status "testing" .
+
+#Provisioning information allowing to express the provisioning infomation of this data    
+#More can be expressed by can by other ontologies 
+
+ts:generatedBy a owl:ObjectProperty ;
+  rdfs:label "generatedBy"@en ;
+  rdfs:comment "Activity that generated this evaluation."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:domain ts:Evaluation;
+  rdfs:range seas:Activity;  
+  vs:term_status "testing" . 
+
+ts:generatedAt a owl:DatatypeProperty ;
+  rdfs:label "generatedAt"@en ;
+  rdfs:comment "Time of generation of this evalauation."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:domain ts:Evaluation;  
+  rdfs:range xsd:dateTime;  
+  vs:term_status "testing" .   
+  
+#Allows to express the category for data such as its intended role, can be extended on different domains  
+#One can also create own categories as needed, evaluation can be member of several of these categories
+
+ts:category a owl:ObjectProperty ;
+  rdfs:label "category"@en ;
+  rdfs:comment "The category of data such as foreacst, plan, estimation etc.."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:domain ts:Evaluation;  
+  rdfs:range ts:Category;  
+  vs:term_status "testing".    
+
+ts:Category a owl:Class ;
+  rdfs:label "Category"@en ;
+  rdfs:comment "Category of evaluation"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing".    
+  
+ts:InitialValue a ts:Category ;
+  rdfs:label "Intitial"@en ;
+  rdfs:comment "Intial values expressed as evaluation"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing".  
+  
+ts:Baseline a ts:Category ;
+  rdfs:label "Baseline"@en ;
+  rdfs:comment "A baseline for comparison expressed as evaluation data."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing".    
+  
+ts:Forecast a ts:Category ;
+  rdfs:label "Forecast"@en ;
+  rdfs:comment "Forecast expressed as evaluation"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing".   
+
+ts:History a ts:Category ;
+  rdfs:label "History"@en ;
+  rdfs:comment "A historic (measured) data saved as evaluation."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing".     
+  
+ts:Plan a ts:Category ;
+  rdfs:label "Plan"@en ;
+  rdfs:comment "A plan expressed as evaluation."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing". 
+  
+ts:Observation a ts:Category ;
+  rdfs:label "Observation"@en ;
+  rdfs:comment "A measured data expressed as evaluation."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing".     
+  
+ts:Command a ts:Category ;
+  rdfs:label "Command"@en ;
+  rdfs:comment "Commands expressed as evaluation data."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing".   
+
+ts:Target a ts:Category ;
+  rdfs:label "Target"@en ;
+  rdfs:comment "Target values expressed as evaluation data."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing".   
+  
+ts:Limit a ts:Category ;
+  rdfs:label "Limit"@en ;
+  rdfs:comment "Limit values expressed as evaluation data."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing".   
+  
+ts:Stream a ts:Category ;
+  rdfs:label "Stream"@en ;
+  rdfs:comment "The data presented by this evaluation is part of continuity of a larger stream of data."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing".    
+     
+#Constraints, this allows for extending with your own constraints by subproperties 
+ts:constraint a owl:ObjectProperty ;
+  rdfs:label "constraint"@en ;
+  rdfs:comment "A constraint for data"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:domain ts:Evaluation;  
+  vs:term_status "testing".    
+
+ts:systemOfInterest a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:label "systemOfInterest"@en ;
+  rdfs:comment "Generalization of observation and measurements Feature of interest."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subPropertyOf ts:constraint;  
+  vs:term_status "testing" .     
+  
+ts:hasEvaluation a owl:ObjectProperty;
+  rdfs:label "hasEvaluation"@en ;
+  rdfs:comment "Generalization of observation and measurements Feature of interest."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  owl:inverseOf ts:systemOfInterest;  
+  vs:term_status "testing" .     
+  
+ts:temporalContext a owl:ObjectProperty ;
+  rdfs:label "temporalContext"@en ;
+  rdfs:comment "Temporal interval of data: start, stop and duration."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subPropertyOf ts:constraint;  
+  rdfs:range ts:TemporalEntity;
+  vs:term_status "testing" .        
+  
+ts:quantity a owl:ObjectProperty ;
+  rdfs:label "quantity"@en ;
+  rdfs:comment "The quantity or phenomena class expressed by data"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subPropertyOf ts:constraint;  
+  rdfs:range seas:Quantity;
+  vs:term_status "testing" .   
+
+ts:unit a owl:ObjectProperty ;
+  rdfs:label "unit"@en ;
+  rdfs:comment "The unit expressed by data (from a set already constrained by the quantity)."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subPropertyOf ts:constraint;  
+  rdfs:range seas:Unit;
+  vs:term_status "testing" .     
+  
+ts:significantValueChange a owl:ObjectProperty ;
+  rdfs:label "significantValueChange"@en ;
+  rdfs:comment "Defines what is the significant change in values expressed in the units used. For example two digit signifigance is 0.01 kiloWatts or 10 Watts."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subPropertyOf ts:constraint;  
+  rdfs:range seas:Unit;
+  vs:term_status "testing" .       
+  
+#Simple values expressable as data property
+ts:value a owl:DatatypeProperty ;
+  rdfs:label "data value"@en ;
+  rdfs:comment "Simple data value"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:domain ts:Evaluation, ts:ComplexValue;
+  vs:term_status "testing" .   
+
+ts:ComplexValue a owl:Class ;
+  rdfs:label "ComplexValue"@en ;
+  rdfs:comment "Value expressed as object."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing".     
+  
+#  
+#Complex data objects and their properties   
+#
+
+#Complex value properties  
+ts:complexValue a owl:ObjectProperty ;
+  rdfs:label "complexValue"@en ;
+  rdfs:comment "Complex data value"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:domain ts:Evaluation; 
+  rdfs:range ts:ComplexValue;
+  vs:term_status "testing".
+  
+#Timeseries
+
+ts:timeSeries a owl:ObjectProperty ;
+  rdfs:label "timeSeries"@en ;
+  rdfs:comment "A timeseries of values"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subPropertyOf ts:complexValue;
+  rdfs:domain ts:Evaluation;   
+  rdfs:range ts:TimeSeries;
+  vs:term_status "testing".
+  
+ts:TimeSeries a owl:Class ;
+  rdfs:label "TimeSeries"@en ;
+  rdfs:comment "A data series with temporal properties"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;  
+  rdfs:subClassOf ts:ComplexValue;
+  vs:term_status "testing".
+
+ts:timeStep a owl:DatatypeProperty ;
+  rdfs:label "timeStep"@en ;
+  rdfs:comment "Duration between two items in timeseries"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf ts:value;  
+  rdfs:domain ts:TimeSeries;
+  rdfs:range xsd:duration.  
+
+ts:list a owl:ObjectProperty ;
+  rdfs:label "list"@en ;
+  rdfs:comment "Data items as rdf list."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:domain ts:TimeSeries, ts:Evaluation;
+  rdfs:range rdf:List.  
+
+ts:contains a owl:ObjectProperty ;
+  rdfs:label "contains"@en ;
+  rdfs:comment "Evaluation consists of sub-evaluations."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf seas:contains;
+  rdfs:domain ts:Evaluation;
+  rdfs:range ts:Evaluation;  
+  rdfs:range rdf:List.    
+  
+#Distribution related values 
+ts:spread a owl:ObjectProperty ;
+  rdfs:label "spread"@en ;
+  rdfs:comment "Data value is a distribution, using spread as a shorter property name."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf ts:complexValue;
+  rdfs:domain ts:Evaluation;   
+  rdfs:range ts:Distribution.  
+
+ts:Distribution a owl:Class ;
+  rdfs:label "Distribution"@en ;
+  rdfs:comment "The distribution of value."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subClassOf ts:ComplexValue;
+  vs:term_status "testing".   
+
+#Typical statistical values, simple values only    
+ts:minimum a owl:DatatypeProperty ;
+  rdfs:label "minimum"@en ;
+  rdfs:comment "Minimum value"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf ts:value;  
+  rdfs:domain ts:Distribution.   
+  
+ts:mean a owl:DatatypeProperty ;
+  rdfs:label "mean"@en ;
+  rdfs:comment "Mean value"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf ts:value;    
+  rdfs:domain ts:Distribution.     
+  
+ts:maximum a owl:DatatypeProperty ;
+  rdfs:label "maximum"@en ;
+  rdfs:comment "Maximum value"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf ts:value;    
+  rdfs:domain ts:Distribution.  
+
+ts:median a owl:DatatypeProperty ;
+  rdfs:label "median"@en ;
+  rdfs:comment "Median value i.e second quartile or 5. decile"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf ts:value;    
+  rdfs:domain ts:Distribution.    
+  
+ts:range a owl:DatatypeProperty ;
+  rdfs:label "range"@en ;
+  rdfs:comment "Range between minimum and maximum values."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf ts:value;    
+  rdfs:domain ts:Distribution.    
+
+ts:quartile0 a owl:DatatypeProperty;
+  rdfs:label "quartile0"@en ;
+  rdfs:comment "Minimum of sample or population."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf ts:minimum;    
+  rdfs:domain ts:Distribution. 
+  
+ts:quartile1 a owl:DatatypeProperty;
+  rdfs:label "quartile1"@en ;
+  rdfs:comment "A first quartile of the sample or population."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf ts:value;    
+  rdfs:domain ts:Distribution.    
+  
+ts:quartile2 a owl:DatatypeProperty ;
+  rdfs:label "quartile2"@en ;
+  rdfs:comment "Second quartile of sample, same as the median of sample."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf ts:median;    
+  rdfs:domain ts:Distribution.   
+
+ts:quartile3 a owl:DatatypeProperty ;
+  rdfs:label "quartile3"@en ;
+  rdfs:comment "Third quartile of sample or distribution."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subPropertyOf ts:value;    
+  vs:term_status "testing" ;
+  rdfs:domain ts:Distribution.   
+  
+ts:quartile4 a owl:DatatypeProperty ;
+  rdfs:label "quartile4"@en ;
+  rdfs:comment "Maximum of sample or distribution."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subPropertyOf ts:maximum;    
+  vs:term_status "testing" ;
+  rdfs:domain ts:Distribution.     
+    
+#Time related ontology
+ts:TemporalEntity a owl:Class ;
+  rdfs:label "TemporalEntity"@en ;
+  rdfs:comment "A temporal entity i.e. either proper interval or instant."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subClassOf ts:ComplexValue;
+  vs:term_status "testing".  
+
+ts:Instant a owl:Class ;
+  rdfs:label "Instant"@en ;
+  rdfs:comment "A simplification of instant in owl time. note tahat property that ts:instant links directly to xsd:dateTime not ts:Instant."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subClassOf ts:TemporalEntity;
+  vs:term_status "testing".    
+
+ts:time a owl:DatatypeProperty ;
+  rdfs:label "time"@en ;
+  rdfs:comment "Time of instant as xsd:time, for an Interval same as start time."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing";
+  rdfs:subPropertyOf ts:value;    
+  rdfs:domain ts:TemporalEntity;
+  rdfs:range xsd:dateTime.     
+
+ts:Interval a owl:Class ;
+  rdfs:label "Interval"@en ;
+  rdfs:comment "A simplification proper interval (start should be different than end) concept based on owl time interval"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subClassOf ts:TemporalEntity;  
+  vs:term_status "testing".  
+  
+ts:start a owl:DatatypeProperty ;
+  rdfs:label "start"@en ;
+  rdfs:comment "Starting instant"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf ts:time.  
+
+ts:end a owl:DatatypeProperty ;
+  rdfs:label "end"@en ;
+  rdfs:comment "Ending instant"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing";
+  rdfs:subPropertyOf ts:time.  
+
+ts:duration a owl:DatatypeProperty ;
+  rdfs:label "duration"@en ;
+  rdfs:comment "Duration between instants"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subPropertyOf ts:value;  
+  vs:term_status "testing".
+
+ts:allenRelation a owl:ObjectProperty ;
+  rdfs:label "allenRelation"@en ;
+  rdfs:comment "Allen interval algebra relation."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:domain ts:TemporalEntity;  
+  rdfs:range ts:TemporalEntity;
+  vs:term_status "testing".  
+  
+ts:during a owl:ObjectProperty ;
+  rdfs:label "during"@en ;
+  rdfs:comment "Something happens during an interval."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subPropertyOf ts:allenRelation;  
+  vs:term_status "testing".  
+  
+#TBD: Value could potentially be expressed as group & rank   
+ts:Decile a owl:Class ;
+  rdfs:label "Decile"@en ;
+  rdfs:comment "Decile of data set. Rank is 0,1,...,9,10"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subClassOf ts:Distribution;
+  vs:term_status "testing". 
+
+ts:Quartile a owl:Class ;
+  rdfs:label "Quartile"@en ;
+  rdfs:comment "Quartile of data set. Rank is 0,1,2,3,4"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subClassOf ts:Distribution;
+  vs:term_status "testing". 
+
+ts:Percentile a owl:Class ;
+  rdfs:label "Percentile"@en ;
+  rdfs:comment "Percentile of data set. Rank is 0-100"@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  rdfs:subClassOf ts:Distribution;
+  vs:term_status "testing".   
+
+ts:rank a owl:DatatypeProperty;
+  rdfs:label "rank"@en ;
+  rdfs:comment "Rank number of decile, percentile etc."@en ;
+  rdfs:isDefinedBy <http://w3id.org/seas/ontology/timeseries#> ;
+  vs:term_status "testing" ;
+  rdfs:domain ts:Decile,ts:Quartile,ts:Percentile;
+  rdfs:range xsd:integer;
+  rdfs:domain ts:Distribution.     
