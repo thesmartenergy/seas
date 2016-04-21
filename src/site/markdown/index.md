@@ -1,6 +1,6 @@
 # SEAS ontologies
 
-This site exposes the SEAS ontologies.
+This site exposes the SEAS ontologies. For now, these are:
 
 - The timeseries vocabulary -  http://w3id.org/seas/ontology/timeseries#
 - The technicalsystem vocabulary -  http://w3id.org/seas/ontology/technicalsystem#
