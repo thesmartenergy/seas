@@ -35,7 +35,7 @@ public class Ontologies {
 
     private static final Logger LOG = Logger.getLogger(Ontologies.class.getSimpleName());
 
-    private final String base = "http://w3id.org/seas/ontology/";
+    private final String base = "https://w3id.org/seas/ontology/";
     
     private final Map<String, File> ontologies = new HashMap<>();
     
