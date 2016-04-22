@@ -72,8 +72,8 @@ seas:Perdurant a owl:Class ;
   
 seas:Endurant a owl:Class ;
   rdfs:label "Endurant"@en ;
-  rdfs:comment "Also known as continuants, or in some cases as substance, endurants are those entities that can be observed-perceived as a complete concept, at no matter which given snapshot of time. Were we to freeze time we would still be able to perceive/conceive the entire endurant.
-  Examples include material objects (such as an apple or a human), and abstract fiat objects (such as an organization, or the border of a country)."@en ;
+  rdfs:comment """Also known as continuants, or in some cases as substance, endurants are those entities that can be observed-perceived as a complete concept, at no matter which given snapshot of time. Were we to freeze time we would still be able to perceive/conceive the entire endurant.
+  Examples include material objects (such as an apple or a human), and abstract fiat objects (such as an organization, or the border of a country)."""@en ;
   vs:term_status "testing" ;
   rdfs:subClassOf seas:Entity;  
   rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary>.       
