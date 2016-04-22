@@ -1,0 +1,264 @@
+@prefix : <https://w3id.org/seas/ontology/pv.owl#> .
+@prefix pv: <https://w3id.org/seas/ontology/pv.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+
+@base <https://w3id.org/seas/ontology/pv.owl> .
+
+<https://w3id.org/seas/ontology/pv.owl> rdf:type owl:Ontology ;
+                                        
+                                        owl:imports <http://purl.org/NET/seas#UpperVocabulary> .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  https://w3id.org/seas/ontology/pv.owl#nulldescription
+
+:nulldescription rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  https://w3id.org/seas/ontology/pv.owl#belongsTo
+
+:belongsTo rdf:type owl:ObjectProperty ;
+           
+           owl:inverseOf :isComposedBy .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#hasInfluenceOn
+
+:hasInfluenceOn rdf:type owl:ObjectProperty ;
+                
+                rdfs:range :PhotovoltaicSystem .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#isComposedBy
+
+:isComposedBy rdf:type owl:ObjectProperty ;
+              
+              rdfs:range :PhotovoltaicComponent ;
+              
+              rdfs:domain :PhotovoltaicSystem ;
+              
+              rdfs:range :SolarCell ;
+              
+              rdfs:domain :SolarModule .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#isContainedIn
+
+:isContainedIn rdf:type owl:ObjectProperty ;
+               
+               rdfs:range :Building ;
+               
+               rdfs:domain :PhotovoltaicSystem .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#isInfluencedBy
+
+:isInfluencedBy rdf:type owl:ObjectProperty ;
+                
+                rdfs:range seas:AirTemperature ,
+                           seas:SolarIrradiance ;
+                
+                rdfs:domain :PhotovoltaicSystem ;
+                
+                owl:inverseOf :hasInfluenceOn .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  https://w3id.org/seas/ontology/pv.owl#BatteryCapacity
+
+:BatteryCapacity rdf:type owl:DatatypeProperty ;
+                 
+                 rdfs:domain :Battery .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#BatteryType
+
+:BatteryType rdf:type owl:DatatypeProperty ;
+             
+             rdfs:domain :Battery .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#CellType
+
+:CellType rdf:type owl:DatatypeProperty ;
+          
+          rdfs:domain :SolarCell .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#LowerStateOfCharge
+
+:LowerStateOfCharge rdf:type owl:DatatypeProperty ;
+                    
+                    rdfs:domain :Battery .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#Nominal_power
+
+:Nominal_power rdf:type owl:DatatypeProperty ;
+               
+               rdfs:domain :PhotovoltaicSystem .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#PotentialInducedDegradation
+
+:PotentialInducedDegradation rdf:type owl:DatatypeProperty ;
+                             
+                             :nulldescription "is a potential induced performance degradation in crystalline photovoltaic modules, caused by so-called stray currents. This effect may cause power loss of up to 30 percent" ;
+                             
+                             rdfs:domain :SolarModule .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#SolarCellEfficiency
+
+:SolarCellEfficiency rdf:type owl:DatatypeProperty ;
+                     
+                     :nulldescription "Solar cell efficiency is the ratio of the electrical output of a solar cell to the incident energy in the form of sunlight" .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://w3id.org/seas#AirTemperature
+
+seas:AirTemperature rdf:type owl:Class .
+
+
+
+###  http://w3id.org/seas#SolarIrradiance
+
+seas:SolarIrradiance rdf:type owl:Class .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#Battery
+
+:Battery rdf:type owl:Class ;
+         
+         rdfs:subClassOf :PhotovoltaicComponent ;
+         
+         :nulldescription "Batteries used for grid-storage also stabilize the electrical grid by leveling out peak loads," .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#Building
+
+:Building rdf:type owl:Class .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#Inverter
+
+:Inverter rdf:type owl:Class ;
+          
+          rdfs:subClassOf :PhotovoltaicComponent ;
+          
+          :nulldescription "Converts the direct current (DC) from the solar modules to alternating current (AC)" .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#Mounting
+
+:Mounting rdf:type owl:Class ;
+          
+          rdfs:subClassOf :PhotovoltaicComponent .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#PhotovoltaicComponent
+
+:PhotovoltaicComponent rdf:type owl:Class .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#PhotovoltaicSystem
+
+:PhotovoltaicSystem rdf:type owl:Class .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#SolarCell
+
+:SolarCell rdf:type owl:Class ;
+           
+           rdfs:subClassOf :PhotovoltaicComponent .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#SolarModule
+
+:SolarModule rdf:type owl:Class ;
+             
+             rdfs:subClassOf :PhotovoltaicComponent .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#SolarPanel
+
+:SolarPanel rdf:type owl:Class ;
+            
+            rdfs:subClassOf :PhotovoltaicComponent .
+
+
+
+###  https://w3id.org/seas/ontology/pv.owl#Tracker
+
+:Tracker rdf:type owl:Class ;
+         
+         rdfs:subClassOf :PhotovoltaicComponent ;
+         
+         :nulldescription "A solar tracking system tilts a solar panel throughout the day" .
+
+
+
+
+###  Generated by the OWL API (version 3.4.5-SNAPSHOT) http://owlapi.sourceforge.net
+
+
