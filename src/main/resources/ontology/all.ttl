@@ -12,3 +12,1380 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#Core languages and types 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .              #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .      #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .           #XML standard datatypes
+
+#Standard linked data terms
+@prefix skos: <http://www.w3.org/2008/05/skos#>.   #Simple Knowledge Organization System 
+@prefix cc: <http://creativecommons.org/ns#>. #Creative commons namespace
+@prefix dc: <http://purl.org/dc/terms/> .     #Dublin Core Metadata Initiative terms
+
+#Linked data documentation
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix void: <https://www.w3.org/TR/void/>. #Vocabulary of interelinked datasets 
+
+#Mapping to quantities and units
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> . #QUDT quantities
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix mdq: <http://w3id.org/multidimensional-quantity/> . #Multidimensional quantity ontology
+
+#Domain ontologies and (possibly non RDF) vocaubularies that SEAS is aligned with
+@prefix ifc: <http://www.buildingsmart-tech.org/ifcOWL/IFC2X3_TC1#>. #IFC owl ontology
+@prefix gbxml:<http://www.gbxml.org/schema#>.     #GBXML XML schema
+@prefix fiemser:<http://sites.google.com/site/smartappliancesproject/ontologies/fiemser#>. #Fiemser building ontology
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+
+#Seas specific namespaces (Target is to have just one)
+@prefix seas: <https://w3id.org/seas/ontology/all#>.
+@prefix ts: <https://w3id.org/seas/ontology/timeseries#>.
+
+
+
+# seas-upper ontology
+<https://w3id.org/seas/ontology/all#UpperVocabulary> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:description "The SEAS-UPPER Module for the ITEA SEAS (Smart Energy Aware Systems) project. This module presents abstract meta level concepts that could link SEAS model to exsisting upper ontologies and may help to clarify conceptually and align their definitions. These are not yet formalized fully and can contain logical erros"@en ;
+  dc:issued "2015-10-10"^^xsd:date ;
+  dc:modified "2016-01-20"^^xsd:date ;
+  dc:title "SEAS-SYSTEM ontology"@en ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/ontology/all> ;
+  owl:versionInfo "v0.2" .  
+
+seas:Entity a owl:Class ;
+  rdfs:label "Entity"@en ;
+  rdfs:comment "Can be used instead of thing to constraint only entities defined by seas ontology"@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary>.   
+  
+seas:Perdurant a owl:Class ;
+  rdfs:label "Perdurant"@en;
+  rdfs:comment "Also known as occurrents, accidents or happenings, perdurants are those entities for which only a part exists if we look at them at any given snapshot in time. When we freeze time we can only see a part of the perdurant. Perdurants are often what we know as processes, for example: running. If we freeze time then we only see a part of the running, without any previous knowledge one might not even be able to determine the actual process as being a process of running. Other examples include an activation, a kiss, or a procedure."@en;
+  rdfs:subClassOf seas:Entity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary>.   
+  
+seas:Endurant a owl:Class ;
+  rdfs:label "Endurant"@en ;
+  rdfs:comment "Also known as continuants, or in some cases as substance, endurants are those entities that can be observed-perceived as a complete concept, at no matter which given snapshot of time. Were we to freeze time we would still be able to perceive/conceive the entire endurant.
+  Examples include material objects (such as an apple or a human), and abstract fiat objects (such as an organization, or the border of a country)."@en ;
+  vs:term_status "testing" ;
+  rdfs:subClassOf seas:Entity;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary>.       
+
+seas:Quality a owl:Class ;
+  rdfs:label "Quality"@en ;
+  rdfs:comment "Qualities do not exist on their own, but they need another entity (in many formal ontologies this entity is restricted to be an endurant) which they occupy. Examples of qualities and the values they assume include colors (red color), or temperatures (warm)."@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary>.    
+  
+seas:Phenomenon a owl:Class ;
+  rdfs:label "Phenomenon"@en ;
+  rdfs:comment "In seas phenomenon is understood as something that can be observed."@en ;
+  rdfs:subClassOf seas:Entity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary>.      
+  
+seas:PhysicalEntity a owl:Class ;
+  rdfs:label "PhysicalEntity"@en ;
+  rdfs:comment "PhysicalEntity has material existence"@en ;
+  vs:term_status "testing" ;
+  rdfs:subClassOf seas:Endurant;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary>.     
+  
+seas:AbstractEntity a owl:Class ;
+  rdfs:label "AbstractEntity"@en ;
+  rdfs:comment "Abstract entity has no material existence"@en ;
+  vs:term_status "testing" ;
+  rdfs:subClassOf seas:Entity; 
+  owl:disjointWith seas:PhysicalEntity; 
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary>.       
+  
+seas:Link a owl:Class ;
+  rdfs:label "Link"@en ;
+  rdfs:comment "A relation between two entities. "@en ;
+  rdfs:subClassOf seas:Entity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary> .      
+  
+seas:Topology a owl:Class ;
+  rdfs:label "Topology"@en ;
+  rdfs:comment "A collection of entities and their links."@en ;
+  rdfs:subClassOf seas:Entity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary> .        
+
+# Some helpful whole/part properties that are related to UML aggragation and containment 
+# See also https://www.w3.org/2001/sw/BestPractices/OEP/SimplePartWhole/
+  
+seas:hasPart a owl:ObjectProperty, owl:TransitiveProperty;
+  rdfs:label "hasPart"@en ;
+  rdfs:comment "hasPart"@en ;
+  vs:term_status "testing" ;
+  rdfs:seeAlso "http://www.obofoundry.org/ro/#OBO_REL:part_of";
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary> .   
+  
+seas:hasDirecPart a owl:ObjectProperty;
+  rdfs:label "hasDirectPart"@en ;
+  rdfs:comment "Is directly part of something (not part of its parts)"@en ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf seas:hasPart;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary> .   
+
+seas:contains a owl:ObjectProperty, owl:TransitiveProperty;
+  rdfs:comment "Contains something that exsist individually but is not part of it such as a person in a room"@en ;
+  vs:term_status "testing" ;
+  rdfs:seeAlso "http://www.obofoundry.org/ro/#OBO_REL:part_of";
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#UpperVocabulary> .     
+
+##### These vocabularies are bart of seas-system module
+
+<https://w3id.org/seas/ontology/all#TehnicalSystemVocabulary> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:description "The Seas TechnicalSystem Vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project. This vocabulary presents some abstract system level concepts that help to define common patterns to ease creating similar queries across more specific ontologies"@en ;
+  voaf:specializes seas:SystemVocabulary;
+  voaf:reliesOn seas:UpperVocabulary;
+  dc:issued "2016-01-20"^^xsd:date ;
+  dc:modified "2016-04-20"^^xsd:date ;
+  dc:title "SEAS-SYSTEM ontology"@en ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/ontology/all#> ;
+  owl:versionInfo "v0.2" .
+  
+#Systems and subsystems in general in system vocabulary
+seas:System a owl:Class ;
+  rdfs:label "System"@en ;
+  rdfs:comment "System is an  concrete or abstract set of things composing a complex whole."@en ;
+  rdfs:subClassOf seas:Entity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#SystemVocabulary>.  
+
+#Technical system is a specific class of systems 
+seas:TehcnicalSystem a owl:Class ;
+  rdfs:label "TechnicalSystem"@en ;
+  rdfs:comment "Technical system is an  concrete or abstract set of things working together as parts of a technical mechanism or an interconnecting network."@en ;
+  rdfs:subClassOf seas:System;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.  
+  
+seas:Device a owl:Class ;
+  rdfs:label "Device"@en ;
+  rdfs:comment "Device is a physical/concrete electronic or mechanic system created for to provide one or more abstract of concrete functions"@en ;
+  rdfs:subClassOf seas:TechnicalSystem; 
+  rdfs:seeAlso saref:Device;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.    
+  
+seas:DeviceCategory a owl:Class ; #From saref
+  rdfs:label "DeviceCategory"@en ;
+  rdfs:comment "A Device Category provides a way to classify devices according to a certain point of view, for example, the point of view of the user of the device vs. the device's manufacturer, or the domain in which the device is used (e.g., smart appliances vs. building domain vs. smart grid domain), etc."@en ;
+  rdfs:subClassOf seas:Role;
+  rdfs:seeAlso saref:DeviceCategory;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.     
+  
+#General device categorizations more are defined in specific knowledge modules such as seas-building
+#This is similar to saref but instead of function or energy profile seas-specific concepts activity and energy profile 
+#described as seas: evaluation are used
+seas:FunctionRelated a owl:Class ; 
+  rdfs:label "FunctionRelated"@en ;
+  rdfs:comment "It is a category that considers role of devices, sensors etc. in terms of actions and resources. The category should be able to be reasoned from the activities the device has"@en ;
+  rdfs:subClassOf seas:DeviceCategory;
+  rdfs:seeAlso saref:FunctionRelated;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.     
+  
+seas:EnergyRelated a owl:Class ; #From saref
+  rdfs:label "EnergyRelated"@en ;
+  rdfs:comment "It is a category that considers devices based on energy consumption information and profiles to optimize energy efficiency."@en ;
+  rdfs:subClassOf seas:DeviceCategory;
+  rdfs:seeAlso saref:EnergyRelated;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.  
+
+ seas:Appliance a owl:Class ; 
+  rdfs:label "Appliance"@en ;
+  rdfs:comment "An appliance is a category of electrical/mechanical machines at home which uses energy to accomplish some household activities, such as cooking or cleaning. "@en ;
+  rdfs:subClassOf seas:FunctionRelated,seas:Device;
+  rdfs:seeAlso saref:Applicance;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.    
+
+#The actions of actuating activity are modelled with seas:Evaluation as input resource that can be a single value or complex timeseries  
+seas:ActuatingActivity a owl:Class ; 
+  rdfs:label "ActuatingActivity"@en ;
+  rdfs:comment "Actuating action allows to do level adjustments of an actuator in a certain range (e.g., 0-100), such as dimming a light or set the speed of an electric motor."@en ;
+  rdfs:subClassOf seas:Activity;
+  rdfs:seeAlso saref:ActuatingFunction;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.     
+    
+#Combines boolean actuating activities such as on/off, open/close or start/stop. Input resource of evaluation should be have boolean quantity values.
+#What this means on/off, open/close etc. is something could be be defined by the specific boolean quantity 
+#For now we just will rely on the naming of actvities sucha as OnOffActivity to be compatible with saref
+seas:BooleanActuatingActivity a owl:Class ;  
+  rdfs:label "BooleanActuatingActivity"@en ;
+  rdfs:comment "Activity that defines something as boolean value, i.e. it is active when the evaluation value is false"@en ;
+  rdfs:subClassOf seas:ActuatingActivity;
+  rdfs:seeAlso saref:OnOffFunction;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.    
+  
+seas:OnOffActivity a owl:Class ;  
+  rdfs:label "OnOffActivity"@en ;
+  rdfs:comment "Activity that defines something to be actuated on or off"@en ;
+  rdfs:subClassOf seas:BooleanActuatingActivity;
+  rdfs:seeAlso saref:OnOffFunction;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.    
+  
+seas:OpenCloseActivity a owl:Class ;  
+  rdfs:label "OpenCloseActivity"@en ;
+  rdfs:comment "Activity that defines something to be actuated open or close"@en ;
+  rdfs:subClassOf seas:BooleanActuatingActivity;
+  rdfs:seeAlso saref:OpenCloseFunction;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.      
+
+#The boolean control commands are described by the input or output resource i.e. evaluation with boolean values
+#As these are boolean values the result of two controls is their truth value at the time
+
+seas:State a owl:Class ; 
+  rdfs:label "BooleanState"@en ;
+  rdfs:comment "Can be true of false, is used to model commands like on/off."@en ;
+  rdfs:subClassOf seas:Quantity; #States can be used as quantity in evaluations
+  rdfs:seeAlso saref:State;  
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.     
+  
+seas:BooleanState a seas:State ; 
+  rdfs:label "BooleanState"@en ;
+  rdfs:comment "Can be true of false, is used to model commands like on/off."@en ;
+  rdfs:seeAlso saref:OnOffState,saref:OpenCloseState;  
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.     
+
+seas:EnumeratedState a seas:State ; 
+  rdfs:label "EnumeratedState"@en ;
+  rdfs:comment "Can have multiple enumerated values."@en ;
+  rdfs:seeAlso saref:MultiLevelState;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.       
+       
+#Networks and services, this is a really abstract way to represent this using seas:Evaluation to structure the data
+#For consistency and simplicity, all commands and input/output data is transferred as seas:evaluation.
+#This leaves the question how to model input parameterisation (select capabilities)
+#This has to be aligned with seas:Cosaa service descriptions that describe technical service interface.
+#Restricted this to network nodes so that it would not be in conflict with the proposed system vocabulary 
+
+seas:NetworkNode a owl:Class ;
+  rdfs:label "NetworkNode"@en ;
+  rdfs:comment "Node is the abstract role of a device or system in some topology. "@en ;
+  rdfs:subClassOf seas:Role;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .  
+  
+seas:offersService a owl:ObjectProperty;
+  rdfs:comment "offersService"@en ;
+  rdfs:Domain seas:NetworkNode;
+  rdfs:Range seas:Service;  
+  rdfs:seeAlso <http://purl.org/goodrelations/v1#offers>;    
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .   
+  
+seas:Service a owl:Class ; #Individuals of this are service descriptoions not service instances!
+  rdfs:label "Service"@en ;
+  rdfs:comment "Service is abstract entity, typically an activity described as capabilities and offered by a node"@en ;
+  rdfs:subClassOf seas:AbstractEntity;
+  rdfs:seeAlso saref:Service, <http://purl.org/goodrelations/v1#Offering>;  
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary>.      
+  
+seas:hasCapability a owl:ObjectProperty;
+  rdfs:comment "hasCapability"@en ;
+  rdfs:subPropertyOf seas:contains;
+  rdfs:Domain seas:Service;
+  rdfs:Range seas:Activity; #In future we could extend this with other capabilities than Activity 
+  rdfs:seeAlso <http://purl.org/goodrelations/v1#hasBusinessFunction>;    
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .   
+
+#Input and output data resources for activities
+seas:hasDataResource a owl:ObjectProperty;
+  rdfs:comment "A data resource relatd to activity"@en ;
+  rdfs:Domain seas:Activity;
+  rdfs:Range seas:Evaluation;  
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .  
+  
+seas:hasOutput a owl:ObjectProperty;
+  rdfs:comment "A resource generated by activity (inverse of generatedBy in seas-eval)"@en ;
+  rdfs:subPropertyOf seas:hasDataResource;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .  
+  
+seas:hasInput a owl:ObjectProperty;
+  rdfs:comment "A resource used as input by acitivity inverse of handledBy (to be added to seas-eval)"@en ;
+  rdfs:subPropertyOf seas:hasDataResource;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#TechnicalSystemVocabulary> .    
+  
+#SEAS architecture related concepts
+<https://w3id.org/seas/ontology/all#ArchVocabulary> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:description "The Seas Architecture Vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
+  voaf:reliesOn seas:UpperVocabulary;
+  dc:issued "2016-01-26"^^xsd:date ;
+  dc:modified "2016-01-26"^^xsd:date ;
+  dc:title "SEAS-ARCH ontology"@en ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/ontology/all#ArchVocabulary> ;  
+  owl:versionInfo "v0.2" .
+   
+seas:ResourceManager a owl:Class ;
+  rdfs:label "ResourceManager"@en ;
+  rdfs:comment "The class of SEAS resource managers."@en ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ArchVocabulary> ;
+  rdfs:subClassOf seas:Node ;
+  vs:term_status "testing" .  
+
+seas:ServiceProvider a owl:Class ;
+  rdfs:label "ServiceProvider"@en ;
+  rdfs:comment "The class of SEAS service providers."@en ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ArchVocabulary> ;
+  rdfs:subClassOf seas:Role ;
+  vs:term_status "testing" .  
+  
+seas:EndNode a owl:Class ;
+  rdfs:label "EndNode"@en ;
+  rdfs:comment "The class of SEAS end nodes."@en ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ArchVocabulary> ;
+  rdfs:subClassOf seas:Node ;
+  vs:term_status "testing" .  
+  
+seas:IPCapableEndNode a owl:Class ;
+  rdfs:label "IPCapableEndNode"@en ;
+  rdfs:comment "The class of IP capable SEAS end nodes."@en ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ArchVocabulary> ;
+  rdfs:subClassOf seas:EndNode ;
+  vs:term_status "testing" .  
+      
+#Core roles and activities (for devices and systems), this is reated to actor module and could specialize it but now here defined as new vocabulary
+<https://w3id.org/seas/ontology/all#ActorVocabulary> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:description "The Seas Actor Vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
+  voaf:reliesOn seas:UpperVocabulary;
+  dc:issued "2016-01-26"^^xsd:date ;
+  dc:modified "2016-01-26"^^xsd:date ;
+  dc:title "SEAS-SYSTEM ontology"@en ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/ontology/all#> ;  
+  owl:versionInfo "v0.2" .
+  
+seas:Activity a owl:Class ; 
+  rdfs:label "Activity"@en ;
+  rdfs:comment "Activity is a continuous task or process that an entity can be performing"@en ;
+  rdfs:subClassOf seas:AbstractEntity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary>.      
+
+seas:ForecastingActivity a owl:Class ; 
+  rdfs:label "ForecastingActivity"@en ;
+  rdfs:comment "Activity that forecasts something "@en ;
+  rdfs:subClassOf seas:Activity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary>.       
+
+seas:PlanningActivity a owl:Class ; 
+  rdfs:label "PlanningActivity"@en ;
+  rdfs:comment "Activity that creates plans "@en ;
+  rdfs:subClassOf seas:Activity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary>.    
+  
+seas:OptimizationActivity a owl:Class ; 
+  rdfs:label "OptimizationActivity"@en ;
+  rdfs:comment "Activity that opimizes something "@en ;
+  rdfs:subClassOf seas:Activity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary>.       
+
+seas:ControlActivity a owl:Class ; 
+  rdfs:label "ControlActivity"@en ;
+  rdfs:comment "Activity that in general controls something "@en ;
+  rdfs:subClassOf seas:Activity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary>.      
+
+seas:AssesmentActivity a owl:Class ; 
+  rdfs:label "AssesmentActivity"@en ;
+  rdfs:comment "Activity that assesses something "@en ;
+  rdfs:subClassOf seas:Activity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary>.     
+ 
+#Profile and role are similar, Role is related to set of activitiesa Profile set of evaluations 
+#Rather than associating activities/evaluations to individual or its category diretly this allow to associate those in
+#Context of some system or domain (an individual can have several roles/profiles)
+#For example we could define that only certain roles can have a specific activity.
+seas:Role a owl:Class ;
+  rdfs:label "Role"@en ;
+  rdfs:comment "Abstract role of a Endurant in some (system/domain) context"@en ;
+  rdfs:subClassOf seas:AbstractEntity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> .  
+  
+ seas:hasRole a owl:ObjectProperty;
+  rdfs:label "hasRole"@en ;
+  rdfs:comment "Entity has an abstract role"@en ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf seas:contains;
+  rdfs:range seas:Role;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> .  
+  
+seas:Profile a owl:Class ;
+  rdfs:label "Profile"@en ;
+  rdfs:comment "Characteristics of a system in several measurable aspects with a specific temporalContext"@en ;
+  rdfs:seeAlso saref:Profile;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> .  
+
+ seas:hasProfile a owl:ObjectProperty;
+  rdfs:label "hasProfile"@en ;
+  rdfs:comment "hasProfile"@en ;
+  vs:term_status "testing" ;
+  rdfs:subPropertyOf seas:contains;
+  rdfs:range seas:Profile;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#ActorVocabulary> .  
+  
+#Some domain independent dimensionless quantities and units
+seas:Ratio a owl:Class;
+  rdfs:label "Ratio"@en ;
+  rdfs:comment "Dimensionless ratio."@en ;
+  rdfs:subClassOf seas:Quantity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#MarketVocabulary>.      
+      
+seas:Percent a seas:Unit;
+  rdfs:label "Percent"@en ;
+  rdfs:comment "Ratio expressed as percentage."@en ;
+  rdfs:sameAs qudt:Percent;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#MarketVocabulary>.   
+     
+seas:Count a owl:Class;
+  rdfs:label "Count"@en ;
+  rdfs:comment "Unitless numeric count."@en ;
+  rdfs:subClassOf seas:Quantity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#MarketVocabulary>.   
+  
+  ##### seas-building
+
+<https://w3id.org/seas/ontology/all#buildingVocabulary> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:description "The SEAS-BUILDING BIM related vocabular for the ITEA SEAS (Smart Energy Aware Systems) project. This ontology is targeted for defining structure of buildings (or more general facilities) and zones related to control and measurment with links to various BIM (Building Information Model) related standards"@en ;
+  dc:issued "2015-10-10"^^xsd:date ;
+  dc:modified "2016-01-25"^^xsd:date ;
+  dc:title "SEAS-BUILDING ontology"@en ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/ontology/all#> ;
+  owl:versionInfo "v0.2" .
+
+#General measurement and control concepts that are needed this could be linked to connection point ontology
+seas:Site a owl:Class ;
+  rdfs:label "Site"@en ;
+  rdfs:comment "Site is a a specific locale with associated information describing its scope and context."@en ;
+  rdfs:subClassOf seas:Entity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.  
+  
+seas:Zone a owl:Class ;
+  rdfs:label "Zone"@en ;
+  rdfs:comment "A general aggregation of administration, control, monitoring or measurement."@en ;
+  rdfs:subClassOf seas:System;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.      
+
+seas:mesurementPointOf a owl:ObjectProperty;
+  rdfs:label "measurementPointOf"@en ;
+  rdfs:comment "Specifies scope of administration, control or mesurement. Mainly either PointOfControl and PointOfMeasurment."@en ;
+  rdfs:subPropertyOf seas:connectionPointOf;
+  rdfs:domain seas:ConnectionPoint; 
+  rdfs:range seas:Zone;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> . 
+  
+seas:controlPointOf a owl:ObjectProperty;
+  rdfs:label "controlPointOf"@en ;
+  rdfs:comment "Specifies scope of administration, control or mesurement. Mainly either PointOfControl and PointOfMeasurment."@en ;
+  rdfs:subPropertyOF seas:connectionPointOf;
+  rdfs:domain seas:ConnectionPoint; 
+  rdfs:range seas:Zone;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .   
+  
+seas:PointOfControl a owl:Class ;
+  rdfs:label "PointOfControl"@en ;
+  rdfs:comment "Access role associated with controlling a specific zone"@en ;
+  rdfs:subClassOf seas:ConnectionPoint;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.    
+
+seas:PointOfMeasurement a owl:Class ;
+  rdfs:label "PointOfMeasurement"@en ;
+  rdfs:comment "Access role of measurement information associated with a specific zone"@en ;
+  rdfs:subClassOf seas:ConnectionPoint;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.      
+
+
+#These simplify defining relations between  connection points when we do not know the  underlying system connecitons  
+seas:subMeasurement a owl:ObjectProperty; 
+  rdfs:comment "The measurement in subMeasurement is contained in the value of higher level measurement"@en ;
+  rdfs:subPropertyOf seas:contains;
+  rdfs:domain seas:PointOfMeasurement;  
+  rdfs:range seas:PointOfMeasurement;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .     
+  
+seas:subControl a owl:ObjectProperty;
+  rdfs:comment "Controlling the control point in subControl is already handled by the higher level control poin"@en ;
+  rdfs:subPropertyOf seas:contains;
+  rdfs:domain seas:PointOfControl;
+  rdfs:range seas:PointOfControl;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .  
+ 
+#Building structure core concepts  
+#Building structure, seas does not define separate parameters quantitites such as coordinates or volumes
+#Those can be defined as an an seas:Evaluation 
+seas:SiteOfBuilding a owl:Class ;
+  rdfs:label "SiteOfBuilding"@en ;
+  rdfs:comment "Building site is a a locale containing one or more separate buildings."@en ;
+  rdfs:subClassOf seas:Site,seas:BuildingSpatialStructure;
+  rdf:seeAlso ifc:Site;  
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.   
+
+seas:ZoneOfBuilding a owl:Class ;
+  rdfs:label "ZoneOfBuilding"@en ;
+  rdfs:comment "An area of administration, control, monitoring or measurement inside a building."@en ;
+  rdfs:subClassOf seas:Zone;
+    rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom [
+          rdf:type owl:Class ;
+          owl:unionOf (
+              seas:BuildingSpace 
+			  seas:BuildingSurface 
+			  seas:BuildingSystem 
+			  seas:BuildingItem 
+            ) ;
+        ] ;
+      owl:onProperty seas:contains ;
+    ] ;
+  vs:term_status "testing" ;
+  rdf:seeAlso fiemser:BuildingZone, fiemser:BuildingPartition;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.   
+
+seas:Construction a owl:Class ;
+  rdfs:label "Construction"@en ;
+  rdfs:comment "Constructions are structures connected with the ground which are made of construction materials and components and/or for which construction work is carried out."@en ;
+  rdfs:subClassOf seas:PhysicalEntity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.  
+
+seas:CivilEngineeringWork a owl:Class ;
+  rdfs:label "CivilEngnineeringWork"@en ;
+  rdfs:comment "Civil engineering works are all constructions not classified under buildings : railways, roads, bridges, highways, airport runways, dams etc."@en ;
+  rdfs:subClassOf seas:Construction;
+  rdf:seeAlso ifc:Building, fiemser:Building;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.  
+  
+seas:Building a owl:Class ;
+  rdfs:label "Building"@en ;
+  rdfs:comment "Buildings are roofed constructions which can be used separately, have been built for permanent purposes, can be entered by persons and are suitable or intended for protecting persons, animals or objects."@en ;
+  rdfs:subClassOf seas:BuildingSpatialStructure, seas:Construction;
+  rdf:seeAlso ifc:Building, fiemser:Building;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.  
+  
+seas:BuildingStorey a owl:Class ;
+  rdfs:label "BuildingStorey"@en ;
+  rdfs:comment "The storey represents a (nearly) horizontal aggregation of spaces that are vertically bound"@en;
+  rdfs:subClassOf seas:BuildingSpatialStructure;
+  vs:term_status "testing" ;
+  rdf:seeAlso ifc:BuildingStorey;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.    
+  
+seas:BuildingRelated a owl:Class ; #From saref
+  rdfs:label "BuildingRelated"@en ;
+  rdfs:comment "Is a category that includes devices and systems as described by building related data models, such as FIEMSER "@en ;
+  rdfs:subClassOf seas:DeviceCategory;
+  rdfs:seeAlso saref:BuildingRelated;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#systemModule>.      
+  
+seas:BuildingSpatialStructure a owl:Class ;
+  rdfs:label "BuildingSpatialStructure"@en ;
+  rdfs:comment "A man made structure with spatial properties"@en ;
+  rdfs:subClassOf seas:BuildingSpace; 
+  vs:term_status "testing" ;
+  rdf:seeAlso ifc:IfcSpatialStructureElementType;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.  
+
+seas:BuildingSpace a owl:Class ;
+  rdfs:label "BuildingSpace"@en ;
+  rdfs:comment "A Space is a 3D volume bounded by surfaces. According to the FIEMSER definition, a building space in SAREF defines the physical spaces of the building. A building space contains building items such as devices. "@en ;
+  rdfs:subClassOf seas:PhysicalEntity; 
+  vs:term_status "testing" ;
+  rdf:seeAlso gbxml:BuildingSpace;    
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.  
+
+seas:isAdjacentToSpace a owl:ObjectProperty;
+  rdfs:label "isAdjacentToSpace"@en ;
+  rdfs:comment "Surface is adjacent to a building space (or room)."@en ;
+  rdfs:domain seas:BuildingSurface;
+  rdfs:range seas:BuildingSpace;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> . 
+  
+seas:BuildingSurface a owl:Class ;
+  rdfs:label "BuildingSurface"@en ;
+  rdfs:comment "Surfaces such as surface of a wall element that encloses a space. In GbXML a surface can consist of several surfaces."@en ;
+  rdfs:subClassOf seas:PhysicalEntity;
+  vs:term_status "testing" ;
+  rdfs:seeAlso gbxml:Surface;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.  
+
+seas:hasOpening a owl:ObjectProperty;
+  rdfs:comment "hasOpening"@en ;
+  rdfs:subPropertyOf seas:isPartOf;
+  rdfs:domain seas:BuildingSurface;
+  rdfs:range seas:SurfaceOpening;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary> .   
+  
+seas:SurfaceOpening a owl:Class ;
+  rdfs:label "SurfaceOpening"@en ;
+  rdfs:comment "A opening in a surface such as window or door"@en ;
+  rdfs:subClassOf seas:PhysicalEntity;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.    
+  
+seas:BuildingItem a owl:Class ; 
+  rdfs:label "BuildingItem"@en ;
+  rdfs:comment "A generalization of all the objects contained in building spaces that can have an unique location"@en ;
+  owl:unionOf(seas:Device seas:Resident seas:Furnishing);
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.
+  
+seas:BuildingSystem a owl:Class ;
+  rdfs:label "BuildingSystem"@en ;
+  rdfs:comment "Any system not directly identifiable as a single building item inside building. It can contains several BuildingItems"@en ;
+  rdfs:subClassOf seas:System;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.      
+  
+#A few more specific terms mainly to help the user  
+#GbXML defines a more specific types (such as interior wall) for these
+
+
+seas:BuildinPartition a owl:Class ;
+  rdfs:label "BuildingPartition"@en ;
+  rdfs:comment "A collection of secific (restriction to be added) rooms such as apartement or wing."@en ;
+  rdfs:subClassOf seas:ZoneOfBuilding;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.   
+
+seas:Room a owl:Class ;
+  rdfs:label "Room"@en ;
+  rdfs:comment "A room in a building space enclosed by surfaces, this could also be modelled as role of space, not subclass of the space itself."@en ;
+  rdfs:subClassOf seas:BuildingSpace;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.   
+  
+seas:Wall a owl:Class ;
+  rdfs:label "Wall"@en ;
+  rdfs:comment "A Wall is (tilted more than 60 percent) vertical surface could be divided to interior, exterior and underground wall"@en ;
+  rdfs:subClassOf seas:BuildingSurface;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.    
+  
+seas:Floor a owl:Class ;
+  rdfs:label "Floor"@en ;
+  rdfs:comment "A floor is a upwards tilted horzontal surface, could be divided to interior, exposed (outside) or raised flooor."@en ;
+  rdfs:subClassOf seas:BuildingSurface;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.    
+
+seas:Ceiling a owl:Class ;
+  rdfs:label "Ceiling"@en ;
+  rdfs:comment "Ceiling is a downwards tilted horizontal surface"@en ;
+  rdfs:subClassOf seas:BuildingSurface;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.    
+  
+seas:Roof a owl:Class ;
+  rdfs:label "Roof"@en ;
+  rdfs:comment "A roof upwards tilted surface tilted up part of upper envelope of building."@en ;
+  rdfs:subClassOf seas:BuildingSurface;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.      
+      
+seas:Door a owl:Class ;
+  rdfs:label "Door"@en ;
+  rdfs:comment "A door opening in a wall use for access between spaces."@en ;
+  rdfs:subClassOf seas:SurfaceOpening;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.     
+
+seas:Window a owl:Class ;
+  rdfs:label "Window"@en ;
+  rdfs:comment "A window is a typically opaque opening not used as access between spaces."@en ;
+  rdfs:subClassOf seas:SurfaceOpening;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.     
+
+#Different types entities of interest inside building that are not part of it 
+    
+seas:Furnishing a owl:Class ; 
+  rdfs:label "Furnishing"@en ;
+  rdfs:comment "Other things such as furniture, decorations and other possibly movable articles that are typically not devices"@en ;
+  rdfs:subClassOf seas:PhysicalEntity;
+  vs:term_status "testing" ;
+  rdf:seeAlso ifc:IfcFurnishingElement;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.     
+
+seas:Resident a owl:Class ;
+  rdfs:label "Resident"@en ;
+  rdfs:comment "A resident of a building (might include also pets?)"@en ;
+  rdfs:subClassOf seas:Role;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#core>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>. 
+
+#To be moved to external vocabulary  
+seas:hasComfortProfile a owl:ObjectProperty ;
+  rdfs:label "hasComfortProfile"@en ;
+  rdfs:comment "Shortcut for linking comfort profile settings for typically the resident but is open to other roles such as visitors or building owner."@en ;
+  rdfs:domain seas:Role;
+  rdfs:range seas:ComfortProfile;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.  
+  
+seas:ComfortProfile a owl:Class ;
+  rdfs:label "ComfortProfile"@en ;
+  rdfs:comment "Comfort profile settings for the resident is defined as evaluations (a seas:profile is an evaluation). The comfortprofile is related to a room or other space with its featureOfInterest. The generatedBy links to activity that produced it."@en ;
+  rdfs:subClassOf seas:Profile;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingVocabulary>.   
+  
+ <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:description "The SEAS-BUILDING specific energy related properties with quantities and units for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
+  dc:issued "2016-02-23"^^xsd:date ;
+  dc:modified "2016-03-24"^^xsd:date ;
+  dc:title "SEAS-BUILDING energy related properties and quantities"@en ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/ontology/all#> ;
+  owl:versionInfo "v0.2" .
+  
+#Units of nominal energy consumption
+seas:KiloWattPerSquareMeterGFA a qudt:PowerPerAreaUnit, seas:Unit;
+  rdfs:label "KiloWattPerSquareMeterGFA"@en ; 
+  qudt:abbreviation "kW/(m^2-GFA)";  
+  qudt:description "kWatt per gross floor area in square meters (GFA) (brm in finland)."@en ;
+  qudt:quantityKind seas:NominalEnergyConsumption;
+  qudt:conversionMultiplier 1.0e3;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary>. 
+
+seas:WattPerSquareMeterGFA a qudt:PowerPerAreaUnit;
+  rdfs:label "WattPerSquareMeterGFA"@en ; 
+  qudt:abbreviation "W/(m^2-BRM)"@fi;  
+  qudt:abbreviation "W/(m^2-GFA)"@en;  
+  qudt:description "Watt per gross floor area in square meters (GFA) (brm in finland)."@en ;
+  qudt:quantityKind seas:NominalEnergyConsumption;
+  qudt:conversionMultiplier 1.0e0;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary>.   
+  
+seas:WattPerSquareMeterKelvin a qudt:CoefficientOfHeatTransferUnit;
+  rdfs:label "WattPerSquareMeterKelvin"@en ; 
+  qudt:abbreviation "W/(m^2-K)";
+  qudt:description "Unit of U value in Watt per Square Meter Kelvin"@en ;
+  qudt:quantityKind seas:UValue;
+  qudt:conversionMultiplier 1.0e0;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary>. 
+     
+seas:QubicMeter a seas:Unit, qudt:VolumeUnit;
+  rdfs:label "QubicMeter"@en ; 
+  qudt:abbreviation "m^3";
+  qudt:description "Volume in qubic meters."@en ;
+  qudt:quantityKind seas:Volume;
+  qudt:conversionMultiplier 1.0e0;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary>.   
+
+seas:SquareMeter a seas:Unit, qudt:AreaUnit;
+  rdfs:label "SquareMeter"@en ; 
+  qudt:abbreviation "m^2";
+  qudt:description "Area in square meters."@en ;
+  qudt:quantityKind seas:Area;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary>.    
+
+#Building related quantities
+seas:NominalEnergyConsumption a owl:Class;  
+  rdfs:label "NominalEnergyConsumption"@en ;
+  rdfs:label "Ominaisenergiankulutus"@fi ;  
+  rdfs:comment "Energy consumption of a building per gross floor area."@en ;
+  rdfs:subClassOf qudt:PowerPerArea, seas:Quantity; 
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary>. 
+  
+seas:UValue a owl:Class; 
+  rdfs:label "Transmittance"@en;
+  rdfs:label "UValue"@en ;
+  rdfs:comment "Also known as Thermal Transmittance. The overall heat transfer coefficient U is a measure of the overall ability of a series of conductive and convective barriers to transfer heat."@en ;
+  rdfs:subClassOf qudt:CoefficientOfHeatTransfer, seas:Quantity; 
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary>.      
+
+seas:GrossFloorArea a owl:Class; 
+  rdfs:label "GrossFloorArea"@en ;
+  rdfs:comment "Gross floor area is generally defined by the area within the perimeter of the walls bounding the space."@en ;
+  rdfs:subClassOf seas:Area;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingEnergyVocabulary> .  
+
+
+<https://w3id.org/seas/ontology/all#buildingLoadsVocabulary> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:description "The SEAS-BUILDING specific energy load categories for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
+  dc:issued "2016-02-22"^^xsd:date ;
+  dc:modified "2016-02-24"^^xsd:date ;
+  dc:title "SEAS-BUILDING energy loads"@en ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/ontology/all#> ;
+  owl:versionInfo "v0.2" .
+
+#Categorization of various energy loads such as systems or devices inside a building, these can be either heat or electricity loads
+#It might be better to directly type the individuals either heat or electricity loads than try to categorize at class level as
+#electric or water radiators etc.
+ 
+#Basic concepts 
+
+ seas:BuildingEnergyLoad a owl:Class ;
+  rdfs:label "BuildingEnergyLoad"@en ;
+  rdfs:comment "Energy load in a building"@en ;
+  rdfs:subClassOf seas:BuildingSystem, seas:EnergyLoad;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.   
+ 
+ 
+ seas:Lighting a owl:Class ;
+  rdfs:label "Lighting"@en ;
+  rdfs:label "Valaistus"@fi;
+  rdfs:comment "Wikipedia: Lighting or illumination is the deliberate use of light to achieve a practical or aesthetic effect."@en ;
+  rdfs:subClassOf seas:BuildingEnergyLoad;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.   
+ 
+ seas:HVAC a owl:Class ;
+  rdfs:label "HVAC"@en ;
+  rdfs:label "LVI"@fi;
+  rdfs:comment "Wikipeida: HVAC (heating, ventilating, and air conditioning; also heating, ventilation, and air conditioning) is the technology of indoor and vehicular environmental comfort. Its goal is to provide thermal comfort and acceptable indoor air quality."@en ;
+  rdfs:subClassOf seas:BuildingEnergyLoad;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.  
+
+ seas:Ventilation a owl:Class ;
+  rdfs:label "Ventilation"@en ;
+  rdfs:label "Ilmanvaihto"@fi;
+  rdfs:comment "ventilation"@en ;
+  rdfs:subClassOf seas:HVAC, seas:BuildingEnergyLoad;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.   
+  
+ seas:Heating a owl:Class ;
+  rdfs:label "Heating"@en ;
+  rdfs:label "Lämmitys"@fi;
+  rdfs:comment "Heating"@en ;
+  rdfs:subClassOf seas:HVAC, seas:BuildingEnergyLoad;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.     
+  
+ seas:AirConditioning a owl:Class ;
+  rdfs:label "AirConditioning"@en ;
+  rdfs:label "Ilmastointi"@fi;
+  rdfs:comment "Air conditioning"@en ;
+  rdfs:subClassOf seas:HVAC, seas:BuildingEnergyLoad;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.      
+
+ seas:Cooling a owl:Class ;
+  rdfs:label "Cooling"@en ;
+  rdfs:label "Jäähdytys"@fi;
+  rdfs:comment "Cooling"@en ;
+  rdfs:subClassOf seas:AirConditioning;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.   
+  
+ seas:CentralHeating a owl:Class ;
+  rdfs:label "CentralHeating"@en ;
+  rdfs:comment "The class of SEAS central (for several building spaces) heating systems part of HVAC. The energy source can be either district heating, electricity, heat pumps or direct burning of fuels such as wood or oil."@en ;
+  rdfs:subClassOf seas:Heating;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.  
+  
+seas:CentralCooling a owl:Class ;
+  rdfs:label "CentralCooling"@en ;
+  rdfs:comment "The class of SEAS central (for several building spaces) cooling systems part of HVAC. The energy source is typically either electricity, but heat pumps or lower outside temperature can also be used."@en ;
+  rdfs:subClassOf seas:Cooling;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.   
+  
+seas:AirHeating a owl:Class ;
+  rdfs:label "AirHeating"@en ;
+  rdfs:comment "A (forced)-air central heating system is one which uses air as its heat transfer medium into space. "@en ;
+  rdfs:subClassOf seas:CentralHeating;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.    
+  
+seas:UnderFloorHeating a owl:Class ;
+  rdfs:label "UnderFloorHeating"@en ;
+  rdfs:comment "A type of central heating system using the under floor heaters instead of separate radiators as the means of providing the heat energy to space. "@en ;
+  rdfs:subClassOf seas:CentralHeating;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.    
+ 
+ seas:SpaceHeater a owl:Class ; 
+  rdfs:label "SpaceHeater"@en ;
+  rdfs:comment "An  applicance provideing heat to a building space by radiation or convection. It is typically part of central heating system."@en ;
+  rdfs:subClassOf seas:Appliance, seas:Heating;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.  
+  
+ seas:SpaceCooler a owl:Class ; 
+  rdfs:label "SpaceCooler"@en ;
+  rdfs:comment "An applicance providing cooling to a building space. It is typically part of central cooling system."@en ;
+  rdfs:subClassOf seas:Appliance, seas:Cooling;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.  
+
+ seas:WaterBoiler a owl:Class ; 
+  rdfs:label "WaterBoiler"@en ;
+  rdfs:comment "An storage tank for proiding heated water for use or central heating, often uses electric energy as heat source."@en ;
+  rdfs:subClassOf seas:EnergyStorage, seas:HVAC;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.  
+  
+ seas:SolarPanel a owl:Class ; 
+  rdfs:label "SolarPanel"@en ;
+  rdfs:comment "A panel outside house converting solar radiation energy to other types of heat/thermal or electric energy."@en ;
+  rdfs:subClassOf seas:EnergyGenerator;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.  
+  
+ seas:SolarThermalCollector a owl:Class ; 
+  rdfs:label "SolarThermalCollector"@en ;
+  rdfs:comment "A panel outside house converting solar radiation energy into heated water."@en ;
+  rdfs:subClassOf seas:SolarPanel, seas:HeatEnergyGenerator;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.    
+  
+ seas:PhotovoltaicPanel a owl:Class ; 
+  rdfs:label "PhotoVoltaicPanel"@en ;
+  rdfs:label "PV"@en;
+  rdfs:comment "A panel outside house converting solar radiation to electricity using PV."@en ;
+  rdfs:subClassOf seas:SolarPanel,seas:ElectricEnergyGenerator;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.     
+  
+ seas:ElectricRadiator a owl:Class ; 
+  rdfs:label "ElectricRadiator"@en ;
+  rdfs:comment "An electric radiator"@en ;
+  rdfs:subClassOf seas:SpaceHeater,seas:EnergyLoad;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.  
+  
+seas:HotWaterRadiator a owl:Class ; 
+  rdfs:label "HotWaterRadiator"@en ;
+  rdfs:comment "A hot water / liquid /steam radiator."@en ;
+  rdfs:subClassOf seas:SpaceHeater, seas:EnergyLoad;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.    
+
+seas:UnderFloorHeater a owl:Class ; 
+  rdfs:label "UnderFloorHeater"@en ;
+  rdfs:comment "Also known as radiant heat, underfloor heating uses a network of pipes, tubing or heating cables, buried in or attached beneath a floor to allow heat to rise into the room."@en ;
+  rdfs:subClassOf seas:SpaceHeater, seas:EnergyLoad;
+  vs:term_status "testing" ;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.      
+  
+seas:Kiuas a owl:Class ;
+  rdfs:label "Kiuas"@en ;
+  rdfs:comment "A heat and steam source in a sauna not usually part of central heating. Heat can be generated either electric or burning wood directly."@en ;
+  rdfs:subClassOf seas:SpaceHeater;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.      
+  
+seas:HeatPump a owl:Class ;
+  rdfs:label "HeatPump"@en ;
+  rdfs:comment "A heat pump is a system which transfers heat from outside to inside a building, using vapor compression refrigration consuming also electric energy. "@en ;
+  rdfs:subClassOf seas:SpaceHeater, seas:SpaceCooler, seas:EnergyLoad, seas:EnergyGenerator;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.      
+  
+seas:AirSourceHeatPump a owl:Class ;
+  rdfs:label "AirSourceHeatPump"@en ;
+  rdfs:comment "A heat pump using heat from outside air."@en ;
+  rdfs:subClassOf seas:HeatPump;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.    
+
+seas:GeothermalHeatPump a owl:Class ;
+  rdfs:label "GeothermalHeatPump"@en ;
+  rdfs:comment "A heat pump using geothermal heat from the ground."@en ;
+  rdfs:subClassOf seas:HeatPump;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.       
+
+#States (Activities) that have effect on energy
+
+seas:PowerOnState a owl:Class ;
+  rdfs:label "PowerOnState"@en ;
+  rdfs:comment "State of being power on"@en ;
+  rdfs:subClassOf seas:BooleanState;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>. 
+  
+seas:HeatingState a owl:Class ;
+  rdfs:label "HeatingState"@en ;
+  rdfs:comment "State of heating"@en ;
+  rdfs:subClassOf seas:BooleanState;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>. 
+    
+seas:Cooling a owl:Class ;
+  rdfs:label "CoolingState"@en ;
+  rdfs:comment "State of cooling"@en ;
+  rdfs:subClassOf seas:BooleanState;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#buildingLoadsVocabulary>.   
+  
+
+<http://w3id.org/seas/#EnergyVocabulary> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:description "The seas Module for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
+  dc:issued "2015-10-10"^^xsd:date ;
+  dc:modified "2016-04-21"^^xsd:date ;
+  dc:title "seas-energy vocabulary"@en ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/ontology/all#> ;
+  owl:versionInfo "v0.1" .
+ 
+#SEnergy and Power, subcategories to be defined in other vocabularies
+#Just some of the most common units are defined heera and this should be combined with mdq
+seas:Energy a owl:Class;
+  rdfs:label "Energy"@en ;
+  rdfs:seeAlso saref:Energy ;
+  rdfs:comment "Energy is still also defined as qudt quantity" ;
+  rdfs:subClassOf seas:Quantity,qudt:EnergyAndWork, seas:Commodity.
+
+seas:Power a owl:Class;
+  rdfs:label "Power"@en ;
+  rdfs:seeAlso saref:Power ;
+  rdfs:comment "Power is still also defined qudt quantity" ;
+  rdfs:subClassOf seas:Quantity, qudt:Power, seas:Commodity.
+  
+seas:EnergyUnit a owl:Class;
+  rdfs:label "EnergyUnit"@en ;
+  rdfs:comment "Energy unit." ;
+  rdfs:subClassOf seas:Unit,qudt:EnergyAndWorkUnit.    
+
+seas:PowerUnit a owl:Class;
+  rdfs:label "PowerUnit"@en ;
+  rdfs:comment "Power unit." ;
+  rdfs:subClassOf seas:Unit,qudt:PowerUnit.    
+  
+seas:KiloWattHour a seas:EnergyUnit;
+  rdfs:label "KiloWattHour"@en ;
+  rdfs:sameAs qudt-unit:KilowattHour;
+  rdfs:comment "Kilowatt hour";
+  rdfs:subClassOf seas:EnergyUnit.  
+  
+seas:KiloWatt a seas:PowerUnit;
+  rdfs:label "KiloWatt"@en ;
+  rdfs:sameAs qudt-unit:Kilowatt;
+  rdfs:comment "Kilowatt";
+  rdfs:subClassOf seas:PowerUnit.    
+  
+seas:Watt a seas:PowerUnit;
+  rdfs:label "Watt"@en ;
+  rdfs:sameAs qudt-unit:Watt;
+  rdfs:comment "Watt";
+  rdfs:subClassOf seas:PowerUnit.    
+  
+#As energy resource in general can sometimes be a load, storage or generator  
+seas:EnergyResource a owl:Class ;
+  rdfs:label "EnergyResource"@en ;
+  rdfs:comment "An energy related physical system"@en ;
+  rdfs:subClassOf seas:System;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all/energy#> .  
+  
+seas:EnergyLoad a owl:Class ;
+  rdfs:label "EnergyLoad"@en ;
+  rdfs:comment "An energy load"@en ;
+  rdfs:subClassOf seas:EnergyResource;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all/energy#> .    
+  
+seas:EnergyGenerator a owl:Class ;
+  rdfs:label "EnergyGenerator"@en ;
+  rdfs:comment "An energy generator"@en ;
+  rdfs:subClassOf seas:EnergyResource;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all/energy#> .   
+
+seas:EnergyStorage a owl:Class ;
+  rdfs:label "EnergyStorage"@en ;
+  rdfs:comment "An energy storage"@en ;
+  rdfs:subClassOf seas:EnergyResource;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all/energy#> .  
+  
+
+<https://w3id.org/seas/ontology/all#weatherVocabulary> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:creator "Jarmo Kalaoja, VTT" ;
+  dc:description "The SEAS Weahther Knowledge Module for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
+  dc:issued "2015-09-10"^^xsd:date ;
+  dc:modified "2016-01-20"^^xsd:date ;
+  dc:title "SEAS Weather ontology"@en ;
+  voaf:reliesOn  <http://qudt.org/schema/qudt#>; 
+  voaf:reliesOn  <https://w3id.org/seas/ontology/all#coreVocabulary>; 
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/ontology/all#> ; 
+  owl:versionInfo "v0.2" .
+
+
+#A Feature is an abstraction of real world phenomena that has a location
+#It could be a geographical area or a building that has defined locatio or address
+
+seas:featureOfInterest a owl:ObjectProperty ; 
+  rdfs:label "featureOfInterest"@en ;
+  rdfs:comment "Feature(with location) that this forecast is for"@en ;
+  vs:term_status "testing" ;
+  rdfs:domain seas:WeatherForecast;  
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#coreVocabulary>. 
+    
+##### WeatherForecast is defined as seas:Evaluation, quantities with qudt   
+  
+seas:WeatherForecast a owl:Class ;
+  rdfs:label "WeatherForecast"@en ;
+  rdfs:label "Sääennuste"@fi ;
+  rdfs:comment "A description for a various weather phenomena to be at specified time or time period"@en ;
+  rdfs:subClassOf ts:Evaluation; #Add MDQ here
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#coreModule>.  
+  
+seas:WeatherForecastParameters a owl:Class ;
+  rdfs:label "WeatherForecastParameters"@en ;
+  rdfs:label "SääennusteenParametris"@fi ;
+  rdfs:comment "A description for weather forecast parameters"@en ;
+  rdfs:subClassOf seas:Evaluation;
+  rdfs:subClassOf [ owl:onProperty seas:quantity ;  owl:allValuesFrom seas:WeatherPhenomenon] ;  #This might not be correct for seas:Evaluation
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary>;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#coreModule>.  
+  
+
+seas:weatherDescription a owl:DatatypeProperty;
+  rdfs:label "weatherDescription"@en ;
+  rdfs:comment "Human understandable description of a weather forecast. This might be generated automatically"@en ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary> ;
+  vs:term_status "testing" ;
+  rdfs:domain seas:WeatherForecast;
+  rdfs:range xsd:string.    
+  
+#Weather service related concepts (these are not required but describe a generic weather service data contract)  
+seas:WeatherServiceProvider a owl:Class ; #seas:Actor
+  rdfs:label "WeatherServiceProvider"@en ;
+  rdfs:label "SääennusteenTarjoaja"@fi ;
+  rdfs:comment "Provides weather related services such as forecasting or weather history data."@en ;
+  rdfs:subClassOf seas:ServiceProvider; 
+  rdfs:subClassOf [ owl:onProperty seas:offersService ;  owl:someValuesFrom seas:WeatherService] ;  
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary>.    
+
+seas:WeatherForecasting a owl:Class ; #seas:Activity
+  rdfs:label "WeatherForecasting"@en ;
+  rdfs:label "SäänEnnustaminen"@fi ;
+  rdfs:comment "Forecasting of a various weather phenomena to be at specified time or time period"@en ;
+  rdfs:subClassOf seas:Activity; 
+  rdfs:subClassOf [ owl:onProperty seas:hasInput ;  owl:allValuesFrom seas:WeatherForecastParameters] ;  
+  rdfs:subClassOf [ owl:onProperty seas:hasOutput ;  owl:allValuesFrom seas:WeatherForecast] ;    
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary>.    
+
+seas:WeatherService a owl:Class ; #Sets constraints on weather  service and its capabilities 
+  rdfs:label "WeatherService"@en ;
+  rdfs:label "Sääpalvelu"@fi ;
+  rdfs:comment "A class of service providing weather data"@en ;
+  rdfs:subClassOf seas:Service; 
+  rdfs:subClassOf [ owl:onProperty seas:hasCapability ;  owl:someValuesFrom seas:WeatherForecasting] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary>.    
+      
+#  WeatherPhenomenon
+
+seas:WeatherPhenomenon a owl:Class ;
+  rdfs:label "WeatherPhenomenon"@en ;
+  rdfs:comment "The class of weather phenomena"@en ;
+  rdfs:subClassOf seas:Phenomenon;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary> .
+
+  
+# Cloudiness
+seas:Cloudiness a owl:Class ;
+  rdfs:label "Cloudiness"@en ;
+  rdfs:label "Pilvisyys"@fi ;
+  rdfs:comment "The class of cloudiness weather phenomena"@en ;
+  rdfs:subClassOf seas:WeatherPhenomenon;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary> .
+  
+ seas:CloudCoverIndex a owl:Class ;
+  rdfs:label "CloudCoverIndex"@en ;
+  rdfs:label "PilvisyysIndeksi"@fi ;
+  rdfs:comment "Quantity of cloudiness expressed as ratio (0-1) or percentage (0-100)"@en ;
+  rdfs:subClassOf seas:Cloudiness ;
+  rdfs:subClassOf seas:Ratio;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary> .
+  
+# Temperature 
+
+seas:AirTemperature a owl:Class ;
+  rdfs:label "AirTemperature"@en ;
+  rdfs:label "IlmanLämpötila"@fi ;
+  rdfs:comment "Quantity of air temperature expressed in Kelvin, DegreeCelcius of Farenheit"@en ;
+  rdfs:subClassOf seas:WeatherPhenomenon ;
+  rdfs:subClassOf qudt:ThermodynamicTemperature;  
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary> .
+  
+# Wind 
+
+seas:Wind a owl:Class ;
+  rdfs:label "Wind"@en ;
+  rdfs:label "Tuulisuus"@fi ;
+  rdfs:comment "The class of wind related weather phenomena"@en ;
+  rdfs:subClassOf seas:WeatherPhenomenon;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary>.
+
+seas:WindDirection a owl:Class ;
+  rdfs:label "WindDirection"@en ;
+  rdfs:label "TuulenSuunta"@fi ;
+  rdfs:comment "The wind direction expressed as compass direction 0-360"@en ;
+  rdfs:subClassOf seas:Wind ;
+  rdfs:subClassOf qudt:PlaneAngle;    
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary> .
+
+seas:WindSpeed a owl:Class ;
+  rdfs:label "WindSpeed"@en ;
+  rdfs:label "TuulenNopeus"@fi ;
+  rdfs:comment "The wind speed typically expressed as meters per second"@en ;
+  rdfs:subClassOf seas:Wind ;
+  rdfs:subClassOf qudt:Speed;    
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary> .  
+
+  # Solar
+  
+ seas:SolarPhenomenon a owl:Class ;
+  rdfs:label "SolarPhenomenon"@en ;
+  rdfs:label "Aurinkoisuus"@fi ;
+  rdfs:comment "The class of solar related weather phenomena"@en ;
+  rdfs:subClassOf seas:WeatherPhenomenon;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary> . 
+  
+  seas:SolarIrradiance a owl:Class ;
+  rdfs:label "SolarIrradiance"@en ;
+  rdfs:label "AuringonSäteilyteho"@fi ;
+  rdfs:comment "Solar Irradiance presented as power in watts per square meter"@en ;
+  rdfs:subClassOf seas:SolarPhenomenon ;
+  rdfs:subClassOf qudt:Irradiance;    
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary> .  
+
+  seas:SunRise a owl:Class ; 
+  rdfs:label "SunRise"@en ;
+  rdfs:label "AuringonNousu"@fi ;
+  rdfs:comment "Event of sun rising (at specific location in Earth)"@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf seas:SolarPhenomenon ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary> . 
+
+  seas:SunSet a owl:Class ;
+  rdfs:label "SunSet"@en ;
+  rdfs:label "AuringonLasku"@fi ;
+  rdfs:comment "Event of sun setting (at specific location in Earth)"@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf seas:SolarPhenomenon ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy <https://w3id.org/seas/ontology/all#weatherVocabulary> .   
+ 
+ 
+
+  
+   
