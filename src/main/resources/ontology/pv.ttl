@@ -132,7 +132,9 @@ dc:description rdf:type owl:AnnotationProperty .
             
             rdfs:domain :Battery ;
             
-            rdfs:label "ChargeCost"^^xsd:double .
+            rdfs:range xsd:double ;
+            
+            rdfs:label "ChargeCost"@en .
 
 
 
@@ -140,7 +142,11 @@ dc:description rdf:type owl:AnnotationProperty .
 
 :ChargeEfficiency rdf:type owl:DatatypeProperty ;
                   
-                  rdfs:label "ChargeEfficiency"^^xsd:double .
+                  rdfs:domain :Battery ;
+                  
+                  rdfs:range xsd:double ;
+                  
+                  rdfs:label "ChargeEfficiency"@en .
 
 
 
@@ -150,13 +156,21 @@ dc:description rdf:type owl:AnnotationProperty .
             
             rdfs:domain :Battery ;
             
-            rdfs:label ChargeRate .
+            rdfs:range xsd:integer ;
+            
+            rdfs:label "ChargeRate"@en .
 
 
 
 ###  https://w3id.org/seas/ontology/pv.owl#DischargeEfficiency
 
-:DischargeEfficiency rdf:type owl:DatatypeProperty .
+:DischargeEfficiency rdf:type owl:DatatypeProperty ;
+                     
+                     rdfs:domain :Battery ;
+                     
+                     rdfs:range xsd:double ;
+                     
+                     rdfs:label "DischargeEfficiency"@en .
 
 
 
@@ -166,7 +180,9 @@ dc:description rdf:type owl:AnnotationProperty .
                
                rdfs:domain :Battery ;
                
-               rdfs:label DischargeRate .
+               rdfs:range xsd:integer ;
+               
+               rdfs:label "DischargeRate"@en .
 
 
 
@@ -176,7 +192,9 @@ dc:description rdf:type owl:AnnotationProperty .
                      
                      rdfs:domain :Battery ;
                      
-                     rdfs:label InitialStrogareLevel .
+                     rdfs:range xsd:double ;
+                     
+                     rdfs:label "InitialStorageLevel"@en .
 
 
 
@@ -184,7 +202,11 @@ dc:description rdf:type owl:AnnotationProperty .
 
 :LowerStateOfCharge rdf:type owl:DatatypeProperty ;
                     
-                    rdfs:domain :Battery .
+                    rdfs:domain :Battery ;
+                    
+                    rdfs:range xsd:integer ;
+                    
+                    rdfs:label "LowerStateOfCharge"@en .
 
 
 
@@ -194,7 +216,9 @@ dc:description rdf:type owl:AnnotationProperty .
                      
                      rdfs:domain :Battery ;
                      
-                     rdfs:label MaximumStorageLevel .
+                     rdfs:range xsd:integer ;
+                     
+                     rdfs:label "MaximumStorageLevel"@en .
 
 
 
@@ -212,7 +236,7 @@ dc:description rdf:type owl:AnnotationProperty .
                              
                              rdfs:domain :SolarModule ;
                              
-                             dc:description "is a potential induced performance degradation in crystalline photovoltaic modules, caused by so-called stray currents. This effect may cause power loss of up to 30 percent" .
+                             rdfs:comment "is a potential induced performance degradation in crystalline photovoltaic modules, caused by so-called stray currents. This effect may cause power loss of up to 30 percent"@en .
 
 
 
@@ -222,7 +246,9 @@ dc:description rdf:type owl:AnnotationProperty .
                      
                      rdfs:domain :SolarCell ;
                      
-                     dc:description "Solar cell efficiency is the ratio of the electrical output of a solar cell to the incident energy in the form of sunlight" .
+                     rdfs:range xsd:double ;
+                     
+                     rdfs:comment "Solar cell efficiency is the ratio of the electrical output of a solar cell to the incident energy in the form of sunlight"@en .
 
 
 
@@ -332,7 +358,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 ###  https://w3id.org/seas/ontology/pv.owl#WeatherPhenomena
-
+ 
 :WeatherPhenomena rdf:type owl:Class .
 
 
