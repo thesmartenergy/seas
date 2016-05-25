@@ -6,6 +6,7 @@ This site exposes the SEAS ontologies. For now, these are:
 - The technicalsystem vocabulary -  http://w3id.org/seas/ontology/technicalsystem#
 - The building vocabulary -  http://w3id.org/seas/ontology/building#
 - The market vocabulary -  http://w3id.org/seas/ontology/market#
+- The pv vocabulary -  http://w3id.org/seas/ontology/pv#
 
 # Contribute to this site
 

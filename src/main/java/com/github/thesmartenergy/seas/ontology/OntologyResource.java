@@ -15,7 +15,7 @@
  */
 package com.github.thesmartenergy.seas.ontology;
 
-import com.github.thesmartenergy.seas.entities.Ontologies;
+import com.github.thesmartenergy.seas.entities.App;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.StringWriter;
@@ -48,7 +48,7 @@ public class OntologyResource {
     HttpServletRequest request;
     
     @Inject
-    Ontologies ontologies;
+    App ontologies;
     
     @GET
     @Produces("text/html")
