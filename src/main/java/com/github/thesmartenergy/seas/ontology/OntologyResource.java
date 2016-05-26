@@ -51,7 +51,7 @@ public class OntologyResource {
     App app; 
 
     @GET
-    @Produces("text/html")
+    @Produces("text/html; qs=0.9")
     @Path("{ontoName : [a-zA-Z]*}/{major: [0-9]+}.{minor: [0-9]+}")
     public Response getAsHtml(@PathParam("ontoName") String ontoName, @PathParam("major") int major, @PathParam("minor") int minor ) {
         OntologyVersion version = app.getVersion(ontoName, major, minor);

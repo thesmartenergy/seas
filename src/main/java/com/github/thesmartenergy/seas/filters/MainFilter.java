@@ -53,16 +53,17 @@ public class MainFilter implements Filter {
         String requestURI = req.getRequestURI();
 //        System.out.println("filter " + this.getClass().getSimpleName() + " for requestURI:" + requestURI);
 
+        System.out.println("filter");
         String accept = req.getHeader("Accept");
-        if (!requestURI.startsWith("/seas/")
-                || accept.contains("*/*")
-                || accept.contains("text/*")
-                || accept.contains("*/html")
-                || accept.contains("text/html")
-                || accept.contains("application/xhtml+xml")) {
+        if (!requestURI.startsWith("/seas/")) {
             chain.doFilter(request, response);
             return;
         }
+        if (!accept.contains("text/turtle") && !accept.contains("application/rdf+xml")) {
+            chain.doFilter(request, response);
+            return;
+        }
+        System.out.println("continue filter");
 
         String ontoName = requestURI.substring(6);
         if (ontoName.equals("")) {
@@ -76,7 +77,7 @@ public class MainFilter implements Filter {
         Pattern p = Pattern.compile("^([0-9]+)\\.([0-9]+)$");
         Matcher m = p.matcher(ontoName);
         if (m.matches()) {
-            int major = Integer.parseInt(m.group(1)); 
+            int major = Integer.parseInt(m.group(1));
             int minor = Integer.parseInt(m.group(2));
             OntologyVersion version = app.getVersion("seas", major, minor);
             if (version != null) {
