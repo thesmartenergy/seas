@@ -23,8 +23,8 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> . #QUDT quantities
 
-@prefix seas: <http://w3id.org/seas/>.
-@base <http://w3id.org/seas/>.
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
 
 
 #Core roles and activities (for devices and systems), this is related to actor module and could specialize it but now here defined as new vocabulary
@@ -40,8 +40,8 @@ seas:BuildingEnergyOntology a owl:Ontology , voaf:Ontology ;
   dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
   vann:preferredNamespacePrefix "seas" ;
-  vann:preferredNamespaceUri <http://w3id.org/seas/> ;  
-  owl:versionIRI <http://w3id.org/seas/BuildingEnergyOntology/0.9> ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/BuildingEnergyOntology/0.9> ;
   owl:versionInfo "v0.9" .
   
 #Units of nominal energy consumption

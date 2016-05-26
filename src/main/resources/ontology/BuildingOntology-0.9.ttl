@@ -26,8 +26,8 @@
 @prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
 @prefix gbxml:<http://www.gbxml.org/schema#>.     #GBXML XML schema
 
-@prefix seas: <http://w3id.org/seas/>.
-@base <http://w3id.org/seas/>.
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
 
 seas:BuildingOntology rdf:type voaf:Ontology , owl:Ontology ;
   dc:title "seas-BuildingOntology ontology"@en ;
@@ -41,8 +41,8 @@ seas:BuildingOntology rdf:type voaf:Ontology , owl:Ontology ;
   dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
   vann:preferredNamespacePrefix "seas" ;
-  vann:preferredNamespaceUri <http://w3id.org/seas/> ;  
-  owl:versionIRI <http://w3id.org/seas/BuildingOntology/0.9> ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/BuildingOntology/0.9> ;
   owl:versionInfo "v0.9" .
 
 #General measurement and control concepts that are needed this could be linked to connection point ontology

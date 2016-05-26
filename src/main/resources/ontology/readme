@@ -15,11 +15,11 @@ The void ontologyName is used for the ontology document that imports all of the 
 
 Every ontology must contain the following triples:
 
-<http://w3id.org/seas/NAME> a owl:Ontology ;
-  owl:versionIRI <http://w3id.org/seas/NAME/MAJOR.MINOR> ;
+<https://w3id.org/seas/NAME> a owl:Ontology ;
+  owl:versionIRI <https://w3id.org/seas/NAME/MAJOR.MINOR> ;
   owl:versionInfo "vMAJOR.MINOR" .
 
 For every other resource in the ontology, it must be specified that it is defined by the ontology.
 
-<http://w3id.org/seas/SOME_RESOURCE> rdfs:definedBy <http://w3id.org/seas/NAME> .
+<https://w3id.org/seas/SOME_RESOURCE> rdfs:definedBy <https://w3id.org/seas/NAME> .
 

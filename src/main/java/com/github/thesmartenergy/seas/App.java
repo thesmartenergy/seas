@@ -52,7 +52,7 @@ public class App {
 
     private static final Logger LOG = Logger.getLogger(App.class.getSimpleName());
 
-    private final String base = "http://w3id.org/seas/";
+    private final String base = "https://w3id.org/seas/";
 
     private final Map<String, List<OntologyVersion>> ontologyVersions = new HashMap<>();
     private final Map<String, String> definingOntologies = new HashMap<>();

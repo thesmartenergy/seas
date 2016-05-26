@@ -1,4 +1,18 @@
-@prefix : <http://w3id.org/seas/> .
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix : <https://w3id.org/seas/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -6,9 +20,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl2xml: <http://www.w3.org/2006/12/owl2-xml#> .
-@base <http://w3id.org/seas/PhotovoltaicOntology> .
+@base <https://w3id.org/seas/PhotovoltaicOntology> .
 
-<http://w3id.org/seas/PhotovoltaicOntology> rdf:type owl:Ontology  , voaf:Ontology ;
+<https://w3id.org/seas/PhotovoltaicOntology> rdf:type owl:Ontology  , voaf:Ontology ;
   dc:title "seas-PhotovoltaicOntology ontology"@en ;
   dc:description "The Seas PhotovoltaicOntology Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
   dc:issued "2016-01-01"^^xsd:date ;
@@ -20,8 +34,8 @@
   dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
   vann:preferredNamespacePrefix "seas" ;
-  vann:preferredNamespaceUri <http://w3id.org/seas/> ;  
-  owl:versionIRI <http://w3id.org/seas/PhotovoltaicOntology/0.9> ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/PhotovoltaicOntology/0.9> ;
   owl:versionInfo "v0.9" .
 
 
@@ -47,7 +61,7 @@ dc:description rdf:type owl:AnnotationProperty .
 #################################################################
 
 
-###  http://w3id.org/seas/belongsTo
+###  https://w3id.org/seas/belongsTo
 
 :belongsTo rdf:type owl:ObjectProperty ;
            
@@ -55,7 +69,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/hasInfluenceOn
+###  https://w3id.org/seas/hasInfluenceOn
 
 :hasInfluenceOn rdf:type owl:ObjectProperty ;
                 
@@ -67,7 +81,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/isComposedBy
+###  https://w3id.org/seas/isComposedBy
 
 :isComposedBy rdf:type owl:ObjectProperty ;
               
@@ -79,7 +93,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/isContainedIn
+###  https://w3id.org/seas/isContainedIn
 
 :isContainedIn rdf:type owl:ObjectProperty ;
                
@@ -89,7 +103,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/isInfluencedBy
+###  https://w3id.org/seas/isInfluencedBy
 
 :isInfluencedBy rdf:type owl:ObjectProperty ;
                 
@@ -108,7 +122,7 @@ dc:description rdf:type owl:AnnotationProperty .
 #################################################################
 
 
-###  http://w3id.org/seas/Active
+###  https://w3id.org/seas/Active
 
 :Active rdf:type owl:DatatypeProperty ;
         
@@ -116,7 +130,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/BatteryCapacity
+###  https://w3id.org/seas/BatteryCapacity
 
 :BatteryCapacity rdf:type owl:DatatypeProperty ;
                  
@@ -124,7 +138,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/BatteryType
+###  https://w3id.org/seas/BatteryType
 
 :BatteryType rdf:type owl:DatatypeProperty ;
              
@@ -132,7 +146,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/CellType
+###  https://w3id.org/seas/CellType
 
 :CellType rdf:type owl:DatatypeProperty ;
           
@@ -140,7 +154,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/ChargeCost
+###  https://w3id.org/seas/ChargeCost
 
 :ChargeCost rdf:type owl:DatatypeProperty ;
             
@@ -152,7 +166,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/ChargeEfficiency
+###  https://w3id.org/seas/ChargeEfficiency
 
 :ChargeEfficiency rdf:type owl:DatatypeProperty ;
                   
@@ -164,7 +178,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/ChargeRate
+###  https://w3id.org/seas/ChargeRate
 
 :ChargeRate rdf:type owl:DatatypeProperty ;
             
@@ -176,7 +190,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/DischargeEfficiency
+###  https://w3id.org/seas/DischargeEfficiency
 
 :DischargeEfficiency rdf:type owl:DatatypeProperty ;
                      
@@ -188,7 +202,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/DischargeRate
+###  https://w3id.org/seas/DischargeRate
 
 :DischargeRate rdf:type owl:DatatypeProperty ;
                
@@ -200,7 +214,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/InitialStorageLevel
+###  https://w3id.org/seas/InitialStorageLevel
 
 :InitialStorageLevel rdf:type owl:DatatypeProperty ;
                      
@@ -212,7 +226,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/LowerStateOfCharge
+###  https://w3id.org/seas/LowerStateOfCharge
 
 :LowerStateOfCharge rdf:type owl:DatatypeProperty ;
                     
@@ -224,7 +238,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/MaximumStorageLevel
+###  https://w3id.org/seas/MaximumStorageLevel
 
 :MaximumStorageLevel rdf:type owl:DatatypeProperty ;
                      
@@ -236,7 +250,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/Nominal_power
+###  https://w3id.org/seas/Nominal_power
 
 :Nominal_power rdf:type owl:DatatypeProperty ;
                
@@ -244,7 +258,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/PotentialInducedDegradation
+###  https://w3id.org/seas/PotentialInducedDegradation
 
 :PotentialInducedDegradation rdf:type owl:DatatypeProperty ;
                              
@@ -254,7 +268,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/SolarCellEfficiency
+###  https://w3id.org/seas/SolarCellEfficiency
 
 :SolarCellEfficiency rdf:type owl:DatatypeProperty ;
                      
@@ -275,7 +289,7 @@ dc:description rdf:type owl:AnnotationProperty .
 #################################################################
 
 
-###  http://w3id.org/seas/Battery
+###  https://w3id.org/seas/Battery
 
 :Battery rdf:type owl:Class ;
          
@@ -285,13 +299,13 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/Building
+###  https://w3id.org/seas/Building
 
 :Building rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/Inverter
+###  https://w3id.org/seas/Inverter
 
 :Inverter rdf:type owl:Class ;
           
@@ -301,7 +315,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/Mounting
+###  https://w3id.org/seas/Mounting
 
 :Mounting rdf:type owl:Class ;
           
@@ -309,19 +323,19 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/PhotovoltaicComponent
+###  https://w3id.org/seas/PhotovoltaicComponent
 
 :PhotovoltaicComponent rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/PhotovoltaicSystem
+###  https://w3id.org/seas/PhotovoltaicSystem
 
 :PhotovoltaicSystem rdf:type owl:Class .
 
 
 
-###  http://w3id.org/seas/SolarCell
+###  https://w3id.org/seas/SolarCell
 
 :SolarCell rdf:type owl:Class ;
            
@@ -329,7 +343,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/SolarModule
+###  https://w3id.org/seas/SolarModule
 
 :SolarModule rdf:type owl:Class ;
              
@@ -337,7 +351,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/SolarPanel
+###  https://w3id.org/seas/SolarPanel
 
 :SolarPanel rdf:type owl:Class ;
             
@@ -345,7 +359,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/SolarRadiation
+###  https://w3id.org/seas/SolarRadiation
 
 :SolarRadiation rdf:type owl:Class ;
                 
@@ -353,7 +367,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/Temperature
+###  https://w3id.org/seas/Temperature
 
 :Temperature rdf:type owl:Class ;
              
@@ -361,7 +375,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/Tracker
+###  https://w3id.org/seas/Tracker
 
 :Tracker rdf:type owl:Class ;
          
@@ -371,7 +385,7 @@ dc:description rdf:type owl:AnnotationProperty .
 
 
 
-###  http://w3id.org/seas/WeatherPhenomena
+###  https://w3id.org/seas/WeatherPhenomena
  
 :WeatherPhenomena rdf:type owl:Class .
 

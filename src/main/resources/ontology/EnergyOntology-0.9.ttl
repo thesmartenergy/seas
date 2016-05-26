@@ -25,8 +25,8 @@
 @prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> . #QUDT quantities
 @prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
 
-@prefix seas: <http://w3id.org/seas/>.
-@base <http://w3id.org/seas/>.
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
 
 seas:EnergyOntology rdf:type voaf:Ontology , owl:Ontology ;
   dc:title "seas-EnergyOntology ontology"@en ;
@@ -40,8 +40,8 @@ seas:EnergyOntology rdf:type voaf:Ontology , owl:Ontology ;
   dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
   vann:preferredNamespacePrefix "seas" ;
-  vann:preferredNamespaceUri <http://w3id.org/seas/> ;  
-  owl:versionIRI <http://w3id.org/seas/EnergyOntology/0.9> ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/EnergyOntology/0.9> ;
   owl:versionInfo "v0.9" .
 
  

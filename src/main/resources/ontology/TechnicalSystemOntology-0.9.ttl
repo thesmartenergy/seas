@@ -23,8 +23,8 @@
 @prefix saref: <https://w3id.org/saref#>. #SAREF smart building appliances ontology
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 
-@prefix seas: <http://w3id.org/seas/>.
-@base <http://w3id.org/seas/>.
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
 
 seas:TechnicalSystemOntology rdf:type voaf:Ontology , owl:Ontology ;
   dc:title "seas-TechnicalSystemOntology ontology"@en ;
@@ -38,8 +38,8 @@ seas:TechnicalSystemOntology rdf:type voaf:Ontology , owl:Ontology ;
   dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
   vann:preferredNamespacePrefix "seas" ;
-  vann:preferredNamespaceUri <http://w3id.org/seas/> ;  
-  owl:versionIRI <http://w3id.org/seas/TechnicalSystemOntology/0.9> ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/TechnicalSystemOntology/0.9> ;
   owl:versionInfo "v0.9" .
   
   
