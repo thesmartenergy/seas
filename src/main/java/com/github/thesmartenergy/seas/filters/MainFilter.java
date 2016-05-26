@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.thesmartenergy.seas;
+package com.github.thesmartenergy.seas.filters;
 
-import com.github.thesmartenergy.seas.entities.App;
+import com.github.thesmartenergy.seas.App;
+import com.github.thesmartenergy.seas.entities.OntologyVersion;
 import java.io.IOException;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
@@ -37,11 +37,11 @@ import javax.servlet.http.HttpServletRequest;
  * @author maxime.lefrancois
  */
 @WebFilter(urlPatterns = {"/*"})
-public class OntologyFilter implements Filter {
+public class MainFilter implements Filter {
 
     @Inject
     App app;
-    
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
@@ -51,26 +51,43 @@ public class OntologyFilter implements Filter {
             FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = ((HttpServletRequest) request);
         String requestURI = req.getRequestURI();
-        System.out.println("filter " + this.getClass().getSimpleName() + " for requestURI:" + requestURI);
+//        System.out.println("filter " + this.getClass().getSimpleName() + " for requestURI:" + requestURI);
 
-        // filter calls to one of the ontologies
-        if (requestURI.startsWith("/seas/")) {
-            String ontoName = requestURI.substring(6);
-            if(!Pattern.matches("^([a-z]*)$", ontoName)) {
-                 chain.doFilter(request, response);
-                 
-            }
-            try {
-                req.setAttribute("stream", app.getForOntology(ontoName));
-                String newURI = "/seas/ontology/"+onto;
-                System.out.println("dispatching to " + newURI);
+        String accept = req.getHeader("Accept");
+        if (!requestURI.startsWith("/seas/")
+                || accept.contains("*/*")
+                || accept.contains("text/*")
+                || accept.contains("*/html")
+                || accept.contains("text/html")
+                || accept.contains("application/xhtml+xml")) {
+            chain.doFilter(request, response);
+            return;
+        }
+
+        String ontoName = requestURI.substring(6);
+        if (ontoName.equals("")) {
+            OntologyVersion version = app.getVersion("seas");
+            if (version != null) {
+                String newURI = "/ontology/seas/" + version.getMajor() + "." + version.getMinor();
                 req.getRequestDispatcher(newURI).forward(req, response);
-            } catch (Exception e) {
-                chain.doFilter(request, response);
+                return;
             }
         }
+        Pattern p = Pattern.compile("^([0-9]+)\\.([0-9]+)$");
+        Matcher m = p.matcher(ontoName);
+        if (m.matches()) {
+            int major = Integer.parseInt(m.group(1)); 
+            int minor = Integer.parseInt(m.group(2));
+            OntologyVersion version = app.getVersion("seas", major, minor);
+            if (version != null) {
+                String newURI = "/ontology/seas/" + major + "." + minor;
+//                System.out.println("filter " + this.getClass().getSimpleName() + " dispatching  to " + newURI);
+                req.getRequestDispatcher(newURI).forward(req, response);
+                return;
+            }
+        }
+//        System.out.println("filter " + this.getClass().getSimpleName() + " chaining");
         chain.doFilter(request, response);
-        
     }
 
     @Override

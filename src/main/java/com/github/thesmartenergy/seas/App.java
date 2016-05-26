@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.thesmartenergy.seas.entities;
+package com.github.thesmartenergy.seas;
 
+import com.github.thesmartenergy.seas.entities.OntologyVersion;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -72,10 +71,11 @@ public class App {
             LOG.info(context.getClassLoader().getResource("/").toURI().toString());
 
             File ontoDir = new File(dir + "/ontology/");
-            Pattern p = Pattern.compile("^([a-z]*)-([0-9]+)\\.([0-9]+)\\.ttl$");
+            Pattern p = Pattern.compile("^([a-zA-Z]*)-([0-9]+)\\.([0-9]+)\\.ttl$");
 
             for (File ontoFile : ontoDir.listFiles()) {
                 String ontoFileName = ontoFile.getName();
+                System.out.println("testing "+ontoFileName); 
 
                 // any file whose name does not conform to NAME-MAJOR.MINOR.ttl triggers a warning
                 Matcher m = p.matcher(ontoFileName);
@@ -85,9 +85,9 @@ public class App {
                     LOG.warning("File " + ontoFileName + " does not match the pattern");
                     continue;
                 }
-                String ontoName = m.group(0);
-                int major = Integer.parseInt(m.group(1));
-                int minor = Integer.parseInt(m.group(2));
+                String ontoName = m.group(1);
+                int major = Integer.parseInt(m.group(2)); 
+                int minor = Integer.parseInt(m.group(3));
                 
                 OntologyVersion ov = new OntologyVersion(major, minor, ontoFile);
 
@@ -103,9 +103,10 @@ public class App {
                     for(String resource : definedResources) {
                         definingOntologies.put(resource, ontoName);
                     }
+                    System.out.println("ok ontology version " + ontoName + " " + major + " " + minor);
                 } catch (Exception e) {
                     LOG.warning("Error while parsing file " + ontoFileName + ": " + e.getMessage());
-                    continue;
+                    continue; 
                 }
             }
             // ordering ontology version
@@ -118,23 +119,38 @@ public class App {
         }
     }
 
-    public InputStream getForResource(String resource) throws Exception {
-        return getForOntology(definingOntologies.get(resource));
+    public String ontologyForResource(String resource) {
+        return definingOntologies.get(resource);
     }
     
-    public InputStream getForOntology(String ontoName) throws Exception {
+    public OntologyVersion getVersion(String ontoName) {
+        if(!ontologyVersions.containsKey(ontoName)) {
+            return null;
+        }
         List<OntologyVersion> versions = ontologyVersions.get(ontoName);
-        return new FileInputStream(versions.get(versions.size()-1).file);
+        return versions.get(versions.size()-1);
     }
     
-    public InputStream getAsStream(String ontoName, int major, int minor) throws Exception {
+    public OntologyVersion getVersion(String ontoName, int major, int minor) {
+        if(!ontologyVersions.containsKey(ontoName)) {
+            return null;
+        }
         for(OntologyVersion version : ontologyVersions.get(ontoName)) {
-            if(version.major == major && version.minor == minor) {
-                return new FileInputStream(version.file);
+            if(version.getMajor() == major && version.getMinor() == minor) {
+                return version;
             }
         }
-        throw new Exception("No file for ontology " + ontoName + " with version " + major + "." + minor);
+        return null;
     }
+    
+//    public InputStream getAsStream(String ontoName, int major, int minor) throws Exception {
+//        for(OntologyVersion version : ontologyVersions.get(ontoName)) {
+//            if(version.major == major && version.minor == minor) {
+//                return new FileInputStream(version.file);
+//            }
+//        }
+//        throw new Exception("No file for ontology " + ontoName + " with version " + major + "." + minor);
+//    }
     
 
     public String getBase() {
@@ -145,6 +161,10 @@ public class App {
         String ontoFileName = ontoName + "-" + ontoMajor + "." + ontoMinor;
         String expectedOntoURI = base + ontoName;
         String expectedOntoVersionURI = expectedOntoURI + "/" + ontoMajor + "." + ontoMinor;
+        if(ontoName.equals("seas")) {
+            expectedOntoURI = base;
+            expectedOntoVersionURI = expectedOntoURI + ontoMajor + "." + ontoMinor;
+        }
         String expectedOntoVersionInfo = "v" + ontoMajor + "." + ontoMinor;
         List<Resource> ontologyResources = ontology.listResourcesWithProperty(RDF.type, OWL2.Ontology).toList();
         if (ontologyResources.size() != 1) {
@@ -190,7 +210,7 @@ public class App {
     public Set<String> extractDefinedResources(Model ontology, String ontoName) throws Exception {
         Set<String> definedResources = new HashSet<String>();
         List<Statement> triples = ontology.listStatements(null, RDFS.isDefinedBy, (RDFNode) null).toList();
-        LOG.warning("Number of defined resources: " + triples.size());
+        LOG.info("Number of defined resources: " + triples.size());
         for(Statement s : triples) {
             if(!s.getSubject().getURI().startsWith(base)) {
                 LOG.warning("IRI of defined resource <" + s.getSubject().getURI() + "> should start with <" + base);
@@ -203,62 +223,4 @@ public class App {
         return definedResources;
     }
     
-    public class OntologyVersion implements Comparable<OntologyVersion>{
-        final int major;
-        final int minor;
-        final File file;
-
-        public OntologyVersion(int major, int minor, File file) {
-            this.major = major;
-            this.minor = minor;
-            this.file = file;
-        }
-
-        public int getMajor() {
-            return major;
-        }
-
-        public int getMinor() {
-            return minor;
-        }
-
-        public File getFile() {
-            return file;
-        }
-        
-        
-
-        @Override
-        public int compareTo(OntologyVersion o) {
-            if(major < o.major) {
-                return -1;
-            }
-            if(major == o.major) {
-                if(minor < o.minor) {
-                    return -1;
-                }
-                if(minor == o.minor) {
-                    return 0;
-                }
-            }
-            return 1;
-        }
-
-        @Override
-        public int hashCode() {
-            return minor + 157* major;
-        }
-        
-
-        @Override
-        public boolean equals(Object obj) {
-            if(obj == null || !(obj instanceof OntologyVersion)) {
-                return false;
-            }
-            OntologyVersion v = (OntologyVersion) obj;
-            return major == v.major && minor == v.minor;
-        }
-
-    }
-
 }

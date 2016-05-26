@@ -15,8 +15,8 @@
  */
 package com.github.thesmartenergy.seas.ontology;
 
-import com.github.thesmartenergy.seas.entities.App;
-import java.io.File;
+import com.github.thesmartenergy.seas.App;
+import com.github.thesmartenergy.seas.entities.OntologyVersion;
 import java.io.FileInputStream;
 import java.io.StringWriter;
 import java.net.URI;
@@ -46,69 +46,75 @@ public class OntologyResource {
 
     @Inject
     HttpServletRequest request;
-    
+
     @Inject
-    App ontologies;
-    
+    App app; 
+
     @GET
     @Produces("text/html")
-    @Path("{id}")
-    public Response getAsHtml(@PathParam("id") String id) {
-        String requestedUri = ontologies.getBase() + id;
-        if(ontologies.getOntologies().containsKey(requestedUri)) {
-            try {
-                return Response.seeOther(new URI("http://vowl.visualdataweb.org/webvowl/#iri=" + requestedUri )).build();
-            } catch (URISyntaxException ex) {
-                Logger.getLogger(OntologyResource.class.getName()).log(Level.SEVERE, null, ex);
-                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-            }
+    @Path("{ontoName : [a-zA-Z]*}/{major: [0-9]+}.{minor: [0-9]+}")
+    public Response getAsHtml(@PathParam("ontoName") String ontoName, @PathParam("major") int major, @PathParam("minor") int minor ) {
+        OntologyVersion version = app.getVersion(ontoName, major, minor);
+        if (version == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
-        return Response.status(Response.Status.NOT_FOUND).build();
+        String requestedUri = app.getBase() + ontoName;
+        try {
+            return Response.seeOther(new URI("http://vowl.visualdataweb.org/webvowl/#iri=" + requestedUri)).build();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(OntologyResource.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @GET
     @Produces("text/turtle")
-    @Path("{id}")
-    public Response getAsTurtle(@PathParam("id") String id) {
+    @Path("{ontoName : [a-zA-Z]*}/{major: [0-9]+}.{minor: [0-9]+}")
+    public Response getAsTurtle(@PathParam("ontoName") String ontoName, @PathParam("major") int major, @PathParam("minor") int minor ) {
+        OntologyVersion version = app.getVersion(ontoName, major, minor);
+        if (version == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
         try {
-            String requestedUri = ontologies.getBase() + id;
-            System.out.println(requestedUri );
-            if(!ontologies.getOntologies().containsKey(requestedUri)) {
-                return Response.status(Response.Status.NOT_FOUND).build();
+            Response.ResponseBuilder res = Response.ok(IOUtils.toString(new FileInputStream(version.getFile())), "text/turtle");
+            String filename = ontoName + "-" + major + "." + minor + ".ttl;";
+            if(!ontoName.equals("seas")) {
+                filename = "seas-" + filename;
             }
-            File turtleFile = ontologies.getOntologies().get(requestedUri);
-            Response.ResponseBuilder res = Response.ok(IOUtils.toString(new FileInputStream(turtleFile)), "text/turtle");
-            res.header("Content-Disposition", "filename= seas-" + id + "." + "ttl;");
-            return res.build();
+            res.header("Content-Disposition", "filename= "+filename);
+            return res.build(); 
         } catch (Exception ex) {
             Logger.getLogger(OntologyResource.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
-        
+
     @GET
     @Produces("application/rdf+xml")
-    @Path("{id}")
-    public Response getAsXML(@PathParam("id") String id) {
+    @Path("{ontoName : [a-zA-Z]*}/{major: [0-9]+}.{minor: [0-9]+}")
+    public Response getAsXML(@PathParam("ontoName") String ontoName, @PathParam("major") int major, @PathParam("minor") int minor ) {
+        OntologyVersion version = app.getVersion(ontoName, major, minor);
+        if (version == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
         try {
-            String requestedUri = ontologies.getBase() + id;
-            System.out.println(requestedUri );
-            if(!ontologies.getOntologies().containsKey(requestedUri)) {
-                return Response.status(Response.Status.NOT_FOUND).build();
-            }
-            File turtleFile = ontologies.getOntologies().get(requestedUri);
-            Model model = ModelFactory.createDefaultModel().read( new FileInputStream( turtleFile ) , uri, "TTL");
-            
+            Model model = ModelFactory.createDefaultModel().read(new FileInputStream(version.getFile()), uri, "TTL");
+
             StringWriter sw = new StringWriter();
             model.write(sw);
             Response.ResponseBuilder res = Response.ok(sw.toString(), "application/rdf+xml");
-            res.header("Content-Disposition", "filename= seas-" + id + "." + "rdf;");
+            String filename = ontoName + "-" + major + "." + minor + ".rdf;";
+            if(!ontoName.equals("seas")) {
+                filename = "seas-" + filename;
+            }
+            res.header("Content-Disposition", "filename= "+filename);
             return res.build();
         } catch (Exception ex) {
             Logger.getLogger(OntologyResource.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
+        } 
     }
-        
 
 }

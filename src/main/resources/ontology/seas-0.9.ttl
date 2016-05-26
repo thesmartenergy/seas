@@ -16,29 +16,40 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .              #Owl ontology language
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .      #RDF schema 
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .           #XML standard datatypes
-
 @prefix cc: <http://creativecommons.org/ns#>. #Creative commons namespace
 @prefix dc: <http://purl.org/dc/terms/> .     #Dublin Core Metadata Initiative terms
-
 @prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
 @prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
-@prefix void: <https://www.w3.org/TR/void/>. #Vocabulary of interelinked datasets 
+@prefix void: <https://www.w3.org/TR/void/>. #Ontology of interelinked datasets 
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
 
 @prefix seas: <http://w3id.org/seas/>.
 
 
-<http://w3id.org/seas/> rdf:type voaf:Vocabulary , owl:Ontology ;
+<http://w3id.org/seas/> rdf:type voaf:Ontology , owl:Ontology ;
+  dc:title "SEAS Ontology"@en ;
+  dc:description "The SEAS ontology, that glues together all of the SEAS modules"@en ;
   dc:creator <http://maxime-lefrancois.info/me#> ;
   dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
-  # add other members of WP2 as contributors
-  dc:description "The SEAS ontology, that glues together all of the SEAS modules"@en ;
+  dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
+  dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
   dc:issued "2016-05-25"^^xsd:date ;
-  dc:title "SEAS ontology"@en ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <http://w3id.org/seas/> ;
-  owl:versionIRI <http://w3id.org/seas/1.0> ;
-  owl:imports <http://w3id.org/seas/building> ;
-  owl:imports <http://w3id.org/seas/timeseries> ;
-  # add imports to other modules
-  owl:versionInfo "1.0" .  
+  owl:versionIRI <http://w3id.org/seas/0.9> ;
+  owl:versionInfo "v0.9" ;
+  owl:imports seas:ActorOntology ;
+  owl:imports seas:ArchitectureOntology ;
+  owl:imports seas:BuildingCategoriesOntology ;
+  owl:imports seas:BuildingEnergyOntology ;
+  owl:imports seas:BuildingLoadsOntology ;
+  owl:imports seas:BuildingOntology ;
+  owl:imports seas:EnergyOntology ;
+  owl:imports seas:MarketOntology ;
+  owl:imports seas:TechnicalSystemOntology ;
+  owl:imports seas:TimeSeriesOntology ;
+  owl:imports seas:UpperOntology ;
+  owl:imports seas:WeatherOntology .

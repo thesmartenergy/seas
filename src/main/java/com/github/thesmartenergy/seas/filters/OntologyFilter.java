@@ -13,10 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.thesmartenergy.seas;
+package com.github.thesmartenergy.seas.filters;
 
+import com.github.thesmartenergy.seas.App;
+import com.github.thesmartenergy.seas.entities.OntologyVersion;
 import java.io.IOException;
-import java.util.Set;
+import java.util.regex.Pattern;
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -25,6 +28,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import static org.apache.jena.sparql.vocabulary.TestManifestUpdate_11.request;
+import static org.glassfish.jersey.process.internal.Stages.chain;
 
 /**
  * This class filters the calls to ontologies, and dispatches to the ontology
@@ -33,7 +38,10 @@ import javax.servlet.http.HttpServletRequest;
  * @author maxime.lefrancois
  */
 @WebFilter(urlPatterns = {"/*"})
-public class MainFilter implements Filter {
+public class OntologyFilter implements Filter {
+
+    @Inject
+    App app;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -44,22 +52,22 @@ public class MainFilter implements Filter {
             FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = ((HttpServletRequest) request);
         String requestURI = req.getRequestURI();
-        System.out.println("filter " + this.getClass().getSimpleName() + " for requestURI:" + requestURI);
+//        System.out.println("filter " + this.getClass().getSimpleName() + " for requestURI:" + requestURI);
 
-        // filter calls to main page with Accept text/turtle or Accept application/rdf+xml
-        if (requestURI.equals("/seas/")) {
-            // check if accept is text/turtle or Accept application/rdf+xml. not true content negociation for now.
-            String accept = req.getHeader("Accept");
-            if (!accept.contains("*/*")
-                    && !accept.contains("text/*")
-                    && !accept.contains("*/html")
-                    && !accept.contains("text/html")
-                    && !accept.contains("application/xhtml+xml")) {
-                String newURI = "/seas/ontology/seas";
-                System.out.println("dispatching to " + newURI);
-                req.getRequestDispatcher(newURI).forward(req, response);
+        // filter calls to one of the ontologies
+        if (requestURI.startsWith("/seas/")) {
+            String ontoName = requestURI.substring(6);
+            if (Pattern.matches("^([a-zA-Z]*)$", ontoName)) {
+                OntologyVersion version = app.getVersion(ontoName);
+                if(version != null) { 
+                    String newURI = "/ontology/" + ontoName + "/" + version.getMajor() + "." + version.getMinor();
+//                    System.out.println("filter " + this.getClass().getSimpleName() + " dispatching  to " + newURI);
+                    req.getRequestDispatcher(newURI).forward(req, response);
+                    return;
+                }
             }
         }
+//        System.out.println("filter " + this.getClass().getSimpleName() + " chaining");
         chain.doFilter(request, response);
     }
 

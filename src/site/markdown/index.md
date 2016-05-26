@@ -2,14 +2,22 @@
 
 This site exposes the SEAS ontologies. For now, these are:
 
-- The timeseries vocabulary -  http://w3id.org/seas/ontology/timeseries#
-- The technicalsystem vocabulary -  http://w3id.org/seas/ontology/technicalsystem#
-- The building vocabulary -  http://w3id.org/seas/ontology/building#
-- The market vocabulary -  http://w3id.org/seas/ontology/market#
-- The pv vocabulary -  http://w3id.org/seas/ontology/pv#
+- The main ontology (this file)  http://w3id.org/seas/
+- The actor ontology -  http://w3id.org/seas/ActorVocabulary
+- The architecture ontology -  http://w3id.org/seas/ArchitectureVocabulary
+- The building categories ontology -  http://w3id.org/seas/BuildingCategoriesVocabulary
+- The building energy ontology -  http://w3id.org/seas/BuildingEnergyVocabulary
+- The building loads ontology -  http://w3id.org/seas/BuildingLoadsVocabulary
+- The building ontology -  http://w3id.org/seas/BuildingVocabulary
+- The energy ontology -  http://w3id.org/seas/EnergyVocabulary
+- The market ontology -  http://w3id.org/seas/MarketVocabulary
+- The technical system ontology -  http://w3id.org/seas/TechnicalSystemVocabulary
+- The time series ontology -  http://w3id.org/seas/TimeSeriesVocabulary
+- The upper ontology -  http://w3id.org/seas/UpperVocabulary
+- The weather ontology -  http://w3id.org/seas/WeatherVocabulary
 
-# Contribute to this site
 
-Do not hesitate to propose examples, additions, report bugs, or just say hello:
+# Contribute to these ontologies
 
+- The sources of this 
 - The issue tracker - http://github.com/thesmartenergy/seas/issues

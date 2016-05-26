@@ -13,10 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.thesmartenergy.seas;
+package com.github.thesmartenergy.seas.filters;
 
+import com.github.thesmartenergy.seas.App;
+import com.github.thesmartenergy.seas.entities.OntologyVersion;
 import java.io.IOException;
-import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -25,17 +29,16 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpUtils;
 
 /**
- * This class filters the calls to ontologies, and dispatches to the ontology
- * resource
  *
  * @author maxime.lefrancois
  */
-@WebFilter(urlPatterns = {"/*"})
-public class ResourceFilter implements Filter {
+@WebFilter(urlPatterns = {"/*"}, filterName = "filterOne")
+public class VersionFilter implements Filter {
+
+    @Inject
+    App app;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -46,27 +49,30 @@ public class ResourceFilter implements Filter {
             FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = ((HttpServletRequest) request);
         String requestURI = req.getRequestURI();
-        System.out.println("filter " + this.getClass().getSimpleName() + " for requestURI:" + requestURI);
-        System.out.println("contextpath" + req.getContextPath());
+//        System.out.println("filter " + this.getClass().getSimpleName() + " for requestURI:" + requestURI);
 
         // filter calls to one of the ontologies
         if (requestURI.startsWith("/seas/")) {
-            String resource = requestURI.substring(6);
-            Map<String, String> resourceToOntologyName = (Map<String, String>) request.getServletContext().getAttribute("resourceToOntologyName");
-            if (resourceToOntologyName != null && resourceToOntologyName.containsKey(resource)) {
-                String newURI = "/seas/ontology/"+resourceToOntologyName.get(resource);
-                HttpServletResponse res = ((HttpServletResponse) response);
-                
-                System.out.println(HttpUtils.getRequestURL(req).toString());
-                
-                res.setStatus(HttpServletResponse.SC_SEE_OTHER);
-                res.setHeader("Location", newURI);
-                res.flushBuffer();
-                
-                System.out.println("dispatching to " + newURI);
+            String versionedOntoName = requestURI.substring(6);
+            Pattern p = Pattern.compile("^([a-zA-Z]*)/([0-9]+)\\.([0-9]+)$");
+            Matcher m = p.matcher(versionedOntoName);
+            boolean b = m.matches();
+            if (!b) {
+                chain.doFilter(request, response);
+                return;
+            }
+            String ontoName = m.group(1);
+            int major = Integer.parseInt(m.group(2));
+            int minor = Integer.parseInt(m.group(3));
+            
+            OntologyVersion version = app.getVersion(ontoName, major, minor);
+            if(version != null) {
+                String newURI = "/ontology/" + ontoName + "/" + major + "." + minor;
+//                System.out.println("filter " + this.getClass().getSimpleName() + " dispatching  to " + newURI);
                 req.getRequestDispatcher(newURI).forward(req, response);
             }
         }
+//        System.out.println("filter " + this.getClass().getSimpleName() + " chaining");
         chain.doFilter(request, response);
     }
 
