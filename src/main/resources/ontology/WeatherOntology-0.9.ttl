@@ -195,8 +195,8 @@ seas:WindSpeed a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:WeatherOntology .  
 
-  seas:SunRise a owl:Class ; 
-  rdfs:label "SunRise"@en ;
+  seas:Sunrise a owl:Class ; 
+  rdfs:label "Sunrise"@en ;
   rdfs:label "AuringonNousu"@fi ;
   rdfs:comment "Event of sun rising (at specific location in Earth)"@en ;
   rdfs:subClassOf seas:Evaluation ;
@@ -204,8 +204,8 @@ seas:WindSpeed a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:WeatherOntology . 
 
-  seas:SunSet a owl:Class ;
-  rdfs:label "SunSet"@en ;
+  seas:Sunset a owl:Class ;
+  rdfs:label "Suset"@en ;
   rdfs:label "AuringonLasku"@fi ;
   rdfs:comment "Event of sun setting (at specific location in Earth)"@en ;
   rdfs:subClassOf seas:Evaluation ;

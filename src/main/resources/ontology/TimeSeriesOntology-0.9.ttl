@@ -379,7 +379,7 @@ seas:TemporalEntity a owl:Class ;
 
 seas:Instant a owl:Class ;
   rdfs:label "Instant"@en ;
-  rdfs:comment "A simplification of instant in owl time. note tahat property that seas:instant links directly to xsd:dateTime not seas:Instant."@en ;
+  rdfs:comment "A simplification of instant in owl time. note that property seas:instant links directly to xsd:dateTime not seas:Instant."@en ;
   rdfs:isDefinedBy seas:TimeSeriesOntology ;
   rdfs:subClassOf seas:TemporalEntity;
   vs:term_status "testing".    
