@@ -28,7 +28,7 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
-seas:EnergyOntology rdf:type voaf:Ontology , owl:Ontology ;
+seas:EnergyOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "seas-EnergyOntology ontology"@en ;
   dc:description "The Seas Energy Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
   dc:issued "2015-10-10"^^xsd:date ;

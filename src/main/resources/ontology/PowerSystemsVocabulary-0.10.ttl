@@ -1,0 +1,175 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .     #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .   #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .  #XML standard datatypes
+@prefix dc: <http://purl.org/dc/terms/> .  #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>. # The DOLCE+DnS Ultralite ontology.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:PowerAndEnergySystemsVocabulary a owl:Ontology , voaf:Vocabulary ;
+  dc:title "seas-PowerAndEnergySystems vocabulary."@en ;
+  dc:description """This vocabulary defines common Systems, Connections, and Connection Points for the Power and Energy Systems domain."""@en ;
+  dc:issued "2016-07-19"^^xsd:date ;
+  dc:modified "2016-07-19"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
+  dc:contributor <https://w3id.org/people/franciscosilva#> ;
+  dc:contributor <https://w3id.org/people/brigidateixeira#> ;
+  cc:license <http://creativecommons.org/licenses/by/4.0/> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/PowerAndEnergySystemsVocabulary/0.10> ;
+  owl:versionInfo "v0.10" .
+
+seas:PowerSystem a owl:Class ;
+  rdfs:subClassOf seas:System ;
+  rdfs:label "Power System" ;
+  rdfs:label "Sistemas Elétricos de Energia"@pt ;
+  rdfs:comment """The class of systems that are capable of producing, storing, or consuming electricity, and exchange electricity with other systems."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+seas:consumptionPower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "consumption Power" ;
+  rdfs:comment """Consumption Power is the sum of the electric power that is consumed by the system and its sub systems."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+seas:productionPower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "production Power" ;
+  rdfs:comment """Production Power is the sum of the electric power that is produced by the system and its sub systems."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+seas:storagePower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "storage Power" ;
+  rdfs:comment """Storage Power is the electric power that is stored, usually in a battery, an electric vehicle, or a microgrid."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+seas:incomingPower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "incoming Power" ;
+  rdfs:comment """Incoming Power is the sum of the electric power that enter the system from the exterior."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+seas:outgoingPower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "outgoing Power" ;
+  rdfs:comment """Outgoing Power is the sum of the electric power that leaves the system to the exterior."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+seas:powerBalance a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Power Balance" ;
+  rdfs:comment """Power Balance is equal to the sum of:
+  The electric consumption minus the electric production plus the storage power.
+
+  It is also equal to the sum of:
+  The outgoing electric power minus the incoming electric power."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+# Energy
+
+seas:consumedEnergy a seas:PropertyKey, rdf:Property ;
+  rdfs:label "consumed energy" ;
+  rdfs:comment """Consumed Energy is the sum of the electric energy that is consumed by the system and its sub systems."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+seas:productedEnergy a seas:PropertyKey, rdf:Property ;
+  rdfs:label "produced Energy" ;
+  rdfs:comment """Produced Energy is the sum of the electric energy that is produced by the system and its sub systems."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+seas:storedEnergy a seas:PropertyKey, rdf:Property ;
+  rdfs:label "stored Energy" ;
+  rdfs:comment """Stored Energy is the electric energy that is stored, usually in a battery, an electric vehicle, or a microgrid."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+seas:incomingEnergy a seas:PropertyKey, rdf:Property ;
+  rdfs:label "incoming Energy" ;
+  rdfs:comment """Incoming Energy is the sum of the electric energy that entered the system from the exterior."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+seas:outgoingEnergy a seas:PropertyKey, rdf:Property ;
+  rdfs:label "outgoing Energy" ;
+  rdfs:comment """Outgoing Energy is the sum of the electric energy that leaves the system to the exterior."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+
+seas:energyBalance a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Energy Balance" ;
+  rdfs:comment """Energy Balance is equal to the sum of:
+  The electric consumed energy minus the electric consumed production plus the electric stored energy.
+
+  It is also equal to the sum of:
+  The outgoing electric energy minus the incoming electric energy."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:EnergySystem ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
+

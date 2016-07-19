@@ -21,17 +21,20 @@
 @prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> . #QUDT quantities
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
 
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
-#SEAS architecture related concepts
-seas:ArchitectureOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "seas-ArchitectureOntology ontology"@en ;
-  dc:description "The Seas Architecture Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
-  dc:issued "2016-01-26"^^xsd:date ;
-  dc:modified "2016-05-26"^^xsd:date ;
-  dc:author <http://www.vtt.fi/JarmoKalaoja> ;
+seas:SystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "seas-SystemOntology ontology"@en ;
+  dc:description "The Seas System Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
+  dc:issued "2016-06-06"^^xsd:date ;
+  dc:modified "2016-06-06"^^xsd:date ;
+  dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
   dc:author <http://www.maxime-lefrancois.info/me#> ;
   dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
   dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
@@ -39,34 +42,29 @@ seas:ArchitectureOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
-  owl:versionIRI <https://w3id.org/seas/ArchitectureOntology/0.9> ;
-  owl:versionInfo "v0.9" .
-   
-seas:ResourceManager a owl:Class ;
-  rdfs:label "ResourceManager"@en ;
-  rdfs:comment "The class of SEAS resource managers."@en ;
-  rdfs:isDefinedBy seas:ArchitectureOntology ;
-  rdfs:subClassOf seas:Node ;
-  vs:term_status "testing" .  
+  owl:versionIRI <https://w3id.org/seas/SystemOntology/0.10> ;
+  owl:versionInfo "v0.10" ;
+  owl:imports seas:FeatureOfInterestOntology .
 
-seas:ServiceProvider a owl:Class ;
-  rdfs:label "ServiceProvider"@en ;
-  rdfs:comment "The class of SEAS service providers."@en ;
-  rdfs:isDefinedBy seas:ArchitectureOntology ;
-  rdfs:subClassOf seas:Role ;
-  vs:term_status "testing" .  
-  
-seas:EndNode a owl:Class ;
-  rdfs:label "EndNode"@en ;
-  rdfs:comment "The class of SEAS end nodes."@en ;
-  rdfs:isDefinedBy seas:ArchitectureOntology ;
-  rdfs:subClassOf seas:Node ;
-  vs:term_status "testing" .  
-  
-seas:IPCapableEndNode a owl:Class ;
-  rdfs:label "IPCapableEndNode"@en ;
-  rdfs:comment "The class of IP capable SEAS end nodes."@en ;
-  rdfs:isDefinedBy seas:ArchitectureOntology ;
-  rdfs:subClassOf seas:EndNode ;
-  vs:term_status "testing" .  
-      
+seas:System a owl:Class ;
+  rdfs:label "System"@en ;
+  rdfs:comment "The class of systems. Systems can be connected to other systems and have subsystems."@en ;
+  rdfs:subClassOf [ owl:onProperty seas:connectedTo ; owl:allValuesFrom  seas:System ] ;
+  rdfs:subClassOf [ owl:onProperty seas:subsystem ; owl:allValuesFrom  seas:System ] ;
+  vs:term_status "testing" ;
+  rdfs:subClassOf seas:FeatureOfInterest ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:SystemOntology .
+
+seas:connectedTo a owl:ObjectProperty , owl:SymmetricProperty ;
+  rdfs:label "connectedTo"@en ;
+  rdfs:comment "Links a system to a system it is connected to."@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:SystemOntology .
+
+seas:subSystemOf a owl:ObjectProperty ;
+  rdfs:label "sub system of"@en ;
+  rdfs:comment "Links a system to its super system it is connected to."@en ;
+  rdfs:subPropertyOf seas:connectedTo ; 
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:SystemOntology .

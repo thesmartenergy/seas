@@ -29,7 +29,7 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
-seas:BuildingOntology rdf:type voaf:Ontology , owl:Ontology ;
+seas:BuildingOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "seas-BuildingOntology ontology"@en ;
   dc:description "The Seas Building BIM related vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project. This ontology is targeted for defining structure of buildings (or more general facilities) and zones related to control and measurment with links to various BIM (Building Information Model) related standards."@en ;
   dc:issued "2016-01-26"^^xsd:date ;

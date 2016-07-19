@@ -25,9 +25,9 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
-seas:TimeSeriesOntology rdf:type voaf:Ontology , owl:Ontology ;
+seas:TimeSeriesOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "seas-TimeSeriesOntology ontology"@en ;
-  dc:description "The Seas TimeSeries Ontology that helps to define simple time-series as evaluluation."@en ;
+  dc:description "The Seas TimeSeries Ontology that helps to define simple time-series as evaluation."@en ;
   dc:issued "2016-03-17"^^xsd:date ;
   dc:modified "2016-05-26"^^xsd:date ;
   dc:author <http://www.vtt.fi/JarmoKalaoja> ;

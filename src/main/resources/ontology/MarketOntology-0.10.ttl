@@ -26,7 +26,7 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
-seas:MarketOntology rdf:type voaf:Ontology , owl:Ontology ;
+seas:MarketOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "seas-MarketOntology ontology"@en ;
   dc:description "The Seas Market Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
   dc:issued "2016-05-10"^^xsd:date ;

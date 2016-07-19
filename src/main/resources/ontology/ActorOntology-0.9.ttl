@@ -27,7 +27,7 @@
 
 
 #Core roles and activities (for devices and systems), this is related to actor module and could specialize it but now here defined as new vocabulary
-seas:ActorOntology a owl:Ontology , voaf:Ontology ;
+seas:ActorOntology a owl:Ontology , voaf:Vocabulary ;
   dc:title "seas-ActorOntology ontology"@en ;
   dc:description "The Seas Actor Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
   dc:issued "2016-01-26"^^xsd:date ;
@@ -55,8 +55,8 @@ seas:ForecastingActivity a owl:Class ;
   rdfs:comment "Activity that forecasts something "@en ;
   rdfs:subClassOf seas:Activity;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:ActorOntology.       
-
+  rdfs:isDefinedBy seas:ActorOntology.
+  
 seas:PlanningActivity a owl:Class ; 
   rdfs:label "PlanningActivity"@en ;
   rdfs:comment "Activity that creates plans "@en ;

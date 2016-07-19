@@ -1,0 +1,141 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .              #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .      #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .           #XML standard datatypes
+@prefix dc: <http://purl.org/dc/terms/> .     #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> . #QUDT quantities
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:ConnectionPointOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "seas-ConnectionPointOntology ontology"@en ;
+  dc:description "The Seas Connection Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
+  dc:issued "2016-06-06"^^xsd:date ;
+  dc:modified "2016-06-06"^^xsd:date ;
+  dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
+  dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/ConnectionPointOntology/0.10> ;
+  owl:versionInfo "v0.10" ;
+  owl:imports seas:ConnectionOntology ;
+  owl:imports <http://www.w3.org/ns/ssn> .
+
+
+seas:ConnectionPoint a owl:Class ;
+  rdfs:label "ConnectionPoint"@en ;
+  rdfs:comment "The class of connection points of a system, via which it may be connected to other systems."@en ;
+  rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:cardinality 1 ] ; # a connection point belongs to exactly one system.
+  owl:disjointWith seas:System, seas:Connection ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ConnectionPointOntology .
+
+
+seas:connectionPoint a rdf:Property, owl:InverseFunctionalProperty ;
+  rdfs:label "connectionPoint"@en ;
+  rdfs:comment "Links a system to one of its connection points."@en ;
+  rdfs:domain seas:System ;
+  rdfs:range seas:ConnectionPoint ;
+  owl:inverseOf seas:connectionPointOf ;
+#  owl:propertyChainAxiom ( seas:connectedSystem1Of seas:connectedPoint1Of ) ;
+#  owl:propertyChainAxiom ( seas:connectedSystem2Of seas:connectedPoint2Of ) ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ConnectionPointOntology .
+
+seas:connectionPointOf a rdf:Property, owl:FunctionalProperty ;
+  rdfs:label "connectionPointOf"@en ;
+  rdfs:comment "Links a connection point to the one and only system it belongs to."@en ;
+  rdfs:domain seas:ConnectionPoint ;
+  rdfs:range seas:System ;
+  owl:inverseOf seas:connectionPoint ;
+#  owl:propertyChainAxiom ( seas:connectedPoint1Of seas:connectedSystem1Of ) ;
+#  owl:propertyChainAxiom ( seas:connectedPoint2Of seas:connectedSystem2Of ) ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ConnectionPointOntology .
+
+seas:connectedPoint a rdf:Property ;
+  rdfs:label "connectedPoint"@en ;
+  rdfs:comment "Links a connection to one of the two connection points it connects."@en ;
+  rdfs:domain seas:Connection ;
+  rdfs:range seas:ConnectionPoint ;
+  owl:inverseOf seas:connectedPointOf ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ConnectionPointOntology .
+
+seas:connectedPoint1 a rdf:Property, owl:FunctionalProperty ;
+  rdfs:label "connectedPoint1"@en ;
+  rdfs:comment "Links a connection to the first connection point it connects."@en ;
+  rdfs:subPropertyOf seas:connectedPoint ;
+  rdfs:domain seas:Connection ;
+  rdfs:range seas:ConnectionPoint ;
+  owl:inverseOf seas:connectedPoint1Of ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ConnectionPointOntology .
+
+seas:connectedPoint2 a rdf:Property, owl:FunctionalProperty ;
+  rdfs:label "connectedPoint2"@en ;
+  rdfs:comment "Links a connection to the second connection point it connects."@en ;
+  rdfs:subPropertyOf seas:connectedPoint ;
+  rdfs:domain seas:Connection ;
+  rdfs:range seas:ConnectionPoint ;
+  owl:inverseOf seas:connectedPoint2Of ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ConnectionPointOntology .
+
+seas:connectedPointOf a rdf:Property ;
+  rdfs:label "connectedPointOf"@en ;
+  rdfs:comment "Links a connection point to one of its connections to another connection point."@en ;
+  owl:inverseOf seas:connectedPoint ;
+  rdfs:domain seas:ConnectionPoint ;
+  rdfs:range seas:Connection ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ConnectionPointOntology .
+
+seas:connectedPoint1Of a rdf:Property ;
+  rdfs:label "connectedPoint1Of"@en ;
+  rdfs:comment "Links a connection point to a connection for which it is the first connection point."@en ;
+  rdfs:subPropertyOf seas:connectedPointOf ;
+  rdfs:domain seas:ConnectionPoint ;
+  rdfs:range seas:Connection ;
+  owl:inverseOf seas:connectedPoint1 ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ConnectionPointOntology .
+
+seas:connectedPoint2Of a rdf:Property ;
+  rdfs:label "connectedPoint2Of"@en ;
+  rdfs:comment "Links a connection point to a connection for which it is the second connection point."@en ;
+  rdfs:subPropertyOf seas:connectedPointOf ;
+  rdfs:domain seas:ConnectionPoint ;
+  rdfs:range seas:Connection ;
+  owl:inverseOf seas:connectedPoint2 ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ConnectionPointOntology .
+

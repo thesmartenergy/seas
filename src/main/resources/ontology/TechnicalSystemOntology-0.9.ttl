@@ -26,7 +26,7 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
-seas:TechnicalSystemOntology rdf:type voaf:Ontology , owl:Ontology ;
+seas:TechnicalSystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "seas-TechnicalSystemOntology ontology"@en ;
   dc:description "The Seas Technical System Ontology for the ITEA SEAS (Smart Energy Aware Systems) project. This vocabulary presents some abstract system level concepts that help to define common patterns to ease creating similar queries across more specific ontologies"@en ;
   dc:issued "2016-05-10"^^xsd:date ;

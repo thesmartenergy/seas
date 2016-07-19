@@ -27,7 +27,7 @@
 
 
 #Core roles and activities (for devices and systems), this is related to actor module and could specialize it but now here defined as new vocabulary
-seas:BuildingCategoriesOntology a owl:Ontology , voaf:Ontology ;
+seas:BuildingCategoriesOntology a owl:Ontology , voaf:Vocabulary ;
   dc:title "seas-BuildingCategoriesOntology ontology"@en ;
   dc:description "The Seas Building Categories for the ITEA SEAS (Smart Energy Aware Systems) project. This module presents subcategories for classifying building related concepts."@en ;
   dc:issued "2016-01-26"^^xsd:date ;
@@ -82,7 +82,7 @@ seas:ZeroEnergyBuilding a owl:Class ;
 seas:PlusEnergyBuilding a owl:Class ;
   rdfs:label "PlusEnergyBuilding"@en ;
   rdfs:label "Plusenergiatalo"@fi ;  
-  rdfs:comment "A net plus-energy building ´is a building that over a year does generates more energy than it uses. "@en ;
+  rdfs:comment "A net plus-energy building is a building that over a year does generates more energy than it uses. "@en ;
   rdfs:subClassOf seas:Building;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:BuildingCategoriesOntology.    

@@ -1,0 +1,99 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .              #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .      #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .           #XML standard datatypes
+@prefix dc: <http://purl.org/dc/terms/> .     #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> . #QUDT quantities
+@prefix prov: <http://www.w3.org/ns/prov#>.
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+
+#Core roles and activities (for devices and systems), this is related to actor module and could specialize it but now here defined as new vocabulary
+seas:EvaluationOntology a owl:Ontology , voaf:Vocabulary ;
+  dc:title "seas-Evaluation ontology"@en ;
+  dc:description "The Seas Evaluation ontology."@en ;
+  dc:issued "2016-06-08"^^xsd:date ;
+  dc:modified "2016-06-08"^^xsd:date ;
+  dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
+  dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/EvaluationOntology/0.10> ;
+  owl:versionInfo "v0.10" .
+
+# generalizations of snn:Observation 
+
+seas:Evaluation a owl:Class ;
+  rdfs:label "Evaluation"@en ;
+  rdfs:comment """The class of evaluations of resources."""@en ;
+  rdfs:subClassOf prov:Entity ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+ssn:Observation rdfs:subClassOf seas:Evaluation .
+
+
+# generalizations of snn:Sensing
+
+seas:Predicting a owl:Class ;
+  rdfs:label "Evaluation"@en ;
+  rdfs:comment """The class of predicting events."""@en ;
+  rdfs:subClassOf prov:Activity ;
+  rdfs:subClassOf ssn:Process ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+ssn:Observation rdfs:subClassOf seas:Evaluation .
+
+
+
+seas:generatedBy a owl:ObjectProperty ;
+  rdfs:label "generatedBy"@en ;
+  rdfs:comment "The activity that generated the evaluation."@en ;
+  rdfs:subPropertyOf prov:generatedBy ;
+  rdfs:domain seas:Evaluation ;
+  rdfs:range prov:Activity ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+seas:ComponentedSpaceEvaluation a owl:Class ;
+  rdfs:label "ComponentedSpaceEvaluation" ;
+  rdfs:comment "The class of evaluations of F-spaces. An evaluation of a F-spaces is linked to the evaluated F-space, and is a F-space itself."@en ;
+  rdfs:subClassOf seas:Evaluation , seas:ComponentedSpace ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluates ; owl:someValuesFrom seas:ComponentedSpace ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+seas:evaluates a owl:ObjectProperty ;
+  rdfs:label "evaluates"@en ;
+  rdfs:comment "Links a F-space evaluation to the F-space it evaluates."@en ;
+  rdfs:domain seas:ComponentedSpaceEvaluation ;
+  rdfs:range seas:ComponentedSpace ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+

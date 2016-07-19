@@ -1,0 +1,24 @@
+
+
+
+
+seas:ElectricBranchConnection a owl:Class; 
+  rdfs:subClassOf seas:Connection ;
+  rdfs:subClassOf [ 
+    owl:onProperty seas:connectedSystem ; 
+    owl:allValuesFrom seas:PowerSystem ] ;
+
+
+
+
+
+
+
+
+seas:LX95 rdfs:subClassOf seas:ElectricBranchConnection .
+
+
+
+<myLX95cable> a seas:LX95 ;
+  seas:connectedSystem1 <isep> ;
+  seas:connectedSystem2 <gecad> .

@@ -1,0 +1,327 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .     #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .   #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .  #XML standard datatypes
+@prefix dc: <http://purl.org/dc/terms/> .  #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>. # The DOLCE+DnS Ultralite ontology.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:PropertyBindingConceptsOntology a owl:Ontology , voaf:Vocabulary ;
+  dc:title "seas-PropertyBindingConcepts ontology."@en ;
+  dc:description "This ontology defines a set of SKOS Concepts and ConceptSchemes for code lists. These concepts are used as metadata on instances of seas:PropertyBinding to enable to interpret the given measure values."@en ;
+  dc:issued "2016-07-05"^^xsd:date ;
+  dc:modified "2016-07-05"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <http://creativecommons.org/licenses/by/4.0/> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/PropertyBindingConceptsOntology/0.10> ;
+  owl:versionInfo "v0.10" . 
+
+
+# CL_TS
+seas:ts a skos:ConceptScheme, sdmx:CodeList;
+  rdfs:label "Time Series - codelist scheme"@en;
+  skos:prefLabel "Time Series - codelist scheme"@en;
+  skos:notation "CL_TS";
+  rdfs:comment """This code list enables to interpret the given value with respect to the actual time series of values."""@en;
+  skos:note """This code list enables to interpret the given value with respect to the actual time series of values."""@en;
+  skos:definition seas:time-series ;
+  rdfs:seeAlso seas:Time-series ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology .
+
+seas:Ts a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Time Series - codelist class"@en;
+  rdfs:comment """This code list enables to interpret the given value with respect to the actual time series of values."""@en;
+  rdfs:seeAlso seas:time-series ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:ts-Cumulative a skos:Concept, sdmx:Concept, seas:Ts;
+  rdfs:label "Cumulative"@en ;
+  skos:prefLabel "Cumulative"@en ;
+  skos:notation "Cumul" ;
+  rdfs:comment """Cumulative means that the given value measures cumulates with the previous value in the time series."""@en ;
+  skos:definition """Cumulative means that the given value measures cumulates with the previous value in the time series."""@en ;
+  skos:topConceptOf seas:ts;
+  skos:inScheme   seas:ts;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:ts skos:hasTopConcept seas:ts-Cumulative .
+
+seas:ts-Sum a skos:Concept, sdmx:Concept, seas:Ts;
+  rdfs:label "Sum"@en ;
+  skos:prefLabel "Sum"@en ;
+  skos:notation "sum" ;
+  rdfs:comment """Sum means that the given value measures the sum of the quantity over the time dimension of the observation."""@en ;
+  skos:definition """Sum means that the given value measures the sum of the quantity over the time dimension of the observation."""@en ;
+  skos:topConceptOf seas:ts;
+  skos:inScheme   seas:ts;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:ts skos:hasTopConcept seas:ts-Sum .
+
+seas:ts-Average a skos:Concept, sdmx:Concept, seas:Ts;
+  rdfs:label "Average"@en ;
+  skos:prefLabel "Average"@en ;
+  skos:notation "avg" ;
+  rdfs:comment """Average means that the given value measures the average of the quantity over the time dimension of the observation."""@en ;
+  skos:definition """Average means that the given value measures the average of the quantity over the time dimension of the observation."""@en ;
+  skos:topConceptOf seas:ts;
+  skos:inScheme   seas:ts;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:ts skos:hasTopConcept seas:ts-Average .
+
+seas:ts-Minimum a skos:Concept, sdmx:Concept, seas:Ts;
+  rdfs:label "Minimum"@en ;
+  skos:prefLabel "Minimum"@en ;
+  skos:notation "min" ;
+  rdfs:comment """Minimum means that the given value measures the minimum of the quantity over the time dimension of the observation."""@en ;
+  skos:definition """Minimum means that the given value measures the minimum of the quantity over the time dimension of the observation."""@en ;
+  skos:topConceptOf seas:ts;
+  skos:inScheme   seas:ts;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:ts skos:hasTopConcept seas:ts-Minimum .
+
+seas:ts-Maximum a skos:Concept, sdmx:Concept, seas:Ts;
+  rdfs:label "Maximum"@en ;
+  skos:prefLabel "Maximum"@en ;
+  skos:notation "max" ;
+  rdfs:comment """Maximum means that the given value measures the maximum of the quantity over the time dimension of the observation."""@en ;
+  skos:definition """Maximum means that the given value measures the maximum of the quantity over the time dimension of the observation."""@en ;
+  skos:topConceptOf seas:ts;
+  skos:inScheme   seas:ts;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:ts skos:hasTopConcept seas:ts-Maximum .
+
+
+# CL_FOURIER
+seas:fourier a skos:ConceptScheme, sdmx:CodeList;
+  rdfs:label "Fourier - codelist scheme"@en;
+  skos:prefLabel "Fourier - codelist scheme"@en;
+  skos:notation "CL_FOURIER";
+  rdfs:comment """This code list enables to interpret the given value with respect to the Fourier-decomposition of the actual observed signal."""@en;
+  skos:note """This code list enables to interpret the given value with respect to the Fourier-decomposition of the actual observed signal."""@en;
+  skos:definition seas:fourier ;
+  rdfs:seeAlso seas:Fourier ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology .
+
+seas:Fourier a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Fourier - codelist class"@en;
+  rdfs:comment """This code list enables to interpret the given value with respect to the Fourier-decomposition of the actual observed signal."""@en;
+  rdfs:seeAlso seas:fourier ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:fourier-Frequency a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Frequency"@en ;
+  skos:prefLabel "Frequency"@en ;
+  skos:notation "Freq" ;
+  rdfs:comment """Frequency means that the given value measures the frequency of the periodic signal."""@en ;
+  skos:definition """Frequency means that the given value measures the frequency of the periodic signal."""@en ;
+  skos:topConceptOf seas:fourier;
+  skos:inScheme   seas:fourier;
+  seas:dimension seas:frequency ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:fourier skos:hasTopConcept seas:fourier-Frequency .
+
+seas:fourier-THD a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Total Harmonic Distortion"@en ;
+  skos:prefLabel "Total Harmonic Distortion"@en ;
+  skos:notation "THD" ;
+  rdfs:comment """THD means that the given value measures the total harmonic distortion of the periodic signal."""@en ;
+  skos:definition """THD means that the given value measures the total harmonic distortion of the periodic signal."""@en ;
+  skos:topConceptOf seas:fourier;
+  skos:inScheme   seas:fourier;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:fourier skos:hasTopConcept seas:fourier-THD .
+
+seas:fourier-RMS a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "RMS Amplitude"@en ;
+  skos:prefLabel "RMS Amplitude"@en ;
+  skos:notation "RMS" ;
+  rdfs:comment """RMS means that the given value measures the Root Mean Square amplitude of the periodic signal."""@en ;
+  skos:definition """RMS means that the given value measures the Root Mean Square amplitude of the periodic signal."""@en ;
+  skos:topConceptOf seas:fourier;
+  skos:inScheme   seas:fourier;
+  seas:dimension seas:frequency ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:fourier skos:hasTopConcept seas:fourier-RMS .
+
+
+# CL_STAT
+seas:stat a skos:ConceptScheme, sdmx:CodeList;
+  skos:prefLabel "Statistics - codelist scheme"@en;
+  rdfs:label "Statistics - codelist scheme"@en;
+  skos:notation "CL_STAT";
+  rdfs:comment """This code list enables to interpret the given value with respect to the Fourier-decomposition of the actual observed signal."""@en;
+  skos:note """This code list enables to interpret the given value with respect to the Fourier-decomposition of the actual observed signal."""@en;
+  skos:definition seas:stat ;
+  rdfs:seeAlso seas:Stat ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology .
+
+seas:Stat a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Statistics - codelist class"@en;
+  rdfs:comment """This code list enables to interpret the given value with respect to the Statistical distribution of the actual observed quantity."""@en;
+  rdfs:seeAlso seas:stat ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:stat-Minimum a skos:Concept, sdmx:Concept, seas:Stat;
+  rdfs:label "Minimum"@en ;
+  skos:prefLabel "Minimum"@en ;
+  skos:notation "min" ;
+  rdfs:comment """Minimum means that the given value measures the minimum of the observed quantity."""@en ;
+  skos:definition """Minimum means that the given value measures the minimum of the observed quantity."""@en ;
+  skos:topConceptOf seas:stat;
+  skos:inScheme   seas:stat;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:stat skos:hasTopConcept seas:stat-Minimum .
+
+seas:stat-Maximum a skos:Concept, sdmx:Concept, seas:Stat;
+  rdfs:label "Maximum"@en ;
+  skos:prefLabel "Maximum"@en ;
+  skos:notation "Max" ;
+  rdfs:comment """Maximum means that the given value measures the maximum of the observed quantity."""@en ;
+  skos:definition """Maximum means that the given value measures the maximum of the observed quantity."""@en ;
+  skos:topConceptOf seas:stat;
+  skos:inScheme   seas:stat;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:stat skos:hasTopConcept seas:stat-Maximum .
+
+seas:stat-Mean a skos:Concept, sdmx:Concept, seas:Stat;
+  rdfs:label "Mean"@en ;
+  skos:prefLabel "Mean"@en ;
+  skos:notation "mean" ;
+  rdfs:comment """Mean means that the given value measures the mean of the observed quantity."""@en ;
+  skos:definition """Mean means that the given value measures the mean of the observed quantity."""@en ;
+  skos:topConceptOf seas:stat;
+  skos:inScheme   seas:stat;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:stat skos:hasTopConcept seas:stat-Mean .
+
+seas:stat-Median a skos:Concept, sdmx:Concept, seas:Stat;
+  rdfs:label "Median"@en ;
+  skos:prefLabel "Median"@en ;
+  skos:notation "median" ;
+  rdfs:comment """Median means that the given value measures the median of the observed quantity."""@en ;
+  skos:definition """Median means that the given value measures the median of the observed quantity."""@en ;
+  skos:topConceptOf seas:stat;
+  skos:inScheme   seas:stat;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology .
+
+seas:stat skos:hasTopConcept seas:stat-Mean .
+
+seas:stat-StandardDeviation a skos:Concept, sdmx:Concept, seas:Stat;
+  rdfs:label "Standard Deviation"@en ;
+  skos:prefLabel "Standard Deviation"@en ;
+  skos:notation "stdev" ;
+  rdfs:comment """Standard Deviation means that the given value measures the standard deviation of the observed quantity."""@en ;
+  skos:definition """Standard Deviation means that the given value measures the standard deviation of the observed quantity."""@en ;
+  skos:topConceptOf seas:stat;
+  skos:inScheme   seas:stat;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology .
+
+seas:stat skos:hasTopConcept seas:stat-StandardDeviation .
+
+seas:stat-Quartile a skos:Concept, sdmx:Concept, seas:Stat;
+  rdfs:label "Quartile"@en ;
+  skos:prefLabel "Quartile"@en ;
+  skos:notation "Q" ;
+  rdfs:comment """Quartile means that the given value measures one of the quartiles of the observed quantity. The rank of the quartile is the object of property seas:rank."""@en ;
+  skos:definition """Quartile means that the given value measures one of the quartiles of the observed quantity. The rank of the quartile is the object of property seas:rank."""@en ;
+  skos:topConceptOf seas:stat;
+  skos:inScheme   seas:stat;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology .
+
+seas:stat skos:hasTopConcept seas:stat-Quartile .
+
+seas:stat-Decile a skos:Concept, sdmx:Concept, seas:Stat;
+  rdfs:label "Decile"@en ;
+  skos:prefLabel "Decile"@en ;
+  skos:notation "D" ;
+  rdfs:comment """Decile means that the given value measures one of the deciles of the observed quantity. The rank of the decile is the object of property seas:rank."""@en ;
+  skos:definition """Decile means that the given value measures one of the deciles of the observed quantity. The rank of the decile is the object of property seas:rank."""@en ;
+  skos:topConceptOf seas:stat;
+  skos:inScheme   seas:stat;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology .
+
+seas:stat skos:hasTopConcept seas:stat-Decile .
+
+seas:stat-Percentile a skos:Concept, sdmx:Concept, seas:Stat;
+  rdfs:label "Percentile"@en ;
+  skos:prefLabel "Percentile"@en ;
+  skos:notation "P" ;
+  rdfs:comment """Percentile means that the given value measures one of the percentiles of the observed quantity. The rank of the percentile is the object of property seas:rank."""@en ;
+  skos:definition """Percentile means that the given value measures one of the percentiles of the observed quantity. The rank of the percentile is the object of property seas:rank."""@en ;
+  skos:topConceptOf seas:stat;
+  skos:inScheme   seas:stat;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology .
+
+seas:stat skos:hasTopConcept seas:stat-Percentile .
+
+seas:rank a owl:DatatypeProperty;
+  rdfs:label "rank"@en ;
+  rdfs:comment "Rank number of quartile, decile, or percentile."@en ;
+  rdfs:range xsd:integer ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology ;
+     
+
+
