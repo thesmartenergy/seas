@@ -32,59 +32,27 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
-seas:SinglePhaseSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-Single Phase System vocabulary."@en ;
-  dc:description """This vocabulary defines Single Phase Systems for the Power and Energy Systems domain."""@en ;
+seas:StorageVocabulary a owl:Ontology , voaf:Vocabulary ;
+  dc:title "seas-Storage vocabulary."@en ;
+  dc:description """This vocabulary defines Storages for the Power and Energy Systems domain."""@en ;
   dc:issued "2016-07-20"^^xsd:date ;
   dc:modified "2016-07-20"^^xsd:date ;
-  dc:contributor <http://www.maxime-lefrancois.info/me#> ;
-  dc:author <https://w3id.org/people/gabrieljlsantos#> ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
   dc:contributor <https://w3id.org/people/franciscosilva#> ;
   dc:contributor <https://w3id.org/people/brigidateixeira#> ;
   cc:license <http://creativecommons.org/licenses/by/4.0/> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
-  owl:versionIRI <https://w3id.org/seas/SinglePhaseSystemVocabulary/0.10> ;
+  owl:versionIRI <https://w3id.org/seas/StorageVocabulary/0.10> ;
   owl:versionInfo "v0.10" .
 
-seas:SinglePhaseSystem a owl:Class ;
+seas:Storage a owl:Class ;
   rdfs:subClassOf seas:SingleBusSystem ;
-  rdfs:label "Single Phase System"@en ;
-  rdfs:label "Sistema monofásico"@pt ;
-  rdfs:comment """The class of systems that are connected to a single phase."""@en ;
+  rdfs:label "Storage"@en ;
+  rdfs:label "Bateria"@pt ;
+  rdfs:comment """The class of systems that are capable of storing electricity."""@en ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SinglePhaseSystemVocabulary .
+  rdfs:isDefinedBy seas:StorageVocabulary .
 
-seas:singlePhaseConnectedToBus a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty ;
-  rdfs:label "single Phase Connected To Bus"@en ;
-  rdfs:comment """The "single phase connected to Bus" property is applied for single phase systems."""@en ;
-  rdfs:subPropertyOf seas:connectedTo ;
-  rdfs:domain seas:SingleBusSystem ;
-  rdfs:range seas:Bus ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SinglePhaseSystemVocabulary .
-
-seas:RNconnectedToBus a
-  rdfs:label "RN Connected To Bus"@en ;
-  rdfs:comment """The R and Neutral phases connected to a Bus."""@en ;
-  rdfs:subPropertyOf seas:singlePhaseConnectedToBus ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SinglePhaseSystemVocabulary .
-
-seas:SNconnectedToBus a
-  rdfs:label "SN Connected To Bus"@en ;
-  rdfs:comment """The S and Neutral phases connected to a Bus."""@en ;
-  rdfs:subPropertyOf seas:singlePhaseConnectedToBus ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SinglePhaseSystemVocabulary .
-
-seas:TNconnectedToBus a
-  rdfs:label "TN Connected To Bus"@en ;
-  rdfs:comment """The T and Neutral phases connected to a Bus."""@en ;
-  rdfs:subPropertyOf seas:singlePhaseConnectedToBus ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SinglePhaseSystemVocabulary .
-
-seas:RNconnectedToBus owl:propertyDisjointWith seas:SNconnectedToBus .
-seas:RNconnectedToBus owl:propertyDisjointWith seas:TNconnectedToBus .
-seas:SNconnectedToBus owl:propertyDisjointWith seas:TNconnectedToBus .
+#INCOMPLETE

@@ -33,7 +33,7 @@
 @base <https://w3id.org/seas/>.
 
 seas:PowerSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-PowerAndPowerSystem vocabulary."@en ;
+  dc:title "seas-PowerSystem vocabulary."@en ;
   dc:description """This vocabulary defines power Systems, and their common properties."""@en ;
   dc:issued "2016-07-19"^^xsd:date ;
   dc:modified "2016-07-19"^^xsd:date ;
