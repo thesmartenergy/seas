@@ -32,9 +32,10 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
-seas:TransmissionSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-Transmission System vocabulary."@en ;
-  dc:description """This vocabulary defines Transmission Systems for the Power and Energy Systems domain."""@en ;
+seas:SingleBusSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
+  dc:title "seas-Single Bus System vocabulary."@en ;
+  dc:description """This vocabulary defines Single Bus Systems for the Power and Energy Systems domain. 
+  These are sistems connected to a single bus, such as: Loads, Generators or Storages"""@en ;
   dc:issued "2016-07-20"^^xsd:date ;
   dc:modified "2016-07-20"^^xsd:date ;
   dc:contributor <http://www.maxime-lefrancois.info/me#> ;
@@ -44,32 +45,13 @@ seas:TransmissionSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
   cc:license <http://creativecommons.org/licenses/by/4.0/> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
-  owl:versionIRI <https://w3id.org/seas/TransmissionSystemVocabulary/0.10> ;
+  owl:versionIRI <https://w3id.org/seas/SingleBusSystemVocabulary/0.10> ;
   owl:versionInfo "v0.10" .
 
-seas:TransmissionSystem a owl:Class ;
-  rdfs:subClassOf seas:PowerSystem;
-  rdfs:label "Transmission System"@en ;
-  rdfs:label "Sistema de Transmissão"@pt ;
-  rdfs:comment """The class of systems that are capable of transporting electricity within a system."""@en ;
+seas:SingleBusSystem a owl:Class, owl:disjointUnionOf ( seas:Load seas:Generator seas:Storage ) ;
+  rdfs:subClassOf seas:PowerSystem ;
+  rdfs:label "Single Bus System"@en ;
+  rdfs:label "Sistema de Barramento único"@pt ;
+  rdfs:comment """The class of systems that are connected to a single Bus."""@en ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:TransmissionSystemVocabulary .
-
-seas:bus1 a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty ;
-  rdfs:label "bus 1"@en ;
-  rdfs:comment """The Transmission Systems are always connected to 2 buses. This is the bus 1."""@en ;
-  rdfs:subPropertyOf seas:hasProperty;
-  rdfs:domain seas:TransmissionSystem;
-  rdfs:range seas:Bus ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:TransmissionSystemVocabulary .
-
-seas:bus2 a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty ;
-  rdfs:label "bus 2"@en ;
-  rdfs:comment """The Transmission Systems are always connected to 2 buses. This is the bus 2."""@en ;
-  rdfs:subPropertyOf seas:hasProperty;
-  rdfs:domain seas:TransmissionSystem;
-  rdfs:range seas:Bus ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:TransmissionSystemVocabulary .
-  
+  rdfs:isDefinedBy seas:SingleBusSystemVocabulary .
