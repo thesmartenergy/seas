@@ -59,7 +59,7 @@ seas:consumptionPower a seas:PropertyKey, rdf:Property ;
   rdfs:label "consumption Power" ;
   rdfs:comment """Consumption Power is the sum of the electric power that is consumed by the system and its sub systems."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:EnergySystem ;
+  rdfs:domain seas:PowerSystem ;
   rdfs:range seas:PowerProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
@@ -68,7 +68,7 @@ seas:productionPower a seas:PropertyKey, rdf:Property ;
   rdfs:label "production Power" ;
   rdfs:comment """Production Power is the sum of the electric power that is produced by the system and its sub systems."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:EnergySystem ;
+  rdfs:domain seas:PowerSystem ;
   rdfs:range seas:PowerProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
@@ -77,7 +77,7 @@ seas:storagePower a seas:PropertyKey, rdf:Property ;
   rdfs:label "storage Power" ;
   rdfs:comment """Storage Power is the electric power that is stored, usually in a battery, an electric vehicle, or a microgrid."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:EnergySystem ;
+  rdfs:domain seas:PowerSystem ;
   rdfs:range seas:PowerProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
@@ -86,7 +86,7 @@ seas:incomingPower a seas:PropertyKey, rdf:Property ;
   rdfs:label "incoming Power" ;
   rdfs:comment """Incoming Power is the sum of the electric power that enter the system from the exterior."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:EnergySystem ;
+  rdfs:domain seas:PowerSystem ;
   rdfs:range seas:PowerProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
@@ -95,7 +95,7 @@ seas:outgoingPower a seas:PropertyKey, rdf:Property ;
   rdfs:label "outgoing Power" ;
   rdfs:comment """Outgoing Power is the sum of the electric power that leaves the system to the exterior."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:EnergySystem ;
+  rdfs:domain seas:PowerSystem ;
   rdfs:range seas:PowerProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerAndEnergySystemsVocabulary .
