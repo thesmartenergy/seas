@@ -325,3 +325,180 @@ seas:rank a owl:DatatypeProperty;
      
 
 
+
+
+# CL_POWER
+seas:power a skos:ConceptScheme, sdmx:CodeList;
+  rdfs:label "Power - codelist scheme"@en;
+  skos:prefLabel "Power - codelist scheme"@en;
+  skos:notation "CL_POWER";
+  rdfs:comment """This code list enables to interpret the given power value with respect to whether it is active or reactive."""@en;
+  skos:note """This code list enables to interpret the given power value with respect to whether it is active or reactive."""@en;
+  skos:definition seas:power ;
+  rdfs:seeAlso seas:Power ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology .
+
+seas:Power a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Power - codelist class"@en;
+  rdfs:comment """This code list enables to interpret the given power value."""@en;
+  rdfs:seeAlso seas:power ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:power-Active-Power a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Active Power"@en ;
+  skos:prefLabel "Active Power"@en ;
+  skos:notation "P" ;
+  rdfs:comment """Active Power means that the given value measures the active power of the electric signal, in (W)."""@en ;
+  skos:definition """Active Power means that the given value measures the active power of the electric signal, in (W)."""@en ;
+  skos:topConceptOf seas:power;
+  skos:inScheme   seas:power;
+  seas:dimension seas:power ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:power skos:hasTopConcept seas:power-Active-Power .
+
+seas:power-Reactive-Power a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Reactive Power"@en ;
+  skos:prefLabel "Reactive Power"@en ;
+  skos:notation "Q" ;
+  rdfs:comment """Reactive Power means that the given value measures the reactive power of the electric signal, in (var)."""@en ;
+  skos:definition """Reactive Power means that the given value measures the reactive power of the electric signal, in (var)."""@en ;
+  skos:topConceptOf seas:power;
+  skos:inScheme   seas:power;
+  seas:dimension seas:power ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:power skos:hasTopConcept seas:power-Reactive-Power .
+
+seas:power-Apparent-Power a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Apparent Power"@en ;
+  skos:prefLabel "Apparent Power"@en ;
+  skos:notation "S" ;
+  rdfs:comment """Apparent Power means that the given value measures the apparent power of the electric signal, in (VA)."""@en ;
+  skos:definition """Apparent Power means that the given value measures the apparent power of the electric signal, in (VA)."""@en ;
+  skos:topConceptOf seas:power;
+  skos:inScheme   seas:power;
+  seas:dimension seas:power ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:power skos:hasTopConcept seas:power-Apparent-Power .
+
+seas:power-Power-Factor a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Power Factor"@en ;
+  skos:prefLabel "Power Factor"@en ;
+  skos:notation "cos phi" ;
+  rdfs:comment """Power Factor means that the given value measures the cosinus of the voltage with respect to current, unitless."""@en ;
+  skos:definition """Power Factor means that the given value measures the cosinus of the voltage with respect to current, unitless."""@en ;
+  skos:topConceptOf seas:power;
+  skos:inScheme   seas:power;
+  seas:dimension seas:unitless ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:power skos:hasTopConcept seas:power-Power-Factor .
+
+seas:power-PhasePower a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Apparent Power"@en ;
+  skos:prefLabel "Apparent Power"@en ;
+  skos:notation "S" ;
+  rdfs:comment """Apparent Power means that the given value measures the apparent power of the electric signal, in (VA)."""@en ;
+  skos:definition """Apparent Power means that the given value measures the apparent power of the electric signal, in (VA)."""@en ;
+  skos:topConceptOf seas:power;
+  skos:inScheme   seas:power;
+  seas:dimension seas:power ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:power skos:hasTopConcept seas:power-Apparent-Power .
+
+
+# CL_OPERATING
+seas:operating a skos:ConceptScheme, sdmx:CodeList;
+  rdfs:label "Operating - codelist scheme"@en;
+  skos:prefLabel "Operating - codelist scheme"@en;
+  skos:notation "CL_OPERATING";
+  rdfs:comment """This code list enables to interpret the given value as an operating value (min, max, nominal, continuous rating, peak rating)."""@en;
+  skos:note """This code list enables to interpret the given value as an operating value (min, max, nominal, continuous rating, peak rating)."""@en;
+  skos:definition seas:operating ;
+  rdfs:seeAlso seas:Operating ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology .
+
+seas:Operating a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Operating - codelist class"@en;
+  rdfs:comment """This code list enables to interpret the given value as an operating value (min, max, nominal, continuous rating, peak rating)."""@en;
+  rdfs:seeAlso seas:operating ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:op-Min a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Minimum"@en ;
+  skos:prefLabel "Minimum"@en ;
+  skos:notation "min" ;
+  rdfs:comment """Minimum means that the given value is the minimal operating value."""@en ;
+  skos:definition """Minimum means that the given value is the minimal operating value."""@en ;
+  skos:topConceptOf seas:operating;
+  skos:inScheme   seas:operating;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:operating skos:hasTopConcept seas:op-Min .
+
+seas:op-Max a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Maximum"@en ;
+  skos:prefLabel "Maximum"@en ;
+  skos:notation "Max" ;
+  rdfs:comment """Maximum means that the given value is the maximal operating value."""@en ;
+  skos:definition """Maximum means that the given value is the maximal operating value."""@en ;
+  skos:topConceptOf seas:operating;
+  skos:inScheme   seas:operating;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:operating skos:hasTopConcept seas:op-Max .
+
+seas:op-Nominal a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Nominal"@en ;
+  skos:prefLabel "Nominal"@en ;
+  skos:notation "Nominal" ;
+  rdfs:comment """Nominal means that the given value is the nominal operating value."""@en ;
+  skos:definition """Nominal means that the given value is the nominal operating value."""@en ;
+  skos:topConceptOf seas:operating;
+  skos:inScheme   seas:operating;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:operating skos:hasTopConcept seas:op-Nominal .
+
+seas:op-Maximum-Continuous-Rating a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Maximum Continuous Rating"@en ;
+  skos:prefLabel "Maximum Continuous Rating"@en ;
+  skos:notation "MCR" ;
+  rdfs:comment """Maximum Continuous Rating means that the given value is the maximum continuous rating value."""@en ;
+  skos:definition """Maximum Continuous Rating means that the given value is the maximum continuous rating value."""@en ;
+  skos:topConceptOf seas:operating;
+  skos:inScheme   seas:operating;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:operating skos:hasTopConcept seas:op-Maximum-Continuous-Rating .
+
+seas:op-Maximum-Peak-Rating a skos:Concept, sdmx:Concept, seas:Fourier;
+  rdfs:label "Maximum Peak Rating"@en ;
+  skos:prefLabel "Maximum Peak Rating"@en ;
+  skos:notation "MPR" ;
+  rdfs:comment """Maximum Peak Rating means that the given value is the maximum peak rating value."""@en ;
+  skos:definition """Maximum Peak Rating means that the given value is the maximum peak rating value."""@en ;
+  skos:topConceptOf seas:operating;
+  skos:inScheme   seas:operating;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PropertyBindingConceptsOntology . 
+
+seas:operating skos:hasTopConcept seas:op-Maximum-Peak-Rating .

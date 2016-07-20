@@ -42,28 +42,6 @@ seas:QuantityDimension a owl:Class ; # seas:Length a seas:QuantityDimension
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:QuantityDimensionOntology . 
 
-seas:GroupDimension a owl:Class ; 
-  rdfs:label "GroupDimension" ;
-  rdfs:comment "The class of dimensions. Examples of dimensions include: temperature, time, electric current, power, energy, integer."@en ;
-  rdfs:subClassOf seas:QuantityDimension ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:QuantityDimensionOntology . 
-
-seas:TotallyOrderedGroupDimension a owl:Class ; # seas:LengthDimension a seas:QuantityDimension
-  rdfs:label "Dimension" ;
-  rdfs:comment "The class of dimensions. Examples of dimensions include: temperature, time, electric current, power, energy, integer."@en ;
-  rdfs:subClassOf seas:GroupDimension ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:QuantityDimensionOntology . 
-
-seas:additiveIdentityValue a owl:DatatypeProperty ; 
-  rdfs:label "additiveIdentityValue" ;
-  rdfs:comment "Links a dimension to its additive identity value, often an instance of a delta unit datatype."@en ;
-  rdfs:domain seas:GroupDimension ;
-  rdfs:range rdfs:Literal ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:QuantityDimensionOntology . 
-
 seas:unit a owl:AnnotationProperty ;
   rdfs:label "unit" ;
   rdfs:comment "Links a dimension to a unit datatype that may be used to specify elements of this dimension."@en ;

@@ -44,7 +44,6 @@ seas:EnergyOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   owl:versionIRI <https://w3id.org/seas/EnergyOntology/0.9> ;
   owl:versionInfo "v0.9" .
 
- 
 #SEnergy and Power, subcategories to be defined in other vocabularies
 #Just some of the most common units are defined heera and this should be combined with mdq
 seas:Energy a owl:Class;

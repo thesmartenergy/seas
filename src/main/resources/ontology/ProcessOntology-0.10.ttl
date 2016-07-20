@@ -53,7 +53,13 @@ seas:ProcessOntology a owl:Ontology , voaf:Vocabulary ;
 
 seas:Process a owl:Class ;
   rdfs:label "Process"@en ;
-  rdfs:comment """The description of a process. A process may describe input and output properties, and for each such property, the qb:DataStructureDefinition that describes the structure of the qb:DataSet as input or output.
+  rdfs:comment """The description of a process. A process may describe input and output properties.
+
+  inputs and outputs SHOULD be either qb:DataSet, or URIs of RDF Named Graphs.
+  
+  For any input or output that is a qb:DataSet, the property links the process instance to the qb:DataStructureDefinition that describes the structure of the qb:DataSet which will be given as input or output.
+  
+  For any input or output that is a URI of a RDF Named Graph, the property links the process instance to a seas:GraphStructureDefinition that describes the structure of the named graph which will be given as input or output.
 
     A process may be a description of a sensing or acting transfer function, or a Estimating algorithm.
     Prototypical subclasses of seas:Process processes are: seas:Sensing, seas:Acting, seas:Estimating. 
@@ -158,6 +164,14 @@ seas:OutputProperty a rdfs:Class , owl:Class ;
 
 seas:hasInput a owl:ObjectProperty ;
   rdfs:label "has input" ;
+  rdfs:comment """Relation between:
+  (a) a seas:Process and the qb:DataStructureDefinition of inputs;
+  (b) a seas:ProcessExecution and the actual input qb:DataSet."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ProcessOntology .
+
+seas:hasNamedGraphInput a owl:ObjectProperty ;
+  rdfs:label "has named graph input" ;
   rdfs:comment """Relation between:
   (a) a seas:Process and the qb:DataStructureDefinition of inputs;
   (b) a seas:ProcessExecution and the actual input qb:DataSet."""@en ;

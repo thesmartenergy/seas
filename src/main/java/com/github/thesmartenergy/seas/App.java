@@ -25,6 +25,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -52,9 +54,16 @@ public class App {
 
     private static final Logger LOG = Logger.getLogger(App.class.getSimpleName());
 
-    private final String base = "https://w3id.org/seas/";
+    private final String base = "https://w3id.org/seas/"; 
 
-    private final Map<String, List<OntologyVersion>> ontologyVersions = new HashMap<>();
+    
+    /**
+     * maps ontology names to a description of the list of versions (major+minor+file)
+     */
+    private final Map<String, TreeSet<OntologyVersion>> ontologyVersions = new HashMap<>();
+    /**
+     * maps resource names to ontology name where it is defined
+     */
     private final Map<String, String> definingOntologies = new HashMap<>();
 
     @Inject
@@ -64,7 +73,7 @@ public class App {
     public void initialize() {
         try {
             String dir = context.getRealPath("/WEB-INF/classes/");
-            LOG.info(dir);
+            LOG.info(dir); 
             LOG.info(context.getRealPath("/WEB-INF/classes"));
             LOG.info(context.getClassLoader().getResource("/").toString());
             LOG.info(context.getClassLoader().getResource("/").getPath());
@@ -73,16 +82,17 @@ public class App {
             File ontoDir = new File(dir + "/ontology/");
             Pattern p = Pattern.compile("^([a-zA-Z]*)-([0-9]+)\\.([0-9]+)\\.ttl$");
 
+            Set<String> referencedResources = new HashSet<>();
             for (File ontoFile : ontoDir.listFiles()) {
                 String ontoFileName = ontoFile.getName();
                 System.out.println("testing "+ontoFileName); 
 
                 // any file whose name does not conform to NAME-MAJOR.MINOR.ttl triggers a warning
                 Matcher m = p.matcher(ontoFileName);
-                boolean b = m.matches();
-                // si recherche fructueuse
+                boolean b = m.matches(); 
+                // if matched
                 if (!b) {
-                    LOG.warning("File " + ontoFileName + " does not match the pattern");
+                    LOG.warning("File " + ontoFileName + " does not match the pattern NAME-MAJOR.MINOR.ttl");
                     continue;
                 }
                 String ontoName = m.group(1);
@@ -97,26 +107,34 @@ public class App {
                     Set<String> definedResources = extractDefinedResources(ontology, ontoName);
                     
                     if(!ontologyVersions.containsKey(ontoName)) {
-                        ontologyVersions.put(ontoName, new ArrayList<OntologyVersion>());
+                        ontologyVersions.put(ontoName, new TreeSet<OntologyVersion>());
                     }
                     ontologyVersions.get(ontoName).add(ov);
                     for(String resource : definedResources) {
+                        String name = definingOntologies.get(resource);
+                        if(!ontoName.equals(name)) {
+                            LOG.log(Level.WARNING, "error: resource with URI <" + resource + "> is already defined in ontology  " + name);
+                        }
                         definingOntologies.put(resource, ontoName);
                     }
+                    referencedResources.addAll(extractReferencedResources(ontology, ontoName));
                     System.out.println("ok ontology version " + ontoName + " " + major + " " + minor);
                 } catch (Exception e) {
                     LOG.warning("Error while parsing file " + ontoFileName + ": " + e.getMessage());
                     continue; 
                 }
             }
-            // ordering ontology version
-            for(String ontoName : ontologyVersions.keySet()) {
-                Collections.sort(ontologyVersions.get(ontoName));
+            // checking every referenced resources is defined
+            for(String uri : referencedResources) {
+                if(!definingOntologies.containsKey(uri)) {
+                    LOG.log(Level.WARNING, "resource with URI <" + uri + "> is never defined.");
+                }
             }
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "error while initializing app ", ex);
             throw new RuntimeException("error while initializing app ", ex);
         }
+        checkDependencies();
     }
 
     public String ontologyForResource(String resource) {
@@ -127,8 +145,8 @@ public class App {
         if(!ontologyVersions.containsKey(ontoName)) {
             return null;
         }
-        List<OntologyVersion> versions = ontologyVersions.get(ontoName);
-        return versions.get(versions.size()-1);
+        TreeSet<OntologyVersion> versions = ontologyVersions.get(ontoName);
+        return versions.last();
     }
     
     public OntologyVersion getVersion(String ontoName, int major, int minor) {
@@ -213,7 +231,7 @@ public class App {
         LOG.info("Number of defined resources: " + triples.size());
         for(Statement s : triples) {
             if(!s.getSubject().getURI().startsWith(base)) {
-                LOG.warning("IRI of defined resource <" + s.getSubject().getURI() + "> should start with <" + base);
+                LOG.warning("IRI of defined resource <" + s.getSubject().getURI() + "> should start with <" + base + ">");
             }
             if(!(s.getObject() instanceof Resource) || !((Resource) s.getObject()).getURI().equals(base + ontoName) )  {
                 LOG.warning("Resource <" + s.getSubject().getURI() + "> must be defined by <" + base + ontoName + ">. Got " + ((Resource) s.getObject()).getURI());
@@ -223,4 +241,32 @@ public class App {
         return definedResources;
     }
     
+    public Set<String> extractReferencedResources(Model ontology, String ontoName) throws Exception {
+        final Set<String> referencedResources = new HashSet<String>();
+        ontology.listStatements().forEachRemaining(new Consumer<Statement>() {
+            @Override
+            public void accept(Statement t) {
+                addReferencedResource(referencedResources, t.getSubject());
+                addReferencedResource(referencedResources, t.getPredicate());
+                addReferencedResource(referencedResources, t.getObject());
+            }
+        });
+        return referencedResources;
+    }
+    
+    public void addReferencedResource(Set<String> referencedResources, RDFNode n) {
+        if(n.isURIResource()) {
+            String uri = n.asResource().getURI();
+            if(uri.startsWith(base)) {
+                referencedResources.add(uri);            
+            }
+        }
+    }
+    
+    /**
+     * check dependencies between ontologies: if an ontology uses a term of another, then it should import the other.
+     */
+    private void checkDependencies() {
+        
+    }
 }

@@ -103,7 +103,7 @@ seas:subMeasurement a owl:ObjectProperty;
   rdfs:isDefinedBy seas:BuildingOntology .     
   
 seas:subControl a owl:ObjectProperty;
-  rdfs:comment "Controlling the control point in subControl is already handled by the higher level control poin"@en ;
+  rdfs:comment "Controlling the control point in subControl is already handled by the higher level control point."@en ;
   rdfs:subPropertyOf seas:contains;
   rdfs:domain seas:PointOfControl;
   rdfs:range seas:PointOfControl;
@@ -115,7 +115,7 @@ seas:subControl a owl:ObjectProperty;
 #Those can be defined as an an seas:Evaluation 
 seas:SiteOfBuilding a owl:Class ;
   rdfs:label "SiteOfBuilding"@en ;
-  rdfs:comment "Building site is a a locale containing one or more separate buildings."@en ;
+  rdfs:comment "Building site is a locale containing one or more separate buildings."@en ;
   rdfs:subClassOf seas:Site,seas:BuildingSpatialStructure;
   rdf:seeAlso ifc:Site;  
   vs:term_status "testing" ;
@@ -156,7 +156,9 @@ seas:CivilEngineeringWork a owl:Class ;
   rdf:seeAlso ifc:Building, fiemser:Building;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:BuildingOntology.  
-  
+
+# Building and its quantities
+
 seas:Building a owl:Class ;
   rdfs:label "Building"@en ;
   rdfs:comment "Buildings are roofed constructions which can be used separately, have been built for permanent purposes, can be entered by persons and are suitable or intended for protecting persons, animals or objects."@en ;
@@ -164,7 +166,19 @@ seas:Building a owl:Class ;
   rdf:seeAlso ifc:Building, fiemser:Building;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:BuildingOntology.  
-  
+
+seas:nominalEnergyConsumption a seas:PropertyKey, rdf:Property ;
+  rdfs:label "nominal energy consumption"@en ;
+  rdfs:label "ominaisenergiankulutus"@fi ;  
+  rdfs:comment "Energy consumption of a building per gross floor area."@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerSystem ;
+  rdfs:range seas:PowerPerAreaProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BuildingOntology. 
+
+# Building and its quantities
+
 seas:BuildingStorey a owl:Class ;
   rdfs:label "BuildingStorey"@en ;
   rdfs:comment "The storey represents a (nearly) horizontal aggregation of spaces that are vertically bound"@en;
@@ -189,6 +203,8 @@ seas:BuildingSpatialStructure a owl:Class ;
   rdf:seeAlso ifc:IfcSpatialStructureElementType;
   rdfs:isDefinedBy seas:BuildingOntology.  
 
+# building space 
+
 seas:BuildingSpace a owl:Class ;
   rdfs:label "BuildingSpace"@en ;
   rdfs:comment "A Space is a 3D volume bounded by surfaces. According to the FIEMSER definition, a building space in SAREF defines the physical spaces of the building. A building space contains building items such as devices. "@en ;
@@ -196,6 +212,16 @@ seas:BuildingSpace a owl:Class ;
   vs:term_status "testing" ;
   rdf:seeAlso gbxml:BuildingSpace;    
   rdfs:isDefinedBy seas:BuildingOntology.  
+
+seas:GrossFloorArea a owl:Class; 
+  rdfs:label "GrossFloorArea"@en ;
+  rdfs:comment "Gross floor area is generally defined by the area within the perimeter of the walls bounding the space."@en ;
+  rdfs:subClassOf seas:Area;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BuildingEnergyOntology .  
+
+
+
 
 seas:isAdjacentToSpace a owl:ObjectProperty;
   rdfs:label "isAdjacentToSpace"@en ;
@@ -226,8 +252,8 @@ seas:SurfaceOpening a owl:Class ;
   rdfs:comment "A opening in a surface such as window or door"@en ;
   rdfs:subClassOf seas:PhysicalEntity;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingOntology.    
-  
+  rdfs:isDefinedBy seas:BuildingOntology.
+
 seas:BuildingItem a owl:Class ; 
   rdfs:label "BuildingItem"@en ;
   rdfs:comment "A generalization of all the objects contained in building spaces that can have an unique location"@en ;

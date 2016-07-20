@@ -59,7 +59,7 @@ seas:ConnectionPoint a owl:Class ;
   rdfs:isDefinedBy seas:ConnectionPointOntology .
 
 
-seas:connectionPoint a rdf:Property, owl:InverseFunctionalProperty ;
+seas:connectionPoint a rdf:Property, owl:ObjectProperty, owl:InverseFunctionalProperty ;
   rdfs:label "connectionPoint"@en ;
   rdfs:comment "Links a system to one of its connection points."@en ;
   rdfs:domain seas:System ;
@@ -70,7 +70,7 @@ seas:connectionPoint a rdf:Property, owl:InverseFunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ConnectionPointOntology .
 
-seas:connectionPointOf a rdf:Property, owl:FunctionalProperty ;
+seas:connectionPointOf a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "connectionPointOf"@en ;
   rdfs:comment "Links a connection point to the one and only system it belongs to."@en ;
   rdfs:domain seas:ConnectionPoint ;
@@ -81,7 +81,7 @@ seas:connectionPointOf a rdf:Property, owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ConnectionPointOntology .
 
-seas:connectedPoint a rdf:Property ;
+seas:connectedPoint a rdf:Property, owl:ObjectProperty ;
   rdfs:label "connectedPoint"@en ;
   rdfs:comment "Links a connection to one of the two connection points it connects."@en ;
   rdfs:domain seas:Connection ;
@@ -90,7 +90,7 @@ seas:connectedPoint a rdf:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ConnectionPointOntology .
 
-seas:connectedPoint1 a rdf:Property, owl:FunctionalProperty ;
+seas:connectedPoint1 a rdf:Property, owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "connectedPoint1"@en ;
   rdfs:comment "Links a connection to the first connection point it connects."@en ;
   rdfs:subPropertyOf seas:connectedPoint ;
@@ -100,7 +100,7 @@ seas:connectedPoint1 a rdf:Property, owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ConnectionPointOntology .
 
-seas:connectedPoint2 a rdf:Property, owl:FunctionalProperty ;
+seas:connectedPoint2 a rdf:Property, owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "connectedPoint2"@en ;
   rdfs:comment "Links a connection to the second connection point it connects."@en ;
   rdfs:subPropertyOf seas:connectedPoint ;
@@ -119,7 +119,7 @@ seas:connectedPointOf a rdf:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ConnectionPointOntology .
 
-seas:connectedPoint1Of a rdf:Property ;
+seas:connectedPoint1Of a rdf:Property, owl:ObjectProperty  ;
   rdfs:label "connectedPoint1Of"@en ;
   rdfs:comment "Links a connection point to a connection for which it is the first connection point."@en ;
   rdfs:subPropertyOf seas:connectedPointOf ;
@@ -129,7 +129,7 @@ seas:connectedPoint1Of a rdf:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ConnectionPointOntology .
 
-seas:connectedPoint2Of a rdf:Property ;
+seas:connectedPoint2Of a rdf:Property, owl:ObjectProperty ;
   rdfs:label "connectedPoint2Of"@en ;
   rdfs:comment "Links a connection point to a connection for which it is the second connection point."@en ;
   rdfs:subPropertyOf seas:connectedPointOf ;
@@ -139,3 +139,13 @@ seas:connectedPoint2Of a rdf:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ConnectionPointOntology .
 
+
+# closed sets of connections
+
+seas:connectionPoints a rdf:Property, owl:ObjectProperty  ;
+  rdfs:label "connection points"@en ;
+  rdfs:comment """Links a system to the closed set of connection points it has."""@en ;
+  rdfs:domain seas:System ;
+  rdfs:range rdf:List ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ConnectionOntology .

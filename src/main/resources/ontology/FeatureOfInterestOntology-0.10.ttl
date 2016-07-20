@@ -74,6 +74,37 @@ seas:Property a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:FeatureOfInterestOntology .
 
+seas:Quantity a owl:Class ;
+  rdfs:label "Quantity"@en ;
+  rdfs:comment """An observable or operable Quantity of an Event or Object. That is, a quantifiable property."""@en ;
+  rdfs:subClassOf seas:Property ;
+  rdfs:seeAlso qudt:Quantity ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FeatureOfInterestOntology .
+
+seas:hasValue a owl:DatatypeProperty ;
+  rdfs:label "has value"@en ;
+  rdfs:comment """Links a quantity to a quantity value. The instance of quantity value also defines the context of validity of the given value, i.e., dimensions such as time, location, and concepts such as seas:ag-Average, seas:op-Nominal."""@en ;
+  rdfs:domain seas:Property ;
+  rdfs:range rdfs:Literal ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FeatureOfInterestOntology .
+
+seas:QuantityValue a owl:Class ;
+  rdfs:label "Quantity Value"@en ;
+  rdfs:comment """The quantity value is an indirection between the quantity and the literal. It holds metadata about the context of validity of the value, and how the literal value should be interpreted"""@en ;
+  rdfs:seeAlso qudt:QuantityValue ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FeatureOfInterestOntology .
+
+seas:asLiteral a owl:DatatypeProperty ;
+  rdfs:label "as literal"@en ;
+  rdfs:comment """Links a quantity value to the literal that expresses."""@en ;
+  rdfs:domain seas:Property ;
+  rdfs:range rdfs:Literal ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FeatureOfInterestOntology .
+
 seas:FeatureOfInterestDefinition a rdfs:Class , owl:Class ;
   rdfs:label "Feature of interest structure definition"@en ;
   rdfs:comment """The class of definitions of features of interest in terms of properties.
@@ -110,7 +141,7 @@ seas:property a rdf:Property , owl:ObjectProperty ;
   <car/1> seas:property <car/1/speed> ."""@en ;
   rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:Property ;
-  owl:inverseOf seas:isPropertyOf ;
+  owl:inverseOf seas:isPropertyOf ; 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:FeatureOfInterestOntology .
 

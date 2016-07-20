@@ -44,61 +44,6 @@ seas:BuildingEnergyOntology a owl:Ontology , voaf:Vocabulary ;
   owl:versionIRI <https://w3id.org/seas/BuildingEnergyOntology/0.9> ;
   owl:versionInfo "v0.9" .
   
-#Units of nominal energy consumption
-seas:KiloWattPerSquareMeterGFA a qudt:PowerPerAreaUnit, seas:Unit;
-  rdfs:label "KiloWattPerSquareMeterGFA"@en ; 
-  qudt:abbreviation "kW/(m^2-GFA)";  
-  qudt:description "kWatt per gross floor area in square meters (GFA) (brm in finland)."@en ;
-  qudt:quantityKind seas:NominalEnergyConsumption;
-  qudt:conversionMultiplier 1.0e3;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingEnergyOntology. 
-
-seas:WattPerSquareMeterGFA a qudt:PowerPerAreaUnit;
-  rdfs:label "WattPerSquareMeterGFA"@en ; 
-  qudt:abbreviation "W/(m^2-BRM)"@fi;  
-  qudt:abbreviation "W/(m^2-GFA)"@en;  
-  qudt:description "Watt per gross floor area in square meters (GFA) (brm in finland)."@en ;
-  qudt:quantityKind seas:NominalEnergyConsumption;
-  qudt:conversionMultiplier 1.0e0;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingEnergyOntology.   
-  
-seas:WattPerSquareMeterKelvin a qudt:CoefficientOfHeatTransferUnit;
-  rdfs:label "WattPerSquareMeterKelvin"@en ; 
-  qudt:abbreviation "W/(m^2-K)";
-  qudt:description "Unit of U value in Watt per Square Meter Kelvin"@en ;
-  qudt:quantityKind seas:UValue;
-  qudt:conversionMultiplier 1.0e0;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingEnergyOntology. 
-     
-seas:QubicMeter a seas:Unit, qudt:VolumeUnit;
-  rdfs:label "QubicMeter"@en ; 
-  qudt:abbreviation "m^3";
-  qudt:description "Volume in qubic meters."@en ;
-  qudt:quantityKind seas:Volume;
-  qudt:conversionMultiplier 1.0e0;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingEnergyOntology.   
-
-seas:SquareMeter a seas:Unit, qudt:AreaUnit;
-  rdfs:label "SquareMeter"@en ; 
-  qudt:abbreviation "m^2";
-  qudt:description "Area in square meters."@en ;
-  qudt:quantityKind seas:Area;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingEnergyOntology.    
-
-#Building related quantities
-seas:NominalEnergyConsumption a owl:Class;  
-  rdfs:label "NominalEnergyConsumption"@en ;
-  rdfs:label "Ominaisenergiankulutus"@fi ;  
-  rdfs:comment "Energy consumption of a building per gross floor area."@en ;
-  rdfs:subClassOf qudt:PowerPerArea, seas:Quantity; 
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingEnergyOntology. 
-  
 seas:UValue a owl:Class; 
   rdfs:label "Transmittance"@en;
   rdfs:label "UValue"@en ;
@@ -106,11 +51,3 @@ seas:UValue a owl:Class;
   rdfs:subClassOf qudt:CoefficientOfHeatTransfer, seas:Quantity; 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:BuildingEnergyOntology.      
-
-seas:GrossFloorArea a owl:Class; 
-  rdfs:label "GrossFloorArea"@en ;
-  rdfs:comment "Gross floor area is generally defined by the area within the perimeter of the walls bounding the space."@en ;
-  rdfs:subClassOf seas:Area;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingEnergyOntology .  
-

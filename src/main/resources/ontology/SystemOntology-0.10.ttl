@@ -68,3 +68,12 @@ seas:subSystemOf a owl:ObjectProperty ;
   rdfs:subPropertyOf seas:connectedTo ; 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:SystemOntology .
+
+
+seas:subSystems a owl:ObjectProperty ;
+  rdfs:label "subSystems"@en ;
+  rdfs:comment """Links a system to the closed set of its sub systems."""@en ;
+  rdfs:domain seas:System ;
+  rdfs:range rdf:List ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:SystemOntology .

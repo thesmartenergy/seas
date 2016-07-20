@@ -123,6 +123,18 @@ seas:connectedSystem2Of a rdf:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ConnectionOntology .
 
+# closed sets of connections
+
+seas:connections a rdf:Property ;
+  rdfs:label "connections"@en ;
+  rdfs:comment """Links a system to the closed set of the connections it has with other systems."""@en ;
+  rdfs:domain seas:System ;
+  rdfs:range rdf:List ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ConnectionOntology .
+
+# entailment regime
+
 seas:ConnectionOntologyEntailmentRegime a liner:EntailmentRegime ;
   rdfs:label "seas-ProcessOntology entailment regime"@en ;
   liner:extends seas:SystemOntologyEntailmentRegime ;
@@ -130,6 +142,7 @@ seas:ConnectionOntologyEntailmentRegime a liner:EntailmentRegime ;
   liner:inferenceRules [
     liner:asSPARQLRules (
       <https://w3id.org/seas/ConnectionOntologyRule-1> ) ] .
+
 
 <https://w3id.org/seas/ConnectionOntologyRule-1> liner:rule """
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
