@@ -33,12 +33,12 @@
 @base <https://w3id.org/seas/>.
 
 seas:TransformerVocabulary a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-TransformerSystems vocabulary."@en ;
+  dc:title "seas-Transformer vocabulary."@en ;
   dc:description """This vocabulary defines Transformers for the Power and Energy Systems domain."""@en ;
   dc:issued "2016-07-19"^^xsd:date ;
   dc:modified "2016-07-19"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
-  dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
+  dc:contributor <http://www.maxime-lefrancois.info/me#> ;
+  dc:author <https://w3id.org/people/gabrieljlsantos#> ;
   dc:contributor <https://w3id.org/people/franciscosilva#> ;
   dc:contributor <https://w3id.org/people/brigidateixeira#> ;
   cc:license <http://creativecommons.org/licenses/by/4.0/> ;
@@ -48,7 +48,7 @@ seas:TransformerVocabulary a owl:Ontology , voaf:Vocabulary ;
   owl:versionInfo "v0.10" .
 
 seas:Transformer a owl:Class ;
-  rdfs:subClassOf seas:TransmitionSystem ;
+  rdfs:subClassOf seas:TransmissionSystem ;
   rdfs:label "Transformer" ;
   rdfs:label "Transformador"@pt ;
   rdfs:comment """The class of systems that are capable of transforming electricity within a system."""@en ;
@@ -61,5 +61,23 @@ seas:tapCharger a seas:PropertyKey, rdf:Property ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:Transformer ;
   rdfs:range seas:VoltageProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TransformerVocabulary .
+
+seas:primaryConnectedTo a seas:PropertyKey, rdf:Property ;
+  rdfs:label "primary Connected To" ;
+  rdfs:comment """The Transformer is always connected to 2 buses. This is the primary."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:ThreePhaseSystem ;
+  rdfs:range seas:Bus ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TransformerVocabulary .
+
+seas:secondaryConnectedTo a seas:PropertyKey, rdf:Property ;
+  rdfs:label "secondary Connected To" ;
+  rdfs:comment """The Transformer is always connected to 2 buses. This is the secondary."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:ThreePhaseSystem ;
+  rdfs:range seas:Bus ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:TransformerVocabulary .
