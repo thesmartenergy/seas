@@ -32,11 +32,11 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
-seas:TransformerVocabulary a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-Transformer vocabulary."@en ;
-  dc:description """This vocabulary defines Transformers for the Power and Energy Systems domain."""@en ;
-  dc:issued "2016-07-19"^^xsd:date ;
-  dc:modified "2016-07-19"^^xsd:date ;
+seas:TransmissionSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
+  dc:title "seas-Transmission System vocabulary."@en ;
+  dc:description """This vocabulary defines Transmission Systems for the Power and Energy Systems domain."""@en ;
+  dc:issued "2016-07-20"^^xsd:date ;
+  dc:modified "2016-07-20"^^xsd:date ;
   dc:contributor <http://www.maxime-lefrancois.info/me#> ;
   dc:author <https://w3id.org/people/gabrieljlsantos#> ;
   dc:contributor <https://w3id.org/people/franciscosilva#> ;
@@ -44,40 +44,32 @@ seas:TransformerVocabulary a owl:Ontology , voaf:Vocabulary ;
   cc:license <http://creativecommons.org/licenses/by/4.0/> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
-  owl:versionIRI <https://w3id.org/seas/TransformerVocabulary/0.10> ;
+  owl:versionIRI <https://w3id.org/seas/TransmissionSystemVocabulary/0.10> ;
   owl:versionInfo "v0.10" .
 
-seas:Transformer a owl:Class ;
-  rdfs:subClassOf seas:TransmissionSystem ;
-  rdfs:label "Transformer"@en ;
-  rdfs:label "Transformador"@pt ;
-  rdfs:comment """The class of systems that are capable of transforming electricity within a system."""@en ;
+seas:TransmissionSystem a owl:Class ;
+  rdfs:subClassOf seas:ElectricSystem, seas:PowerSystem ;
+  rdfs:label "Transmission System"@en ;
+  rdfs:label "Sistema de Transmissão"@pt ;
+  rdfs:comment """The class of systems that are capable of transporting electricity within a system."""@en ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:TransformerVocabulary .
+  rdfs:isDefinedBy seas:TransmissionSystemVocabulary .
 
-seas:tapCharger a seas:PropertyKey, rdf:Property ;
-  rdfs:label "tap Charger"@en ;
-  rdfs:comment """The Tap charger to change the voltage regulation of the transformer."""@en ;
-  rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:Transformer ;
-  rdfs:range seas:VoltageProperty ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:TransformerVocabulary .
-
-seas:primaryConnectedTo a seas:PropertyKey, rdf:Property ;
-  rdfs:label "primary Connected To"@en ;
-  rdfs:comment """The Transformer is always connected to 2 buses. This is the primary."""@en ;
-  rdfs:subPropertyOf seas:hasProperty, seas:bus1 ;
-  rdfs:domain seas:ThreePhaseSystem ;
+seas:bus1 a seas:PropertyKey, rdf:Property, owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:label "bus 1"@en ;
+  rdfs:comment """The Transmission Systems are always connected to 2 buses. This is the bus 1."""@en ;
+  rdfs:subPropertyOf seas:hasProperty;
+  rdfs:domain seas:TransmissionSystem;
   rdfs:range seas:Bus ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:TransformerVocabulary .
+  rdfs:isDefinedBy seas:TransmissionSystemVocabulary .
 
-seas:secondaryConnectedTo a seas:PropertyKey, rdf:Property ;
-  rdfs:label "secondary Connected To"@en ;
-  rdfs:comment """The Transformer is always connected to 2 buses. This is the secondary."""@en ;
-  rdfs:subPropertyOf seas:hasProperty, seas:bus2 ;
-  rdfs:domain seas:ThreePhaseSystem ;
+seas:bus2 a seas:PropertyKey, rdf:Property, owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:label "bus 2"@en ;
+  rdfs:comment """The Transmission Systems are always connected to 2 buses. This is the bus 2."""@en ;
+  rdfs:subPropertyOf seas:hasProperty;
+  rdfs:domain seas:TransmissionSystem;
   rdfs:range seas:Bus ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:TransformerVocabulary .
+  rdfs:isDefinedBy seas:TransmissionSystemVocabulary .
+  
