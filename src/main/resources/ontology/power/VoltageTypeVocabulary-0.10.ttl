@@ -30,7 +30,7 @@
 
 seas:VoltageTypeVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "seas-VoltageType vocabulary"@en ;
-  dc:description """The Seas Voltage Type Vocabulary defines for the ITEA SEAS (Smart Energy Aware Systems)
+  dc:description """The Seas Voltage Type Vocabulary defined for the ITEA SEAS (Smart Energy Aware Systems)
    project."""@en ;
   dc:issued "2016-07-21"^^xsd:date ;
   dc:modified "2016-07-21"^^xsd:date ;
