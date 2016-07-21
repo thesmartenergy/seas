@@ -1,0 +1,60 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .              #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .      #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .           #XML standard datatypes
+@prefix cc: <http://creativecommons.org/ns#>. #Creative commons namespace
+@prefix dc: <http://purl.org/dc/terms/> .     #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix void: <https://www.w3.org/TR/void/>. #Ontology of interelinked datasets 
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+@prefix seas: <https://w3id.org/seas/>.
+
+
+<https://w3id.org/seas/> rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "SEAS Ontology"@en ;
+  dc:description "The SEAS ontology, that glues together all of the SEAS modules"@en ;
+  dc:creator <http://maxime-lefrancois.info/me#> ;
+  dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
+  dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
+  dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
+  dc:contributor <https://w3id.org/people/franciscosilva#> ;
+  dc:contributor <https://w3id.org/people/brigidateixeira#> ;
+  dc:issued "2016-05-25"^^xsd:date ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;
+  owl:versionIRI <https://w3id.org/seas/0.9> ;
+  owl:versionInfo "v0.9" ;
+  owl:imports seas:ActorOntology ;
+  owl:imports seas:ArchitectureOntology ;
+  owl:imports seas:BuildingCategoriesOntology ;
+  owl:imports seas:BuildingEnergyOntology ;
+  owl:imports seas:BuildingLoadsOntology ;
+  owl:imports seas:BuildingOntology ;
+  owl:imports seas:EnergyOntology ;
+  owl:imports seas:MarketOntology ;
+  owl:imports seas:TechnicalSystemOntology ;
+  owl:imports seas:TimeSeriesOntology ;
+  owl:imports seas:UpperOntology ;
+  owl:imports seas:WeatherOntology ;
+  owl:imports seas:PowerSystemVocabulary .
+# shall we also import the W3C SSN and the W3C RDF DataCube ontologies ?

@@ -1,0 +1,563 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .     #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .   #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .  #XML standard datatypes
+@prefix dc: <http://purl.org/dc/terms/> .  #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>. # The DOLCE+DnS Ultralite ontology.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:PowerLoadVocabulary a owl:Ontology , voaf:Vocabulary ;
+  dc:title "seas-LoadVocabulary vocabulary."@en ;
+  dc:description """This vocabulary defines common properties for the power loads."""@en ;
+  dc:issued "2016-07-19"^^xsd:date ;
+  dc:modified "2016-07-19"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
+  dc:contributor <https://w3id.org/people/franciscosilva#> ;
+  dc:contributor <https://w3id.org/people/brigidateixeira#> ;
+  cc:license <http://creativecommons.org/licenses/by/4.0/> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/LoadVocabulary/0.10> ;
+  owl:versionInfo "v0.10" .
+
+seas:installedPower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Installed Power"@en ;
+  rdfs:comment """The installed power."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:activePowerPrice a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Active Power Price"@en ;
+  rdfs:comment """The active power price."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:reactivePowerPrice a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Reactive Power Price"@en ;
+  rdfs:comment """The reactive power price."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:apparentPowerPrice a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Apparent Power Price"@en ;
+  rdfs:comment """The apparent power price."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+# Variable Properties
+
+seas:phaseRLoadPower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase R Load Power"@en ;
+  rdfs:comment """Phase R load power."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseSLoadPower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase S Load Power"@en ;
+  rdfs:comment """Phase S load power."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseTLoadPower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase T Load Power"@en ;
+  rdfs:comment """Phase T load power."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseRReducePower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase R Reduce Power"@en ;
+  rdfs:comment """Max reduce capability on phase R."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseSReducePower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase S Reduce Power"@en ;
+  rdfs:comment """Max reduce capability on phase S."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseTReducePower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase T Reduce Power"@en ;
+  rdfs:comment """Max reduce capability on phase T."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseRCutPower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase R Cut Power"@en ;
+  rdfs:comment """Cut capability on phase R."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseSCutPower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase S Cut Power"@en ;
+  rdfs:comment """Cut capability on phase S."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseTCutPower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase T Cut Power"@en ;
+  rdfs:comment """Cut capability on phase T."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseRMovePower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase R Move Power"@en ;
+  rdfs:comment """Move capability on phase R (out)."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseSMovePower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase T Move Power"@en ;
+  rdfs:comment """Move capability on phase S (out)."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseTMovePower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase T Move Power"@en ;
+  rdfs:comment """Move capability on phase T (out).."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseRInMovePower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase R In Move Power"@en ;
+  rdfs:comment """Move capability on phase R (in)."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseSInMovePower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase S In Move Power"@en ;
+  rdfs:comment """Move capability on phase S (in)."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseTInMovePower a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase T In Move Power"@en ;
+  rdfs:comment """Move capability on phase T (in)."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:cofReduce a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Cof Reduce"@en ;
+  rdfs:comment """Reduction cost."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:cofCut a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Cof Cut"@en ;
+  rdfs:comment """Cut cost."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:cofMov a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Cof Mov"@en ;
+  rdfs:comment """Move cost."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:cofENS a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Cof ENS"@en ;
+  rdfs:comment """Cost of energy not supplied."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseRLoadQ a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase R Load Q"@en ;
+  rdfs:comment """Reactive power in phase R."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseSLoadQ a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase S Load Q"@en ;
+  rdfs:comment """Reactive power in phase S."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseTLoadQ a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase T Load Q"@en ;
+  rdfs:comment """Reactive power in phase T."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:price a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Price"@en ;
+  rdfs:comment """Energy price for consumer."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:elasticity a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Elasticity"@en ;
+  rdfs:comment """Price elasticity of the demand."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:DoubleProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:powerVariation a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Power Variation"@en ;
+  rdfs:comment """Max variation of the consumption in response to price."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:priceVariation a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Price Variation"@en ;
+  rdfs:comment """Max variation of the price that can be applied to a consumer."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:drContract1 a seas:PropertyKey, rdf:Property ;
+  rdfs:label "DR Contract 1"@en ;
+  rdfs:comment """Price of reduction capability in DR program 1."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:drContract2 a seas:PropertyKey, rdf:Property ;
+  rdfs:label "DR Contract 2"@en ;
+  rdfs:comment """Price of reduction capability in DR program 2."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:drContract3 a seas:PropertyKey, rdf:Property ;
+  rdfs:label "DR Contract 3"@en ;
+  rdfs:comment """Price of reduction capability in DR program 3."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:rdPowerRequirement a seas:PropertyKey, rdf:Property ;
+  rdfs:label "RD Power Requirement"@en ;
+  rdfs:comment """Regulation down power requirement."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:ruPowerRequirement a seas:PropertyKey, rdf:Property ;
+  rdfs:label "RU Power Requirement"@en ;
+  rdfs:comment """Regulation up power requirement."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:spPowerRequirement a seas:PropertyKey, rdf:Property ;
+  rdfs:label "SP Power Requirement"@en ;
+  rdfs:comment """Load power for spinning reserve."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:nsPowerRequirement a seas:PropertyKey, rdf:Property ;
+  rdfs:label "NS Power Requirement"@en ;
+  rdfs:comment """Load power for non-spinning reserve."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:rdPowerReduce a seas:PropertyKey, rdf:Property ;
+  rdfs:label "RD Power Reduce"@en ;
+  rdfs:comment """Max reduce capability for regulation down."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:ruPowerReduce a seas:PropertyKey, rdf:Property ;
+  rdfs:label "RU Power Reduce"@en ;
+  rdfs:comment """Max reduce capability for regulation up."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:spPowerReduce a seas:PropertyKey, rdf:Property ;
+  rdfs:label "SP Power Reduce"@en ;
+  rdfs:comment """Max reduce capability for spinning reserve."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:nsPowerReduce a seas:PropertyKey, rdf:Property ;
+  rdfs:label "NS Power Reduce"@en ;
+  rdfs:comment """Max reduce capability for non-spinning reserve."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:rdPowerCut a seas:PropertyKey, rdf:Property ;
+  rdfs:label "RD Power Cut"@en ;
+  rdfs:comment """Cut capability for regulation down."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:ruPowerCut a seas:PropertyKey, rdf:Property ;
+  rdfs:label "RU Power Cut"@en ;
+  rdfs:comment """Cut capability for regulation up."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:spPowerCut a seas:PropertyKey, rdf:Property ;
+  rdfs:label "SP Power Cut"@en ;
+  rdfs:comment """Cut capability for spinning reserve."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:nsPowerCut a seas:PropertyKey, rdf:Property ;
+  rdfs:label "NS Power Cut"@en ;
+  rdfs:comment """Cut capability for non-spinning reserve."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:rdPriceReduce a seas:PropertyKey, rdf:Property ;
+  rdfs:label "RD Price Reduce"@en ;
+  rdfs:comment """Reduction cost for regulation down."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:ruPriceReduce a seas:PropertyKey, rdf:Property ;
+  rdfs:label "RU Price Reduce"@en ;
+  rdfs:comment """Reduction cost for regulation up."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:spPriceReduce a seas:PropertyKey, rdf:Property ;
+  rdfs:label "SP Price Reduce"@en ;
+  rdfs:comment """Reduction cost for spinning reserve."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:nsPriceReduce a seas:PropertyKey, rdf:Property ;
+  rdfs:label "NS Price Reduce"@en ;
+  rdfs:comment """Reduction cost for non-spinning reserve."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:rdPriceCut a seas:PropertyKey, rdf:Property ;
+  rdfs:label "RD Price Cut"@en ;
+  rdfs:comment """Cut cost for regulation down."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:ruPriceCut a seas:PropertyKey, rdf:Property ;
+  rdfs:label "RU Price Cut"@en ;
+  rdfs:comment """Cut cost for regulation up."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:spPriceCut a seas:PropertyKey, rdf:Property ;
+  rdfs:label "SP Price Cut"@en ;
+  rdfs:comment """Cut cost for spinning reserve."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:nsPriceCut a seas:PropertyKey, rdf:Property ;
+  rdfs:label "NS Price Cut"@en ;
+  rdfs:comment """Cut cost for non-spinning reserve."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:asCofENS a seas:PropertyKey, rdf:Property ;
+  rdfs:label "AS Cof ENS"@en ;
+  rdfs:comment """Cost of energy not supplied for ancillary services."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseRASLoadQ a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase R AS Load Q"@en ;
+  rdfs:comment """Reactive power in phase R for ancillary services."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseSASLoadQ a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase S AS Load Q"@en ;
+  rdfs:comment """Reactive power in phase S for ancillary services."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:phaseTASLoadQ a seas:PropertyKey, rdf:Property ;
+  rdfs:label "Phase T AS Load Q"@en ;
+  rdfs:comment """Reactive power in phase T for ancillary services."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:PowerProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .

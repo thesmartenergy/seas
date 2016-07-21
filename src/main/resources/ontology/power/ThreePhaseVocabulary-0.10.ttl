@@ -1,0 +1,201 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .     #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .   #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .  #XML standard datatypes
+@prefix dc: <http://purl.org/dc/terms/> .  #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>. # The DOLCE+DnS Ultralite ontology.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:ThreePhaseVocabulary a owl:Ontology , voaf:Vocabulary ;
+  dc:title "seas-ThreePhase vocabulary."@en ;
+  dc:description """This ontology defines common properties of Three phase connected systems."""@en ;
+  dc:issued "2016-07-19"^^xsd:date ;
+  dc:modified "2016-07-19"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
+  dc:contributor <https://w3id.org/people/franciscosilva#> ;
+  dc:contributor <https://w3id.org/people/brigidateixeira#> ;
+  cc:license <http://creativecommons.org/licenses/by/4.0/> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/ThreePhaseVocabulary/0.10> ;
+  owl:versionInfo "v0.10" .
+
+
+# CL_TP
+seas:tp a skos:ConceptScheme, sdmx:CodeList;
+  rdfs:label "Three Phase - codelist scheme"@en;
+  skos:prefLabel "Three Phase - codelist scheme"@en;
+  skos:notation "CL_TP";
+  rdfs:comment """This code list enables to interpret the given value with respect to the connections in three phase."""@en;
+  skos:note """This code list enables to interpret the given value with respect to the connections in three phase."""@en;
+  skos:definition seas:tp ;
+  rdfs:seeAlso seas:Tp ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary .
+
+seas:Tp a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Three Phase - codelist class"@en;
+  skos:note """This code list enables to interpret the given value with respect to the connections in three phase."""@en;
+  rdfs:seeAlso seas:tp ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary . 
+
+
+seas:tp-R a skos:Concept, seas:EvaluationInterpretationConcept, seas:Tp;
+  rdfs:label "R"@en ;
+  skos:prefLabel "R"@en ;
+  skos:notation "R" ;
+  rdfs:comment """Relative to phase R."""@en ;
+  skos:definition """Relative to phase R."""@en ;
+  skos:topConceptOf seas:tp;
+  skos:inScheme   seas:tp;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary . 
+
+seas:tp skos:hasTopConcept seas:tp-R .
+
+seas:tp-S a skos:Concept, seas:EvaluationInterpretationConcept, seas:Tp;
+  rdfs:label "S"@en ;
+  skos:prefLabel "S"@en ;
+  skos:notation "S" ;
+  rdfs:comment """Relative to phase S."""@en ;
+  skos:definition """Relative to phase S."""@en ;
+  skos:topConceptOf seas:tp;
+  skos:inScheme   seas:tp;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary . 
+
+seas:tp skos:hasTopConcept seas:tp-S .
+
+seas:tp-T a skos:Concept, seas:EvaluationInterpretationConcept, seas:Tp;
+  rdfs:label "T"@en ;
+  skos:prefLabel "T"@en ;
+  skos:notation "T" ;
+  rdfs:comment """Relative to phase T."""@en ;
+  skos:definition """Relative to phase T."""@en ;
+  skos:topConceptOf seas:tp;
+  skos:inScheme   seas:tp;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary . 
+
+seas:tp skos:hasTopConcept seas:tp-T .
+
+seas:tp-N a skos:Concept, seas:EvaluationInterpretationConcept, seas:Tp;
+  rdfs:label "N"@en ;
+  skos:prefLabel "N"@en ;
+  skos:notation "N" ;
+  rdfs:comment """Relative to phase N."""@en ;
+  skos:definition """Relative to phase N."""@en ;
+  skos:topConceptOf seas:tp;
+  skos:inScheme   seas:tp;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary . 
+
+seas:tp skos:hasTopConcept seas:tp-N .
+
+
+seas:tp-RN a skos:Concept, seas:EvaluationInterpretationConcept, seas:Tp;
+  rdfs:label "RN"@en ;
+  skos:prefLabel "RN"@en ;
+  skos:notation "RN" ;
+  rdfs:comment """From phase R to neutral."""@en ;
+  skos:definition """From phase R to neutral."""@en ;
+  skos:topConceptOf seas:tp;
+  skos:inScheme   seas:tp;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary . 
+
+seas:tp skos:hasTopConcept seas:tp-RN .
+
+seas:tp-SN a skos:Concept, seas:EvaluationInterpretationConcept, seas:Tp;
+  rdfs:label "SN"@en ;
+  skos:prefLabel "SN"@en ;
+  skos:notation "SN" ;
+  rdfs:comment """From phase S to neutral."""@en ;
+  skos:definition """From phase S to neutral."""@en ;
+  skos:topConceptOf seas:tp;
+  skos:inScheme   seas:tp;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary . 
+
+seas:tp skos:hasTopConcept seas:tp-SN .
+
+seas:tp-TN a skos:Concept, seas:EvaluationInterpretationConcept, seas:Tp;
+  rdfs:label "TN"@en ;
+  skos:prefLabel "TN"@en ;
+  skos:notation "TN" ;
+  rdfs:comment """From phase T to neutral."""@en ;
+  skos:definition """From phase T to neutral."""@en ;
+  skos:topConceptOf seas:tp;
+  skos:inScheme   seas:tp;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary . 
+
+seas:tp skos:hasTopConcept seas:tp-TN .
+
+seas:tp-RS a skos:Concept, seas:EvaluationInterpretationConcept, seas:Tp;
+  rdfs:label "RS"@en ;
+  skos:prefLabel "RS"@en ;
+  skos:notation "RS" ;
+  rdfs:comment """From phase R to phase S."""@en ;
+  skos:definition """From phase R to phase S."""@en ;
+  skos:topConceptOf seas:tp;
+  skos:inScheme   seas:tp;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary . 
+
+seas:tp skos:hasTopConcept seas:tp-RS .
+
+seas:tp-ST a skos:Concept, seas:EvaluationInterpretationConcept, seas:Tp;
+  rdfs:label "ST"@en ;
+  skos:prefLabel "ST"@en ;
+  skos:notation "ST" ;
+  rdfs:comment """From phase S to phase T."""@en ;
+  skos:definition """From phase S to phase T."""@en ;
+  skos:topConceptOf seas:tp;
+  skos:inScheme   seas:tp;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary . 
+
+seas:tp skos:hasTopConcept seas:tp-ST .
+
+seas:tp-TR a skos:Concept, seas:EvaluationInterpretationConcept, seas:Tp;
+  rdfs:label "TR"@en ;
+  skos:prefLabel "TR"@en ;
+  skos:notation "TR" ;
+  rdfs:comment """From phase T to phase R."""@en ;
+  skos:definition """From phase T to phase R."""@en ;
+  skos:topConceptOf seas:tp;
+  skos:inScheme   seas:tp;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ThreePhaseVocabulary . 
+
+seas:tp skos:hasTopConcept seas:tp-TR .
