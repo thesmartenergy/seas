@@ -1,7 +1,0 @@
-here, define the vocabulary of different properties, with respect to their dimension.
-
-EnergyProperty,
-PowerProperty,
-
-
-they should not all be listed in this file anyways, they should be defined in the ontology only if necessary.

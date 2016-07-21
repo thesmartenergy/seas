@@ -42,27 +42,10 @@ seas:QuantityDimension a owl:Class ; # seas:Length a seas:QuantityDimension
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:QuantityDimensionOntology . 
 
-seas:unit a owl:AnnotationProperty ;
-  rdfs:label "unit" ;
-  rdfs:comment "Links a dimension to a unit datatype that may be used to specify elements of this dimension."@en ;
-  rdfs:domain seas:QuantityDimension ;
-  rdfs:range rdfs:Datatype ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:QuantityDimensionOntology . 
-
-seas:deltaUnit a owl:AnnotationProperty ;
-  rdfs:label "deltaUnit" ;
-  rdfs:comment "Links a dimension to a unit datatype that may be used to specify delta. For instance xsd:duration is a delta unit on the time dimension."@en ;
-  rdfs:domain seas:QuantityDimension ;
-  rdfs:range rdfs:Datatype ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:QuantityDimensionOntology . 
-
-
 seas:quantityDimension a rdf:Property ;
   rdfs:label "quantityDimension" ;
-  rdfs:comment "Links a data cube component property to its quantity dimension."@en ;
-  rdfs:domain qb:ComponentProperty ;
+  rdfs:comment "Links an evaluation to its quantity dimension."@en ;
+  rdfs:domain seas:Evaluation ;
   rdfs:range seas:QuantityDimension ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:QuantityDimensionOntology . 

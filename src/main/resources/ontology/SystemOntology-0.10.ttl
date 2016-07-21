@@ -77,3 +77,23 @@ seas:subSystems a owl:ObjectProperty ;
   rdfs:range rdf:List ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:SystemOntology .
+
+
+# link to physical or moral persons ?
+
+seas:owner a owl:ObjectProperty ;
+  rdfs:label "owner"@en ;
+  rdfs:comment """The owner."""@en ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:TextProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+
+seas:consumer a owl:ObjectProperty ;
+  rdfs:label "consumer"@en ;
+  rdfs:comment """The consumer."""@en ;
+  rdfs:domain seas:PowerLoad ;
+  rdfs:range seas:TextProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerLoadVocabulary .
+  
