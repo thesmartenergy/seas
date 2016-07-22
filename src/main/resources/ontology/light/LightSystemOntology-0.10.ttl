@@ -1,0 +1,112 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .     #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .   #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .  #XML standard datatypes
+@prefix dc: <http://purl.org/dc/terms/> .  #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>. # The DOLCE+DnS Ultralite ontology.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:LightSystemOntology a owl:Ontology , voaf:Vocabulary ;
+  dc:title "seas-LightSystem vocabulary."@en ;
+  dc:description """This vocabulary defines light Systems, and their common properties."""@en ;
+  dc:issued "2016-07-19"^^xsd:date ;
+  dc:modified "2016-07-19"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
+  dc:contributor <https://w3id.org/people/franciscosilva#> ;
+  dc:contributor <https://w3id.org/people/brigidateixeira#> ;
+  cc:license <http://creativecommons.org/licenses/by/4.0/> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/LightSystemOntology/0.10> ;
+  owl:versionInfo "v0.10" .
+
+seas:LightSystem a owl:Class ;
+  rdfs:label "Light System" ;
+  rdfs:comment """The super class of systems that can produce or transmit light, or that can be illumintated."""@en ;
+  rdfs:subClassOf seas:System ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .
+
+seas:LightSource a owl:Class ;
+  rdfs:label "Light Source" ;
+  rdfs:comment """The class of systems that are capable of producing light."""@en ;
+  rdfs:subClassOf seas:LightSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .
+
+seas:subLightSourceOf a owl:ObjectProperty ;
+  rdfs:label "sub light source of"@en ;
+  rdfs:comment "Links an light system to another light system that contribute to it."@en ;
+  rdfs:subPropertyOf seas:subSystemOf ; 
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .
+
+
+seas:IlluminableSystem a owl:Class ;
+  rdfs:label "Illuminable System" ;
+  rdfs:comment """The class of systems on/in which one may measure/effect luminosity, and perceive brightness."""@en ;
+  rdfs:subClassOf seas:LightSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .
+
+seas:illuminates a owl:ObjectProperty ;
+  rdfs:label "illuminates"@en ;
+  rdfs:comment "The subject light system illuminates the object light system."@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:LightSource ;
+  rdfs:range seas:IlluminableSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .
+
+
+seas:LightTransmissionSystem a owl:Class ;
+  rdfs:label "Light Transmission System" ;
+  rdfs:comment """The class of systems that can transmit light between illuminable systems. These include skylights, glass, tinted glass, mirrors."""@en ;
+  rdfs:subClassOf seas:LightSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .
+
+seas:illuminableSystem1 a owl:ObjectProperty ;
+  rdfs:label "illuminable system 1"@en ;
+  rdfs:comment "The subject transmits light between two systems. This is the first system."@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:LightTransmissionSystem ;
+  rdfs:range seas:IlluminableSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .
+
+seas:illuminableSystem2 a owl:ObjectProperty ;
+  rdfs:label "illuminable system 2"@en ;
+  rdfs:comment "The subject transmits light between two systems. This is the second system."@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:LightTransmissionSystem ;
+  rdfs:range seas:IlluminableSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .

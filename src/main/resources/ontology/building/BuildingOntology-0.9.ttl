@@ -116,7 +116,7 @@ seas:subControl a owl:ObjectProperty;
 seas:SiteOfBuilding a owl:Class ;
   rdfs:label "SiteOfBuilding"@en ;
   rdfs:comment "Building site is a locale containing one or more separate buildings."@en ;
-  rdfs:subClassOf seas:Site,seas:BuildingSpatialStructure;
+  rdfs:subClassOf seas:Site, seas:BuildingSpatialStructure;
   rdf:seeAlso ifc:Site;  
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:BuildingOntology.   

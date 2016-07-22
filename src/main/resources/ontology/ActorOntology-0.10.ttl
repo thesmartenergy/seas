@@ -45,14 +45,32 @@ seas:ActorOntology a owl:Ontology , voaf:Vocabulary ;
 
 seas:Actor a owl:Class ; 
   rdfs:label "Actor"@en ;
-  rdfs:comment "An Actor is an entity  that can perform actions"@en ;
+  rdfs:comment "An Actor is an entity that can perform actions."@en ;
   rdfs:subClassOf seas:AbstractEntity;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ActorOntology.
 
+seas:player a owl:ObjectProperty ;
+  rdfs:label "Player"@en ;
+  rdfs:comment "A Player is an actor that produces, consumes, or store energy."@en ;
+  rdfs:domain seas:Contract ;
+  rdfs:range seas:Actor ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ActorOntology.
+  
+seas:Operator a owl:Class ;
+  rdfs:label "Operator"@en ;
+  rdfs:comment "An Operator is an actor that regulates operations of players in the system."@en ;
+  rdfs:subClassOf seas:Actor ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ActorOntology.
+  
+
+  
+
 seas:Activity a owl:Class ; 
   rdfs:label "Activity"@en ;
-  rdfs:comment "Activity is a continuous task or process that an entity can be performing"@en ;
+  rdfs:comment "Activity is a continuous task or process that an entity can be performing."@en ;
   rdfs:subClassOf seas:AbstractEntity;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ActorOntology.      
@@ -101,7 +119,7 @@ seas:Role a owl:Class ;
   rdfs:comment "Abstract role of a Endurant in some (system/domain) context"@en ;
   rdfs:subClassOf seas:AbstractEntity;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:ActorOntology .  
+  rdfs:isDefinedBy seas:ActorOntology . 
   
  seas:hasRole a owl:ObjectProperty;
   rdfs:label "hasRole"@en ;
@@ -126,3 +144,10 @@ seas:Profile a owl:Class ;
   rdfs:range seas:Profile;
   rdfs:isDefinedBy seas:ActorOntology .  
 
+
+
+
+
+sell
+buy
+cut

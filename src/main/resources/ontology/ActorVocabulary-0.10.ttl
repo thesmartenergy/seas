@@ -43,7 +43,7 @@ seas:ActorVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
   owl:versionIRI <https://w3id.org/seas/ActorVocabulary/0.10> ;
   owl:versionInfo "v0.10" .
 
-seas:Aggregator a seas:Actor ;  
+seas:Aggregator a owl:Class ;  
   rdfs:label "Aggregator"@en ;
   rdfs:label "Agregador"@pt ;
   rdfs:comment """The class of Aggregator SEAS actors. An entity responsible for planning, scheduling, accounting, billing,
@@ -51,6 +51,7 @@ seas:Aggregator a seas:Actor ;
    together customers or generators so they can buy or sell power in bulk, making a profit on the transaction. 
    An actor managing part of the behaviour of actors such as Loads, Generators and Storages and to the grid and the other actors, 
    acts as one single entity. NOTE: any actors that look like an "aggregator" MUST be replaced by the best actor from this current list if it exists."""@en ;
+   rdfs:subClassOf seas:Player ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ActorVocabulary .
 

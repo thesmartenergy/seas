@@ -142,3 +142,25 @@ seas:HeatEnergy a seas:EnergyForm ;
   rdfs:comment """The transfer of energy from one thing to another by kinetic energy, usually causing a higher temperature."""@en ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:EnergyVocabulary .
+
+
+
+
+
+
+
+seas:RenewableEnergyForm a owl:Class ;
+  rdfs:label "Renewable Energy Form"@en ;
+  rdfs:comment """The class of renewable energy forms."""@en ;
+  rdfs:subClassOf seas:EnergyForm ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:EnergyVocabulary .
+
+seas:UnrenewableEnergyForm a owl:Class ;
+  rdfs:label "Unrenewable Energy Form"@en ;
+  rdfs:comment """The class of unrenewable energy forms."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:EnergyVocabulary .
+
+
+# extensible (biomass biofuel geothermal .........)

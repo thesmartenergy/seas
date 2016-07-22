@@ -33,7 +33,7 @@
 
 seas:ProcessOntology a owl:Ontology , voaf:Vocabulary ;
   dc:title "seas-Process ontology."@en ;
-  dc:description """This ontology extends the core of the SSN ontology at https://www.w3.org/ns/ssn/ with references to DUL, and focuses on Feature of interest and their properties.
+  dc:description """This ontology extends the core of the SSN ontology at https://www.w3.org/ns/ssn/
 
   See also <https://w3id.org/seas/ProcessOntology-0.10.pdf>"""@en ;
   dc:issued "2016-07-01"^^xsd:date ;
@@ -214,11 +214,30 @@ seas:estimates a rdf:Property , seas:OutputProperty , owl:ObjectProperty , owl:F
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ProcessOntology .
 
-seas:effects a rdf:Property , seas:InputProperty , owl:ObjectProperty , owl:FunctionalProperty ;
+seas:effects a rdf:Property , seas:OutputProperty , owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "effects"@en ;
   rdfs:comment """Output relation between:
   (a) a seas:Process and the qb:DataStructureDefinition that describes the effect on the real world;
   (b) a seas:ProcessExecution and the actual qb:DataSet that describes the effect on the real world."""@en ;
+  rdfs:subPropertyOf seas:hasOutput ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ProcessOntology .
+
+
+seas:request a rdf:Property , seas:InputProperty , owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "request"@en ;
+  rdfs:comment """Input relation between:
+  (a) a seas:Process and the RDF graph description that describes the request;
+  (b) a seas:ProcessExecution and the actual RDF graph that describes the request."""@en ;
+  rdfs:subPropertyOf seas:hasInput ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ProcessOntology .
+
+seas:response a rdf:Property , seas:OutputProperty , owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "response"@en ;
+  rdfs:comment """Output relation between:
+  (a) a seas:Process and the RDF graph description that describes the response;
+  (b) a seas:ProcessExecution and the actual RDF graph that describes the response."""@en ;
   rdfs:subPropertyOf seas:hasOutput ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ProcessOntology .

@@ -62,12 +62,12 @@ seas:Count a owl:Class;
   rdfs:comment "Unitless numeric count."@en ;
   rdfs:subClassOf seas:Quantity;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:MarketOntology.   
+  rdfs:isDefinedBy seas:MarketOntology.
   
 #Some general market related concepts and classifications and their descriptions TBD by experts
 seas:Market a owl:Class ;
   rdfs:label "Market"@en ;
-  rdfs:comment "From Wikipedia: A market is one of the many varieties of systems, institutions, procedures, social relations and infrastructures whereby parties engage in exchange. While parties may exchange goods and services by barter, most markets rely on sellers offering their goods or services (including labor) in exchange for money from buyers. It can be said that a market is the process by which the prices of goods and services are established. Markets facilitate trade and enables the distribution and allocation of resources in a society. Markets allow any trade-able item to be evaluated and priced. A market emerges more or less spontaneously or may be constructed deliberately by human interaction in order to enable the exchange of rights (cf. ownership) of services and goods."@en ;
+  rdfs:comment "From Wikipedia: A market is one of the many varieties of systems, institutions, procedures, social relations and infrastructures whereby parties engage in exchange. While parties may exchange goods and services by barter, most markets rely on sellers offering their goods or services (including labor) in exchange for money from buyers. It can be said that a market is the process by which the prices of goods and services are established. Markets facilitate trade and enables the distribution and allocation of resources in a society. Markets allow any tradeable item to be evaluated and priced. A market emerges more or less spontaneously or may be constructed deliberately by human interaction in order to enable the exchange of rights (cf. ownership) of services and goods."@en ;
   rdfs:subClassOf seas:System;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:MarketOntology.   
@@ -103,7 +103,7 @@ seas:RetailMarket a owl:Class ;
   rdfs:comment "Retail is the process of selling consumer goods and/or services to consumers. "@en ;
   rdfs:subClassOf seas:Market;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:MarketOntology.     
+  rdfs:isDefinedBy seas:MarketOntology. 
   
 seas:CapacityMarket a owl:Class ;
   rdfs:label "CapacityMarket"@en ;

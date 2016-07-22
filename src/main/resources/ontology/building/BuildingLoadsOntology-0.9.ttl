@@ -13,8 +13,7 @@
 # limitations under the License.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
-@prefix owl: <http://www.w3.org/2002/07/owl#> .              #Owl ontology language
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .      #RDF schema 
+@prefix owl: <http://www.w3.org/2002/07/owl#> .              #Owl ontolow 
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .           #XML standard datatypes
 @prefix dc: <http://purl.org/dc/terms/> .     #Dublin Core Metadata Initiative terms
 @prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions

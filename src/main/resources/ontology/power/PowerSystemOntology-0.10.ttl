@@ -32,7 +32,7 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
-seas:PowerSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
+seas:PowerSystemOntology a owl:Ontology , voaf:Vocabulary ;
   dc:title "seas-PowerSystem vocabulary."@en ;
   dc:description """This vocabulary defines power Systems, and their common properties."""@en ;
   dc:issued "2016-07-19"^^xsd:date ;
@@ -44,7 +44,7 @@ seas:PowerSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
   cc:license <http://creativecommons.org/licenses/by/4.0/> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
-  owl:versionIRI <https://w3id.org/seas/PowerSystemVocabulary/0.10> ;
+  owl:versionIRI <https://w3id.org/seas/PowerSystemOntology/0.10> ;
   owl:versionInfo "v0.10" .
 
 seas:PowerSystem a owl:Class ;
@@ -53,7 +53,7 @@ seas:PowerSystem a owl:Class ;
   rdfs:comment """The class of systems that are capable of producing, storing, or consuming electricity, and exchange electricity with other systems."""@en ;
   rdfs:subClassOf seas:System ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:PowerSystemVocabulary .
+  rdfs:isDefinedBy seas:PowerSystemOntology .
 
 seas:powerConnectedTo a owl:ObjectProperty ;
   rdfs:label "Power connected to"@en ;
@@ -62,13 +62,21 @@ seas:powerConnectedTo a owl:ObjectProperty ;
   rdfs:domain seas:PowerSystem ;
   rdfs:range seas:PowerSystem ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:PowerSystemVocabulary .
+  rdfs:isDefinedBy seas:PowerSystemOntology .
+
+seas:subPowerSystemOf a owl:ObjectProperty ;
+  rdfs:label "sub power system of"@en ;
+  rdfs:comment "Links an power system to another power system to which its consumption, production, and storage contribute."@en ;
+  rdfs:subPropertyOf seas:subSystemOf ; 
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PowerSystemOntology .
+
 
 seas:PowerBus a owl:Class ;
   rdfs:label "Power Bus"@en ;
   rdfs:comment """The class of power buses. A bus is a power systems composed of three phase wires: R, S, T, and a neutral wire N. Other power systems can be connected to a power bus with different connection configurations."""@en ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:PowerSystemVocabulary .
+  rdfs:isDefinedBy seas:PowerSystemOntology .
 
 # transmission 
 
@@ -78,7 +86,7 @@ seas:PowerTransmissionSystem a owl:Class ;
   rdfs:label "Sistema de Transmissão"@pt ;
   rdfs:comment """The class of systems that are capable of transmitting electricity between two buses."""@en ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:PowerSystemVocabulary .
+  rdfs:isDefinedBy seas:PowerSystemOntology .
 
 seas:bus1 a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "bus 1"@en ;
@@ -87,7 +95,7 @@ seas:bus1 a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:domain seas:PowerTransmissionSystem;
   rdfs:range seas:PowerBus ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:PowerSystemVocabulary .
+  rdfs:isDefinedBy seas:PowerSystemOntology .
 
 seas:bus2 a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "bus 2"@en ;
@@ -96,17 +104,16 @@ seas:bus2 a rdf:Property, owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:domain seas:PowerTransmissionSystem;
   rdfs:range seas:PowerBus ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:PowerSystemVocabulary .
-
-seas:bus1 owl:propertyDisjointWith seas:bus2 .
+  rdfs:isDefinedBy seas:PowerSystemOntology .
   
+# are they disjoint properties ?
 
 seas:PowerLine a owl:Class ;
   rdfs:label "Power Line"@en ;
   rdfs:comment """The class of power lines, that transmit electricity on a certain distance within a power network."""@en ;
   rdfs:subClassOf seas:PowerTransmissionSystem ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:PowerSystemVocabulary .
+  rdfs:isDefinedBy seas:PowerSystemOntology .
 
 seas:PowerTransformer a owl:Class ;
   rdfs:label "Power Transformer"@en ;
@@ -114,7 +121,7 @@ seas:PowerTransformer a owl:Class ;
   rdfs:comment """The class of systems that are capable of transforming electricity within a power network."""@en ;
   rdfs:subClassOf seas:PowerTransmissionSystem ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:PowerSystemVocabulary .
+  rdfs:isDefinedBy seas:PowerSystemOntology .
 
 
 seas:primarilyConnectedTo a owl:ObjectProperty ;
@@ -146,7 +153,7 @@ seas:SingleBusSystem a owl:Class ;
   rdfs:isDefinedBy seas:SingleBusSystemVocabulary .
 
 seas:PowerLoad a owl:Class ;
-  rdfs:subClassOf seas:PowerSystem ;  
+  rdfs:subClassOf seas:SingleBusSystem ;  
   rdfs:label "Load"@en ;
   rdfs:comment """Power System that consumes electricity."""@en ;
   vs:term_status "testing" ;
@@ -161,7 +168,7 @@ seas:PowerStorage a owl:Class ;
   rdfs:isDefinedBy seas:StorageVocabulary .
 
 seas:PowerGenerator a owl:Class ;
-  rdfs:subClassOf seas:PowerSystem ;
+  rdfs:subClassOf seas:SingleBusSystem ;
   rdfs:label "Generator"@en ;
   rdfs:comment """The class of power systems that converts mechanical energy to electrical energy."""@en ;
   vs:term_status "testing" ;
@@ -174,4 +181,6 @@ seas:energyForm a owl:ObjectProperty ;
   rdfs:range seas:EnergyForm ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
+
+
 

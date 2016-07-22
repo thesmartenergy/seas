@@ -59,11 +59,11 @@ seas:QuantifiableProperty a owl:Class ;
 
 qudt:Quantity rdfs:subClassOf seas:QuantifiableProperty ;
 
-seas:evaluation a owl:DatatypeProperty ;
+seas:evaluation a owl:ObjectProperty ;
   rdfs:label "has value"@en ;
   rdfs:comment """Links a quantifiable property to one of its evaluations."""@en ;
   rdfs:domain seas:QuantifiableProperty ;
-  rdfs:range rdfs:Literal ;
+  rdfs:range seas:Evaluation ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:FeatureOfInterestOntology .
 
@@ -71,7 +71,7 @@ qudt:quantityValue rdfs:subPropertyOf seas:evaluation .
 
 seas:Evaluation a owl:Class ;
   rdfs:label "Evaluation"@en ;
-  rdfs:comment """The evaluation is an indirection between a quantifiable property a literal value that quantifies the property.
+  rdfs:comment """The evaluation is an indirection between a quantifiable property and a literal value that quantifies the property.
   seas:Evaluation extends qudt:QuantityValue as it holds metadata about:
   (a) the context of the evaluation, expressed using context properties. Prototypical context properties are seas:time, seas:lat, seas:long. They are defined in ontology seas:EvaluationContextOntology;
   (b) zero or more skos:Concepts that enable to interpret the evaluation. For instance seas:ag-Average, seas:op-Nominal. These concepts are defined in vocabulary seas:EvaluationInterpretationVocabulary."""@en ;
@@ -81,9 +81,9 @@ seas:Evaluation a owl:Class ;
 qudt:QuantityValue rdfs:subClassOf seas:Evaluation .
 
 seas:literalValue a owl:DatatypeProperty ;
-  rdfs:label "as literal"@en ;
-  rdfs:comment """Links a quantity value to the literal that expresses the quantity."""@en ;
-  rdfs:domain seas:Property ;
+  rdfs:label "literal value"@en ;
+  rdfs:comment """Links an evaluation to the literal that expresses the quantification of the property."""@en ;
+  rdfs:domain seas:Evaluation ;
   rdfs:range rdfs:Literal ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:FeatureOfInterestOntology .

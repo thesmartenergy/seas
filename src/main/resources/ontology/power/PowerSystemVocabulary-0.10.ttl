@@ -218,6 +218,19 @@ seas:fourier-Frequency a skos:Concept, seas:EvaluationInterpretationConcept, sea
 
 seas:fourier skos:hasTopConcept seas:fourier-Frequency .
 
+seas:fourier-peak a skos:Concept, seas:EvaluationInterpretationConcept, seas:Fourier;
+  rdfs:label "Peak"@en ;
+  skos:prefLabel "Peak"@en ;
+  skos:notation "Peak" ;
+  rdfs:comment """Peak means that the given value measures the Peak of the periodic signal."""@en ;
+  skos:definition """Peak means that the given value measures the Peak of the periodic signal."""@en ;
+  skos:topConceptOf seas:fourier;
+  skos:inScheme   seas:fourier;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary . 
+
+seas:fourier skos:hasTopConcept seas:fourier-Frequency .
+
 seas:fourier-THD a skos:Concept, seas:EvaluationInterpretationConcept, seas:Fourier;
   rdfs:label "Total Harmonic Distortion"@en ;
   skos:prefLabel "Total Harmonic Distortion"@en ;

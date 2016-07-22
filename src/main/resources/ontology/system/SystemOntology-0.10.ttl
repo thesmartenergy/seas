@@ -51,7 +51,6 @@ seas:System a owl:Class ;
   rdfs:comment "The class of systems. Systems can be connected to other systems and have subsystems."@en ;
   rdfs:subClassOf [ owl:onProperty seas:connectedTo ; owl:allValuesFrom  seas:System ] ;
   rdfs:subClassOf [ owl:onProperty seas:subsystem ; owl:allValuesFrom  seas:System ] ;
-  vs:term_status "testing" ;
   rdfs:subClassOf seas:FeatureOfInterest ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:SystemOntology .
