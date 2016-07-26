@@ -229,7 +229,7 @@ seas:fourier-peak a skos:Concept, seas:EvaluationInterpretationConcept, seas:Fou
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary . 
 
-seas:fourier skos:hasTopConcept seas:fourier-Frequency .
+seas:fourier skos:hasTopConcept seas:fourier-peak .
 
 seas:fourier-THD a skos:Concept, seas:EvaluationInterpretationConcept, seas:Fourier;
   rdfs:label "Total Harmonic Distortion"@en ;
