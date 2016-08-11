@@ -33,7 +33,7 @@
 @base <https://w3id.org/seas/>.
 
 seas:PowerAndEnergySystemsMeasuresVocabulary a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-PowerAndEnergySystemsMeasures vocabulary."@en ;
+  dc:title "SEAS-PowerAndEnergySystemsMeasures vocabulary."@en ;
   dc:description """This vocabulary defines common Data Cube measures for the Power and Energy Systems domain."""@en ;
   dc:issued "2016-07-19"^^xsd:date ;
   dc:modified "2016-07-19"^^xsd:date ;

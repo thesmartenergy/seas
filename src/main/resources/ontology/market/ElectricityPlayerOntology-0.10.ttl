@@ -33,7 +33,7 @@
 @base <https://w3id.org/seas/>.
 
 seas:ElectricityPlayerOntology a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-ElectricityPlayer ontology."@en ;
+  dc:title "SEAS-ElectricityPlayer ontology."@en ;
   dc:description """This ontology defines electricity players and electricity market, as systems that exchange electricity."""@en ;
   dc:issued "2016-07-22"^^xsd:date ;
   dc:modified "2016-07-22"^^xsd:date ;
@@ -42,22 +42,22 @@ seas:ElectricityPlayerOntology a owl:Ontology , voaf:Vocabulary ;
   cc:license <http://creativecommons.org/licenses/by/4.0/> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
-  owl:versionIRI <https://w3id.org/seas/PowerSystemVocabulary/0.10> ;
+  owl:versionIRI <https://w3id.org/seas/ElectricityPlayerOntology/0.10> ;
   owl:versionInfo "v0.10" .
 
-ElectricityPlayer a owl:Class ;
+seas:ElectricityPlayer a owl:Class ;
   rdfs:label "Electricity Player"@en ;
   rdfs:comment "Electricity Player is an actor that sells or buy electricity to other players or to the electricity market."@en ;
   rdfs:subClassOf seas:Market ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SystemOntology .
+  rdfs:isDefinedBy seas:ElectricityPlayerOntology .
 
-ElectricityMarket a owl:Class ;
+seas:ElectricityMarket a owl:Class ;
   rdfs:label "Electricity Market"@en ;
   rdfs:comment "Electricity Market is a market place where electricity is exchanged."@en ;
   rdfs:subClassOf seas:Market ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SystemOntology .
+  rdfs:isDefinedBy seas:ElectricityPlayerOntology .
 
 seas:exchangesElectricityWith a owl:ObjectProperty ;
   rdfs:label "exchanges electricity with"@en ;
@@ -66,7 +66,7 @@ seas:exchangesElectricityWith a owl:ObjectProperty ;
   rdfs:domain seas:ElectricityPlayer ;
   rdfs:range seas:ElectricityPlayer ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SystemOntology .
+  rdfs:isDefinedBy seas:ElectricityPlayerOntology .
 
 seas:exchangesElectricityOn a owl:ObjectProperty ;
   rdfs:label "exchanges electricity on"@en ;
@@ -75,4 +75,6 @@ seas:exchangesElectricityOn a owl:ObjectProperty ;
   rdfs:domain seas:ElectricityPlayer ;
   rdfs:range seas:ElectricityPlayer ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SystemOntology .
+  rdfs:isDefinedBy seas:ElectricityPlayerOntology .
+
+

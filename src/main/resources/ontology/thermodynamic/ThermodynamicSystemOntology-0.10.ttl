@@ -30,7 +30,7 @@
 @base <https://w3id.org/seas/>.
 
 seas:ThermodynamicSystemOntology a voaf:Vocabulary , owl:Ontology ;
-  dc:title "seas-ThermodynamicSystem ontology"@en ;
+  dc:title "SEAS-ThermodynamicSystem ontology"@en ;
   dc:description "The Seas Building BIM related vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project. This ontology is targeted for defining structure of buildings (or more general facilities) and zones related to control and measurment with links to various BIM (Building Information Model) related standards."@en ;
   dc:issued "2016-07-21"^^xsd:date ;
   dc:modified "2016-07-21"^^xsd:date ;
@@ -48,7 +48,7 @@ seas:ThermodynamicSystem a owl:Class ;
   rdfs:comment """The class of systems that produce, dissipate, and exchange thermal energy."""@en ;
   rdfs:subClassOf seas:System ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingOntology .
+  rdfs:isDefinedBy seas:ThermodynamicSystemOntology .
 
 
 seas:transferingHeatTo a owl:ObjectProperty ;
@@ -57,7 +57,7 @@ seas:transferingHeatTo a owl:ObjectProperty ;
   rdfs:domain seas:ThermodynamicSystem ; 
   rdfs:range seas:ThermodynamicSystem ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingOntology .   
+  rdfs:isDefinedBy seas:ThermodynamicSystemOntology .   
 
 seas:subThermodynamicSystemOf a owl:ObjectProperty ;
   rdfs:label "sub thermodynamic system of"@en ;
@@ -65,35 +65,4 @@ seas:subThermodynamicSystemOf a owl:ObjectProperty ;
   rdfs:domain seas:ThermodynamicSystem ; 
   rdfs:range seas:ThermodynamicSystem ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingOntology .   
-
-
-Thermal transmittance 
-
-
-seas:HeatTransfer
-
-appliance is power system
-
-hvac is appliance
-
-Thermodynamicer is hvac, and Thermodynamic system.
-
-Ventilation is hvac, and air system.
-
-
-appliance is disjoint with area
-
-
-area and power
-appliance and power
-
-Thermodynamicing appliance is always Thermodynamic connected to some Thermodynamicable area ?
-lighting appliance is always light connected to some lightable area ?
-
-lighing
-Thermodynamic consumer
-Thermodynamic generator
-Thermodynamic transport
-
-
+  rdfs:isDefinedBy seas:ThermodynamicSystemOntology .   

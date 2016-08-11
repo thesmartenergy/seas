@@ -24,6 +24,7 @@
 @prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
 @prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> . #QUDT quantities
 @prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix gr: <http://purl.org/goodrelations/v1#>.
 
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.

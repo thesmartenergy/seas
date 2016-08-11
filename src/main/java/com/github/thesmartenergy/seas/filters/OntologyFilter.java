@@ -59,7 +59,7 @@ public class OntologyFilter implements Filter {
             String ontoName = requestURI.substring(6);
             if (Pattern.matches("^([a-zA-Z]*)$", ontoName)) {
                 OntologyVersion version = app.getVersion(ontoName);
-                if(version != null) { 
+                if (version != null) {
                     String newURI = "/ontology/" + ontoName + "/" + version.getMajor() + "." + version.getMinor();
 //                    System.out.println("filter " + this.getClass().getSimpleName() + " dispatching  to " + newURI);
                     req.getRequestDispatcher(newURI).forward(req, response);

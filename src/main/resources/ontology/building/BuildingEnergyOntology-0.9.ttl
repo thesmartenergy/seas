@@ -29,7 +29,7 @@
 
 #Core roles and activities (for devices and systems), this is related to actor module and could specialize it but now here defined as new vocabulary
 seas:BuildingEnergyOntology a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-BuildingEnergyOntology ontology"@en ;
+  dc:title "SEAS-BuildingEnergyOntology ontology"@en ;
   dc:description "The Seas Building specific energy related properties with quantities and units for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
   dc:issued "2016-01-26"^^xsd:date ;
   dc:modified "2016-05-26"^^xsd:date ;

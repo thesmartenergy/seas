@@ -33,7 +33,7 @@
 @base <https://w3id.org/seas/>.
 
 seas:ThermodynamicSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-ThermodynamicSystem vocabulary."@en ;
+  dc:title "SEAS-ThermodynamicSystem vocabulary."@en ;
   dc:description """This vocabulary defines common properties of thermodynamic systems, and evaluation interpretation code lists."""@en ;
   dc:issued "2016-07-19"^^xsd:date ;
   dc:modified "2016-07-19"^^xsd:date ;
@@ -48,34 +48,32 @@ seas:ThermodynamicSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
   owl:versionInfo "v0.10" .
 
 
-seas:temperature a seas:PropertyKey, rdf:Property ;
-  rdfs:label "voltage" ;
-  rdfs:comment """Voltage is the voltage at some connection with a bus."""@en ;
+seas:temperature a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "Temperature"@en ;
+  rdfs:comment """The temperature of the feature of interest."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:ThermodynamicSystem ;
-  rdfs:range seas:QuantifiableProperty ;
+  rdfs:range seas:TemperatureProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ThermodynamicSystemVocabulary .
 
-seas:thermalTransmittance a seas:PropertyKey, rdf:Property ;
+seas:thermalTransmittance a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "thermal transmittance"@en;
   rdfs:label "UValue"@en ;
   rdfs:comment """Thermal Transmittance, also known as U-Value, is the rate of transfer of heat (in watts) through one square metre of a structure divided by the difference in temperature across the structure. It is expressed in watts per metres squared kelvin, or W/m²K. Well-insulated parts of a building have a low thermal transmittance whereas poorly insulated parts of a building have a high thermal transmittance. Losses due to thermal radiation, thermal convection and thermal conduction are taken into account in the U-value."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:ThermodynamicSystem ;
-  rdfs:range seas:QuantifiableProperty ;
+  rdfs:range seas:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ThermodynamicSystemVocabulary .      
 
-seas:totalHeatTransfer a seas:PropertyKey, rdf:Property ;
+seas:totalHeatTransfer a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "total heat transfer"@en;
   rdfs:label "UValue"@en ;
   rdfs:comment """Thermal Transmittance, also known as U-Value, is the rate of transfer of heat (in watts) through one square metre of a structure divided by the difference in temperature across the structure. It is expressed in watts per metres squared kelvin, or W/m²K. Well-insulated parts of a building have a low thermal transmittance whereas poorly insulated parts of a building have a high thermal transmittance. Losses due to thermal radiation, thermal convection and thermal conduction are taken into account in the U-value."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:ThermodynamicSystem ;
-  rdfs:range seas:QuantifiableProperty ;
+  rdfs:range seas:Property ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingEnergyOntology.      
-
-
+  rdfs:isDefinedBy seas:ThermodynamicSystemVocabulary.      
 

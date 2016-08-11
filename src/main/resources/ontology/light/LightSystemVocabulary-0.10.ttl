@@ -33,7 +33,7 @@
 @base <https://w3id.org/seas/>.
 
 seas:LightSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-LightSystem vocabulary."@en ;
+  dc:title "SEAS-LightSystem vocabulary."@en ;
   dc:description """This vocabulary defines common properties of light systems, and evaluation interpretation code lists."""@en ;
   dc:issued "2016-07-19"^^xsd:date ;
   dc:modified "2016-07-19"^^xsd:date ;
@@ -44,7 +44,7 @@ seas:LightSystemVocabulary a owl:Ontology , voaf:Vocabulary ;
   owl:versionIRI <https://w3id.org/seas/LightSystemVocabulary/0.10> ;
   owl:versionInfo "v0.10" .
 
-seas:luminousEfficacy a seas:PropertyKey, rdf:Property ;
+seas:luminousEfficacy a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "total heat transfer"@en;
   rdfs:label "UValue"@en ;
   rdfs:comment """There are ample ways to illuminate a surface or a room: incandescent lamps, fluorescent tubes, LEDs, tungsten-halogen bulbs, electroluminescent sheets, and others. These are often compared in their efficiency of turning electrical energy to luminous energy.
@@ -54,15 +54,15 @@ The official name for lighting efficiency is "luminous efficacy of a source". Th
 Lighting efficiency is often expressed as a percentage, based on the theoretical maximum value of lighting efficiency of 683.002 lm/W (at a wavelength of 555 nm). For example, at the time of this writing, a white 1 Watt "lumiled" can reach an efficiency of over 100 lm/W, giving an efficiency of 15%. While this may seem low, LEDs are actually quite efficient in comparison with other lighting methods. (From http://www.compuphase.com/electronics/candela_lumen.htm)"""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:LightSource ;
-  rdfs:range seas:QuantifiableProperty ;
+  rdfs:range seas:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:LightSystemVocabulary.      
 
-seas:lightTransmissionSurface a seas:PropertyKey, rdf:Property ;
+seas:lightTransmissionSurface a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "light transmission surface"@en;
   rdfs:comment """Qualifies the connection between two light systems."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:LightSource ;
-  rdfs:range seas:QuantifiableProperty ;
+  rdfs:range seas:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:LightSystemVocabulary.      

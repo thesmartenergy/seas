@@ -30,7 +30,7 @@
 @base <https://w3id.org/seas/>.
 
 seas:BuildingOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "seas-BuildingOntology ontology"@en ;
+  dc:title "SEAS-BuildingOntology ontology"@en ;
   dc:description "The Seas Building BIM related vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project. This ontology is targeted for defining structure of buildings (or more general facilities) and zones related to control and measurment with links to various BIM (Building Information Model) related standards."@en ;
   dc:issued "2016-01-26"^^xsd:date ;
   dc:modified "2016-05-26"^^xsd:date ;
@@ -167,7 +167,7 @@ seas:Building a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:BuildingOntology.  
 
-seas:nominalEnergyConsumption a seas:PropertyKey, rdf:Property ;
+seas:nominalEnergyConsumption a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "nominal energy consumption"@en ;
   rdfs:label "ominaisenergiankulutus"@fi ;  
   rdfs:comment "Energy consumption of a building per gross floor area."@en ;
@@ -218,7 +218,7 @@ seas:GrossFloorArea a owl:Class;
   rdfs:comment "Gross floor area is generally defined by the area within the perimeter of the walls bounding the space."@en ;
   rdfs:subClassOf seas:Area;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:BuildingEnergyOntology .  
+  rdfs:isDefinedBy seas:BuildingOntology .  
 
 
 

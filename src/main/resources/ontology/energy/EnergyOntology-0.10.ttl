@@ -29,7 +29,7 @@
 @base <https://w3id.org/seas/>.
 
 seas:EnergyOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "seas-EnergyOntology ontology"@en ;
+  dc:title "SEAS-EnergyOntology ontology"@en ;
   dc:description "The Seas Energy Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
   dc:issued "2015-10-10"^^xsd:date ;
   dc:modified "2016-05-26"^^xsd:date ;
@@ -44,12 +44,6 @@ seas:EnergyOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   owl:versionIRI <https://w3id.org/seas/EnergyOntology/0.10> ;
   owl:versionInfo "v0.10" .
 
-seas:EnergyForm a owl:Class;
-  rdfs:label "Energy Form"@en ;
-  rdfs:comment """"""@en ;
-  rdfs:seeAlso <http://www.wikidata.org/entity/Q3935690> ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EnergyOntology . 
 
 #SEnergy and Power, subcategories to be defined in other vocabularies
 #Just some of the most common units are defined heera and this should be combined with mdq

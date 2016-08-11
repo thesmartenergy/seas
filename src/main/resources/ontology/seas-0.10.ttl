@@ -42,8 +42,8 @@
   dc:issued "2016-05-25"^^xsd:date ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
-  owl:versionIRI <https://w3id.org/seas/0.9> ;
-  owl:versionInfo "v0.9" ;
+  owl:versionIRI <https://w3id.org/seas/0.10> ;
+  owl:versionInfo "v0.10" ;
   owl:imports seas:ActorOntology ;
   owl:imports seas:ArchitectureOntology ;
   owl:imports seas:BuildingCategoriesOntology ;

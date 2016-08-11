@@ -18,8 +18,6 @@ package com.github.thesmartenergy.seas;
 import com.github.thesmartenergy.seas.entities.OntologyVersion;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -61,14 +59,17 @@ public class App {
      * maps ontology names to a description of the list of versions (major+minor+file)
      */
     private final Map<String, TreeSet<OntologyVersion>> ontologyVersions = new HashMap<>();
+    
     /**
-     * maps resource names to ontology name where it is defined
+     * maps resource names to ontology versions where it is defined
      */
-    private final Map<String, String> definingOntologies = new HashMap<>();
+    private final Map<String, TreeSet<OntologyVersion>> definingOntologies = new HashMap<>();
+    
+    private final Set<String> referencedResources = new HashSet<>();
 
     @Inject
     ServletContext context;
-
+            
     @PostConstruct
     public void initialize() {
         try {
@@ -80,65 +81,96 @@ public class App {
             LOG.info(context.getClassLoader().getResource("/").toURI().toString());
 
             File ontoDir = new File(dir + "/ontology/");
-            Pattern p = Pattern.compile("^([a-zA-Z]*)-([0-9]+)\\.([0-9]+)\\.ttl$");
-
-            Set<String> referencedResources = new HashSet<>();
-            for (File ontoFile : ontoDir.listFiles()) {
-                String ontoFileName = ontoFile.getName();
-                System.out.println("testing "+ontoFileName); 
-
-                // any file whose name does not conform to NAME-MAJOR.MINOR.ttl triggers a warning
-                Matcher m = p.matcher(ontoFileName);
-                boolean b = m.matches(); 
-                // if matched
-                if (!b) {
-                    LOG.warning("File " + ontoFileName + " does not match the pattern NAME-MAJOR.MINOR.ttl");
-                    continue;
+            analyse(ontoDir);
+            
+//            // check every referenced resources is defined
+//            for(String uri : referencedResources) {
+//                if(!definingOntologies.containsKey(uri)) {
+//                    LOG.log(Level.WARNING, "resource with URI <" + uri + "> is never defined.");
+//                }
+//            }
+            System.out.println("###################");
+            System.out.println("referencesd resources: ");
+            referencedResources.forEach(new Consumer<String>() {
+                @Override
+                public void accept(String t) {
+                    System.out.println(t);
                 }
-                String ontoName = m.group(1);
-                int major = Integer.parseInt(m.group(2)); 
-                int minor = Integer.parseInt(m.group(3));
-                
-                OntologyVersion ov = new OntologyVersion(major, minor, ontoFile);
-
-                try {
-                    Model ontology = ModelFactory.createDefaultModel().read(new FileReader(ontoFile), base, "TURTLE");                
-                    checkOntologyDefinition(ontoName, major, minor, ontology);
-                    Set<String> definedResources = extractDefinedResources(ontology, ontoName);
-                    
-                    if(!ontologyVersions.containsKey(ontoName)) {
-                        ontologyVersions.put(ontoName, new TreeSet<OntologyVersion>());
-                    }
-                    ontologyVersions.get(ontoName).add(ov);
-                    for(String resource : definedResources) {
-                        String name = definingOntologies.get(resource);
-                        if(!ontoName.equals(name)) {
-                            LOG.log(Level.WARNING, "error: resource with URI <" + resource + "> is already defined in ontology  " + name);
-                        }
-                        definingOntologies.put(resource, ontoName);
-                    }
-                    referencedResources.addAll(extractReferencedResources(ontology, ontoName));
-                    System.out.println("ok ontology version " + ontoName + " " + major + " " + minor);
-                } catch (Exception e) {
-                    LOG.warning("Error while parsing file " + ontoFileName + ": " + e.getMessage());
-                    continue; 
+            });
+            
+            System.out.println("###################");
+            System.out.println("ontologies: ");
+            ontologyVersions.keySet().forEach(new Consumer<String>() {
+                @Override
+                public void accept(String t) {
+                    System.out.println(t);
                 }
-            }
-            // checking every referenced resources is defined
-            for(String uri : referencedResources) {
-                if(!definingOntologies.containsKey(uri)) {
-                    LOG.log(Level.WARNING, "resource with URI <" + uri + "> is never defined.");
-                }
-            }
+            });
+            
+            
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "error while initializing app ", ex);
             throw new RuntimeException("error while initializing app ", ex);
         }
         checkDependencies();
     }
+    
+    public void analyse(File dir) {
+        Pattern p = Pattern.compile("^([a-zA-Z]*)-([0-9]+)\\.([0-9]+)\\.ttl$");
+
+        for (File ontoFile : dir.listFiles()) {
+            if(ontoFile.isDirectory()) {
+                analyse(ontoFile);
+                continue;
+            }
+            String ontoFileName = ontoFile.getName();
+            System.out.println("testing "+ontoFileName); 
+
+            // any file whose name does not conform to NAME-MAJOR.MINOR.ttl triggers a warning
+            Matcher m = p.matcher(ontoFileName);
+            boolean b = m.matches(); 
+            // if matched
+            if (!b) {
+                LOG.warning("File " + ontoFileName + " does not match the pattern NAME-MAJOR.MINOR.ttl");
+                continue;
+            }
+            String ontoName = m.group(1);
+            int major = Integer.parseInt(m.group(2)); 
+            int minor = Integer.parseInt(m.group(3));
+
+            OntologyVersion ov = new OntologyVersion(major, minor, ontoFile, ontoName);
+
+            try {
+                Model ontology = ModelFactory.createDefaultModel().read(new FileReader(ontoFile), base, "TURTLE");                
+                checkOntologyDefinition(ontoName, major, minor, ontology);
+                Set<String> definedResources = extractDefinedResources(ontology, ontoName);
+
+                if(!ontologyVersions.containsKey(ontoName)) {
+                    ontologyVersions.put(ontoName, new TreeSet<OntologyVersion>());
+                }
+                ontologyVersions.get(ontoName).add(ov);
+                for(String resource : definedResources) {
+                    if(!definingOntologies.containsKey(resource)) {
+                        definingOntologies.put(resource, new TreeSet<OntologyVersion>());
+                    }
+                    definingOntologies.get(resource).add(ov);
+                }
+                referencedResources.addAll(extractReferencedResources(ontology, ontoName));
+                System.out.println("ok ontology version " + ontoName + " " + major + " " + minor);
+            } catch (Exception e) {
+                LOG.warning("Error while parsing file " + ontoFileName + ": " + e.getMessage());
+                continue; 
+            }
+        }
+    }
 
     public String ontologyForResource(String resource) {
-        return definingOntologies.get(resource);
+        TreeSet<OntologyVersion> versions = definingOntologies.get(resource);
+        if(versions == null || versions.isEmpty()) {
+            LOG.warning("list of defining ontologies is null or empty for "+resource);
+            return "";
+        }
+        return versions.last().getName();
     }
     
     public OntologyVersion getVersion(String ontoName) {

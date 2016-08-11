@@ -27,7 +27,7 @@
 @base <https://w3id.org/seas/>.
 
 seas:WeatherOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "seas-WeatherOntology ontology"@en ;
+  dc:title "SEAS-WeatherOntology ontology"@en ;
   dc:description "The Seas Weather vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
   dc:issued "2015-10-10"^^xsd:date ;
   dc:modified "2016-05-26"^^xsd:date ;

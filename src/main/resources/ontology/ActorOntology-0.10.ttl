@@ -21,6 +21,7 @@
 @prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix gr: <http://purl.org/goodrelations/v1#>.
 
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
@@ -28,7 +29,7 @@
 
 #Core roles and activities (for devices and systems), this is related to actor module and could specialize it but now here defined as new vocabulary
 seas:ActorOntology a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-ActorOntology ontology"@en ;
+  dc:title "SEAS-ActorOntology ontology"@en ;
   dc:description "The Seas Actor Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
   dc:issued "2016-01-26"^^xsd:date ;
   dc:modified "2016-07-21"^^xsd:date ;
@@ -143,11 +144,3 @@ seas:Profile a owl:Class ;
   rdfs:subPropertyOf seas:contains;
   rdfs:range seas:Profile;
   rdfs:isDefinedBy seas:ActorOntology .  
-
-
-
-
-
-sell
-buy
-cut

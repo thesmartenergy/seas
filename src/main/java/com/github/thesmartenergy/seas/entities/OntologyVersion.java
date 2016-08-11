@@ -26,11 +26,13 @@ public class OntologyVersion implements Comparable<OntologyVersion> {
     final int major;
     final int minor;
     final File file;
+    final String name;
 
-    public OntologyVersion(int major, int minor, File file) {
+    public OntologyVersion(int major, int minor, File file, String name) {
         this.major = major;
         this.minor = minor;
         this.file = file;
+        this.name = name;
     }
 
     public int getMajor() {
@@ -45,6 +47,11 @@ public class OntologyVersion implements Comparable<OntologyVersion> {
         return file;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    
     @Override
     public int compareTo(OntologyVersion o) {
         if (major < o.major) {

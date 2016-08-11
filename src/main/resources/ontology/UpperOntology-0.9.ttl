@@ -27,7 +27,7 @@
 @base <https://w3id.org/seas/>.
 
 seas:UpperOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "seas-UpperOntology ontology"@en ;
+  dc:title "SEAS-UpperOntology ontology"@en ;
   dc:description "The Seas Upper vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project. This module presents abstract meta level concepts that could link SEAS model to exsisting upper ontologies and may help to clarify conceptually and align their definitions. These are not yet formalized fully and can contain logical erros."@en ;
   dc:issued "2015-10-10"^^xsd:date ;
   dc:modified "2016-05-26"^^xsd:date ;

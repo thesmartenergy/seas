@@ -28,12 +28,13 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix qb: <http://purl.org/linked-data/cube#>.
 @prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
 
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
 seas:StatisticsVocabulary a owl:Ontology , voaf:Vocabulary ;
-  dc:title "seas-Statistics vocabulary."@en ;
+  dc:title "SEAS-Statistics vocabulary."@en ;
   dc:description """This ontology defines common evaluation interpretation concepts for statistics."""@en ;
   dc:issued "2016-07-21"^^xsd:date ;
   dc:modified "2016-07-21"^^xsd:date ;
@@ -55,7 +56,7 @@ seas:stat a skos:ConceptScheme, sdmx:CodeList;
   skos:definition seas:stat ;
   rdfs:seeAlso seas:Stat ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary .
+  rdfs:isDefinedBy seas:StatisticsVocabulary .
 
 seas:Stat a rdfs:Class, owl:Class;
   rdfs:subClassOf skos:Concept ;
@@ -63,7 +64,7 @@ seas:Stat a rdfs:Class, owl:Class;
   rdfs:comment """This code list enables to interpret the given value with respect to the Statistical distribution of the actual observed quantity."""@en;
   rdfs:seeAlso seas:stat ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary . 
+  rdfs:isDefinedBy seas:StatisticsVocabulary . 
 
 seas:stat-Minimum a skos:Concept, seas:EvaluationInterpretationConcept, seas:Stat;
   rdfs:label "Minimum"@en ;
@@ -74,7 +75,7 @@ seas:stat-Minimum a skos:Concept, seas:EvaluationInterpretationConcept, seas:Sta
   skos:topConceptOf seas:stat;
   skos:inScheme   seas:stat;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary . 
+  rdfs:isDefinedBy seas:StatisticsVocabulary . 
 
 seas:stat skos:hasTopConcept seas:stat-Minimum .
 
@@ -87,7 +88,7 @@ seas:stat-Maximum a skos:Concept, seas:EvaluationInterpretationConcept, seas:Sta
   skos:topConceptOf seas:stat;
   skos:inScheme   seas:stat;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary . 
+  rdfs:isDefinedBy seas:StatisticsVocabulary . 
 
 seas:stat skos:hasTopConcept seas:stat-Maximum .
 
@@ -100,7 +101,7 @@ seas:stat-Mean a skos:Concept, seas:EvaluationInterpretationConcept, seas:Stat;
   skos:topConceptOf seas:stat;
   skos:inScheme   seas:stat;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary . 
+  rdfs:isDefinedBy seas:StatisticsVocabulary . 
 
 seas:stat skos:hasTopConcept seas:stat-Mean .
 
@@ -113,7 +114,7 @@ seas:stat-Median a skos:Concept, seas:EvaluationInterpretationConcept, seas:Stat
   skos:topConceptOf seas:stat;
   skos:inScheme   seas:stat;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary .
+  rdfs:isDefinedBy seas:StatisticsVocabulary .
 
 seas:stat skos:hasTopConcept seas:stat-Mean .
 
@@ -126,7 +127,7 @@ seas:stat-StandardDeviation a skos:Concept, seas:EvaluationInterpretationConcept
   skos:topConceptOf seas:stat;
   skos:inScheme   seas:stat;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary .
+  rdfs:isDefinedBy seas:StatisticsVocabulary .
 
 seas:stat skos:hasTopConcept seas:stat-StandardDeviation .
 
@@ -139,7 +140,7 @@ seas:stat-Quartile a skos:Concept, seas:EvaluationInterpretationConcept, seas:St
   skos:topConceptOf seas:stat;
   skos:inScheme   seas:stat;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary .
+  rdfs:isDefinedBy seas:StatisticsVocabulary .
 
 seas:stat skos:hasTopConcept seas:stat-Quartile .
 
@@ -152,7 +153,7 @@ seas:stat-Decile a skos:Concept, seas:EvaluationInterpretationConcept, seas:Stat
   skos:topConceptOf seas:stat;
   skos:inScheme   seas:stat;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary .
+  rdfs:isDefinedBy seas:StatisticsVocabulary .
 
 seas:stat skos:hasTopConcept seas:stat-Decile .
 
@@ -165,7 +166,7 @@ seas:stat-Percentile a skos:Concept, seas:EvaluationInterpretationConcept, seas:
   skos:topConceptOf seas:stat;
   skos:inScheme   seas:stat;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary .
+  rdfs:isDefinedBy seas:StatisticsVocabulary .
 
 seas:stat skos:hasTopConcept seas:stat-Percentile .
 
@@ -175,5 +176,5 @@ seas:rank a owl:DatatypeProperty;
   rdfs:domain seas:Evaluation ; 
   rdfs:range xsd:integer ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:EvaluationInterpretationVocabulary ;
+  rdfs:isDefinedBy seas:StatisticsVocabulary ;
      

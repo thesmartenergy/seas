@@ -30,7 +30,7 @@
 @base <https://w3id.org/seas/>.
 
 seas:AreaOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "seas-Area ontology"@en ;
+  dc:title "SEAS-Area ontology"@en ;
   dc:description "The Seas Building BIM related vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project. This ontology is targeted for defining structure of buildings (or more general facilities) and zones related to control and measurment with links to various BIM (Building Information Model) related standards."@en ;
   dc:issued "2016-07-21"^^xsd:date ;
   dc:modified "2016-07-21"^^xsd:date ;
@@ -51,51 +51,60 @@ seas:Area a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:AreaOntology .
 
-
-seas:areaConnectedTo a owl:ObjectProperty , owl:SymmetricProperty ;
-  rdfs:label "area connected to"@en ;
-  rdfs:comment """Links an area to another area it is connected to. The two areas may be able to exchange people, heat, light radiation, sound."""@en ;
-  rdfs:subPropertyOf seas:connectedTo ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SystemOntology .
-
-# door openings
-# window opening
-# window closing opening
-# 
-
-
 seas:crossableConnectionTo a owl:ObjectProperty , owl:SymmetricProperty ;
   rdfs:label "area connected to"@en ;
-  rdfs:comment """Links an area to another area it is connected to. The two areas may be able to exchange people, heat, light radiation, sound."""@en ;
+  rdfs:comment """Links an area to another area it is connected to. The two areas may be able to exchange physical things."""@en ;
   rdfs:subPropertyOf seas:connectedTo ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SystemOntology .
-
-
-seas:soundConnectedTo a owl:ObjectProperty , owl:SymmetricProperty ;
-  rdfs:label "area connected to"@en ;
-  rdfs:comment """Links an area to another area it is connected to. The two areas may be able to exchange people, heat, light radiation, sound."""@en ;
-  rdfs:subPropertyOf seas:connectedTo ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SystemOntology .
-
-seas:soundConnectedTo a owl:ObjectProperty , owl:SymmetricProperty ;
-  rdfs:label "area connected to"@en ;
-  rdfs:comment """Links an area to another area it is connected to. The two areas may be able to exchange people, heat, light radiation, sound."""@en ;
-  rdfs:subPropertyOf seas:connectedTo ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SystemOntology .
-
-
-
-
+  rdfs:isDefinedBy seas:AreaOntology .
 
 seas:subAreaOf a owl:ObjectProperty ;
   rdfs:label "sub area of"@en ;
   rdfs:comment "Links an area to another it is contained in."@en ;
   rdfs:subPropertyOf seas:subSystemOf ; 
+  rdfs:domain seas:Area ;
+  rdfs:range seas:Area ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SystemOntology .
+  rdfs:isDefinedBy seas:AreaOntology .
 
+seas:AreaOpening a owl:Class ;
+  rdfs:label "Area Opening"@en ;
+  rdfs:comment """The class of connections between areas."""@en ;
+  rdfs:subClassOf seas:Connection ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom seas:Area ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaOntology .
+
+
+seas:area a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "area" ;
+  rdfs:comment """Area is the area of the Area."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:Area ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaOntology .
+
+seas:population a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "population" ;
+  rdfs:comment """Population is the population of the Area."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:Area ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaOntology .
+
+seas:humidity a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "humidity" ;
+    rdfs:comment """Humidity describes how humid the Area is."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:Area ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaOntology .
+
+# door openings
+# window opening
+# window closing opening
+# 
 

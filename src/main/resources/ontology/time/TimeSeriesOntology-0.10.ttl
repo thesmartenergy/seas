@@ -1,0 +1,172 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .              #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .      #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .           #XML standard datatypes
+@prefix dc: <http://purl.org/dc/terms/> .     #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix time: <http://www.w3.org/2006/time#>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:TimeSeriesOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "SEAS-TimeSeriesOntology ontology"@en ;
+  dc:description """The SEAS-TimeSeries ontology extends the W3C Data Cube Vocabulary and new means for organizing observations in RDF Lists. 
+  A DataStructureDefinition defines 
+
+   the notion of TimeSeries, as suggested in section 5.3 of the recommendation:
+
+  "In statistical applications it is common to work with slices in which a single dimension is left unspecified. In particular, to refer to such slices in which the single free dimension is time as Time Series and to refer slices along non-time dimensions as Sections. Within the Data Cube vocabulary we allow arbitrary dimensionality slices and do not give different names to particular types of slice. Such sub-classes of slice could be added in extension vocabularies."
+
+   The SEAS-TimeSeries ontology extends the definition of Slices where one is seas:TimeSeries, which refer to slices in which the single free dimension is time. """@en ;
+  dc:issued "2016-03-17"^^xsd:date ;
+  dc:modified "2016-05-26"^^xsd:date ;
+  dc:author <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
+  dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/TimeSeriesOntology/0.10> ;
+  owl:versionInfo "v0.10" .
+  
+
+seas:TimeSeriesSpecification a owl:Class ;
+  rdfs:label "Time Series Specification"@en ;
+  rdfs:comment """The class of Time Series Specification, a sub class of qb:SliceKey which provides metadata that enable to infer the values for the time dimension, in each of the individual observations in the series. For instance, an instance of Time Series Specification may specify that every individual observation is instantaneous."""@en ;
+  rdfs:subClassOf qb:SliceKey ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+
+seas:time a qb:DimensionProperty, rdf:Property , owl:ObjectProperty ;
+  rdfs:label "time"@en ;
+  rdfs:comment """The period of time or point in time to which the measured observation refers."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+qb:Attachable rdfs:subClassOf [ owl:onProperty seas:time ; owl:allValuesFrom time:TemporalEntity ] .
+
+seas:TimeSeries a owl:Class ;
+  rdfs:label "Time Series"@en ;
+  rdfs:comment """The class of Data Cube time series, i.e., slices in which the single free dimension is seas:time.  
+
+  The seas:time dimension has for range a time:TemporalEntity, from the OWL-time ontology.
+
+  The series additionaly provides metadata that enable to infer the value for the time dimension, in each of the individual observations or slices."""@en ;
+  rdfs:subClassOf qb:Slice ;
+  rdfs:equivalentClass [ owl:onProperty qb:sliceStructure ; owl:someValuesFrom seas:TimeSeriesSpecification ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+seas:list a owl:AnnotationProperty ;
+  rdfs:label "list"@en ;
+  rdfs:comment "Specifies the actual RDF list of individual observations in the series."@en ;
+  rdfs:domain seas:DataSet ;
+  rdfs:range rdf:List ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+
+seas:firstBeginning a owl:DatatypeProperty ;
+      rdfs:label "first beginning" ;
+      rdfs:comment "Specifies the beginning instant of the first individual observation in the series. Expressed as a xsd:dateTime."@en ;
+      rdfs:domain seas:TimeSeriesSpecification ;
+      rdfs:range xsd:dateTime ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+seas:firstDuration a owl:DatatypeProperty ;
+      rdfs:label "first duration" ;
+      rdfs:comment "Specifies the duration of the first individual observation in the series. Expressed as a xsd:duration."@en ;
+      rdfs:domain seas:TimeSeriesSpecification ;
+      rdfs:range xsd:duration ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:TimeSeriesOntology .
+
+seas:firstEnd a owl:DatatypeProperty ;
+      rdfs:label "first end" ;
+      rdfs:comment "Specifies the end instant of the first individual observation in the series. Expressed as a xsd:dateTime."@en ;
+      rdfs:domain seas:TimeSeriesSpecification ;
+      rdfs:range xsd:dateTime ;
+      rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+
+seas:SameBeginningSeries a owl:Class ;
+      rdfs:label "Same beginning series" ;
+      rdfs:comment "Specifies that the beginning of each individual observation in the series is equal."@en ;
+       rdfs:subClassOf seas:TimeSeries ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+seas:SameDurationSeries a owl:Class ;
+      rdfs:label "Same duration series" ;
+      rdfs:comment "Specifies that the duration of each individual observation in the series is equal."@en ;
+      rdfs:subClassOf seas:TimeSeries ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+seas:SameEndSeries a owl:Class ;
+      rdfs:label "Same end series" ;
+      rdfs:comment "Specifies that the end of each individual observation in the series is equal."@en ;
+      rdfs:subClassOf seas:TimeSeries ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+
+seas:consecutiveBeginningOffset a owl:DatatypeProperty ;
+      rdfs:label "consecutive beginning offset" ;
+      rdfs:comment "Specifies the offset between the beginning of an individual observation in the series, and the beginning of the consecutive individual observation in the series. Expressed as a xsd:dateTime."@en ;
+      rdfs:domain seas:TimeSeriesSpecification ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+seas:timeStep a owl:DatatypeProperty ;
+      rdfs:label "time step" ;
+      rdfs:comment "Specifies the step between the duration of an individual observation in the series, and the duration of the consecutive individual observation in the series. Expressed as a xsd:duration."@en ;
+      rdfs:domain seas:TimeSeriesSpecification ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+seas:consecutiveEndOffset a owl:DatatypeProperty ;
+      rdfs:label "consecutive end offset" ;
+      rdfs:comment "Specifies the offset between the end of an individual observation in the series, and the end of the consecutive individual observation in the series. Expressed as a xsd:dateTime."@en ;
+      rdfs:domain seas:TimeSeriesSpecification ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+
+seas:InstantaneousSeries a owl:Class ;
+      rdfs:label "Instantaneous series" ;
+      rdfs:comment "Specifies that the time dimension of each individual observation in the series is an Instant."@en ;
+      rdfs:subClassOf seas:SameDurationSeries ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
+seas:MeetingSeries a owl:Class ;
+      rdfs:label "MeetingSeries" ;
+      rdfs:comment "Specifies that the time dimension of each individual observation in the series meet, in the sens of the Allen relations. i.e., the end of each individual observation in the series is equal to the beginning of the consecutive observation in the series."@en ;
+      rdfs:subClassOf seas:TimeSeriesSpecification ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:TimeSeriesOntology . 
+
