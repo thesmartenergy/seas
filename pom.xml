@@ -4,12 +4,12 @@
 
     <groupId>com.github.thesmartenergy</groupId>
     <artifactId>seas</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>SEAS</name>
     <description>The source of the website that exposes the SEAS knowledge model, http://w3id.org/seas/</description>
-    <url>http://w3id.org/seas/</url>
+    <url>https://w3id.org/seas/</url>
     <inceptionYear>2016</inceptionYear>
     
     <developers>
@@ -28,6 +28,14 @@
     
     <contributors>
         <contributor>
+            <name>Antoine Zimmermann</name>            
+            <email>antoine.zimmermann@emse.fr</email>
+            <url>http://www.emse.fr/~zimmermann/</url>
+            <organization>Ecole des mines de Saint-Etienne</organization>
+            <organizationUrl>http://www.mines-stetienne.fr/</organizationUrl>
+            <timezone>UTC+01:00</timezone>
+        </contributor>
+        <contributor>
             <name>Jarmo Kalaoja</name>            
             <email>jarmo.kalaoja@vtt.fi</email>
             <url>https://www.linkedin.com/in/jarmo-kalaoja-68558380</url>
@@ -38,33 +46,21 @@
                 <picUrl>http://gravatar.com/userimage/xxx</picUrl>
             </properties>        
         </contributor>
-        <contributor>
-            <name>Hannu Järvinen</name>            
-            <email>hannu@asema.com</email>
-            <url>https://www.linkedin.com/in/hannu-j%C3%A4rvinen-532b563</url>
-            <organization>Asema Electronics</organization>
-            <organizationUrl>http://asema.com/</organizationUrl>
-            <timezone>UTC+02:00</timezone>
-            <properties>
-                <picUrl>http://gravatar.com/avatar/8c8de565769a4b5b2136df53d76b2533</picUrl>
-            </properties>        
-        </contributor>
-        <contributor>
-            <name>Antoine Zimmermann</name>            
-            <email>antoine.zimmermann@emse.fr</email>
-            <url>http://www.emse.fr/~zimmermann/</url>
-            <organization>Ecole des mines de Saint-Etienne</organization>
-            <organizationUrl>http://www.mines-stetienne.fr/</organizationUrl>
-            <timezone>UTC+01:00</timezone>
-        </contributor>
     </contributors>
-    
 
     <organization>
         <name>ITEA 12004 SEAS Project</name>
         <url>https://itea3.org/project/seas.html</url>
     </organization>
 
+
+    <scm>
+        <connection>scm:git:https://${repository.domain}/${repository.user}/${repository.name}.git</connection>
+        <url>https://${repository.domain}/${repository.user}/${repository.name}</url>
+        <developerConnection>scm:git:https://${repository.domain}/${repository.user}/${repository.name}.git
+        </developerConnection>
+    </scm>
+    
     <issueManagement>
         <url>http://${repository.domain}/${repository.user}/${repository.name}/issues</url>
         <system>GitHub Issues</system>
@@ -78,20 +74,19 @@
     </licenses>
 
     <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <jersey.version>2.22.2</jersey.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jdk.version>1.7</jdk.version>
+        <websiteName>seas</websiteName>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-                
-        <!-- ========================  -->
-        <!--    SITE DOC PROPERTIES    -->
-        <!-- ========================  -->
-
+        <jdk.version>1.8</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>        
+        <project.scm.id>git</project.scm.id>
+        <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
         <repository.domain>github.com</repository.domain>
         <repository.user>thesmartenergy</repository.user>
         <repository.name>seas</repository.name>
+        <jersey.version>2.22.2</jersey.version>
+        <ontop.version>1.0-SNAPSHOT</ontop.version>
     </properties>
     
     <dependencyManagement>
@@ -110,7 +105,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
-            <version>6.0</version>
+            <version>7.0</version>
             <scope>provided</scope>
         </dependency>
         
@@ -157,13 +152,12 @@
             <artifactId>jersey-cdi1x</artifactId>
             <scope>provided</scope>
         </dependency>
-
+        
         <dependency>
             <groupId>com.github.thesmartenergy</groupId>
-            <artifactId>sparql-generate-jena</artifactId>
-            <version>0.9</version>
+            <artifactId>ontop-jersey</artifactId>
+            <version>${ontop.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>junit</groupId>
@@ -175,14 +169,59 @@
 
 
     <build>
-        <finalName>${artifactId}</finalName>
+        <finalName>seas</finalName>
         <pluginManagement>
             <plugins>
-                <!-- ========================  -->
-                <!--    SITE LIFECYCLE         -->
-                <!-- ========================  -->
-
-                <!-- configure attach-descriptor  -->
+                <plugin>
+                    <groupId>org.apache.rat</groupId>
+                    <artifactId>apache-rat-plugin</artifactId>
+                    <version>0.12</version>
+                    <executions>
+                        <execution>
+                            <id>rat-checks</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <excludeSubProjects>true</excludeSubProjects>
+                        <excludes>
+                            <exclude>nbactions.xml</exclude>
+                            <exclude>**/*.html</exclude>
+                            <exclude>**/*.md</exclude>
+                            <exclude>**/*.xml</exclude>
+                            <exclude>**/*.properties</exclude>
+                            <exclude>**/*.wsdl</exclude>
+                            <exclude>**/*.jsp</exclude>
+                            <exclude>**/*.xhtml</exclude>
+                            <exclude>**/*.txt</exclude>
+                            <exclude>**/*.md</exclude>
+                            <exclude>**/nbproject/*</exclude>
+                            <exclude>**/log4j.properties</exclude>
+                            <exclude>**/log4j-testing.properties</exclude>
+                            <exclude>**/*.classpath</exclude>
+                            <exclude>**/target/**/*</exclude>
+                            <exclude>**/dependency-reduced-pom.xml</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.thesmartenergy</groupId>
+                    <artifactId>ontop-maven-plugin</artifactId>
+                    <version>${ontop.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>generate-resources</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <siteOutputDirectory>target\${project.build.finalName}</siteOutputDirectory>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
@@ -198,6 +237,7 @@
                     </executions>
                     <configuration>
                         <attach>true</attach>
+                        <siteDirectory>src/site</siteDirectory>
                         <outputDirectory>target\${project.build.finalName}</outputDirectory>
                         <reportPlugins>
                             <plugin>
@@ -221,77 +261,27 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <!-- Run the RAT Plugin -->
             <plugin>
                 <groupId>org.apache.rat</groupId>
                 <artifactId>apache-rat-plugin</artifactId>
-                <version>0.11</version>
-                <executions>
-                    <execution>
-                        <id>rat-checks</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <excludeSubProjects>true</excludeSubProjects>
-                    <excludes>
-                        <!--
-                        Javadoc add-ons files are required to be simple and our javadoc configuration
-                        will ensure appropriate license and copyright statements are inserted
-                        into generated documentation anyway so no need to put license statements in these
-                        files
-                        -->
-                        <exclude>nbactions.xml</exclude>
-                        <exclude>**/*.html</exclude>
-                        <exclude>**/*.md</exclude>
-                        <exclude>**/*.xml</exclude>
-                        <exclude>**/*.properties</exclude>
-                        <exclude>**/*.wsdl</exclude>
-                        <exclude>**/*.jsp</exclude>
-                        <exclude>**/*.xhtml</exclude>
-                        <!--
-                        Text and Markdown files are typically used only for documentation purposes
-                        and license declarations are usually spurious in these files since often they
-                        will refer to the LICENSE/NOTICE for users to find the actual licenses
-                        -->
-                        <exclude>**/*.txt</exclude>
-                        <exclude>**/*.md</exclude>
-                        <exclude>**/nbproject/*</exclude>
-                        <exclude>**/log4j.properties</exclude>
-                        <exclude>**/log4j-testing.properties</exclude>
-                        <!-- Cached classpath for commands - autogenerated -->
-                        <exclude>**/*.classpath</exclude>
-                        <!-- Exclude anything created during the build (plugin generated files) ->-->
-                        <exclude>**/target/**/*</exclude>
-                        <!-- MSHADE-124 -->
-                        <exclude>**/dependency-reduced-pom.xml</exclude>
-                    </excludes>
-                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.thesmartenergy</groupId>
+                <artifactId>ontop-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                    <compilerArguments>
-                        <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
-                </configuration>
+                <artifactId>maven-site-plugin</artifactId>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1.1</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
-            </plugin>
-            <plugin>
+            </plugin>-->
+<!--            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.1</version>
@@ -308,24 +298,15 @@
                                 <artifactItem>
                                     <groupId>javax</groupId>
                                     <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>6.0</version>
+                                    <version>7.0</version>
                                     <type>jar</type>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             
-            <!-- ========================  -->
-            <!--    SITE LIFECYCLE         -->
-            <!-- ========================  -->
-
-            <!-- attach-descriptor  -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-            </plugin>
 
         </plugins>
         
