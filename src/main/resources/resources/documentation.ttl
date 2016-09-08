@@ -1,0 +1,40 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl:  <http://www.w3.org/2002/07/owl#>.
+@prefix pep: <https://w3id.org/seas/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix voaf: <http://purl.org/vocommons/voaf#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix rdfp: <https://w3id.org/rdfp/>.
+
+@prefix seas: <https://w3id.org/seas/>.
+
+@base <https://w3id.org/seas/>.
+
+
+<documentation> a foaf:Document ;
+  dc:title "Documentation presentation for ontologies."@en ;
+  dc:description """This document describes documentation presentation for ontologies.."""@en ;
+  dc:issued "2016-09-05"^^xsd:date ;
+  dc:modified "2016-09-05"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> .
+
+<documentation/html> a rdfp:Presentation ;
+  rdfp:mediaType "text/html" ; 
+  rdfp:loweringRule <documentation/html/loweringRule> ;
+  rdfs:isDefinedBy <documentation> .

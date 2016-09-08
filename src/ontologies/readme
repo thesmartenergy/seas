@@ -1,0 +1,25 @@
+This folder contains the SEAS ontology documents. 
+
+Every ontology document must be a Turtle document, and be named as follows:
+
+NAME-MAJOR.MINOR.ttl
+
+where:
+ - NAME matches ^[a-z]*$
+ - MAJOR matches ^[0-9]+$
+ - MINOR matches ^[0-9]+$
+
+see http://semver.org/ for semantic versioning specification
+
+The void ontologyName is used for the ontology document that imports all of the ontologies.
+
+Every ontology must contain the following triples:
+
+<https://w3id.org/seas/NAME> a owl:Ontology ;
+  owl:versionIRI <https://w3id.org/seas/NAME/MAJOR.MINOR> ;
+  owl:versionInfo "vMAJOR.MINOR" .
+
+For every other resource in the ontology, it must be specified that it is defined by the ontology.
+
+<https://w3id.org/seas/SOME_RESOURCE> rdfs:definedBy <https://w3id.org/seas/NAME> .
+

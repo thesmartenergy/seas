@@ -1,0 +1,177 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . #Resource data framework
+@prefix owl: <http://www.w3.org/2002/07/owl#> .     #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .   #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .  #XML standard datatypes
+@prefix dc: <http://purl.org/dc/terms/> .  #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .  #A vocabulary for annotating vocabulary descriptions
+@prefix voaf: <http://purl.org/vocommons/voaf#> . #A vocabulary of a friend, for describing relations between linked vocabularies
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> . #Semantic web vocabulary status ontology
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>. # The DOLCE+DnS Ultralite ontology.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:PowerAndEnergySystemsMeasuresVocabulary a owl:Ontology , voaf:Vocabulary ;
+  dc:title "SEAS-PowerAndEnergySystemsMeasures vocabulary."@en ;
+  dc:description """This vocabulary defines common Data Cube measures for the Power and Energy Systems domain."""@en ;
+  dc:issued "2016-07-19"^^xsd:date ;
+  dc:modified "2016-07-19"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
+  dc:contributor <https://w3id.org/people/franciscosilva#> ;
+  dc:contributor <https://w3id.org/people/brigidateixeira#> ;
+  cc:license <http://creativecommons.org/licenses/by/4.0/> ;
+  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/PowerAndEnergySystemsMeasuresVocabulary-0.10> ;
+  owl:versionInfo "v0.10" .
+
+THD I1 % Phase 1 Current, total harmonic distortion
+THD I2 % Phase 2 Current, total harmonic distortion
+THD I3 % Phase 3 Current, total harmonic distortion
+THD U1N % Phase 1 to Neutral Voltage, total harmonic dist.
+THD U2N % Phase 2 to Neutral Voltage, total harmonic dist.
+THD U3N % Phase 3 to Neutral Voltage, total harmonic dist.
+THD U12 % Phase 1 to 2 Voltage, total harmonic distortion
+THD U23 % Phase 2 to 3 Voltage, total harmonic distortion
+THD U31 % Phase 3 to 1 Voltage, total harmonic distortion
+I1 A Phase 1 Current, RMS Amplitude
+I2 A Phase 2 Current, RMS Amplitude
+I3 A Phase 3 Current, RMS Amplitude
+PF1 - Phase 1 Power Factor (+/-)
+PF2 - Phase 2 Power Factor (+/-)
+PF3 - Phase 3 Power Factor (+/-)
+S1 VA Phase 1 Apparent Power
+S2 VA Phase 2 Apparent Power
+S3 VA Phase 3 Apparent Power
+P1 W Phase 1 Active Power (+/-)
+P2 W Phase 2 Active Power (+/-)
+P3 W Phase 3 Active Power (+/-)
+Q1 var Phase 1 Reactive Power (+/-)
+Q2 var Phase 2 Reactive Power (+/-)
+Q3 var Phase 3 Reactive Power (+/-)
+U1N V Phase 1 to Neutral Voltage, RMS Amplitude
+U2N V Phase 2 to Neutral Voltage, RMS Amplitude
+U3N V Phase 3 to Neutral Voltage, RMS Amplitude
+U12 V Phase 1 to Phase 2 Voltage, RMS Amplitude
+U23 V Phase 2 to Phase 3 Voltage, RMS Amplitude
+U31 V Phase 3 to Phase 1 Voltage, RMS Amplitude
+IN A Neutral Current, RMS Amplitude
+ActEner1 Wh/10 Phase 1 imported active energy
+ActEner2 Wh/10 Phase 2 imported active energy
+ActEner3 Wh/10 Phase 3 imported active energy
+
+
+
+
+Time
+Latitude
+Longitude
+Altitude
+PowerBalance
+ConsumptionPower
+ProductionPower
+IncomingPower
+OutgoingPower
+StoragePower
+RatedPowerCharge
+RatedPowerDischarge
+ExternalPowerBalance
+InternalPowerBalance
+TransferringPower
+RatedPower
+EnergyBalance
+IncomingEnergy
+OutgoingEnergy
+ConsumedEnergy
+IncomingEnergy
+ProducedEnergy
+OutgoingEnergy
+StoredEnergy
+RatedEnergy
+RatedEnergy
+ExternalEnergyBalance
+InternalEnergyBalance
+TransferredEnergy
+ElectricResistance
+ElectricReactance
+StateOfHealth
+ChargeEnergyEfficiency
+DischargeEnergyEfficiency
+MaximumStateOfCharge
+MinimumStateOfCharge
+StoredMoney
+IncomingMoney
+OutgoingMoney
+ExternalMoneyBalance
+MoneyPerTimeBalance
+IncomingMoneyPerTime
+OutgoingMoneyPerTime
+        { "facet": "MoneyTransferSum
+        { "facet": "MoneyTransfer
+        { "facet": "IncomingEnergy
+        { "facet": "IncomingPower
+        { "facet": "OutgoingEnergy
+        { "facet": "OutgoingPower
+        { "facet": "PowerBalance
+        { "facet": "EnergyBalance
+        { "facet": "IncomingMoney
+        { "facet": "OutgoingMoney
+        { "facet": "MoneyBalance
+        { "facet": "IncomingMoneyPerTime
+        { "facet": "OutgoingMoneyPerTime
+        { "facet": "MoneyBalancePerTime
+        { "facet": "EnergyOffer
+        { "facet": "IncomingMoney
+        { "facet": "OutgoingMoney
+        { "facet": "MoneyBalance
+        { "facet": "IncomingMoneyPerTime
+        { "facet": "OutgoingMoneyPerTime
+        { "facet": "Brightness
+        { "facet": "MoneyBalancePerTime
+        { "facet": "AirQuality
+        { "facet": "ConfortISO77307stages
+        { "facet": "FeeledTemperature
+        { "facet": "ConsumptionPrice
+        { "facet": "ProductionPrice
+        { "facet": "StoragePrice
+        { "facet": "TransferringPower
+        { "facet": "TransferredEnergy
+        { "facet": "ConsumedWater
+        { "facet": "StoredWater
+        { "facet": "WaterLevel
+        { "facet": "MaximumWaterLevel
+        { "facet": "MinimumWaterLevel
+        { "facet": "ElectricityProductionThreshold
+        { "facet": "PumpActivationThreshold
+        { "facet": "WindSpeed
+        { "facet": "AirPressure
+        { "facet": "AirTemperature
+        { "facet": "AirHumidity
+
+
+
+        
