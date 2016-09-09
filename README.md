@@ -10,7 +10,7 @@ The current SEAS ontologies and the resources are already accessible at their UR
 
  - https://w3id.org/seas/ (the main ontology)
  - https://w3id.org/seas/BuildingOntology  (a module ontology)
- - https://w3id.org/seas/BuildingOntology/0.9  (a module ontology in a specific version)
+ - https://w3id.org/seas/BuildingOntology-0.9  (a module ontology in a specific version)
  - https://w3id.org/seas/EndNode   (a resource defined by the ArchitectureOntology module)
 
 
