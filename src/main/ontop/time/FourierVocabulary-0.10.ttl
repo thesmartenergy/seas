@@ -1,0 +1,164 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .     #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .   #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .  #XML standard datatypes
+@prefix dc: <http://purl.org/dc/terms/> .  #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>. # The DOLCE+DnS Ultralite ontology.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+@prefix time: <http://www.w3.org/2006/time#>.
+
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:FourierVocabulary a owl:Ontology , voaf:Vocabulary ;
+  dc:title "SEAS-Fourier Vocabulary."@en ;
+  dc:description "This ontology defines a set of SKOS Concepts and ConceptSchemes for code lists. These concepts are used as metadata on instances of seas:Evaluation and enable to interpret evaluations of quantifiable properties."@en ;
+  dc:issued "2016-07-05"^^xsd:date ;
+  dc:modified "2016-07-24"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/FourierVocabulary-0.10> ;
+  owl:versionInfo "v0.10" . 
+
+
+seas:PeriodicProperty a owl:Class ;
+  rdfs:label "Periodic Property"@en ;
+  rdfs:comment "The property is a periodic signal."@en ;
+  rdfs:subClassOf [
+    owl:intersectionOf (
+      seas:Property 
+      rdfs:subClassOf [ 
+        owl:onProperty seas:Evaluation ; 
+        owl:allValuesFrom [ 
+          owl:onProperty seas:interpretedAs ; 
+          owl:someValuesFrom seas:Fourier ] ] ) ].
+
+# code lists
+
+
+# CL_FOURIER
+seas:fourier a skos:ConceptScheme, sdmx:CodeList;
+  rdfs:label "Fourier - codelist scheme"@en;
+  skos:prefLabel "Fourier - codelist scheme"@en;
+  skos:notation "CL_FOURIER";
+  rdfs:comment """This code list enables to interpret the given value with respect to the Fourier-decomposition of the actual observed signal."""@en;
+  skos:note """This code list enables to interpret the given value with respect to the Fourier-decomposition of the actual observed signal."""@en;
+  skos:definition seas:fourier ;
+  rdfs:seeAlso seas:Fourier ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FourierVocabulary .
+
+seas:Fourier a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Fourier - codelist class"@en;
+  rdfs:comment """This code list enables to interpret the given value with respect to the Fourier-decomposition of the actual observed signal."""@en;
+  rdfs:seeAlso seas:fourier ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FourierVocabulary . 
+
+seas:fourier-exact a skos:Concept, seas:EvaluationInterpretationConcept, seas:Fourier;
+  rdfs:label "exact"@en ;
+  skos:prefLabel "exact"@en ;
+  skos:notation "exact" ;
+  rdfs:comment """exact means that the value is the exact value of the periodic quantity at the context Fourier."""@en ;
+  skos:definition """exact means that the value is the exact value of the periodic quantity at the context Fourier."""@en ;
+  skos:topConceptOf seas:fourier;
+  skos:inScheme   seas:fourier;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FourierVocabulary . 
+
+seas:fourier skos:hasTopConcept seas:fourier-THD .
+
+seas:fourier-Frequency a skos:Concept, seas:EvaluationInterpretationConcept, seas:Fourier;
+  rdfs:label "Frequency"@en ;
+  skos:prefLabel "Frequency"@en ;
+  skos:notation "Freq" ;
+  rdfs:comment """Frequency means that the given value measures the frequency of the periodic signal."""@en ;
+  skos:definition """Frequency means that the given value measures the frequency of the periodic signal."""@en ;
+  skos:topConceptOf seas:fourier;
+  skos:inScheme   seas:fourier;
+  seas:dimension seas:frequency ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FourierVocabulary . 
+
+seas:fourier skos:hasTopConcept seas:fourier-Frequency .
+
+seas:fourier-peak a skos:Concept, seas:EvaluationInterpretationConcept, seas:Fourier;
+  rdfs:label "Peak"@en ;
+  skos:prefLabel "Peak"@en ;
+  skos:notation "Peak" ;
+  rdfs:comment """Peak means that the given value measures the Peak of the periodic signal."""@en ;
+  skos:definition """Peak means that the given value measures the Peak of the periodic signal."""@en ;
+  skos:topConceptOf seas:fourier;
+  skos:inScheme   seas:fourier;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FourierVocabulary . 
+
+seas:fourier skos:hasTopConcept seas:fourier-Frequency .
+
+seas:fourier-THD a skos:Concept, seas:EvaluationInterpretationConcept, seas:Fourier;
+  rdfs:label "Total Harmonic Distortion"@en ;
+  skos:prefLabel "Total Harmonic Distortion"@en ;
+  skos:notation "THD" ;
+  rdfs:comment """THD means that the given value measures the total harmonic distortion of the periodic signal."""@en ;
+  skos:definition """THD means that the given value measures the total harmonic distortion of the periodic signal."""@en ;
+  skos:topConceptOf seas:fourier;
+  skos:inScheme   seas:fourier;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FourierVocabulary . 
+
+seas:fourier skos:hasTopConcept seas:fourier-THD .
+
+seas:fourier-RMS a skos:Concept, seas:EvaluationInterpretationConcept, seas:Fourier;
+  rdfs:label "RMS Amplitude"@en ;
+  skos:prefLabel "RMS Amplitude"@en ;
+  skos:notation "RMS" ;
+  rdfs:comment """RMS means that the given value measures the Root Mean Square amplitude of the periodic signal."""@en ;
+  skos:definition """RMS means that the given value measures the Root Mean Square amplitude of the periodic signal."""@en ;
+  skos:topConceptOf seas:fourier;
+  skos:inScheme   seas:fourier;
+  seas:dimension seas:frequency ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FourierVocabulary . 
+
+seas:fourier skos:hasTopConcept seas:fourier-RMS .

@@ -15,8 +15,9 @@
  */
 package com.github.thesmartenergy.seas;
 
-import com.github.thesmartenergy.ontop.BaseURI;
-import com.github.thesmartenergy.ontop.DevelopmentBaseURI;
+
+import com.github.thesmartenergy.rdfp.BaseURI;
+import com.github.thesmartenergy.rdfp.DevelopmentBaseURI;
 import javax.enterprise.inject.Produces;
 
 /**

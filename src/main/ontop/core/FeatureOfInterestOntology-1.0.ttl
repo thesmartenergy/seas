@@ -1,0 +1,170 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .     #Owl ontology language
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .   #RDF schema 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .  #XML standard datatypes
+@prefix dc: <http://purl.org/dc/terms/> .  #Dublin Core Metadata Initiative terms
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>. # The DOLCE+DnS Ultralite ontology.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix qudt: <http://qudt.org/1.1/schema/qudt#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:FeatureOfInterestOntology a owl:Ontology , voaf:Vocabulary ;
+  dc:title "SEAS-FeatureOfInterest ontology."@en ;
+  dc:description """This ontology defines feature of interest and their properties, as an extension of the core classes of the SSN ontology (https://www.w3.org/ns/ssn/). It adds two more core classes: feature of interest definition, and property keys.
+
+  A feature of interest is an abstraction of a real world phenomena (thing, person, event, etc). 
+
+  A property is a qualifiable, quantifiable, observable or operable Quality of a feature of interest.
+
+  Property keys are functional properties that are sub properties of ssn:hasProperty. They link a feature of interest to one of its qualities, that can then further be quantified.
+
+  Feature of interest definitions define the set of properties that feature of interest complying with this definition may have."""@en ;
+  dc:description <https://w3id.org/seas/feature_of_interest.png> ;
+  dc:issued "2016-07-01"^^xsd:date ;
+  dc:modified "2016-07-22"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/FeatureOfInterestOntology-1.0> ;
+  owl:versionInfo "v1.0" ;
+  # owl:imports <http://www.w3.org/ns/ssn> ;
+  liner:entailmentRegime seas:FeatureOfInterestOntologyEntailmentRegime . 
+
+# - FeatureOfInterest, PropertyKey, and Property, grounded on SSN.
+
+seas:FeatureOfInterest a owl:Class ;
+  rdfs:label "Feature of Interest"@en ;
+  rdfs:comment """A feature of interest is an abstraction of a real world phenomena (thing, person, event, etc). 
+
+  This concept is equivalent to ssn:FeatureOfInterest, which in the first version of the SSN ontology is defined as a subclass of the union of dul:Event and dul:Object. A dul:Event is any physical, social, or mental process, event, or state. A dul:Object is any physical, social, or mental object, or a substance.
+
+  For instance the following RDF Graph describes a car, which is defined by `<movingthings>`, and `<energy_consumer>`:
+
+```
+  <car/1> a seas:FeatureOfInterest ;
+    seas:definition <movingthings> , <energy_consumer> .
+```
+
+  One may also define the class of cars as the class of things that are defined by `<movingthings>`.
+
+```
+  <car/1> a owl:Class ;
+    rdfs:subClassOf [ owl:onProperty seas:definition ; owl:hasValue <movingthings> ] .
+```
+"""@en ;
+  owl:equivalentClass ssn:FeatureOfInterest ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:FeatureOfInterestOntology .
+
+seas:Property a owl:Class ;
+  rdfs:label "Property"@en ;
+  rdfs:comment """An observable or operable Quality of an Event or Object. That is, not a quality of an abstract entity as is also allowed by DUL's Quality, but rather an aspect of an entity that is intrinsic to and cannot exist without the entity and is observable by a sensor, or operable by an actuator. This concept is equivalent to ssn:Property, which in the first version of the SSN ontology is a subclass of dul:Quality. dul:Quality is any aspect of an Entity (but not a part of it), which cannot exist without that Entity. The Semantic Actuator Network Ontology (SAN) proposes that ssn:Property be a subClass of qudt:QuantityKind. Yet a property may be not measureable and numerically quantifiable. Indeed, it may also be a boolean, or any other kind of quality value (e.g., "UNOPERATED").
+
+  seas:Property extends qudt:Quantity because the evaluated property may not be a Quantity, but have several qualifiable aspects.
+
+  For example, the property may be an alternating current signal. Then several aspects of this signal may be qualified. Examples of such aspects include:
+
+- The average peak value;
+- the minimal operating value of the frequency;
+- the number of occurences of unusual values.
+"""@en ;
+  owl:equivalentClass ssn:Property ;
+  rdfs:subClassOf [ owl:onProperty seas:propertyKey ; owl:cardinality 1 ] ;
+  rdfs:subClassOf [ owl:onProperty seas:isPropertyOf ; owl:cardinality 1 ] ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:FeatureOfInterestOntology .
+
+qudt:Quantity rdfs:subClassOf seas:Property .
+
+seas:PropertyKey a rdfs:Class , owl:Class ;
+  rdfs:label "Property key"@en ;
+  rdfs:comment """The class of components which represent a Property of the feature of interest. That is, not a quality of an abstract entity as is also allowed by DUL's Quality, but rather an aspect of an entity that is intrinsic to and cannot exist without the entity and is observable by a sensor, or operable by an actuator.
+
+  Any instance of seas:PropertyKey is also a functional object property with domain seas:FeatureOfInterest and range seas:Property."""@en ;
+  rdfs:isDefinedBy seas:FeatureOfInterestOntology .
+
+seas:hasProperty a owl:ObjectProperty ;
+  rdfs:label "property"@en ;
+  rdfs:comment """Links a seas:FeatureOfInterest to a seas:Property of that feature. In the first version of the SSN ontology, this concept was defined as a subproperty of dul:hasQuality. dul:hasQuality is a relation between entities and qualities, e.g. 'Dmitri's skin is yellowish'.
+
+  For instance, the following RDF graph describes that feature of interest `<car/1>` has property `<car/1/speed>` .
+
+  `<car/1>` seas:hasProperty `<car/1/speed>` ."""@en ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:Property ;
+  owl:inverseOf seas:isPropertyOf ; 
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:FeatureOfInterestOntology .
+
+ssn:hasProperty rdfs:subPropertyOf seas:hasProperty .
+
+seas:isPropertyOf a owl:ObjectProperty ;
+  rdfs:label "is property of"@en ;
+  rdfs:comment """Links a seas:Property of its one and only seas:FeatureOfInterest. 
+  For instance, `<car/1/speed>` seas:isPropertyOf `<car/1>` . """@en ;
+  rdfs:domain seas:Property ;
+  rdfs:range seas:FeatureOfInterest ;
+  owl:inverseOf seas:hasProperty ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:FeatureOfInterestOntology .
+
+seas:propertyKey a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "property key"@en ;
+  rdfs:comment """Links a seas:Property to its one and only seas:PropertyKey with respect to which it is the property of a feature of interest. For instance, the following RDF graph describes that property `<car/1/speed>` is property `<speed>` of its feature of interest.
+
+```
+  <car/1/speed> seas:propertyKey <speed> .
+```
+"""@en ;
+  rdfs:domain seas:Property ;
+  rdfs:range seas:PropertyKey ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:FeatureOfInterestOntology .
+
+[] a owl:AllDisjointClasses ;
+   owl:members ( seas:FeatureOfInterest seas:Property seas:PropertyKey ) .
+
+#seas:FeatureOfInterestOntologyEntailmentRegime a liner:EntailmentRegime ;
+#  liner:extends liner:OWL2RL ; ## this ontology profile extends the ontology profile liner:RDFS 
+#  liner:extends liner:DataCube ;
+#  liner:axiomaticTriples seas:FeatureOfInterestOntology ;
+#  liner:inferenceRules [
+#    liner:asSPARQLRules (
+#      <https://w3id.org/seas/FeatureOfInterestOntologyRule-1> ) ] .
+#
+#<https://w3id.org/seas/FeatureOfInterestOntologyRule-1> liner:rule """
+#PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+#PREFIX seas: <https://w3id.org/seas/>
+#INSERT { 
+#  ?p a rdf:Property , owl:ObjectProperty , owl:FunctionalProperty ;
+#    rdfs:subPropertyOf seas:hasProperty ;
+#    rdfs:domain seas:FeatureOfInterest ;
+#    rdfs:range seas:Property .
+#} WHERE { 
+#  ?p a seas:PropertyKey .
+#}"""^^<urn:iana:type:application/sparql-rule> . 

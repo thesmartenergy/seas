@@ -1,0 +1,146 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:FailableVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "SEAS-Failable ontology"@en ;
+  dc:description """The SEAS Failable Vocabulary defines property keys and code lists for features of interest operate and/or can can fail."""@en ;
+  dc:issued "2016-07-24"^^xsd:date ;
+  dc:modified "2016-07-24"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+#  owl:imports seas:EvaluationOntology ;
+  owl:versionIRI <https://w3id.org/seas/FailableVocabulary-1.0> ;
+  owl:versionInfo "v1.0" .
+
+
+# properties
+
+seas:failure a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "lenfailuregth" ;
+  rdfs:comment """Failure qualifies the failures of a feature of interest."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FailableVocabulary .
+
+# code lists
+
+# CL_FAIL
+seas:fail a skos:ConceptScheme, sdmx:CodeList;
+  rdfs:label "Fail - codelist scheme"@en;
+  skos:prefLabel "Fail - codelist scheme"@en;
+  skos:notation "CL_FAIL";
+  rdfs:comment """Concepts used to characterise the failure property, and more precisely failures, repairs, replacements, checkups, unavailabilities."""@en;
+  skos:note """Concepts used to characterise the failure property, and more precisely failures, repairs, replacements, checkups, unavailabilities."""@en;
+  skos:definition seas:failure ;
+  rdfs:seeAlso seas:Failure ;
+  vs:term_status "test" ;
+  rdfs:isDefinedBy seas:FailableVocabulary .
+
+seas:Failure a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Failure - codelist class"@en;
+  rdfs:comment """Concepts used to characterise the failure property, and more precisely failures, repairs, replacements, checkups, unavailabilities."""@en;
+  rdfs:seeAlso seas:failure ;
+  vs:term_status "test" ;
+  rdfs:isDefinedBy seas:FailableVocabulary . 
+
+seas:fail-Failure a skos:Concept, seas:EvaluationInterpretationConcept, seas:Quality;
+  rdfs:label "Failure"@en ;
+  skos:prefLabel "Failure"@en ;
+  skos:notation "Failure" ;
+  rdfs:comment """Estimates the failure of the feature of interest (timestamp, duration, cost,...)."""@en ;
+  skos:definition """Numer of failure occurence."""@en ;
+  skos:topConceptOf seas:quality;
+  skos:inScheme   seas:quality;
+  vs:term_status "test" ;
+  rdfs:isDefinedBy seas:FailableVocabulary . 
+
+seas:quality skos:hasTopConcept seas:fail-Failure .
+
+seas:fail-Repair a skos:Concept, seas:EvaluationInterpretationConcept, seas:Quality;
+  rdfs:label "Repair"@en ;
+  skos:prefLabel "Repair"@en ;
+  skos:notation "Repair" ;
+  rdfs:comment """Estimates the repair of the feature of interest (timestamp, duration, cost,...)."""@en ;
+  skos:definition """Estimates the repair of the feature of interest (timestamp, duration, cost,...)."""@en ;
+  skos:topConceptOf seas:quality;
+  skos:inScheme   seas:quality;
+  vs:term_status "test" ;
+  rdfs:isDefinedBy seas:FailableVocabulary . 
+
+seas:quality skos:hasTopConcept seas:fail-Repair .
+
+seas:fail-Replace a skos:Concept, seas:EvaluationInterpretationConcept, seas:Quality;
+  rdfs:label "Replace"@en ;
+  skos:prefLabel "Replace"@en ;
+  skos:notation "Replace" ;
+  rdfs:comment """Estimates the replacement of the feature of interest (timestamp, duration, cost,...)."""@en ;
+  skos:definition """Estimates the replacement of the feature of interest (timestamp, duration, cost,...)."""@en ;
+  skos:topConceptOf seas:quality;
+  skos:inScheme   seas:quality;
+  vs:term_status "test" ;
+  rdfs:isDefinedBy seas:FailableVocabulary . 
+
+seas:quality skos:hasTopConcept seas:fail-Repair .
+
+seas:fail-Checkup a skos:Concept, seas:EvaluationInterpretationConcept, seas:Quality;
+  rdfs:label "Checkup"@en ;
+  skos:prefLabel "Checkup"@en ;
+  skos:notation "Checkup" ;
+  rdfs:comment """Estimates the checkup of the feature of interest (timestamp, duration, cost,...)."""@en ;
+  skos:definition """Estimates the checkup of the feature of interest (timestamp, duration, cost,...)."""@en ;
+  skos:topConceptOf seas:quality;
+  skos:inScheme   seas:quality;
+  vs:term_status "test" ;
+  rdfs:isDefinedBy seas:FailableVocabulary . 
+
+seas:quality skos:hasTopConcept seas:fail-Checkup .
+
+seas:fail-Unavailability a skos:Concept, seas:EvaluationInterpretationConcept, seas:Quality;
+  rdfs:label "Unavailability"@en ;
+  skos:prefLabel "Unavailability"@en ;
+  skos:notation "Unavailability" ;
+  rdfs:comment """Estimates the unavailability of the feature of interest (timestamp, duration, cost,...)."""@en ;
+  skos:definition """Estimates the unavailability of the feature of interest (timestamp, duration, cost,...)."""@en ;
+  skos:topConceptOf seas:quality;
+  skos:inScheme   seas:quality;
+  vs:term_status "test" ;
+  rdfs:isDefinedBy seas:FailableVocabulary . 
+
+seas:quality skos:hasTopConcept seas:fail-Unavailability .
+

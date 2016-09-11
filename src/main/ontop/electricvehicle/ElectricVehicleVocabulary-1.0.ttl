@@ -1,0 +1,114 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:ElectricVehicleVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "SEAS-ElectricVehicle ontology"@en ;
+  dc:description """The SEAS Electric Vehicle Vocabulary defines features of interest for electric vehicles and their charging equipments."""@en ;
+  dc:issued "2016-06-06"^^xsd:date ;
+  dc:modified "2016-07-26"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+#  owl:imports seas:ElectricPowerSystemOntology , seas:EvaluationOntology ;
+  owl:versionIRI <https://w3id.org/seas/ElectricVehicleVocabulary-1.0> ;
+  owl:versionInfo "v1.0" .
+
+seas:ElectricVehicle a owl:Class ;
+  rdfs:label "ElectricVehicle"@en ;
+  rdfs:comment "The class of electric vehicles. Electric vehicles can be charged using a connection to a electric vehicle service equipment."@en ;
+  rdfs:subClassOf seas:ElectricPowerSystem ;
+  rdfs:subClassOf [ owl:onProperty seas:location ; owl:someValuesFrom seas:Property ] ;
+  rdfs:subClassOf [ owl:onProperty seas:speed ; owl:someValuesFrom seas:Property ] ;
+  rdfs:isDefinedBy seas:ElectricVehicleVocabulary ;
+  vs:term_status "testing" .
+
+seas:ElectricVehicleChargingStationPool a owl:Class ;
+  rdfs:label "Electric Vehicle Charging Station Pool"@en ;
+  rdfs:comment """The class of electric vehicle charging station pools. 
+  An electric vehicle charging station pool is connected to the grid and composed of one or more electric vehicle charging stations."""@en ;
+  rdfs:subClassOf seas:ElectricPowerSystem ;
+  rdfs:isDefinedBy seas:ElectricVehicleVocabulary ;
+  vs:term_status "testing" .
+
+seas:ElectricVehicleChargingStation a owl:Class ;
+  rdfs:label "Electric Vehicle Charging Station"@en ;
+  rdfs:comment """The class of Charging Stations.
+  An electric vehicle charging station is usually connected to the grid and composed of one or more electric vehicle service equipments."""@en ;
+  rdfs:subClassOf  [ 
+    owl:onProperty seas:subElectricPowerSystemOf ; 
+    owl:onClass seas:ElectricVehicleChargingStationPool ;
+    owl:cardinality 1 ] ;
+  rdfs:subClassOf seas:ElectricPowerSystem ;
+  rdfs:isDefinedBy seas:ElectricVehicleVocabulary ;
+  vs:term_status "testing" .
+
+seas:ElectricVehicleServiceEquipment a owl:Class ;
+  rdfs:label "Electric Vehicle Service Equipment"@en ;
+  rdfs:comment "The class of Electric Vehicle Service Equipments."@en ;
+  rdfs:subClassOf  [ 
+    owl:onProperty seas:subElectricPowerSystemOf ; 
+    owl:onClass seas:ElectricVehicleChargingStation ;
+    owl:cardinality 1 ] ;
+  rdfs:subClassOf seas:ElectricPowerSystem ;
+  rdfs:isDefinedBy seas:ElectricVehicleVocabulary ;
+  vs:term_status "testing" .
+
+seas:CHAdeMO a owl:Class ;
+  rdfs:label "CHAdeMO"@en ;
+  rdfs:comment "CHAdeMO connector type"@en ;
+  rdfs:isDefinedBy seas:ElectricVehicleVocabulary ;
+  rdfs:subClassOf seas:DirectCurrentConnectionPoint ;
+  vs:term_status "testing" .
+
+seas:T2ConnectionPoint a owl:Class ;
+  rdfs:label "T2"@en ;
+  rdfs:comment "Type 2 connector type"@en ;
+  rdfs:subClassOf seas:ElectricalConnectionPoint ;
+  rdfs:isDefinedBy seas:ElectricVehicleVocabulary ;
+  vs:term_status "testing" .
+
+seas:T2S a owl:Class ;
+  rdfs:label "T2S"@en ;
+  rdfs:comment "Type 2 with shutter connector type"@en ;
+  rdfs:subClassOf seas:ElectricalConnectionPoint ;
+  rdfs:isDefinedBy seas:ElectricVehicleVocabulary ;
+  vs:term_status "testing" .
+
+seas:T3 a owl:Class ;
+  rdfs:label "T3"@en ;
+  rdfs:comment "Type 3 connector type"@en ;
+  rdfs:subClassOf seas:ElectricalConnectionPoint ;
+  rdfs:isDefinedBy seas:ElectricVehicleVocabulary ;
+  vs:term_status "testing" .

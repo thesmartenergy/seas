@@ -1,0 +1,224 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+seas:ElectricityPlayerVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "seas vocabulary"@en ;
+  dc:description """The Seas Electricity Player Vocabulary defined for the ITEA SEAS (Smart Energy Aware Systems)
+   project."""@en ;
+  dc:issued "2016-07-22"^^xsd:date ;
+  dc:modified "2016-07-22"^^xsd:date ;
+  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:author <https://w3id.org/people/gabrieljlsantos#> ;
+  dc:contributor <https://w3id.org/people/franciscosilva#> ;
+  dc:contributor <https://w3id.org/people/brigidateixeira#> ;
+  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/ElectricityPlayerVocabulary-0.10> ;
+  owl:versionInfo "v0.10" .
+
+
+seas:powerExchange a seas:PropertyKey, owl:ObjectProperty ;
+  rdfs:label "power Exchange" ;
+  rdfs:comment """power Exchange is the power exchanged in a electricity market."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:ElectricityExchangeConnection ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary .
+
+seas:powerPriceContext a owl:ObjectProperty ;
+  rdfs:label "power Price context"@en ;
+  rdfs:comment """Links an evaluation to the power price context on which it is defined.
+  for instance: 
+
+   [] a seas:Evaluation ;
+	seas:interpretedAs seas:sell ;
+	seas:temporalContext [ a owl:Interval ... ] ;
+	seas:literalValue "200 MWh"^^xsd:ucum ;
+	seas:powerPriceContext "12 €/MWh"^^xsd:ucum . """@en ;
+  rdfs:subPropertyOf seas:context ;
+  rdfs:domain seas:Evaluation ;
+  rdfs:range seas:ElectricityPrice ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary .
+
+
+
+# code lists
+
+#Bid Code List
+seas:bid a skos:ConceptScheme, sdmx:CodeList;
+  rdfs:label "Bid - codelist scheme"@en;
+  skos:prefLabel "Bid - codelist scheme"@en;
+  skos:notation "CL_BID";
+  rdfs:comment """This code list enables to interpret the given value with respect to the Electricity Markets Bids."""@en;
+  skos:note """This code list enables to interpret the given value with respect to the Electricity Markets Bids."""@en;
+  skos:definition seas:bid ;
+  rdfs:seeAlso seas:BBid ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary .
+
+seas:BBid a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Bid - codelist class"@en;
+  rdfs:comment """This code list enables to interpret the given value with respect to the Electricity Markets Bids."""@en;
+  rdfs:seeAlso seas:bid ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+
+#seas:bid-Bid a skos:Concept, seas:EvaluationInterpretationConcept, seas:BBid;
+#  rdfs:label "Bid"@en ;
+#  skos:prefLabel "Bid"@en ;
+#  skos:notation "Bid" ;
+#  rdfs:comment """The Bid is a pair of amount of power with a given price per unit."""@en ;
+#  skos:definition """The Bid is a pair of amount of power with a given price per unit."""@en ;
+#  skos:topConceptOf seas:bid;
+#  skos:inScheme   seas:bid;
+#  vs:term_status "testing" ;
+#  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+#
+#seas:bid skos:hasTopConcept seas:bid-Bid .
+
+seas:bid-SellBid a skos:Concept, seas:EvaluationInterpretationConcept, seas:BBid;
+  rdfs:label "Sell Bid"@en ;
+  skos:prefLabel "Sell Bid"@en ;
+  skos:notation "Sell Bid" ;
+  rdfs:comment """A Sell Bid is a bid to sell in the Electricity Market. A Bid is a pair of amount of power with a given price per unit."""@en ;
+  skos:definition """A Sell Bid is a bid to sell in the Electricity Market. A Bid is a pair of amount of power with a given price per unit."""@en ;
+  skos:topConceptOf seas:bid;
+  skos:inScheme   seas:bid;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+
+seas:bid skos:hasTopConcept seas:bid-SellBid .
+
+seas:bid-BuyBid a skos:Concept, seas:EvaluationInterpretationConcept, seas:BBid;
+  rdfs:label "Buy Bid"@en ;
+  skos:prefLabel "Buy Bid"@en ;
+  skos:notation "Buy Bid" ;
+  rdfs:comment """A Buy Bid is a bid to buy in the Electricity Market. A Bid is a pair of amount of power with a given price per unit."""@en ;
+  skos:definition """A Buy Bid is a bid to buy in the Electricity Market. A Bid is a pair of amount of power with a given price per unit."""@en ;
+  skos:topConceptOf seas:bid;
+  skos:inScheme   seas:bid;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+
+seas:bid skos:hasTopConcept seas:bid-BuyBid .
+
+
+#Flexibility Code List
+seas:flexibility a skos:ConceptScheme, sdmx:CodeList;
+  rdfs:label "Flexibility - codelist scheme"@en;
+  skos:prefLabel "Flexibility - codelist scheme"@en;
+  skos:notation "CL_FLEXIBILITY";
+  rdfs:comment """This code list enables to interpret the given value with respect to the consumption, production and Demand Response Flexibility."""@en;
+  skos:note """This code list enables to interpret the given value with respect to the consumption, production and Demand Response Flexibility."""@en;
+  skos:definition seas:flexibility ;
+  rdfs:seeAlso seas:Flexibility ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary .
+
+seas:Flexibility a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Flexibility - codelist class"@en;
+  rdfs:comment """This code list enables to interpret the given value with respect to the consumption, production and Demand Response Flexibility."""@en;
+  rdfs:seeAlso seas:flexibility ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+
+seas:flexibility-Up a skos:Concept, seas:EvaluationInterpretationConcept, seas:Flexibility;
+  rdfs:label "Flexibility Up"@en ;
+  skos:prefLabel "Flexibility Up"@en ;
+  skos:notation "Flexibility Up" ;
+  rdfs:comment """The "Flexibility Up" is the ability to increase the consumption / production of energy."""@en ;
+  skos:definition """The "Flexibility Up" is the ability to increase the consumption / production of energy."""@en ;
+  skos:topConceptOf seas:flexibility;
+  skos:inScheme   seas:flexibility;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+
+seas:flexibility skos:hasTopConcept seas:flexibility-Up .
+
+seas:flexibility-Down a skos:Concept, seas:EvaluationInterpretationConcept, seas:Flexibility;
+  rdfs:label "Flexibility Down"@en ;
+  skos:prefLabel "Flexibility Down"@en ;
+  skos:notation "Flexibility Down" ;
+  rdfs:comment """The "Flexibility Down" is the ability to decrease the consumption / production of energy."""@en ;
+  skos:definition """The "Flexibility Down" is the ability to decrease the consumption / production of energy."""@en ;
+  skos:topConceptOf seas:flexibility;
+  skos:inScheme   seas:flexibility;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+
+seas:flexibility skos:hasTopConcept seas:flexibility-Down .
+
+
+seas:flexibility-Increase a skos:Concept, seas:EvaluationInterpretationConcept, seas:Flexibility;
+  rdfs:label "Increase"@en ;
+  skos:prefLabel "Increase"@en ;
+  skos:notation "Increase" ;
+  rdfs:comment """The "Increase" is the ability to increase the consumption / production of energy."""@en ;
+  skos:definition """The "Increase" is the ability to increase the consumption / production of energy."""@en ;
+  skos:topConceptOf seas:flexibility;
+  skos:inScheme   seas:flexibility;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+
+seas:flexibility skos:hasTopConcept seas:flexibility-Increase .
+
+seas:flexibility-Cut a skos:Concept, seas:EvaluationInterpretationConcept, seas:Flexibility;
+  rdfs:label "Curtailment"@en ;
+  skos:prefLabel "Curtailment"@en ;
+  skos:notation "Curtailment" ;
+  rdfs:comment """The "Curtailment" is the ability to decrease the consumption / production of energy."""@en ;
+  skos:definition """The "Curtailment" is the ability to decrease the consumption / production of energy."""@en ;
+  skos:topConceptOf seas:flexibility;
+  skos:inScheme   seas:flexibility;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+
+seas:flexibility skos:hasTopConcept seas:flexibility-Cut .
+
+seas:flexibility-Shift a skos:Concept, seas:EvaluationInterpretationConcept, seas:Flexibility;
+  rdfs:label "Shift"@en ;
+  skos:prefLabel "Shift"@en ;
+  skos:notation "Shift" ;
+  rdfs:comment """The "Shift" is the ability to move the power from one place to another."""@en ;
+  skos:definition """The "Shift" is the ability to move the power from one place to another."""@en ;
+  skos:topConceptOf seas:flexibility;
+  skos:inScheme   seas:flexibility;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+
+seas:flexibility skos:hasTopConcept seas:flexibility-Shift .
