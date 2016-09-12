@@ -110,7 +110,7 @@ seas:ElectricityPlayerOntology a owl:Ontology , voaf:Vocabulary ;
 """@en ;
   dc:issued "2016-07-22"^^xsd:date ;
   dc:modified "2016-07-22"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;
   vann:preferredNamespacePrefix "seas" ;

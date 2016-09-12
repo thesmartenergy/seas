@@ -37,7 +37,7 @@ seas:ActorVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:issued "2016-07-21"^^xsd:date ;
   dc:modified "2016-07-21"^^xsd:date ;
   dc:contributor <http://www.maxime-lefrancois.info/me#> ;
-  dc:author <https://w3id.org/people/gabrieljlsantos#> ;
+  dc:creator <https://w3id.org/people/gabrieljlsantos#> ;
   dc:contributor <https://w3id.org/people/franciscosilva#> ;
   dc:contributor <https://w3id.org/people/brigidateixeira#> ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;

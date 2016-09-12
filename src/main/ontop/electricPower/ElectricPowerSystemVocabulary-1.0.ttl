@@ -40,7 +40,7 @@ seas:ElectricPowerSystemVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
    3. electrical connection Points of electric power systems, through which electricity flows in/out the power systems."""@en ;
   dc:issued "2016-06-06"^^xsd:date ;
   dc:modified "2016-07-24"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  

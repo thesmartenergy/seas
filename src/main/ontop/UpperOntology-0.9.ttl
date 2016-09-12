@@ -32,7 +32,7 @@ seas:UpperOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:description "The Seas Upper vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project. This module presents abstract meta level concepts that could link SEAS model to exsisting upper ontologies and may help to clarify conceptually and align their definitions. These are not yet formalized fully and can contain logical erros."@en ;
   dc:issued "2015-10-10"^^xsd:date ;
   dc:modified "2016-05-26"^^xsd:date ;
-  dc:author <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
   dc:contributor <http://www.maxime-lefrancois.info/me#> ;
   dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
   dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;

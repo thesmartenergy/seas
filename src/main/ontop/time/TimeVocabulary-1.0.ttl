@@ -38,7 +38,7 @@ seas:TimeVocabulary a owl:Ontology , voaf:Vocabulary ;
   dc:description "This ontology defines a set of SKOS Concepts and ConceptSchemes for code lists. These concepts are used as metadata on instances of seas:Evaluation and enable to interpret evaluations of quantifiable properties."@en ;
   dc:issued "2016-07-05"^^xsd:date ;
   dc:modified "2016-07-24"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   cc:license <http://creativecommons.org/licenses/by/4.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  

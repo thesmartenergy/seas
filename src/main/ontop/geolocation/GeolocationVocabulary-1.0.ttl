@@ -40,7 +40,7 @@ seas:GeolocationVocabulary a owl:Ontology , voaf:Vocabulary ;
   - a SKOS Concept that enables to precise the location context of an evaluation."""@en ;
   dc:issued "2016-07-05"^^xsd:date ;
   dc:modified "2016-07-25"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  

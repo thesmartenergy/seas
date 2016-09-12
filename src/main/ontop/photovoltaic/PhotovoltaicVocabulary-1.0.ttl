@@ -36,7 +36,7 @@
   dc:description "The Seas PhotovoltaicVocabulary Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
   dc:issued "2016-01-01"^^xsd:date ;
   dc:modified "2016-05-26"^^xsd:date ;
-  dc:author [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
+  dc:creator [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
   dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
   dc:contributor <http://www.maxime-lefrancois.info/me#> ;
   dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;

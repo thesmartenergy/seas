@@ -38,7 +38,7 @@ seas:EnergyFormVocabulary a owl:Ontology , voaf:Vocabulary ;
   dc:description """This vocabulary defines the forms of energy."""@en ;
   dc:issued "2016-07-20"^^xsd:date ;
   dc:modified "2016-07-24"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
   dc:contributor <https://w3id.org/people/franciscosilva#> ;
   dc:contributor <https://w3id.org/people/brigidateixeira#> ;

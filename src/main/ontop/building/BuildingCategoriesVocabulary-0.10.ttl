@@ -36,7 +36,7 @@ seas:BuildingCategoriesVocabulary a owl:Ontology , voaf:Vocabulary ;
   dc:contributor <http://www.maxime-lefrancois.info/me#> ;
   dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
   dc:contributor <https://w3id.org/people/franciscosilva#> ;
-  dc:author <https://w3id.org/people/brigidateixeira#> ;
+  dc:creator <https://w3id.org/people/brigidateixeira#> ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  

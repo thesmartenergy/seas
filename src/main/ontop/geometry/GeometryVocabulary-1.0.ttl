@@ -37,7 +37,7 @@ seas:GeometryVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:description """The SEAS Geometry Vocabulary defines property keys for geometrical aspects of features of interest."""@en ;
   dc:issued "2016-07-24"^^xsd:date ;
   dc:modified "2016-07-24"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  

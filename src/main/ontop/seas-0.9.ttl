@@ -31,7 +31,7 @@
 <https://w3id.org/seas/> rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "SEAS Ontology"@en ;
   dc:description "The SEAS ontology, that glues together all of the SEAS modules"@en ;
-  dc:author <http://maxime-lefrancois.info/me#> ;
+  dc:creator <http://maxime-lefrancois.info/me#> ;
   dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
   dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
   dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;

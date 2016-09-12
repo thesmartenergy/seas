@@ -37,7 +37,7 @@ seas:FlexibilityVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:description """The SEAS Flexibility Vocabulary defines code lists to interpret evaluations of operating features of interest. For instance, the value may be the minimal operating value"""@en ;
   dc:issued "2016-07-24"^^xsd:date ;
   dc:modified "2016-07-24"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  

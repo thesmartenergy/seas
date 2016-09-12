@@ -37,7 +37,7 @@ seas:ElectricVehicleVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:description """The SEAS Electric Vehicle Vocabulary defines features of interest for electric vehicles and their charging equipments."""@en ;
   dc:issued "2016-06-06"^^xsd:date ;
   dc:modified "2016-07-26"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  

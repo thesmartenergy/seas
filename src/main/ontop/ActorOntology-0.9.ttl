@@ -34,7 +34,7 @@ seas:ActorOntology a owl:Ontology , voaf:Vocabulary ;
   dc:description "The Seas Actor Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
   dc:issued "2016-01-26"^^xsd:date ;
   dc:modified "2016-05-26"^^xsd:date ;
-  dc:author <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
   dc:contributor <http://www.maxime-lefrancois.info/me#> ;
   dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;

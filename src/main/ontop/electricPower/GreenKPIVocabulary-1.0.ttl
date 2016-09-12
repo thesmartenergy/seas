@@ -37,7 +37,7 @@ seas:GreenKPIVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:description """The SEAS Green KPI Vocabulary defines KPIs for the energy domain."""@en ;
   dc:issued "2016-06-06"^^xsd:date ;
   dc:modified "2016-07-26"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   dc:contributor [ a foaf:Person ; foaf:name "Lamya Belhaj" ] ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;
   vann:preferredNamespacePrefix "seas" ;

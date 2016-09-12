@@ -46,7 +46,7 @@ seas:FeatureOfInterestOntology a owl:Ontology , voaf:Vocabulary ;
   dc:description <https://w3id.org/seas/feature_of_interest.png> ;
   dc:issued "2016-07-01"^^xsd:date ;
   dc:modified "2016-07-22"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  

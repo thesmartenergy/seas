@@ -36,7 +36,7 @@
 
   The core modules are [seas:FeatureOfInterestOntology](https://w3id.org/seas/FeatureOfInterestOntology), [seas:EvaluationOntology](https://w3id.org/seas/EvaluationOntology), [seas:SystemOntology](https://w3id.org/seas/SystemOntology) [the RDFP Presentation ontology](https://w3id.org/rdfp/), [the Process Execution Platform ontology](https://w3id.org/pep/).
   """@en ;
-  dc:author <http://maxime-lefrancois.info/me#> ;
+  dc:creator <http://maxime-lefrancois.info/me#> ;
   dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
   dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
   dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;

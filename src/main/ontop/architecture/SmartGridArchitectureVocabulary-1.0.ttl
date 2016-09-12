@@ -32,7 +32,7 @@ seas:SmartGridArchitectureVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:description "The Seas Architecture vocabulary for the smart grid domain."@en ;
   dc:issued "2016-01-26"^^xsd:date ;
   dc:modified "2016-06-25"^^xsd:date ;
-  dc:author <http://www.maxime-lefrancois.info/me#> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   dc:contributor [a foaf:Person ; foaf:name "Guillaume Habault" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Jani Hursti" ] ;
   cc:license <https://creativecommons.org/licenses/by/4.0> ;
