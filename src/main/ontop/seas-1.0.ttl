@@ -29,6 +29,18 @@
 
 @prefix seas: <https://w3id.org/seas/>.
 
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+
+
 
 <https://w3id.org/seas/> rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "SEAS Ontology"@en ;
@@ -38,21 +50,19 @@
   """@en ;
   dc:creator <http://maxime-lefrancois.info/me#> ;
   dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
-  dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
+  dc:contributor [a foaf:Person ; foaf:name "Antoine Zimmermann" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
-  dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
-  dc:contributor <https://w3id.org/people/franciscosilva#> ;
-  dc:contributor <https://w3id.org/people/brigidateixeira#> ;
+  dc:contributor [a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Francisco Silva" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Brigida Teixeira" ] ;
   dc:issued "2016-05-25"^^xsd:date ;
-  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
   owl:versionIRI <https://w3id.org/seas/seas-1.0> ;
   owl:versionInfo "v1.0" ;
-  owl:imports rdfp:; 
-  owl:imports pep:; 
   owl:imports seas:ThermodynamicSystemVocabulary; 
   owl:imports seas:EnergyOntology; 
   owl:imports seas:OperatingVocabulary; 
@@ -75,7 +85,6 @@
   owl:imports seas:ActorVocabulary; 
   owl:imports seas:EvaluationOntology; 
   owl:imports seas:FeatureOfInterestOntology; 
-  owl:imports seas:GraphOntology; 
   owl:imports seas:PhotovoltaicVocabulary; 
   owl:imports seas:GreenKPIVocabulary; 
   owl:imports seas:TimeSeriesOntology; 

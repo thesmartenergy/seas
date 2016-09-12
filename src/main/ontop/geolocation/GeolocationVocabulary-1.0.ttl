@@ -33,6 +33,29 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+
+
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+
 seas:GeolocationVocabulary a owl:Ontology , voaf:Vocabulary ;
   dc:title "SEAS-Location Vocabulary."@en ;
   dc:description """This ontology defines:
@@ -41,7 +64,7 @@ seas:GeolocationVocabulary a owl:Ontology , voaf:Vocabulary ;
   dc:issued "2016-07-05"^^xsd:date ;
   dc:modified "2016-07-25"^^xsd:date ;
   dc:creator <http://www.maxime-lefrancois.info/me#> ;
-  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
   owl:imports seas:EvaluationOntology ;

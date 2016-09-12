@@ -33,16 +33,28 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+
+
 seas:EnergyFormVocabulary a owl:Ontology , voaf:Vocabulary ;
   dc:title "SEAS-Energy Form vocabulary."@en ;
   dc:description """This vocabulary defines the forms of energy."""@en ;
   dc:issued "2016-07-20"^^xsd:date ;
   dc:modified "2016-07-24"^^xsd:date ;
   dc:creator <http://www.maxime-lefrancois.info/me#> ;
-  dc:contributor <https://w3id.org/people/gabrieljlsantos#> ;
-  dc:contributor <https://w3id.org/people/franciscosilva#> ;
-  dc:contributor <https://w3id.org/people/brigidateixeira#> ;
-  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  dc:contributor [a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Francisco Silva" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Brigida Teixeira" ] ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
   owl:versionIRI <https://w3id.org/seas/EnergyFormVocabulary-0.10> ;

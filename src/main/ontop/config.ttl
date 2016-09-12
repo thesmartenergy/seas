@@ -16,6 +16,18 @@
 @prefix rdfp: <https://w3id.org/rdfp/>.
 @base <https://w3id.org/rdfp/>.
 
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+
+
 [] a ontop:OntologySet ;
   ontop:fileSelector "(.+\\\\)?[A-Za-z]+-[0-9]+\\.[0-9]+\\.ttl" .
 

@@ -27,6 +27,18 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+
+
 seas:WeatherOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "SEAS-WeatherOntology ontology"@en ;
   dc:description "The Seas Weather vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
@@ -34,11 +46,11 @@ seas:WeatherOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:modified "2016-05-26"^^xsd:date ;
   dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
   dc:contributor <http://www.maxime-lefrancois.info/me#> ;
-  dc:contributor <http://zimmer.aprilfoolsreview.com/antoine#me> ;
+  dc:contributor [a foaf:Person ; foaf:name "Antoine Zimmermann" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
   dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
-  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
   owl:versionIRI <https://w3id.org/seas/WeatherOntology-0.9> ;

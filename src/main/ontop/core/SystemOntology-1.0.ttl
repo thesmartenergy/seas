@@ -30,6 +30,18 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+
+
 seas:SystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "SEAS-System ontology"@en ;
   dc:description """The System Ontology defines Systems, Connections between systems, and Connection Points at which systems may be connected. This ontology is then specialized for multiple domains. For example:
@@ -45,7 +57,7 @@ seas:SystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:issued "2016-06-06"^^xsd:date ;
   dc:modified "2016-07-22"^^xsd:date ;
   dc:creator <http://www.maxime-lefrancois.info/me#> ;
-  cc:license <https://creativecommons.org/licenses/by/4.0> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ; 
   owl:imports seas:FeatureOfInterestOntology ;
