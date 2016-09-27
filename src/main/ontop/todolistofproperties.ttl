@@ -13,10 +13,10 @@
 # limitations under the License.
 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .     #Owl ontology language
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .   #RDF schema 
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .  #XML standard datatypes
-@prefix dc: <http://purl.org/dc/terms/> .  #Dublin Core Metadata Initiative terms
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .  
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -24,7 +24,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix ssn: <https://www.w3.org/ns/ssn/>.
 @prefix cc: <http://creativecommons.org/ns#>.
-@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>. # The DOLCE+DnS Ultralite ontology.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>.
 @prefix liner: <https://w3id.org/liner/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix qb: <http://purl.org/linked-data/cube#>.
@@ -33,6 +33,7 @@
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
 
+voaf:Vocabulary a owl:Class .
 dc:title a owl:AnnotationProperty .
 dc:description a owl:AnnotationProperty .
 dc:issued a owl:AnnotationProperty .
@@ -43,6 +44,8 @@ cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
 
 
 seas:PowerAndEnergySystemsMeasuresVocabulary a owl:Ontology , voaf:Vocabulary ;

@@ -27,6 +27,7 @@
 
 @prefix seas: <https://w3id.org/seas/>.
 
+voaf:Vocabulary a owl:Class .
 dc:title a owl:AnnotationProperty .
 dc:description a owl:AnnotationProperty .
 dc:issued a owl:AnnotationProperty .
@@ -37,6 +38,8 @@ cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
 
 
 <https://w3id.org/seas/> rdf:type voaf:Vocabulary , owl:Ontology ;

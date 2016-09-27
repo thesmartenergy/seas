@@ -29,6 +29,7 @@
 
 @prefix seas: <https://w3id.org/seas/>.
 
+voaf:Vocabulary a owl:Class .
 dc:title a owl:AnnotationProperty .
 dc:description a owl:AnnotationProperty .
 dc:issued a owl:AnnotationProperty .
@@ -39,15 +40,34 @@ cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
 
 
 
 <https://w3id.org/seas/> rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "SEAS Ontology"@en ;
-  dc:description """The SEAS ontology, that glues together all of the SEAS modules.
+  dc:description """The main SEAS ontology glues together all of the SEAS modules.
 
-  The core modules are [seas:FeatureOfInterestOntology](https://w3id.org/seas/FeatureOfInterestOntology), [seas:EvaluationOntology](https://w3id.org/seas/EvaluationOntology), [seas:SystemOntology](https://w3id.org/seas/SystemOntology) [the RDFP Presentation ontology](https://w3id.org/rdfp/), [the Process Execution Platform ontology](https://w3id.org/pep/).
-  """@en ;
+SEAS ontology modules are organized on top of a core of three main modules:
+
+- the [seas:FeatureOfInterestOntology](https://w3id.org/seas/FeatureOfInterestOntology) describes feature of interests and their properties;
+- the [seas:EvaluationOntology](https://w3id.org/seas/EvaluationOntology) describes evaluations of these properties;
+- the [seas:SystemOntology](https://w3id.org/seas/SystemOntology) describes virtually isolated systems that share connections with other systems;
+
+On top of the seas:SystemOntology module, various vertical domain ontologies are defined for specific sub classes of systems and why they may be connected:
+
+- the [`seas:AreaOntology`](https://w3id.org/seas/AreaOntology) describes Zone systems:
+    - a zone may be linked by a crossable connection with another zone;
+    - a zone may be a sub-zone of another zone;
+    - zones are quantified in terms of area, population, and humidity.
+- more module descriptions to come soon...
+
+We furthermore encourage the use of the following external ontologies:
+
+- [the RDFP Presentation ontology](https://w3id.org/rdfp/) describes how RDF graphs can be validated, interpreted from web resource representations, or serialized as resource representations;
+- [the Process Execution Platform ontology](https://w3id.org/pep/) generalizes the core of the [SSN](http://www.w3.org/TR/vocab-ssn/) and the [SAN](https://www.irit.fr/recherches/MELODI/ontologies/SAN.owl) ontologies.
+"""@en ;
   dc:creator <http://maxime-lefrancois.info/me#> ;
   dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
   dc:contributor [a foaf:Person ; foaf:name "Antoine Zimmermann" ] ;
@@ -63,36 +83,36 @@ vs:term_status a owl:AnnotationProperty .
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
   owl:versionIRI <https://w3id.org/seas/seas-1.0> ;
   owl:versionInfo "v1.0" ;
+  owl:imports seas:FeatureOfInterestOntology; 
+  owl:imports seas:EvaluationOntology; 
+  owl:imports seas:BuildingOntology; 
+  owl:imports seas:SystemOntology; 
+
+  owl:imports seas:LightSystemOntology; 
+  owl:imports seas:LightSystemVocabulary; 
   owl:imports seas:ThermodynamicSystemVocabulary; 
   owl:imports seas:EnergyOntology; 
   owl:imports seas:OperatingVocabulary; 
-  owl:imports seas:LightSystemOntology; 
   owl:imports seas:ElectricVehicleVocabulary; 
   owl:imports seas:StatisticsVocabulary; 
   owl:imports seas:ActorOntology; 
   owl:imports seas:FailableVocabulary; 
   owl:imports seas:MonetaryVocabulary; 
   owl:imports seas:ArchitectureOntology; 
-  owl:imports seas:BuildingOntology; 
   owl:imports seas:UpperOntology; 
   owl:imports seas:GeolocationVocabulary; 
   owl:imports seas:GeometryVocabulary; 
   owl:imports seas:AreaOntology; 
-  owl:imports seas:LightSystemVocabulary; 
   owl:imports seas:TimeVocabulary; 
   owl:imports seas:FlexibilityVocabulary; 
   owl:imports seas:ElectricPowerSystemVocabulary; 
   owl:imports seas:ActorVocabulary; 
-  owl:imports seas:EvaluationOntology; 
-  owl:imports seas:FeatureOfInterestOntology; 
   owl:imports seas:PhotovoltaicVocabulary; 
   owl:imports seas:GreenKPIVocabulary; 
   owl:imports seas:TimeSeriesOntology; 
   owl:imports seas:EnergyUnitVocabulary; 
-  owl:imports seas:SystemOntology; 
   owl:imports seas:TechnicalSystemOntology; 
   owl:imports seas:BuildingCategoriesVocabulary; 
-  owl:imports seas:BuildingCategoriesOntology; 
   owl:imports seas:EnergyFormVocabulary; 
   owl:imports seas:PhotovoltaicOntology; 
   owl:imports seas:ElectricityPlayerOntology; 

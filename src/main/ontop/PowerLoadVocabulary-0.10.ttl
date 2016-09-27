@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-seas:contractMinSheduledEnergy a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:contractMinSheduledEnergy a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Contract minimum energy" ;
   rdfs:comment """The minimum of energy that must be scheduled to the generator."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -21,7 +21,7 @@ seas:contractMinSheduledEnergy a seas:PropertyKey, owl:ObjectProperty , owl:Func
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:contractMinRemuneration a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:contractMinRemuneration a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Contract minimum renumeration" ;
   rdfs:comment """The minimum remuneration that generator must receive during the scheduling."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -30,7 +30,7 @@ seas:contractMinRemuneration a seas:PropertyKey, owl:ObjectProperty , owl:Functi
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:contractMinWorkingPeriods a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:contractMinWorkingPeriods a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Contract minimum working periods" ;
   rdfs:comment """The minimum of periods that generator must be scheduled."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -39,7 +39,7 @@ seas:contractMinWorkingPeriods a seas:PropertyKey, owl:ObjectProperty , owl:Func
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:contractMaxEntriesInService a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:contractMaxEntriesInService a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Contract maximum service entries" ;
   rdfs:comment """The Number of times that generator can enter on service."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -48,7 +48,7 @@ seas:contractMaxEntriesInService a seas:PropertyKey, owl:ObjectProperty , owl:Fu
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:contractMinConsecutivePeriodsInOperation a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;  # replace by two concepts: min/max, and one in CL_CONTRACT
+seas:contractMinConsecutivePeriodsInOperation a owl:ObjectProperty , owl:FunctionalProperty ;  # replace by two concepts: min/max, and one in CL_CONTRACT
   rdfs:label "Contract minimum consecutive periods in operation" ;
   rdfs:comment """The Minimum number of consecutive periods that generator is producing."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -57,7 +57,7 @@ seas:contractMinConsecutivePeriodsInOperation a seas:PropertyKey, owl:ObjectProp
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:contractMinConsecutivePeriodsInOperation a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:contractMinConsecutivePeriodsInOperation a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Contract minimum consecutive periods in operation" ;
   rdfs:comment """The Minimum number of consecutive periods that generator is producing."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -66,7 +66,7 @@ seas:contractMinConsecutivePeriodsInOperation a seas:PropertyKey, owl:ObjectProp
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:rampUp a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ; # replace by a concept in CL_OPERATING 
+seas:rampUp a owl:ObjectProperty , owl:FunctionalProperty ; # replace by a concept in CL_OPERATING 
   rdfs:label "Ramp up" ;
   rdfs:comment """The maximum active power to increase during ramp turn up."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -75,7 +75,7 @@ seas:rampUp a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ; # 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:rampDown a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ; # replace by a concept in CL_OPERATING
+seas:rampDown a owl:ObjectProperty , owl:FunctionalProperty ; # replace by a concept in CL_OPERATING
   rdfs:label "Ramp down" ;
   rdfs:comment """The Maximum active power to reduce during ramp turn down."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -84,7 +84,7 @@ seas:rampDown a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ; 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:overloadTime a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ; # replace by a concept in CL_OPERATING
+seas:overloadTime a owl:ObjectProperty , owl:FunctionalProperty ; # replace by a concept in CL_OPERATING
   rdfs:label "Overload time" ;
   rdfs:comment """The generator Overload maximum time."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -93,7 +93,7 @@ seas:overloadTime a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalPropert
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:overloadPower a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ; # replace by a concept in CL_OPERATING
+seas:overloadPower a owl:ObjectProperty , owl:FunctionalProperty ; # replace by a concept in CL_OPERATING
   rdfs:label "Overload power" ;
   rdfs:comment """The generator overload power."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -102,7 +102,7 @@ seas:overloadPower a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:generatorType a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:generatorType a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Overload power" ;
   rdfs:comment """if operator must buy all the generated energy or if the operator can buy if wanted, between minimum power and maximum power"""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -111,7 +111,7 @@ seas:generatorType a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:CofA a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:CofA a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Fixed Coefficient" ;
   rdfs:comment """Coefficient A (fixed) of the generation cost."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -120,7 +120,7 @@ seas:CofA a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:CofB a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:CofB a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Linear Coefficient" ;
   rdfs:comment """Coefficient B (linear) of the generation cost."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -129,7 +129,7 @@ seas:CofB a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:CofC a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:CofC a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Quadratic Coefficient" ;
   rdfs:comment """Coefficient C (quadratic) of the generation cost."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -138,7 +138,7 @@ seas:CofC a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:cofExcess a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:cofExcess a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Coefficient excess" ;
   rdfs:comment """The generator overload power."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -147,7 +147,7 @@ seas:cofExcess a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:geeeCofA a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:geeeCofA a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "GEEE Coefficient A" ;
   rdfs:comment """Fixed coefficient to excess generation."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -156,7 +156,7 @@ seas:geeeCofA a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
   
-seas:geeeCofB a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:geeeCofB a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "GEEE Coefficient B" ;
   rdfs:comment """Linear coefficient of the greenhouse gas emissions cost."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -165,7 +165,7 @@ seas:geeeCofB a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:geeeCofC a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:geeeCofC a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "GEEE Coefficient C" ;
   rdfs:comment """Quadratic coefficient of the greenhouse gas emissions cost."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -174,7 +174,7 @@ seas:geeeCofC a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:geeeCofC a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:geeeCofC a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "GEEE Coefficient C" ;
   rdfs:comment """Quadratic coefficient of the greenhouse gas emissions cost."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -183,7 +183,7 @@ seas:geeeCofC a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:rdPower a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:rdPower a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Regulated down power" ;
   rdfs:comment """Regulated down power."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -192,7 +192,7 @@ seas:rdPower a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:ruPower a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:ruPower a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Regulated up power" ;
   rdfs:comment """Regulated up power."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -201,7 +201,7 @@ seas:ruPower a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:spPower a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:spPower a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Spinning reserve power" ;
   rdfs:comment """Spinning reserve power."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -210,7 +210,7 @@ seas:spPower a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:nspPower a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:nspPower a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Non spinning reserve power" ;
   rdfs:comment """Non-spinning reserve power."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -219,7 +219,7 @@ seas:nspPower a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:rdAvailableCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:rdAvailableCost a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RD available cost" ;
   rdfs:comment """Available cost of regulation down."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -228,7 +228,7 @@ seas:rdAvailableCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProp
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:ruAvailableCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:ruAvailableCost a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RU available cost" ;
   rdfs:comment """Available cost of regulation up."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -237,7 +237,7 @@ seas:ruAvailableCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProp
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:spAvailableCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:spAvailableCost a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Spinning available cost" ;
   rdfs:comment """Available cost of spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -246,7 +246,7 @@ seas:spAvailableCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProp
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:nspAvailableCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:nspAvailableCost a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Non-spinning available cost" ;
   rdfs:comment """Available cost of non-spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -255,7 +255,7 @@ seas:nspAvailableCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalPro
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:rdEnergyCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:rdEnergyCost a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RD energy cost" ;
   rdfs:comment """Energy cost of regulation down."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -264,7 +264,7 @@ seas:rdEnergyCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalPropert
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:ruEnergyCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:ruEnergyCost a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RU energy cost" ;
   rdfs:comment """Energy cost of regulation up."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -273,7 +273,7 @@ seas:ruEnergyCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalPropert
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:spEnergyCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:spEnergyCost a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Spinning energy cof" ;
   rdfs:comment """Energy cost of spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -282,7 +282,7 @@ seas:spEnergyCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalPropert
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerGeneratorVocabulary .
 
-seas:nspEnergyCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:nspEnergyCost a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Non-spinning energy cost" ;
   rdfs:comment """Energy cost of non-spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -294,7 +294,7 @@ seas:nspEnergyCost a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
 # todo: replace all the different cost properties by just seas:cost, and add a list of interpretation concepts 
 
 
-seas:cofENS a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:cofENS a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Cof ENS"@en ;
   rdfs:comment """Cost of energy not supplied."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -303,7 +303,7 @@ seas:cofENS a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:price a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:price a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Price"@en ;
   rdfs:comment """Energy price for consumer."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -312,7 +312,7 @@ seas:price a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:elasticity a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:elasticity a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Elasticity"@en ;
   rdfs:comment """Price elasticity of the demand."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -321,7 +321,7 @@ seas:elasticity a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:powerVariation a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:powerVariation a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Power Variation"@en ;
   rdfs:comment """Max variation of the consumption in response to price."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -330,7 +330,7 @@ seas:powerVariation a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalPrope
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:priceVariation a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:priceVariation a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Price Variation"@en ;
   rdfs:comment """Max variation of the price that can be applied to a consumer."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -339,7 +339,7 @@ seas:priceVariation a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalPrope
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:drContract1 a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:drContract1 a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "DR Contract 1"@en ;
   rdfs:comment """Price of reduction capability in DR program 1."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -348,7 +348,7 @@ seas:drContract1 a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:drContract2 a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:drContract2 a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "DR Contract 2"@en ;
   rdfs:comment """Price of reduction capability in DR program 2."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -357,7 +357,7 @@ seas:drContract2 a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:drContract3 a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:drContract3 a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "DR Contract 3"@en ;
   rdfs:comment """Price of reduction capability in DR program 3."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -366,7 +366,7 @@ seas:drContract3 a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:rdPowerRequirement a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:rdPowerRequirement a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RD Power Requirement"@en ;
   rdfs:comment """Regulation down power requirement."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -375,7 +375,7 @@ seas:rdPowerRequirement a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalP
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:ruPowerRequirement a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:ruPowerRequirement a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RU Power Requirement"@en ;
   rdfs:comment """Regulation up power requirement."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -384,7 +384,7 @@ seas:ruPowerRequirement a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalP
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:spPowerRequirement a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:spPowerRequirement a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "SP Power Requirement"@en ;
   rdfs:comment """Load power for spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -393,7 +393,7 @@ seas:spPowerRequirement a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalP
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:nsPowerRequirement a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:nsPowerRequirement a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "NS Power Requirement"@en ;
   rdfs:comment """Load power for non-spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -402,7 +402,7 @@ seas:nsPowerRequirement a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalP
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:rdPowerReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:rdPowerReduce a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RD Power Reduce"@en ;
   rdfs:comment """Max reduce capability for regulation down."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -411,7 +411,7 @@ seas:rdPowerReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:ruPowerReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:ruPowerReduce a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RU Power Reduce"@en ;
   rdfs:comment """Max reduce capability for regulation up."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -420,7 +420,7 @@ seas:ruPowerReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:spPowerReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:spPowerReduce a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "SP Power Reduce"@en ;
   rdfs:comment """Max reduce capability for spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -429,7 +429,7 @@ seas:spPowerReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:nsPowerReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:nsPowerReduce a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "NS Power Reduce"@en ;
   rdfs:comment """Max reduce capability for non-spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -438,7 +438,7 @@ seas:nsPowerReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:rdPowerCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:rdPowerCut a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RD Power Cut"@en ;
   rdfs:comment """Cut capability for regulation down."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -447,7 +447,7 @@ seas:rdPowerCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:ruPowerCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:ruPowerCut a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RU Power Cut"@en ;
   rdfs:comment """Cut capability for regulation up."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -456,7 +456,7 @@ seas:ruPowerCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:spPowerCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:spPowerCut a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "SP Power Cut"@en ;
   rdfs:comment """Cut capability for spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -465,7 +465,7 @@ seas:spPowerCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:nsPowerCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:nsPowerCut a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "NS Power Cut"@en ;
   rdfs:comment """Cut capability for non-spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -474,7 +474,7 @@ seas:nsPowerCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:rdPriceReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:rdPriceReduce a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RD Price Reduce"@en ;
   rdfs:comment """Reduction cost for regulation down."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -483,7 +483,7 @@ seas:rdPriceReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:ruPriceReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:ruPriceReduce a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RU Price Reduce"@en ;
   rdfs:comment """Reduction cost for regulation up."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -492,7 +492,7 @@ seas:ruPriceReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:spPriceReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:spPriceReduce a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "SP Price Reduce"@en ;
   rdfs:comment """Reduction cost for spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -501,7 +501,7 @@ seas:spPriceReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:nsPriceReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:nsPriceReduce a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "NS Price Reduce"@en ;
   rdfs:comment """Reduction cost for non-spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -510,7 +510,7 @@ seas:nsPriceReduce a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:rdPriceCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:rdPriceCut a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RD Price Cut"@en ;
   rdfs:comment """Cut cost for regulation down."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -519,7 +519,7 @@ seas:rdPriceCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:ruPriceCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:ruPriceCut a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "RU Price Cut"@en ;
   rdfs:comment """Cut cost for regulation up."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -528,7 +528,7 @@ seas:ruPriceCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:spPriceCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:spPriceCut a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "SP Price Cut"@en ;
   rdfs:comment """Cut cost for spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -537,7 +537,7 @@ seas:spPriceCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:nsPriceCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:nsPriceCut a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "NS Price Cut"@en ;
   rdfs:comment """Cut cost for non-spinning reserve."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -546,7 +546,7 @@ seas:nsPriceCut a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:asCofENS a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:asCofENS a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "AS Cof ENS"@en ;
   rdfs:comment """Cost of energy not supplied for ancillary services."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -555,7 +555,7 @@ seas:asCofENS a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:phaseRASLoadQ a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:phaseRASLoadQ a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Phase R AS Load Q"@en ;
   rdfs:comment """Reactive power in phase R for ancillary services."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -564,7 +564,7 @@ seas:phaseRASLoadQ a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:phaseSASLoadQ a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:phaseSASLoadQ a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Phase S AS Load Q"@en ;
   rdfs:comment """Reactive power in phase S for ancillary services."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
@@ -573,7 +573,7 @@ seas:phaseSASLoadQ a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProper
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PowerLoadVocabulary .
 
-seas:phaseTASLoadQ a seas:PropertyKey, owl:ObjectProperty , owl:FunctionalProperty ;
+seas:phaseTASLoadQ a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "Phase T AS Load Q"@en ;
   rdfs:comment """Reactive power in phase T for ancillary services."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;

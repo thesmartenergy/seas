@@ -14,7 +14,7 @@
     
     <developers>
         <developer>
-            <name>Maxime Lefrançois</name>            
+            <name>Maxime LefranÃ§ois</name>            
             <email>maxime.lefrancois@emse.fr</email>
             <url>http://maxime-lefrancois.info/</url>
             <organization>Ecole des mines de Saint-Etienne</organization>
@@ -86,7 +86,7 @@
         <repository.user>thesmartenergy</repository.user>
         <repository.name>seas</repository.name>
         
-        <ontop.version>1.1-SNAPSHOT</ontop.version>
+        <ontop.version>1.2-SNAPSHOT</ontop.version>
     </properties>
     
     <dependencyManagement>
@@ -188,6 +188,7 @@
                     <configuration>
                         <excludeSubProjects>true</excludeSubProjects>
                         <excludes>
+                            <exclude>make.sh</exclude>
                             <exclude>**/pom.xml</exclude>
                             <exclude>**/src/site/**/*.*</exclude>
                             <exclude>**/src/main/webapp/**/*.*</exclude>
