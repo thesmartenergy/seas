@@ -1,0 +1,1074 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+seas:ElectricPowerSystemVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "SEAS-ElectricPowerSystem vocabulary"@en ;
+  dc:description """The SEAS Electric Power System Vocabulary defines:
+   1. Electric power systems that consume, produce, or store electricity,
+   2. electrical connections between electric power systems, where electricity is exchanged, and
+   3. electrical connection Points of electric power systems, through which electricity flows in/out the power systems."""@en ;
+  dc:issued "2016-06-06"^^xsd:date ;
+  dc:modified "2016-07-24"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+#  owl:imports seas:SystemOntology , seas:EvaluationOntology ;
+  owl:versionIRI <https://w3id.org/seas/ElectricPowerSystemVocabulary-1.0> ;
+  owl:versionInfo "v1.0" .
+
+## electric power system
+
+seas:ElectricPowerSystem a owl:Class ;
+  rdfs:label "Electric Power System"@en ;
+  rdfs:comment """The class of electric power systems, i.e., systems that exchange electricity (i.e., electric power) with other systems.
+
+  Electric power systems may consume, produce, or store electricity. Such systems are defined by subclasses of electric power system.
+  Electric power systems that dissipate energy are thermodynamic systems (i.e., they can then dissipate heat).
+
+  Electric power systems can exchange electricity with other electric power systems. 
+  These exchange are only possible through electrical connections between electric power systems.
+
+  Electric power systems can have sub power systems:
+
+- The consumed or produced electricity of subsystems contribute to the consumed or produced electricity of the supersystem;
+- the stored electricity of subsystems contribute to the stored electricity of super systems."""@en ;
+  rdfs:subClassOf seas:System ;
+  rdfs:subClassOf seas:ThermodynamicSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:exchangesElectricityWith a owl:ObjectProperty , owl:SymmetricProperty ;
+  rdfs:label "exchanges electricity with"@en ;
+  rdfs:comment """Links an electric power system to another electric power system it exchanges electricity with. 
+
+  This property can be qualified using class seas:ElectricalConnection, which connects (at least) the two electric power systems.
+  For example, for the electricity to flow between a battery and a light, then they must share an electrical connection:
+
+```
+  <battery> a seas:ElectricPowerSystem .
+  <light> a seas:ElectricPowerSystem .
+  <battery> seas:exchangesElectricityWith <light> . 
+```
+
+  If there is an electrical connection between several electric power systems, then one may infer these electric power systems can exchange electricity."""@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:ElectricPowerSystem ;
+  rdfs:range seas:ElectricPowerSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:subElectricPowerSystemOf a owl:ObjectProperty , owl:TransitiveProperty ;
+  rdfs:label "sub electric power system of"@en ;
+  rdfs:comment """Links an electric power system to its super electric power systems.
+  The electricity of a sub power system contributes to the electricity of its super electric power system. For example,
+
+- The consumed electricity of an electric power comsumer system contributes to the consumed electricity of its super electric power consumer system;
+- The produced electricity of an electric power producer system contributes to the produced electricity of its super electric power producer system;
+- the stored electricity of an electric power storage system contributes to the stored electricity of its super electric power storage system."""@en ;
+  rdfs:domain seas:ElectricPowerSystem ;
+  rdfs:range seas:ElectricPowerSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+
+## electrical connection
+
+seas:ElectricalConnection a owl:Class ;
+  rdfs:label "Electrical Connection"@en ;
+  rdfs:comment """The class of electrical connections between electric power systems.
+  an electrical connection describes potential electricity flows between the electric power systems it connects.
+  For example, the following RDF graph states that a power bus connects two power lines and a transformer:
+
+```
+  <power_bus> a seas:ElectricalConnection ;
+    seas:connectsSystem <power_line_1> , <transformer> , <power_line_2> .
+```
+
+  Only electric power systems and electrical connection points are connected through an electrical connection.
+  A connection between electric power systems is not necessarily an electrical connection.
+
+  Any electric power system that exchanges electricity through an electrical connection is connected at least through one of its power connection points to the electrical connection:
+  if:
+
+```
+  <power_system> a seas:ElectricPowerSystem .
+  <power_connection> a seas:ElectricalConnection .
+  <power_system> seas:connectedThrough <power_connection> .
+```
+
+  then there exists `_:powerConnectionPoint` such that:
+
+```
+  _:powerConnectionPoint a seas:ElectricalConnectionPoint ;
+    seas:connectionPointOf <power-system> ;
+    seas:connectsSystemThrough <power_connection> .
+```"""@en ;
+  rdfs:subClassOf seas:Connection ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:ElectricPowerSystem ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:ElectricalConnectionPoint ] ;
+  rdfs:subClassOf [ owl:onProperty seas:voltage ; owl:someValuesFrom  seas:Property ] ;
+  owl:disjointWith seas:ElectricPowerSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+
+## electrical connection point
+
+seas:ElectricalConnectionPoint a owl:Class ;
+  rdfs:label "Electrical Connection Point"@en ;
+  rdfs:comment """The class of electrical connection points of electric power systems, at which they may be electricaly connected to other systems.
+  For example, an electric vehicle service equipment may have three electric power connection points: two different kinds of plugs that enable to charge electric vehicles, and a three phase power bus connection point to the grid:
+
+```
+  <electric_vehicle> a seas:ElectricPowerSystem ;
+    seas:connectsAt <plug_high_voltage> , <normal_plug> , <three_phase_connection_point> .
+  <plug_high_voltage> a seas:ElectricalConnectionPoint .
+  <normal_plug> a seas:ElectricalConnectionPoint .
+  <three_phase_connection_point> a seas:ElectricalConnectionPoint .
+```
+
+  Any system connected through an electrical connection is connected at one of its electrical connection points to the electrical connection:
+  if:
+
+```
+  <system> a seas:System .
+  <system> seas:connectedThrough <connection> .
+  <connection> a seas:ElectricalConnection .
+```
+
+  then there exists `_:connectionPoint` such that:
+
+```
+  _:connectionPoint a seas:ElectricalConnection Point ;
+    seas:connectionPointOf <system> ;
+    seas:connectsSystemAt <connection> .
+```
+
+  An electrical connection point describes an electric signal, and the electricity that enters/leaves the electric power system.
+  An electrical connection point only belongs to an electric power system, and connects it through electrical connections.
+  A connection point of an electric power system is not necessarily an electrical connection."""@en ;
+  rdfs:subClassOf seas:ConnectionPoint ;
+  rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:ElectricPowerSystem ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:ElectricalConnection ] ;
+  rdfs:subClassOf [ owl:onProperty seas:voltage ; owl:someValuesFrom  seas:Property ] ;
+  rdfs:subClassOf [ owl:onProperty seas:current ; owl:someValuesFrom  seas:Property ] ;
+  owl:disjointWith seas:ElectricPowerSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+# specific subtypes
+
+## electric power consumer
+
+seas:ElectricPowerConsumer a owl:Class ;
+  rdfs:label "Electric Power Consumer"@en ;
+  rdfs:comment """An electric power consumer is an electric power system that is capable of consuming electricity."""@en ;
+  rdfs:subClassOf seas:ElectricPowerSystem ;
+  rdfs:subClassOf [ owl:onProperty seas:consumedElectricPower ; owl:someValuesFrom seas:Property ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:ElectricPowerProducer a owl:Class ;
+  rdfs:label "Electric Power Producer"@en ;
+  rdfs:comment """An electric power producer is an electric power system that is capable of producing electricity."""@en ;
+  rdfs:subClassOf seas:ElectricPowerSystem ;
+  rdfs:subClassOf [ owl:onProperty seas:producedElectricPower ; owl:someValuesFrom seas:Property ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:ElectricPowerStorageSystem a owl:Class ;
+  rdfs:label "Electric Power Storage System"@en ;
+  rdfs:comment """an electric power storage system is an electric power system that is capable of storing electricity. Usually a battery, an electric vehicle, or a microgrid"""@en ;
+  rdfs:subClassOf seas:ElectricPowerSystem ;  
+  rdfs:subClassOf [ owl:onProperty seas:storageElectricPower ; owl:someValuesFrom seas:Property ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:ElectricPowerTransmissionSystem a owl:Class ;
+  rdfs:label "Electric Power Transmission System"@en ;
+  rdfs:label "Sistema de Transmissão"@pt ;
+  rdfs:comment """An electric power transmission system is an electric power system that is capable of transmitting electricity. 
+  Usually to transmit electricity on a certain distance within an electric power network, or to transform it."""@en ;
+  rdfs:subClassOf seas:ElectricPowerSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+  seas:ElectricPowerLine a owl:Class ;
+    rdfs:label "Electric Power Line"@en ;
+    rdfs:comment """An electric power line is an electric transmission system that is capable of transmitting electricity on a certain distance within an electric power network.
+
+    An electric power line must be connected to two power connections, although this requirement cannot be modeled using OWL axioms if we want to remain in a decidable fragment."""@en ;
+    rdfs:subClassOf seas:ElectricPowerTransmissionSystem ;
+    rdfs:subClassOf [ owl:onProperty seas:length ; owl:someValuesFrom seas:Property ] ;
+    rdfs:subClassOf [ owl:onProperty seas:temperature ; owl:someValuesFrom seas:Property ] ;
+    rdfs:subClassOf [ owl:onProperty seas:resistance ; owl:someValuesFrom seas:Property ] ;
+    rdfs:subClassOf [ owl:onProperty seas:reactance ; owl:someValuesFrom seas:Property ] ;
+    rdfs:subClassOf [ owl:onProperty seas:susceptance ; owl:someValuesFrom seas:Property ] ;
+    rdfs:subClassOf [ owl:onProperty seas:failure ; owl:someValuesFrom seas:Property ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+  seas:ElectricPowerTransformer a owl:Class ;
+    rdfs:label "Electric Power Transformer"@en ;
+    rdfs:comment """An electric power transformer is an electric power system that is capable of transforming electricity within a power network, between a primary connection point and a secondary connection point."""@en ;
+    rdfs:subClassOf seas:ElectricPowerTransmissionSystem ;
+    rdfs:subClassOf [ owl:onProperty seas:primarilyConnectedThrough ; owl:someValuesFrom seas:ElectricalConnection ] ;
+    rdfs:subClassOf [ owl:onProperty seas:secondarilyConnectedThrough ; owl:someValuesFrom seas:ElectricalConnection ] ;
+    rdfs:subClassOf [ owl:onProperty seas:connectsPrimarilyAt ; owl:someValuesFrom seas:ElectricalConnectionPoint ] ;
+    rdfs:subClassOf [ owl:onProperty seas:connectsSecondarilyAt ; owl:someValuesFrom seas:ElectricalConnectionPoint ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:primarilyConnectedThrough a owl:ObjectProperty ;
+      rdfs:label "primarily connected through"@en ;
+      rdfs:comment "Links an electric power transformer to its primary connection"@en ;
+      rdfs:subPropertyOf seas:connectedThrough ;
+      rdfs:domain seas:ElectricPowerTransformer ;
+      rdfs:range seas:ElectricalConnection ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+      
+    seas:secondarilyConnectedThrough a owl:ObjectProperty ;
+      rdfs:label "secondarily connected through"@en ;
+      rdfs:comment "Links an electric power transformer to its secondary connection"@en ;
+      rdfs:subPropertyOf seas:connectedThrough ;
+      rdfs:domain seas:ElectricPowerTransformer ;
+      rdfs:range seas:ElectricalConnection ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+      
+    seas:connectsPrimarilyAt a owl:ObjectProperty ;
+      rdfs:label "connects primarily at"@en ;
+      rdfs:comment "Links an electric power transformer to its primary connection point"@en ;
+      rdfs:subPropertyOf seas:connectedThrough ;
+      rdfs:domain seas:ElectricPowerTransformer ;
+      rdfs:range seas:ElectricalConnectionPoint ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+      
+    seas:connectsSecondarilyAt a owl:ObjectProperty ;
+      rdfs:label "connects secondarily at"@en ;
+      rdfs:comment "Links an electric power transformer to its secondary connection point"@en ;
+      rdfs:subPropertyOf seas:connectedThrough ;
+      rdfs:domain seas:ElectricPowerTransformer ;
+      rdfs:range seas:ElectricalConnectionPoint ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+      
+    seas:tapChanger a owl:ObjectProperty , owl:FunctionalProperty ;
+      rdfs:label "tap Changer"@en ;
+      rdfs:comment """The Tap changer to change the voltage regulation of the transformer."""@en ;
+      rdfs:subPropertyOf seas:hasProperty ;
+      rdfs:domain seas:PowerTransformer ;
+      rdfs:range seas:VoltageProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+# Electrical connection
+
+seas:DirectCurrentConnection a owl:Class ;
+  rdfs:label "Direct Current Connection"@en ;
+  rdfs:comment "The class of electrical connections through which energy flows using direct current."@en ;
+  rdfs:subClassOf seas:ElectricalConnection ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+  seas:TwoWireDirectCurrentPowerBus a owl:Class ;
+    rdfs:label "Two Wire Direct Current Power Bus"@en ;
+    rdfs:comment """A two wire direct current power bus is a connection composed of two wires (potentialy plus the protective earth): 
+     wire for the positive;
+     wire for the negative."""@en ;
+    rdfs:subClassOf seas:DirectCurrentConnection ;  
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+  seas:ThreeWireDirectCurrentPowerBus a owl:Class ;
+    rdfs:label "Three Wire Direct Current Power Bus"@en ;
+    rdfs:comment """A three wire direct current power bus is a connection composed of three wires (potentialy plus the protective earth): 
+     wire for the positive;
+     wire for the mid-wire;
+     wire for the negative."""@en ;
+    rdfs:subClassOf seas:DirectCurrentConnection ;  
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:AlternatingCurrentConnection a owl:Class ;
+  rdfs:label "Alternating Current Connection"@en ;
+  rdfs:comment "The class of electrical power connections through which energy flows using alternating current."@en ;
+  rdfs:subClassOf seas:ElectricalConnection ;
+  owl:disjointWith seas:DirectCurrentConnection ;
+  rdfs:subClassOf [ owl:onProperty seas:voltage ; owl:allValuesFrom seas:PeriodicProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+  seas:ThreePhasePowerBus a owl:Class ;
+    rdfs:label "Three Phase Power Bus"@en ;
+    rdfs:comment """A three phase power bus is a connection composed of four wires (plus the protective earth): 
+     wires R, S, T, for the phases;
+     wire N for the neutral."""@en ;
+    rdfs:subClassOf seas:AlternatingCurrentConnection ;  
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInStar a owl:ObjectProperty ;
+      rdfs:label "connects system in star"@en ;
+      rdfs:comment "Links a three phase power bus to one of the electric power systems it connects with a star configuration."@en ;
+      rdfs:domain seas:ThreePhasePowerBus ;
+      rdfs:range seas:ElectricPowerSystem ;
+      owl:inverseOf seas:connectedInStarThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectedInStarThrough a owl:ObjectProperty ;
+      rdfs:label "connected in star through"@en ;
+      rdfs:comment "Links an electric power system to a three phase power bus connection with which it is connected with a star configuration."@en ;
+      rdfs:domain seas:ElectricPowerSystem ;
+      rdfs:range seas:ThreePhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInStar ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInTriangle a owl:ObjectProperty ;
+      rdfs:label "connects system in triangle"@en ;
+      rdfs:comment "Links a three phase power bus to one of the electric power systems it connects with a triangle configuration."@en ;
+      rdfs:domain seas:ThreePhasePowerBus ;
+      rdfs:range seas:ElectricPowerSystem ;
+      owl:inverseOf seas:connectedInTriangleThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectedInTriangleThrough a owl:ObjectProperty ;
+      rdfs:label "connected in triangle through"@en ;
+      rdfs:comment "Links an electric power system to a three phase power bus connection with which it is connected with a triangle configuration."@en ;
+      rdfs:domain seas:ElectricPowerSystem ;
+      rdfs:range seas:ThreePhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInTriangle ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInStar owl:propertyDisjointWith seas:connectsSystemInTriangle .
+
+  seas:SinglePhasePowerBus a owl:Class ;
+    rdfs:label "Single Phase Power Bus"@en ;
+    rdfs:comment """A single phase power bus is a connection composed of two wires (plus the protective earth): 
+     wire for the phase;
+     wire for the neutral."""@en ;
+    rdfs:subClassOf seas:AlternatingCurrentConnection ;  
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInRN a owl:ObjectProperty ;
+      rdfs:label "connects system in RN"@en ;
+      rdfs:comment "Links a three phase power bus to one of the electric power systems it connects with a RN configuration."@en ;
+      rdfs:domain seas:ThreePhasePowerBus ;
+      rdfs:range seas:ElectricPowerSystem ;
+      owl:inverseOf seas:connectedInRNThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectedInRNThrough a owl:ObjectProperty ;
+      rdfs:label "connected in RN through"@en ;
+      rdfs:comment "Links an electric power system to a three phase power bus connection with which it is connected with a RN configuration."@en ;
+      rdfs:domain seas:ElectricPowerSystem ;
+      rdfs:range seas:ThreePhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInRN ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInSN a owl:ObjectProperty ;
+      rdfs:label "connects system in SN"@en ;
+      rdfs:comment "Links a three phase power bus to one of the electric power systems it connects with a SN configuration."@en ;
+      rdfs:domain seas:ThreePhasePowerBus ;
+      rdfs:range seas:ElectricPowerSystem ;
+      owl:inverseOf seas:connectedInSNThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectedInSNThrough a owl:ObjectProperty ;
+      rdfs:label "connected in SN through"@en ;
+      rdfs:comment "Links an electric power system to a three phase power bus connection with which it is connected with a SN configuration."@en ;
+      rdfs:domain seas:ElectricPowerSystem ;
+      rdfs:range seas:ThreePhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInSN ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInTN a owl:ObjectProperty ;
+      rdfs:label "connects system in TN"@en ;
+      rdfs:comment "Links a three phase power bus to one of the electric power systems it connects with a TN configuration."@en ;
+      rdfs:domain seas:ThreePhasePowerBus ;
+      rdfs:range seas:ElectricPowerSystem ;
+      owl:inverseOf seas:connectedInTNThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectedInTNThrough a owl:ObjectProperty ;
+      rdfs:label "connected in TN through"@en ;
+      rdfs:comment "Links an electric power system to a three phase power bus connection with which it is connected with a TN configuration."@en ;
+      rdfs:domain seas:ElectricPowerSystem ;
+      rdfs:range seas:ThreePhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInTN ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInRN owl:propertyDisjointWith seas:connectsSystemInSN .
+    seas:connectsSystemInSN owl:propertyDisjointWith seas:connectsSystemInTN .
+    seas:connectsSystemInTN owl:propertyDisjointWith seas:connectsSystemInRN .
+
+  seas:SplitPhasePowerBus a owl:Class ;
+    rdfs:label "Split Phase Power Bus"@en ;
+    rdfs:comment """A split-phase power bus is a connection composed of three wires (plus the protective earth): 
+
+- wire for the hot 1 phase;
+- wire for the neutral;
+- wire for the hot 2 phase.
+
+"""@en ;
+    rdfs:subClassOf seas:AlternatingCurrentConnection ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInHot1N a owl:ObjectProperty ;
+      rdfs:label "connects system in Hot1-to-N"@en ;
+      rdfs:comment "Links a split-phase power bus to one of the electric power systems it connects with a hot1-to-N configuration."@en ;
+      rdfs:domain seas:SplitPhasePowerBus ;
+      rdfs:range seas:ElectricPowerSystem ;
+      owl:inverseOf seas:connectedInHot1NThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectedInHot1NThrough a owl:ObjectProperty ;
+      rdfs:label "connected in Hot1-to-N through"@en ;
+      rdfs:comment "Links an electric power system to a split-phase power bus connection with which it is connected with a hot1-to-N configuration."@en ;
+      rdfs:domain seas:ElectricPowerSystem ;
+      rdfs:range seas:SplitPhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInHot1N ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInHot2N a owl:ObjectProperty ;
+      rdfs:label "connects system in Hot2-to-N"@en ;
+      rdfs:comment "Links a split-phase power bus to one of the electric power systems it connects with a hot2-to-N configuration."@en ;
+      rdfs:domain seas:SplitPhasePowerBus ;
+      rdfs:range seas:ElectricPowerSystem ;
+      owl:inverseOf seas:connectedInHot2NThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectedInHot2NThrough a owl:ObjectProperty ;
+      rdfs:label "connected in Hot2-to-N through"@en ;
+      rdfs:comment "Links an electric power system to a split-phase power bus connection with which it is connected with a hot2-to-N configuration."@en ;
+      rdfs:domain seas:ElectricPowerSystem ;
+      rdfs:range seas:SplitPhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInHot2N ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInHot1Hot2 a owl:ObjectProperty ;
+      rdfs:label "connects system in Hot1-to-Hot2"@en ;
+      rdfs:comment "Links a split-phase power bus to one of the electric power systems it connects with a hot1-to-hot2 configuration."@en ;
+      rdfs:domain seas:SplitPhasePowerBus ;
+      rdfs:range seas:ElectricPowerSystem ;
+      owl:inverseOf seas:connectedInHot1Hot2Through ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectedInHot1Hot2Through a owl:ObjectProperty ;
+      rdfs:label "connected in Hot1-to-Hot2 through"@en ;
+      rdfs:comment "Links an electric power system to a split-phase power bus connection with which it is connected with a hot1-to-hot2 configuration."@en ;
+      rdfs:domain seas:ElectricPowerSystem ;
+      rdfs:range seas:SplitPhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInHot1Hot2 ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInHot2Hot1 a owl:ObjectProperty ;
+      rdfs:label "connects system in Hot2-to-Hot1"@en ;
+      rdfs:comment "Links a split-phase power bus to one of the electric power systems it connects with a hot2-to-hot1 configuration."@en ;
+      rdfs:domain seas:SplitPhasePowerBus ;
+      rdfs:range seas:ElectricPowerSystem ;
+      owl:inverseOf seas:connectedInHot2Hot1Through ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectedInHot2Hot1Through a owl:ObjectProperty ;
+      rdfs:label "connected in Hot2-to-Hot1 through"@en ;
+      rdfs:comment "Links an electric power system to a split-phase power bus connection with which it is connected with a hot2-to-hot1 configuration."@en ;
+      rdfs:domain seas:ElectricPowerSystem ;
+      rdfs:range seas:SplitPhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInHot2Hot1 ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectedInHot2Hot1Through owl:propertyDisjointWith seas:connectedInHot1Hot2Through .
+    seas:connectedInHot2Hot1Through owl:propertyDisjointWith seas:connectedInHot2NThrough .
+    seas:connectedInHot2Hot1Through owl:propertyDisjointWith seas:connectedInHot1NThrough .
+    seas:connectedInHot1Hot2Through owl:propertyDisjointWith seas:connectedInHot2NThrough .
+    seas:connectedInHot1Hot2Through owl:propertyDisjointWith seas:connectedInHot1NThrough .
+    seas:connectedInHot2NThrough owl:propertyDisjointWith seas:connectedInHot1NThrough .
+
+
+[] a owl:AllDifferentClasses ; 
+  owl:members ( 
+    seas:SinglePhasePowerBus
+    seas:SplitPhasePowerBus 
+    seas:ThreePhasePowerBus ) .
+
+# Electrical connection point 
+
+seas:DirectCurrentConnectionPoint a owl:Class ;
+  rdfs:label "Direct Current Connection Point"@en ;
+  rdfs:comment "The class of electrical connection points through which energy flows using direct current."@en ;
+  rdfs:subClassOf seas:ElectricalConnectionPoint ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+  seas:TwoWireDirectCurrentConnectionPoint a owl:Class ;
+    rdfs:label "Two Wire Direct Current Connection Point"@en ;
+    rdfs:comment """A two wire direct current connection point is a connection point composed of two wires (potentialy plus the protective earth): 
+     wire for the positive;
+     wire for the negative."""@en ;
+    rdfs:subClassOf seas:DirectCurrentConnectionPoint ;  
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+  seas:ThreeWireDirectCurrentConnectionPoint a owl:Class ;
+    rdfs:label "Three Wire Direct Current Connection Point"@en ;
+    rdfs:comment """A three wire direct current power connection point is a connection point composed of three wires (potentialy plus the protective earth): 
+
+- wire for the positive;
+- wire for the mid-wire;
+- wire for the negative.
+"""@en ;
+    rdfs:subClassOf seas:DirectCurrentConnectionPoint ;  
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:AlternatingCurrentConnectionPoint a owl:Class ;
+  rdfs:label "Alternating Current Connection Point"@en ;
+  rdfs:comment "The class of electrical power connection points through which energy flows using alternating current."@en ;
+  rdfs:subClassOf seas:ElectricalConnectionPoint ;
+  owl:disjointWith seas:DirectCurrentConnectionPoint ;
+  rdfs:subClassOf [ owl:onProperty seas:voltage ; owl:allValuesFrom seas:PeriodicProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+  seas:ThreePhaseConnectionPoint a owl:Class ;
+    rdfs:label "Three Phase Connection Point"@en ;
+    rdfs:comment """A three phase connection point is a connection point composed of four wires (plus the protective earth): 
+- wires R, S, T, for the phases;
+- wire N for the neutral.
+"""@en ;
+    rdfs:subClassOf seas:AlternatingCurrentConnectionPoint ;  
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInStarAt a owl:ObjectProperty ;
+      rdfs:label "connects system in star at"@en ;
+      rdfs:comment "Links a three phase power bus to one of the three phase connection points it connects with a star configuration."@en ;
+      rdfs:domain seas:ThreePhasePowerBus ;
+      rdfs:range seas:ThreePhaseConnectionPoint ;
+      owl:inverseOf seas:connectsSystemInStarThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInStarThrough a owl:ObjectProperty ;
+      rdfs:label "connects system in star through"@en ;
+      rdfs:comment "Links a three phase connection point to a three phase power bus connection with which it is connected with a star configuration."@en ;
+      rdfs:domain seas:ThreePhaseConnectionPoint ;
+      rdfs:range seas:ThreePhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInStarAt ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInTriangleAt a owl:ObjectProperty ;
+      rdfs:label "connects system in triangle at"@en ;
+      rdfs:comment "Links a three phase power bus to one of the three phase connection points it connects with a triangle configuration."@en ;
+      rdfs:domain seas:ThreePhasePowerBus ;
+      rdfs:range seas:ThreePhaseConnectionPoint ;
+      owl:inverseOf seas:connectsSystemInTriangleThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInTriangleThrough a owl:ObjectProperty ;
+      rdfs:label "connects system in triangle through"@en ;
+      rdfs:comment "Links a three phase connection point to a three phase power bus connection with which it is connected with a triangle configuration."@en ;
+      rdfs:domain seas:ThreePhaseConnectionPoint ;
+      rdfs:range seas:ThreePhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInTriangleAt ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInStarThrough owl:propertyDisjointWith seas:connectsSystemInTriangleThrough .
+
+  seas:SinglePhaseConnectionPoint a owl:Class ;
+    rdfs:label "Single Phase Connection Point"@en ;
+    rdfs:comment """A single phase connection point is a connection point composed of two wires (plus the protective earth): 
+
+- wire for the phase;
+- wire for the neutral."""@en ;
+    rdfs:subClassOf seas:AlternatingCurrentConnectionPoint ;  
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInRNAt a owl:ObjectProperty ;
+      rdfs:label "connects system in RN at"@en ;
+      rdfs:comment "Links a three phase power bus to one of the single phase connection points it connects with a RN configuration."@en ;
+      rdfs:domain seas:ThreePhasePowerBus ;
+      rdfs:range seas:SinglePhaseConnectionPoint ;
+      owl:inverseOf seas:connectsSystemInRNThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInRNThrough a owl:ObjectProperty ;
+      rdfs:label "connects system in RN through"@en ;
+      rdfs:comment "Links a single phase connection point to a three phase power bus connection with which it is connected with a RN configuration."@en ;
+      rdfs:domain seas:SinglePhaseConnectionPoint ;
+      rdfs:range seas:ThreePhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInRNAt ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInSNAt a owl:ObjectProperty ;
+      rdfs:label "connects system in SN at"@en ;
+      rdfs:comment "Links a three phase power bus to one of the single phase connection points it connects with a SN configuration."@en ;
+      rdfs:domain seas:ThreePhasePowerBus ;
+      rdfs:range seas:SinglePhaseConnectionPoint ;
+      owl:inverseOf seas:connectsSystemInSNThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInSNThrough a owl:ObjectProperty ;
+      rdfs:label "connects system in SN through"@en ;
+      rdfs:comment "Links a single phase connection point to a three phase power bus connection with which it is connected with a SN configuration."@en ;
+      rdfs:domain seas:SinglePhaseConnectionPoint ;
+      rdfs:range seas:ThreePhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInSNAt ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInTNAt a owl:ObjectProperty ;
+      rdfs:label "connects system in TN at"@en ;
+      rdfs:comment "Links a three phase power bus to one of the single phase connection points it connects with a TN configuration."@en ;
+      rdfs:domain seas:ThreePhasePowerBus ;
+      rdfs:range seas:SinglePhaseConnectionPoint ;
+      owl:inverseOf seas:connectsSystemInTNThrough ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInTNThrough a owl:ObjectProperty ;
+      rdfs:label "connects system in TN through"@en ;
+      rdfs:comment "Links a single phase connection point to a three phase power bus connection with which it is connected with a TN configuration."@en ;
+      rdfs:domain seas:SinglePhaseConnectionPoint ;
+      rdfs:range seas:ThreePhasePowerBus ;
+      owl:inverseOf seas:connectsSystemInTNAt ;
+      vs:term_status "stable" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:connectsSystemInRNThrough owl:propertyDisjointWith seas:connectsSystemInSNThrough .
+    seas:connectsSystemInSNThrough owl:propertyDisjointWith seas:connectsSystemInTNThrough .
+    seas:connectsSystemInTNThrough owl:propertyDisjointWith seas:connectsSystemInRNThrough .
+
+  seas:SplitPhaseConnectionPoint a owl:Class ;
+    rdfs:label "Split Phase Current Connection Point"@en ;
+    rdfs:comment "The class of power connection points through which energy flows using split-phase alternating current."@en ;
+    rdfs:subClassOf seas:AlternatingCurrentConnectionPoint ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+[] a owl:AllDifferentClasses ; 
+  owl:members ( 
+    seas:SinglePhaseCurrentConnectionPoint 
+    seas:SplitPhaseCurrentConnectionPoint 
+    seas:ThreePhaseConnectionPoint ) .
+
+## properties
+
+seas:resistance a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "Resistance"@en ;
+  rdfs:comment """The electrical power line resistance."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLine ;
+  rdfs:range seas:ResistanceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:impedance a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "Impedance"@en ;
+  rdfs:comment """The electrical power line impedance/reactance."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLine ;
+  rdfs:range seas:ImpedanceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:susceptance a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "Susceptance"@en ;
+  rdfs:comment """The electrical power line susceptance."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PowerLine ;
+  rdfs:range seas:SusceptanceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:voltage a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "voltage" ;
+  rdfs:comment """Voltage is the voltage at some electrical connection, or at some electrical connection point."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:VoltageProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+  seas:VoltageProperty a owl:Class ;
+    rdfs:label "Voltage Property"@en ;
+    rdfs:comment "The class of voltage signals."@en ;
+    rdfs:subClassOf seas:TimeDependentProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:ExtraLowVoltage a owl:Class ;
+      rdfs:label "Extra-Low Voltage "@en ;
+      rdfs:comment """The voltage is Extra-Low according to IEC 60038."""@en ;
+      rdfs:subClassOf seas:VoltageProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:LowVoltage a owl:Class ;
+      rdfs:label "Low Voltage "@en ;
+      rdfs:comment """The voltage is Low according to IEC 60038."""@en ;
+      rdfs:subClassOf seas:VoltageProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:MediumVoltage a owl:Class ;
+      rdfs:label "Medium Voltage "@en ;
+      rdfs:comment """The voltage is Medium according to IEC 60038."""@en ;
+      rdfs:subClassOf seas:VoltageProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:HighVoltage a owl:Class ;
+      rdfs:label "High Voltage "@en ;
+      rdfs:comment """The voltage is High according to IEC 60038."""@en ;
+      rdfs:subClassOf seas:VoltageProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:ExtraHighVoltage a owl:Class ;
+      rdfs:label "Extra-High Voltage "@en ;
+      rdfs:comment """The voltage is Extra-High according to IEC 60038."""@en ;
+      rdfs:subClassOf seas:VoltageProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+  seas:VoltageEvaluation a owl:Class ;
+    rdfs:label "Voltage Evaluation"@en ;
+    rdfs:comment "The class of voltage signal evaluations."@en ;
+    rdfs:subClassOf seas:TimeContextualizedEvaluation ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:ExtraLowVoltageEvaluation a owl:Class ;
+      rdfs:label "Extra-Low Voltage Evaluation"@en ;
+      rdfs:comment """The voltage is Extra-Low according to IEC 60038."""@en ;
+      rdfs:subClassOf seas:VoltageEvaluation ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:LowVoltageEvaluation a owl:Class ;
+      rdfs:label "Low Voltage Evaluation"@en ;
+      rdfs:comment """The voltage is Low according to IEC 60038."""@en ;
+      rdfs:subClassOf seas:VoltageEvaluation ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:MediumVoltageEvaluation a owl:Class ;
+      rdfs:label "Medium Voltage Evaluation"@en ;
+      rdfs:comment """The voltage is Medium according to IEC 60038."""@en ;
+      rdfs:subClassOf seas:VoltageEvaluation ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:HighVoltageEvaluation a owl:Class ;
+      rdfs:label "High Voltage Evaluation"@en ;
+      rdfs:comment """The voltage is High according to IEC 60038."""@en ;
+      rdfs:subClassOf seas:VoltageEvaluation ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+    seas:ExtraHighVoltageEvaluation a owl:Class ;
+      rdfs:label "Extra-High Voltage Evaluation"@en ;
+      rdfs:comment """The voltage is Extra-High according to IEC 60038."""@en ;
+      rdfs:subClassOf seas:VoltageEvaluation ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+
+seas:current a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "current" ;
+  rdfs:comment """Current is the voltage at some electrical connection point."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+
+seas:consumedElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "consumed electric power" ;
+  rdfs:comment """Consumed Electric Power is the electric power that is consumed by the electric power system, usually a load, a battery, or a microgrid."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:ElectricPowerSystem ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:producedElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "produced electric power" ;
+  rdfs:comment """Produced Electric Power is the electric power that is produced by the electric power system, usually a generator, a battery, or a microgrid."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:ElectricPowerSystem ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:storageElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "storage electric power" ;
+  rdfs:comment """Storage Electric Power is the electric power that is stored by the electric power system, usually a battery, or a microgrid."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:ElectricPowerSystem ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:incomingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "incoming electric power" ;
+  rdfs:comment """Incoming electric power is:
+  (a) the sum of the electric power that enter the system from the exterior, or
+  (b) the electric power that enters the system through this connection point."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:outgoingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "outgoing electric power" ;
+  rdfs:comment """Outgoing electric power is:
+  (a) the sum of the electric power that leaves the system from the exterior, or
+  (b) the electric power that leaves the system through this connection point."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:electricPowerBalance a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "electric power balance" ;
+  rdfs:comment """Electric power balance is the difference between the incoming electric power and the outgoing electric power."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+
+# concept lists
+
+# CL_POWER
+seas:power a skos:ConceptScheme, sdmx:CodeList;
+  rdfs:label "Power - codelist scheme"@en;
+  skos:prefLabel "Power - codelist scheme"@en;
+  rdfs:comment """This code list enables to interpret the given electric power value."""@en;
+  skos:note """This code list enables to interpret the given electric power value."""@en;
+  rdfs:seeAlso seas:Power ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:Power a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Power - codelist class"@en;
+  rdfs:comment """This code list enables to interpret the given power value."""@en;
+  rdfs:seeAlso seas:power ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:power-Active-Power a TODO ;
+  rdfs:label "Active Power"@en ;
+  skos:prefLabel "Active Power"@en ;
+  rdfs:comment """Active Power means that the given value measures the active power of the electric signal, in (W)."""@en ;
+  seas:dimension seas:power ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:power-Reactive-Power a TODO ;
+  rdfs:label "Reactive Power"@en ;
+  skos:prefLabel "Reactive Power"@en ;
+  rdfs:comment """Reactive Power means that the given value measures the reactive power of the electric signal, in (var)."""@en ;
+  seas:dimension seas:power ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:power-Apparent-Power a TODO ;
+  rdfs:label "Apparent Power"@en ;
+  skos:prefLabel "Apparent Power"@en ;
+  rdfs:comment """Apparent Power means that the given value measures the apparent power of the electric signal, in (VA)."""@en ;
+  seas:dimension seas:power ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:power-Power-Factor a TODO ;
+  rdfs:label "Power Factor"@en ;
+  skos:prefLabel "Power Factor"@en ;
+  rdfs:comment """Power Factor means that the given value measures the cosinus of the voltage with respect to current, unitless."""@en ;
+  seas:dimension seas:unitless ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:power-Imported-Active-Energy a TODO ;
+  rdfs:label "Imported Active Energy"@en ;
+  skos:prefLabel "Imported Active Energy"@en ;
+  rdfs:comment """Imported Active Energy means that the given value measures the imported active energy, often in Wh/10."""@en ;
+  seas:dimension seas:energy ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+# CL_TP
+seas:tp a skos:ConceptScheme, sdmx:CodeList;
+  rdfs:label "Three Phase - codelist scheme"@en;
+  skos:prefLabel "Three Phase - codelist scheme"@en;
+  rdfs:comment """This code list enables to interpret the given value with respect to the connections in three phase."""@en;
+  skos:note """This code list enables to interpret the given value with respect to the connections in three phase."""@en;
+  rdfs:seeAlso seas:Tp ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary .
+
+seas:Tp a rdfs:Class, owl:Class;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Three Phase - codelist class"@en;
+  skos:note """This code list enables to interpret the given value with respect to the connections in three phase."""@en;
+  rdfs:seeAlso seas:tp ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+
+seas:tp-R a TODO ;
+  rdfs:label "R"@en ;
+  skos:prefLabel "R"@en ;
+  rdfs:comment """Relative to phase R."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:tp-S a TODO ;
+  rdfs:label "S"@en ;
+  skos:prefLabel "S"@en ;
+  rdfs:comment """Relative to phase S."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:tp-T a TODO ;
+  rdfs:label "T"@en ;
+  skos:prefLabel "T"@en ;
+  rdfs:comment """Relative to phase T."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:tp-N a TODO ;
+  rdfs:label "N"@en ;
+  skos:prefLabel "N"@en ;
+  rdfs:comment """Relative to phase N."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+
+seas:tp-RN a TODO ;
+  rdfs:label "RN"@en ;
+  skos:prefLabel "RN"@en ;
+  rdfs:comment """From phase R to neutral."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:tp-SN a TODO ;
+  rdfs:label "SN"@en ;
+  skos:prefLabel "SN"@en ;
+  rdfs:comment """From phase S to neutral."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:tp-TN a TODO ;
+  rdfs:label "TN"@en ;
+  skos:prefLabel "TN"@en ;
+  rdfs:comment """From phase T to neutral."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:tp-RS a TODO ;
+  rdfs:label "RS"@en ;
+  skos:prefLabel "RS"@en ;
+  rdfs:comment """From phase R to phase S."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:tp-ST a TODO ;
+  rdfs:label "ST"@en ;
+  skos:prefLabel "ST"@en ;
+  rdfs:comment """From phase S to phase T."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+seas:tp-TR a TODO ;
+  rdfs:label "TR"@en ;
+  skos:prefLabel "TR"@en ;
+  rdfs:comment """From phase T to phase R."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemVocabulary . 
+
+
+
+
+

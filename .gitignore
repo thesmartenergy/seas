@@ -1,6 +1,3 @@
-# max
-notesmax.txt
-
 # NetBeans
 nbactions.xml
 nb-configuration.xml
@@ -26,6 +23,5 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
-# deploy website
-.sh
-.bat
+# deploy to website
+make.sh

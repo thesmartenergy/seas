@@ -1,0 +1,149 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+seas:AreaPopulationOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "The SEAS Area Population Ontology"@en ;
+  dc:description """The SEAS Area Population ontology describes a subclasses of are, `seas:PopulatedArea`, that may have a population of agents.
+
+Populated areas may be connected by crossable connections, `seas:crossableConnectionTo`.
+
+A crossable connection property may be further qualified using class `seas:CrossableConnection`.
+
+Populated areas may have flows of agents incoming and ougoing at there `seas:crossableConnectionPoint`."""@en ;
+  dc:issued "2016-09-22"^^xsd:date ;
+  dc:modified "2016-09-22"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports <https://w3id.org/seas/AreaOntology> ;
+  owl:versionIRI <https://w3id.org/seas/AreaPopulationOntology-0.10> ;
+  owl:versionInfo "v0.10" .
+
+seas:PopulatedArea a owl:Class ;
+  rdfs:label "Populated Area" ;
+  rdfs:comment """An area that may be have a population of agents."""@en ;
+  rdfs:subClassOf seas:Area ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaPopulationOntology .
+
+seas:crossableConnectionTo a owl:ObjectProperty , owl:SymmetricProperty ;
+  rdfs:label "crossable connection to"@en ;
+  rdfs:comment """Links two areas that can exchange agents."""@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:PopulatedArea ;
+  rdfs:range seas:PopulatedArea ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaPopulationOntology .
+
+seas:CrossableConnection a owl:Class ;
+  rdfs:label "Crossable Connection"@en ;
+  rdfs:comment """The class of connections between areas that are crossable by agents.
+
+This class qualifies property `seas:crossableConnectionTo`."""@en ;
+  rdfs:subClassOf seas:AreaConnection ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom seas:PopulatedArea ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom seas:CrossableConnectionPoint ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaPopulationOntology .
+
+seas:CrossableConnectionPoint a owl:Class ;
+  rdfs:label "Crossable Connection Point"@en ;
+  rdfs:comment """The class of connections points of a populated area where agents can go in and out.
+
+This class qualifies property `seas:connectsSystem`."""@en ;
+  rdfs:subClassOf seas:AreaFrontier ;
+  rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:PopulatedArea ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:CrossableConnection ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaPopulationOntology .
+
+## properties 
+
+seas:agentPopulation a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "agent population" ;
+  rdfs:comment """The population of the Area in terms of agents."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:PopulatedArea ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaPopulationOntology .  
+
+seas:agentPopulationFlow a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "agent population flow" ;
+  rdfs:comment """The agent flow that crosses the Area opening."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:CrossableConnection ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaPopulationOntology .
+
+seas:incomingAgents a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "incoming agents" ;
+  rdfs:comment """Incoming agents:
+
+1. the number of agents that enter the populated area from the exterior, or
+2. the number of agents that enter the populated area through this connection point."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaPopulationOntology .
+
+seas:outgoingAgents a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "outgoing agents" ;
+  rdfs:comment """Outgoing agents:
+
+1. the number of agents that leave the populated area to the exterior, or
+2. the number of agents that leave the populated area through this connection point."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaPopulationOntology .
+
+seas:agentPopulationBalance a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "agent population balance" ;
+  rdfs:comment """Agent population balance is the difference between the number of incoming agents and the number of outgoing agents."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:AreaPopulationOntology .

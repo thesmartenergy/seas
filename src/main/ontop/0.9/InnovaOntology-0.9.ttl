@@ -1,0 +1,1871 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#  http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix gr: <http://purl.org/goodrelations/v1#>.
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+#Core roles and activities (for devices and systems), this is related to actor module and could specialize it but now here defined as new vocabulary
+seas:InnovaOntology a owl:Ontology , voaf:Vocabulary ;
+  dc:title "SEAS-InnovaOntology ontology"@en ;
+  dc:description """The Seas Innova Ontology is developed by Hilal CEYHAN AKÇOMAK for Innova defined optimization service parameters and  required vocabulary terms. These are to be integrated with the rest of the modules."""@en ;
+  dc:issued "2015-10-08"^^xsd:date ;
+  dc:modified "2016-06-05"^^xsd:date ;
+  dc:modified "2016-09-22"^^xsd:date ;
+  dc:creator [a foaf:Person ; foaf:name "Hilal CEYHAN AKÇOMAK" ] ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/InnovaOntology-0.9> ;
+  owl:versionInfo "v0.9" .
+
+@prefix : <https://w3id.org/seas/> .
+
+#################################################################
+#
+#  Object Properties
+#
+#################################################################
+
+###  http://smarteg.org/ontology/1.0/seas#hasCapability
+seas:hasCapability rdf:type owl:ObjectProperty .
+
+###  http://smarteg.org/ontology/1.0/seas#hasInput
+seas:hasInput rdf:type owl:ObjectProperty .
+
+###  http://smarteg.org/ontology/1.0/seas#hasOutput
+seas:hasOutput rdf:type owl:ObjectProperty .
+
+###  http://smarteg.org/ontology/1.0/seas#list
+seas:list rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf owl:topObjectProperty .
+
+###  http://smarteg.org/ontology/1.0/seas#offersService
+seas:offersService rdf:type owl:ObjectProperty .
+
+###  http://smarteg.org/ontology/1.0/seas#quantity
+seas:quantity rdf:type owl:ObjectProperty .
+
+###  http://smarteg.org/ontology/1.0/seas#unit
+seas:unit rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#
+#  Data properties
+#
+#################################################################
+
+###  http://smarteg.org/ontology/1.0/seas#Active
+seas:Active rdf:type owl:DatatypeProperty ;
+  rdfs:isDefinedBy seas:InnovaOntology ;
+  rdfs:range xsd:boolean .
+
+###  http://smarteg.org/ontology/1.0/seas#AlternativeResultCount
+seas:AlternativeResultCount rdf:type owl:DatatypeProperty ;
+  rdfs:label "AlternativeResultCount" ;
+  rdfs:isDefinedBy seas:InnovaOntology ;
+  rdfs:range xsd:int .
+
+###  http://smarteg.org/ontology/1.0/seas#NumberOfDays
+seas:NumberOfDays rdf:type owl:DatatypeProperty ;
+  rdfs:label "NumberOfDays" ;
+  rdfs:comment "Number of days used in stochastic optimization model." ;
+  rdfs:isDefinedBy seas:InnovaOntology ;
+  rdfs:range xsd:int .
+
+###  http://smarteg.org/ontology/1.0/seas#NumberOfPeriodsPerDay
+seas:NumberOfPeriodsPerDay rdf:type owl:DatatypeProperty ;
+   rdfs:label "NumberOfPeriodsPerDay" ;
+   rdfs:comment "Number of periods per day used in stochastic optimization model." ;
+   rdfs:isDefinedBy seas:InnovaOntology ;
+   rdfs:range xsd:int .
+
+###  http://smarteg.org/ontology/1.0/seas#NumberOfScenarios
+seas:NumberOfScenarios rdf:type owl:DatatypeProperty ;
+   rdfs:label "NumberOfScenarios" ;
+   rdfs:comment "Number of scneraios used in stochastic optimization model." ;
+   rdfs:isDefinedBy seas:InnovaOntology ;
+   rdfs:range xsd:int .
+
+###  http://smarteg.org/ontology/1.0/seas#OperationType
+seas:OperationType rdf:type owl:DatatypeProperty ;
+   rdfs:label "OperationType" ;
+   rdfs:isDefinedBy seas:InnovaOntology ;
+   rdfs:range [ rdf:type rdfs:Datatype ;
+  owl:oneOf [ rdf:type rdf:List ;
+  rdf:first "Charged" ;
+  rdf:rest [ rdf:type rdf:List ;
+   rdf:first "Cooling" ;
+   rdf:rest [ rdf:type rdf:List ;
+  rdf:first "Discharged" ;
+  rdf:rest [ rdf:type rdf:List ;
+   rdf:first "Heating" ;
+   rdf:rest [ rdf:type rdf:List ;
+  rdf:first "None" ;
+  rdf:rest rdf:nil
+  ]
+   ]
+  ]
+   ]
+  ]
+  ] .
+
+###  http://smarteg.org/ontology/1.0/seas#deviation
+seas:deviation rdf:type owl:DatatypeProperty ;
+   rdfs:label "deviation" ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#distribution
+seas:distribution rdf:type owl:DatatypeProperty ;
+  rdfs:label "distribution" ;
+  rdfs:comment "0: Uniform Distrbiution 1:Normal Distribution" ;
+  rdfs:isDefinedBy seas:InnovaOntology ;
+  rdfs:range [ rdf:type rdfs:Datatype ;
+   owl:oneOf [ rdf:type rdf:List ;
+   rdf:first "0" ;
+   rdf:rest [ rdf:type rdf:List ;
+  rdf:first "1" ;
+  rdf:rest rdf:nil
+  ]
+   ]
+   ] .
+
+###  http://smarteg.org/ontology/1.0/seas#end
+seas:end rdf:type owl:DatatypeProperty ;
+   rdfs:subPropertyOf seas:time .
+
+###  http://smarteg.org/ontology/1.0/seas#endPeriod
+seas:endPeriod rdf:type owl:DatatypeProperty ;
+   rdfs:label "endPeriod" ;
+   rdfs:isDefinedBy seas:InnovaOntology ;
+   rdfs:subPropertyOf seas:period ;
+   rdfs:range xsd:int .
+
+###  http://smarteg.org/ontology/1.0/seas#generatedAt
+seas:generatedAt rdf:type owl:DatatypeProperty .
+
+###  http://smarteg.org/ontology/1.0/seas#generatedBy
+seas:generatedBy rdf:type owl:DatatypeProperty .
+
+###  http://smarteg.org/ontology/1.0/seas#meanValue
+seas:meanValue rdf:type owl:DatatypeProperty ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#message
+seas:message rdf:type owl:DatatypeProperty ;
+   rdfs:label "message" ;
+   rdfs:comment "A description for client generated by server." ;
+   rdfs:isDefinedBy seas:InnovaOntology ;
+   rdfs:range xsd:string .
+
+###  http://smarteg.org/ontology/1.0/seas#name
+seas:name rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Name of microgrid or home resources. Its also used to give a name to anything." ;
+  rdfs:isDefinedBy seas:InnovaOntology ;
+  rdfs:range xsd:string .
+
+###  http://smarteg.org/ontology/1.0/seas#owner
+seas:owner rdf:type owl:DatatypeProperty ;
+   rdfs:label "owner" ;
+   rdfs:comment "Name of user calls an Activity." ;
+   rdfs:isDefinedBy seas:InnovaOntology ;
+   rdfs:range xsd:string .
+
+###  http://smarteg.org/ontology/1.0/seas#period
+seas:period rdf:type owl:DatatypeProperty ;
+  rdfs:label "period" ;
+  rdfs:comment "Basic time interval used in stochastic optimization model." ;
+  rdfs:isDefinedBy seas:InnovaOntology ;
+  rdfs:range xsd:int .
+
+###  http://smarteg.org/ontology/1.0/seas#start
+seas:start rdf:type owl:DatatypeProperty ;
+   rdfs:subPropertyOf seas:time .
+
+###  http://smarteg.org/ontology/1.0/seas#startPeriod
+seas:startPeriod rdf:type owl:DatatypeProperty ;
+   rdfs:label "startPeriod" ;
+   rdfs:isDefinedBy seas:InnovaOntology ;
+   rdfs:subPropertyOf seas:period ;
+   rdfs:range xsd:int .
+
+###  http://smarteg.org/ontology/1.0/seas#time
+seas:time rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf seas:value .
+
+###  http://smarteg.org/ontology/1.0/seas#uniqueId
+seas:uniqueId rdf:type owl:DatatypeProperty ;
+  rdfs:label "uniqueId" ;
+  rdfs:comment "Unique identifier for client request generated by server." ;
+  rdfs:isDefinedBy seas:InnovaOntology ;
+  rdfs:range xsd:string .
+
+###  http://smarteg.org/ontology/1.0/seas#value
+seas:value rdf:type owl:DatatypeProperty .
+
+###  http://smarteg.org/ontology/1.0/seas#workDuration
+seas:workDuration rdf:type owl:DatatypeProperty ;
+  rdfs:label "workDuration" ;
+  rdfs:comment "work duration of appliance." ;
+  rdfs:isDefinedBy seas:InnovaOntology ;
+  rdfs:range xsd:int .
+
+
+#################################################################
+#
+#  Classes
+#
+#################################################################
+
+###  http://purl.org/vocommons/voaf#Ontology
+<http://purl.org/vocommons/voaf#Ontology> rdf:type owl:Class .
+
+###  http://smarteg.org/ontology/1.0/seas#Activity
+seas:Activity rdf:type owl:Class .
+
+###  http://smarteg.org/ontology/1.0/seas#AirCirculation
+seas:AirCirculation rdf:type owl:Class ;
+  rdfs:label "AirCirculation" ;
+  rdfs:subClassOf seas:BuildingParameter ,
+  seas:Quantity ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:WattPerQubicMeterPerDegreeCelcius
+  ] ;
+  rdfs:comment "A description for fresh air circulation." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#AirCirculationUnit
+seas:AirCirculationUnit rdf:type owl:Class ;
+  rdfs:label "AirCirculationUnit" ;
+  rdfs:subClassOf seas:Unit ;
+  rdfs:comment "A description for air circulation of building." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#AirConditioning
+seas:AirConditioning rdf:type owl:Class ;
+   rdfs:label "AirConditioning" ;
+   rdfs:subClassOf seas:BuildingEnergyLoad ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:allValuesFrom [ rdf:type owl:Class ;
+   owl:unionOf ( seas:MaximumCoolingPower
+   seas:MaximumHeatingPower
+   )
+   ]
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:allValuesFrom [ rdf:type owl:Class ;
+   owl:unionOf ( seas:CoolingEfficiency
+   seas:HeatingEfficiency
+   )
+   ]
+   ] .
+
+###  http://smarteg.org/ontology/1.0/seas#AirConditioningParameter
+seas:AirConditioningParameter rdf:type owl:Class ;
+  rdfs:label "AirConditioningParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom [ rdf:type owl:Class ;
+  owl:unionOf ( seas:MaximumCoolingPower
+  seas:MaximumHeatingPower
+  )
+  ]
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:name ;
+  owl:allValuesFrom xsd:string
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom [ rdf:type owl:Class ;
+  owl:unionOf ( seas:CoolingEfficiency
+  seas:HeatingEfficiency
+  )
+  ]
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:Active ;
+  owl:allValuesFrom xsd:boolean
+  ] ;
+  rdfs:comment "A description of service parameter related to AirConditioning." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ApplianceParameter
+seas:ApplianceParameter rdf:type owl:Class ;
+  rdfs:label "ApplianceParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:name ;
+  owl:allValuesFrom xsd:string
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:Active ;
+  owl:allValuesFrom xsd:boolean
+  ] ;
+  rdfs:comment "A description of service parameter related to home or microgrid appliances" ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Area
+seas:Area rdf:type owl:Class ;
+  rdfs:subClassOf seas:Quantity ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:someValuesFrom seas:AreaUnit
+  ] .
+
+###  http://smarteg.org/ontology/1.0/seas#AreaUnit
+seas:AreaUnit rdf:type owl:Class ;
+  rdfs:subClassOf seas:Unit ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#AveragePower
+seas:AveragePower rdf:type owl:Class ;
+  rdfs:label "AveragePower" ;
+  rdfs:subClassOf seas:Power ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:Watt
+  ] ;
+  rdfs:comment "A description for average power of production forecast." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#BladeArea
+seas:BladeArea rdf:type owl:Class ;
+   rdfs:label "BladeArea" ;
+   rdfs:subClassOf seas:Area ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:SquareMeter
+   ] ;
+   rdfs:comment "A description for blade area of windmill." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#BuildingEnergyLoad
+seas:BuildingEnergyLoad rdf:type owl:Class .
+
+###  http://smarteg.org/ontology/1.0/seas#BuildingParameter
+seas:BuildingParameter rdf:type owl:Class ;
+   rdfs:label "BuildingParameter" ;
+   rdfs:subClassOf seas:OptimizationServiceEvaluation ;
+   rdfs:comment "A description of service parameter related to Building." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#BuildingVolume
+seas:BuildingVolume rdf:type owl:Class ;
+  rdfs:label "BuildingVolume" ;
+  rdfs:subClassOf seas:BuildingParameter ,
+  seas:Volume ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:QubicMeter
+  ] ;
+  rdfs:comment "A description for volume of building etc." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Celcius
+seas:Celcius rdf:type owl:Class ;
+   rdfs:subClassOf seas:TemperatureUnit .
+
+###  http://smarteg.org/ontology/1.0/seas#ChargeCost
+seas:ChargeCost rdf:type owl:Class ;
+  rdfs:label "ChargeCost" ;
+  rdfs:subClassOf seas:Price ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:someValuesFrom seas:PricePerEnergy
+  ] ;
+  rdfs:comment "A description for charge cost of storage, electric vehicle, battery, etc." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ChargeEfficiency
+seas:ChargeEfficiency rdf:type owl:Class ;
+  rdfs:label "ChargeEfficiency" ;
+  rdfs:subClassOf seas:Efficiency ;
+  rdfs:comment "A description for charge efficiency of storage, battery, electric vehicle etc." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ChargeRate
+seas:ChargeRate rdf:type owl:Class ;
+  rdfs:label "ChargeRate" ;
+  rdfs:subClassOf seas:Power ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:Watt
+  ] ;
+  rdfs:comment "A description for charge rate of storage, battery or electric vehicle." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#CogenerationPlantParameter
+seas:CogenerationPlantParameter rdf:type owl:Class ;
+  rdfs:label "CogenerationPlantParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:GeneratorParameter
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:name ;
+  owl:allValuesFrom xsd:string
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:HeatToPowerRatio
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:Active ;
+  owl:allValuesFrom xsd:string
+  ] ;
+  rdfs:comment "A description of service parameter related to cogeneration plant." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ComfortLevelTemperatureParameter
+seas:ComfortLevelTemperatureParameter rdf:type owl:Class ;
+  rdfs:label "ComfortLevelTemperatureParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:someValuesFrom seas:MaximumTemperature
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:period ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:someValuesFrom seas:MinimumTemperature
+  ] ;
+  rdfs:comment "A description of service parameter related to user comfort level temperature" ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ConsumptionRate
+seas:ConsumptionRate rdf:type owl:Class ;
+   rdfs:label "ConsumptionRate" ;
+   rdfs:subClassOf seas:Power ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:Watt
+   ] ;
+   rdfs:comment "A description for energy consumption rate of load, appliance, etc" ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ContinuousApplianceParameter
+seas:ContinuousApplianceParameter rdf:type owl:Class ;
+  rdfs:label "ContinuousApplianceParameter" ;
+  rdfs:subClassOf seas:ApplianceParameter ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:period ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:ConsumptionRate
+  ] ;
+  rdfs:comment "A description of service parameter related to continuous appliances such as Refrigerator, Lighting etc." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ControllableApplianceParameter
+seas:ControllableApplianceParameter rdf:type owl:Class ;
+  rdfs:label "ControllableApplianceParameter" ,
+   "A description of service parameter related to controllable appliances such as Washing Machine, Dish Washer,Microwave Oven, Garden Sprinkler System, etc." ;
+  rdfs:subClassOf seas:ApplianceParameter ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:list ;
+  owl:allValuesFrom seas:ResourceUsageParameter
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:ConsumptionRate
+  ] ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#CoolingEfficiency
+seas:CoolingEfficiency rdf:type owl:Class ;
+   rdfs:label "CoolingEfficiency" ;
+   rdfs:subClassOf seas:Efficiency ;
+   rdfs:comment "A description for cooling efficiency of airconditioning." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Count
+seas:Count rdf:type owl:Class ;
+   rdfs:subClassOf seas:Quantity .
+
+###  http://smarteg.org/ontology/1.0/seas#CurrencyUnit
+seas:CurrencyUnit rdf:type owl:Class ;
+  rdfs:subClassOf seas:Unit .
+
+###  http://smarteg.org/ontology/1.0/seas#DepreciationCost
+seas:DepreciationCost rdf:type owl:Class ;
+  rdfs:label "DepreciationCost" ;
+  rdfs:subClassOf seas:Price ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:someValuesFrom seas:PricePerEnergy
+  ] ;
+  rdfs:comment "A description for depreciation cost of photovoltaic system, windmill, etc." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#DischargeCost
+seas:DischargeCost rdf:type owl:Class ;
+   rdfs:label "DischargeCost" ;
+   rdfs:subClassOf seas:Price ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:someValuesFrom seas:PricePerEnergy
+   ] ;
+   rdfs:comment "A description for discharge cost of storage, electric vehicle, battery, etc." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#DischargeEfficiency
+seas:DischargeEfficiency rdf:type owl:Class ;
+   rdfs:label "DischargeEfficiency" ;
+   rdfs:subClassOf seas:Efficiency ;
+   rdfs:comment "A description for discharge efficiency of storage, battery, electric vehicle etc." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#DischargeRate
+seas:DischargeRate rdf:type owl:Class ;
+   rdfs:label "DischargeRate" ;
+   rdfs:subClassOf seas:Power ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:Watt
+   ] ;
+   rdfs:comment "A description for discharge rate of storage, battery or electric vehicle." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Efficiency
+seas:Efficiency rdf:type owl:Class ;
+  rdfs:label "Efficiency" ;
+  rdfs:subClassOf seas:Quantity ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:Percent
+  ] ;
+  rdfs:comment "A description for efficiency of storage, photovoltaic panel, windmill, electric vehicle, airconditioning, etc." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ElectricEnergyGenerator
+seas:ElectricEnergyGenerator rdf:type owl:Class .
+
+###  http://smarteg.org/ontology/1.0/seas#ElectricVehicle
+seas:ElectricVehicle rdf:type owl:Class ;
+   rdfs:label "ElectricVehicle" ;
+   rdfs:subClassOf seas:BuildingEnergyLoad ,
+   seas:EnergyStorage ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ElectricVehicleParameter
+seas:ElectricVehicleParameter rdf:type owl:Class ;
+  rdfs:label "ElectricVehicleParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:StorageParameter
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:list ;
+  owl:allValuesFrom seas:ResourceUsageParameter
+  ] ;
+  rdfs:comment "A description of service parameter related to ElectricVehicle." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Energy
+seas:Energy rdf:type owl:Class ;
+  rdfs:subClassOf seas:Quantity ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:EnergyUnit
+  ] ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#EnergyStorage
+seas:EnergyStorage rdf:type owl:Class .
+
+###  http://smarteg.org/ontology/1.0/seas#EnergyUnit
+seas:EnergyUnit rdf:type owl:Class ;
+  rdfs:subClassOf seas:Unit .
+
+###  http://smarteg.org/ontology/1.0/seas#Euro
+seas:Euro rdf:type owl:Class ;
+  rdfs:subClassOf seas:CurrencyUnit .
+
+###  http://smarteg.org/ontology/1.0/seas#Evaluation
+seas:Evaluation rdf:type owl:Class .
+
+###  http://smarteg.org/ontology/1.0/seas#ExposedToSunSurface
+seas:ExposedToSunSurface rdf:type owl:Class ;
+   rdfs:label "ExposedToSunSurface" ;
+   rdfs:subClassOf seas:Area ,
+   seas:BuildingParameter ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:SquareMeter
+   ] ;
+   rdfs:comment "A description for surface area of building exposed to sun." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ExternalTemperatureParameter
+seas:ExternalTemperatureParameter rdf:type owl:Class ;
+  rdfs:label "ExternalTemperatureParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:period ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:OutsideTemperature
+  ] ;
+  rdfs:comment "A description of service parameter related to external temperature" ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#FloorSurfaceArea
+seas:FloorSurfaceArea rdf:type owl:Class ;
+  rdfs:label "FloorSurfaceArea" ;
+  rdfs:subClassOf seas:Area ,
+  seas:BuildingParameter ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:SquareMeter
+  ] ;
+  rdfs:comment "A description for floor surface area of building." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ForecastingActivity
+seas:ForecastingActivity rdf:type owl:Class ;
+   rdfs:label "ForecastingActivity" ;
+   rdfs:subClassOf seas:Activity .
+
+###  http://smarteg.org/ontology/1.0/seas#GenerationForecast
+seas:GenerationForecast rdf:type owl:Class ;
+  rdfs:label "GenerationForecast" ;
+  rdfs:subClassOf seas:Evaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:AveragePower
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:PowerDeviation
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:distribution ;
+  owl:allValuesFrom xsd:int
+  ] ;
+  rdfs:comment "A description for a Windmill or Photovoltaivsystem energy production at specified location and specified time or time period." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#GenerationForecastParameter
+seas:GenerationForecastParameter rdf:type owl:Class ;
+   rdfs:label "GenerationForecastParameter" ;
+   rdfs:subClassOf seas:Evaluation ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:someValuesFrom [ rdf:type owl:Class ;
+  owl:unionOf ( seas:PhotovoltaicPanelEfficiency
+  seas:WindMillEfficiency
+  )
+  ]
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:someValuesFrom [ rdf:type owl:Class ;
+  owl:unionOf ( seas:BladeArea
+  seas:PhotovoltaicPanelArea
+  )
+  ]
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:end ;
+   owl:allValuesFrom xsd:dateTime
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:someValuesFrom seas:Location
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:start ;
+   owl:allValuesFrom xsd:dateTime
+   ] ;
+   rdfs:comment "A description for Innova energy production forecast service parameter" ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#GenerationForecastingService
+seas:GenerationForecastingService rdf:type owl:Class ;
+  rdfs:label "GenerationForecastingService" ;
+  rdfs:subClassOf seas:Service ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:hasCapability ;
+  owl:someValuesFrom seas:PVEnergyGenerationForecasting
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:hasCapability ;
+  owl:someValuesFrom seas:WindEnergyGenerationForecasting
+  ] ;
+  rdfs:comment "A service description for PV or WindMill energy production." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#GeneratorParameter
+seas:GeneratorParameter rdf:type owl:Class ;
+  rdfs:label "GeneratorParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:someValuesFrom seas:Efficiency
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:onClass [ rdf:type owl:Class ;
+  owl:intersectionOf ( seas:MaximumGenerationPower
+   seas:MinimumGenerationPower
+   seas:OperationCost
+   seas:ShutDownCost
+   seas:StartupCost
+   )
+  ] ;
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:onClass [ rdf:type owl:Class ;
+  owl:intersectionOf ( seas:RampDownRate
+   seas:RampUpRate
+   )
+  ] ;
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+  ] ;
+  rdfs:comment "A description of service parameter related to Generator in microgrid." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#GridConstraintAmount
+seas:GridConstraintAmount rdf:type owl:Class ;
+  rdfs:label "GridConstraintAmount" ;
+  rdfs:subClassOf seas:Power ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:KiloWatt
+  ] ;
+  rdfs:comment "A description for grid constraints." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#GridConstraintParameter
+seas:GridConstraintParameter rdf:type owl:Class ;
+   rdfs:label "GridConstraintParameter" ;
+   rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:period ;
+   owl:allValuesFrom xsd:int
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:allValuesFrom seas:GridConstraintAmount
+   ] ;
+   rdfs:comment "A description of service parameter related to grid constraint." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#HEMSOptimizationActivity
+seas:HEMSOptimizationActivity rdf:type owl:Class ;
+  rdfs:label "HEMSOptimizationActivity" ;
+  rdfs:subClassOf seas:OptimizationActivity ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:hasOutput ;
+  owl:allValuesFrom seas:ResourceScheduleOutput
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:hasInput ;
+  owl:allValuesFrom seas:OptimizationServiceParameter
+  ] ;
+  rdfs:comment "Optimization energy consumption and schedule home resources." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#HeatPowerDemandParameter
+seas:HeatPowerDemandParameter rdf:type owl:Class ;
+  rdfs:label "HeatPowerDemandParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:StochasticModelParameter
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:period ;
+  owl:allValuesFrom xsd:int
+  ] ;
+  rdfs:comment "A description for service parameter related to heat power demand of microgrid." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#HeatToPowerRatio
+seas:HeatToPowerRatio rdf:type owl:Class ;
+  rdfs:label "HeatToPowerRatio" ;
+  rdfs:subClassOf seas:Ratio ;
+  rdfs:comment "A description for heat to power ratio of cogeneration plant." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#HeatingEfficiency
+seas:HeatingEfficiency rdf:type owl:Class ;
+   rdfs:label "HeatingEfficiency" ;
+   rdfs:subClassOf seas:Efficiency ;
+   rdfs:comment "A description for heating efficiency of airconditioning." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#InertiaClass
+seas:InertiaClass rdf:type owl:Class ;
+  rdfs:label "InertiaClass" ;
+  rdfs:subClassOf seas:BuildingParameter ,
+  seas:Quantity ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:value ;
+  owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+  owl:oneOf [ rdf:type rdf:List ;
+  rdf:first "Heavy" ;
+  rdf:rest [ rdf:type rdf:List ;
+   rdf:first "Light" ;
+   rdf:rest [ rdf:type rdf:List ;
+  rdf:first "Medium" ;
+  rdf:rest [ rdf:type rdf:List ;
+   rdf:first "VeryHeavy" ;
+   rdf:rest [ rdf:type rdf:List ;
+  rdf:first "VeryLight" ;
+  rdf:rest rdf:nil
+  ]
+   ]
+  ]
+   ]
+  ]
+  ]
+  ] ;
+  rdfs:comment "A description for ability to store thermal energy of building." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#InitialStorageLevel
+seas:InitialStorageLevel rdf:type owl:Class ;
+   rdfs:label "InitialStorageLevel" ;
+   rdfs:subClassOf seas:Energy ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:WattHour
+   ] ;
+   rdfs:comment "A description for initial storage level of battery, storage or electric vehicle." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#InitialTemperature
+seas:InitialTemperature rdf:type owl:Class ;
+  rdfs:label "InitialTemperature" ;
+  rdfs:subClassOf seas:BuildingParameter ,
+  seas:Temperature ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:Celcius
+  ] ;
+  rdfs:comment "A description for initial temperature of building, etc." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#InnovaServiceProvider
+seas:InnovaServiceProvider rdf:type owl:Class ;
+   rdfs:subClassOf seas:ServiceProvider ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:offersService ;
+   owl:someValuesFrom seas:OptimizationService
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:offersService ;
+   owl:someValuesFrom seas:GenerationForecastingService
+   ] ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Irradiance
+seas:Irradiance rdf:type owl:Class ;
+  rdfs:subClassOf seas:Quantity .
+
+###  http://smarteg.org/ontology/1.0/seas#KiloWatt
+seas:KiloWatt rdf:type owl:Class ;
+  rdfs:subClassOf seas:PowerUnit .
+
+###  http://smarteg.org/ontology/1.0/seas#Latitude
+seas:Latitude rdf:type owl:Class ;
+  rdfs:label "Latitude" ;
+  rdfs:subClassOf seas:Location ;
+  rdfs:seeAlso "http://www.w3.org/2003/01/geo/wgs84_pos#lat" ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#LoadConsumptionParameter
+seas:LoadConsumptionParameter rdf:type owl:Class ;
+  rdfs:label "LoadConsumptionParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:period ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:StochasticModelParameter
+  ] ;
+  rdfs:comment "A description for service parameter related to load consumption of microgrid." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Location
+seas:Location rdf:type owl:Class ;
+  rdfs:label "Location" ;
+  rdfs:subClassOf seas:Quantity ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Longitude
+seas:Longitude rdf:type owl:Class ;
+   rdfs:label "Longitude" ;
+   rdfs:subClassOf seas:Location ;
+   rdfs:seeAlso "http://www.w3.org/2003/01/geo/wgs84_pos#long" ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#MEMSOptimizationActivity
+seas:MEMSOptimizationActivity rdf:type owl:Class ;
+  rdfs:label "MEMSOptimizationActivity" ;
+  rdfs:subClassOf seas:OptimizationActivity ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:hasOutput ;
+  owl:allValuesFrom seas:ResourceScheduleOutput
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:hasInput ;
+  owl:allValuesFrom seas:MicrogridOptimizationParameter
+  ] ;
+  rdfs:comment "Optimization energy consumption and schedule microgrid resources." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#MaximumCoolingPower
+seas:MaximumCoolingPower rdf:type owl:Class ;
+   rdfs:label "MaximumCoolingPower" ;
+   rdfs:subClassOf seas:Power ;
+   rdfs:comment "A description for maximum cooling power rate of airconditioning." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#MaximumGenerationPower
+seas:MaximumGenerationPower rdf:type owl:Class ;
+  rdfs:label "MaximumGenerationPower" ;
+  rdfs:subClassOf seas:Power ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:Watt
+  ] ;
+  rdfs:comment "A description for maximum energy production of Generator or CogeneratorPlant." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#MaximumHeatingPower
+seas:MaximumHeatingPower rdf:type owl:Class ;
+   rdfs:label "MaximumHeatingPower" ;
+   rdfs:subClassOf seas:Power ;
+   rdfs:comment "A description for maximum heating power rate of airconditioning." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#MaximumStorageLevel
+seas:MaximumStorageLevel rdf:type owl:Class ;
+   rdfs:label "MaximumStorageLevel" ;
+   rdfs:subClassOf seas:Energy ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:WattHour
+   ] ;
+   rdfs:comment "A description for maximum storage level of battery, storage or electric vehicle." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#MaximumTemperature
+seas:MaximumTemperature rdf:type owl:Class ;
+  rdfs:label "MaximumTemperature" ;
+  rdfs:subClassOf seas:Temperature ;
+  rdfs:comment "A description for maximum temperature of user comfort level." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#MegaWatt
+seas:MegaWatt rdf:type owl:Class ;
+  rdfs:label "MegaWatt" ;
+  rdfs:subClassOf seas:PowerUnit ;
+  rdfs:comment "MegaWatt" ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#MegaWattPerMin
+seas:MegaWattPerMin rdf:type owl:Class ;
+  rdfs:label "MegaWattPerMin" ;
+  rdfs:subClassOf seas:PowerPerTime ;
+  rdfs:comment "MegaWattPerMin" ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#MicrogridOptimizationParameter
+seas:MicrogridOptimizationParameter rdf:type owl:Class ;
+  rdfs:label "MicrogridOptimizationParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceParameter ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:list ;
+  owl:allValuesFrom [ rdf:type owl:Class ;
+  owl:unionOf ( seas:CogenerationPlantParameter
+  seas:GeneratorParameter
+  seas:HeatPowerDemandParameter
+  seas:LoadConsumptionParameter
+  )
+  ]
+  ] ;
+  rdfs:comment "A description for optimization activity parameter of Innova MEMS optimization service." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#MinimumGenerationPower
+seas:MinimumGenerationPower rdf:type owl:Class ;
+  rdfs:label "MinimumGenerationPower" ;
+  rdfs:subClassOf seas:Power ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:Watt
+  ] ;
+  rdfs:comment "A description for minimum energy production of Generator or CogeneratorPlant." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#MinimumTemperature
+seas:MinimumTemperature rdf:type owl:Class ;
+  rdfs:label "MinimumTemperature" ;
+  rdfs:subClassOf seas:Temperature ;
+  rdfs:comment "A description for minimum temperature of user comfort level." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#OperationCost
+seas:OperationCost rdf:type owl:Class ;
+   rdfs:label "OperationCost" ;
+   rdfs:subClassOf seas:Price ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:someValuesFrom seas:PricePerEnergy
+   ] ;
+   rdfs:comment "A description for operation cost of cogeneration plant/generator." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#OptimizationActivity
+seas:OptimizationActivity rdf:type owl:Class ;
+  rdfs:label "OptimizationActivity" ;
+  rdfs:subClassOf seas:Activity .
+
+###  http://smarteg.org/ontology/1.0/seas#OptimizationService
+seas:OptimizationService rdf:type owl:Class ;
+   rdfs:label "OptimizationService" ;
+   rdfs:subClassOf seas:Service ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:hasCapability ;
+   owl:someValuesFrom seas:StatusQueryingActivity
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:hasCapability ;
+   owl:someValuesFrom seas:ResultQueryingActivity
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:hasCapability ;
+   owl:someValuesFrom seas:OptimizationActivity
+   ] ;
+   rdfs:comment "A service description for scheduling HEMS or MEMS resources using stochastic optimization model." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#OptimizationServiceEvaluation
+seas:OptimizationServiceEvaluation rdf:type owl:Class ;
+   rdfs:label "OptimizationServiceEvaluation" ;
+   rdfs:subClassOf seas:Evaluation ;
+   rdfs:comment "A description of Innova optimization service evaluation parameters" ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#OptimizationServiceParameter
+seas:OptimizationServiceParameter rdf:type owl:Class ;
+  rdfs:label "OptimizationServiceParameter" ;
+  rdfs:subClassOf seas:Evaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:generatedAt ;
+  owl:allValuesFrom xsd:dateTime
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:NumberOfPeriodsPerDay ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:name ;
+  owl:allValuesFrom xsd:string
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:NumberOfDays ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:NumberOfScenarios ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:AlternativeResultCount ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:list ;
+  owl:onClass [ rdf:type owl:Class ;
+  owl:unionOf ( seas:ComfortLevelTemperatureParameter
+  seas:ExternalTemperatureParameter
+  [ rdf:type owl:Class ;
+  owl:intersectionOf ( seas:BuildingParameter
+   seas:GridConstraintParameter
+   seas:PurchasePriceParameter
+   seas:SalePriceParameter
+   seas:SolarRadiationParameter
+   )
+  ]
+  )
+  ] ;
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:owner ;
+  owl:allValuesFrom xsd:string
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:list ;
+  owl:allValuesFrom [ rdf:type owl:Class ;
+  owl:unionOf ( seas:AirConditioningParameter
+  seas:ContinuousApplianceParameter
+  seas:ControllableApplianceParameter
+  seas:ElectricVehicleParameter
+  seas:PhotovoltaicSystemParameter
+  seas:StorageParameter
+  seas:UncontrollableApplianceParameter
+  seas:WindMillParameter
+  )
+  ]
+  ] ;
+  rdfs:comment "A description for optimization activity parameter of Innova MEMS and HEMS optimization service." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#OutsideTemperature
+seas:OutsideTemperature rdf:type owl:Class ;
+  rdfs:label "OutsideTemperature" ;
+  rdfs:subClassOf seas:Temperature ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:Celcius
+  ] ;
+  rdfs:comment "A description for outside temperature of building." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#PVEnergyGenerationForecasting
+seas:PVEnergyGenerationForecasting rdf:type owl:Class ;
+   rdfs:label "SolarEnergyGenerationForecasting" ;
+   rdfs:subClassOf seas:ForecastingActivity ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:hasOutput ;
+   owl:allValuesFrom seas:GenerationForecast
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:hasInput ;
+   owl:allValuesFrom seas:GenerationForecastParameter
+   ] ;
+   rdfs:comment "Forecasting of a PV energy production at specified time or time period  and specified location." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Percent
+seas:Percent rdf:type owl:Class ;
+   rdfs:subClassOf seas:Unit .
+
+###  http://smarteg.org/ontology/1.0/seas#PhotovoltaicPanel
+seas:PhotovoltaicPanel rdf:type owl:Class ;
+   rdfs:label "PhotovoltaicPanel" ;
+   rdfs:subClassOf seas:ElectricEnergyGenerator ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:allValuesFrom seas:PhotovoltaicPanelEfficiency
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:allValuesFrom seas:PhotovoltaicPanelArea
+   ] ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#PhotovoltaicPanelArea
+seas:PhotovoltaicPanelArea rdf:type owl:Class ;
+   rdfs:label "PhotovoltaicPanelArea" ;
+   rdfs:subClassOf seas:Area ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:SquareMeter
+   ] ;
+   rdfs:comment "A description for photovoltaic panel area of PV." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#PhotovoltaicPanelEfficiency
+seas:PhotovoltaicPanelEfficiency rdf:type owl:Class ;
+   rdfs:label "PhotovoltaicPanelEfficiency" ;
+   rdfs:subClassOf seas:Efficiency ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:Percent
+   ] ;
+   rdfs:comment "A description for efficiency of photovoltaic panel." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#PhotovoltaicSystemParameter
+seas:PhotovoltaicSystemParameter rdf:type owl:Class ;
+   rdfs:label "PhotovoltaicSystemParameter" ;
+   rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:allValuesFrom seas:DepreciationCost
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:name ;
+   owl:allValuesFrom xsd:string
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:list ;
+   owl:allValuesFrom seas:PowerGenerationParameter
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:Active ;
+   owl:allValuesFrom xsd:boolean
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:allValuesFrom seas:PhotovoltaicPanelEfficiency
+   ] ;
+   rdfs:comment "A description of service parameter related to photovoltaic system." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Power
+seas:Power rdf:type owl:Class ;
+   rdfs:subClassOf seas:Quantity .
+
+###  http://smarteg.org/ontology/1.0/seas#PowerDeviation
+seas:PowerDeviation rdf:type owl:Class ;
+  rdfs:label "PowerDeviation" ;
+  rdfs:subClassOf seas:Power ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:Watt
+  ] ;
+  rdfs:comment "A decription for deviation rate of power production." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#PowerGenerationParameter
+seas:PowerGenerationParameter rdf:type owl:Class ;
+  rdfs:label "PowerGenerationParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom [ rdf:type owl:Class ;
+  owl:intersectionOf ( seas:AveragePower
+   seas:PowerDeviation
+   )
+  ]
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:period ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:distribution ;
+  owl:allValuesFrom xsd:int
+  ] ;
+  rdfs:comment "A description for energy production forecast at given period." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#PowerPerTime
+seas:PowerPerTime rdf:type owl:Class ;
+  rdfs:subClassOf seas:Unit .
+
+###  http://smarteg.org/ontology/1.0/seas#PowerUnit
+seas:PowerUnit rdf:type owl:Class ;
+   rdfs:subClassOf seas:Unit .
+
+###  http://smarteg.org/ontology/1.0/seas#Price
+seas:Price rdf:type owl:Class ;
+   rdfs:subClassOf seas:Quantity .
+
+###  http://smarteg.org/ontology/1.0/seas#PricePerEnergy
+seas:PricePerEnergy rdf:type owl:Class ;
+  rdfs:subClassOf seas:Unit .
+
+###  http://smarteg.org/ontology/1.0/seas#PurchasePower
+seas:PurchasePower rdf:type owl:Class ;
+   rdfs:label "PurchasePower" ;
+   rdfs:subClassOf seas:GridConstraintAmount ;
+   rdfs:comment "A description for power rate of purchase from grid." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#PurchasePriceParameter
+seas:PurchasePriceParameter rdf:type owl:Class ;
+  rdfs:label "PurchasePriceParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:period ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:StochasticModelParameter
+  ] ;
+  rdfs:comment "A description for service parameter related to purchase price of electricity." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Quantity
+seas:Quantity rdf:type owl:Class .
+
+###  http://smarteg.org/ontology/1.0/seas#QubicMeter
+seas:QubicMeter rdf:type owl:Class ;
+  rdfs:subClassOf seas:VolumeUnit ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#QueryingActivity
+seas:QueryingActivity rdf:type owl:Class ;
+  rdfs:label "QueryingActivity" ;
+  rdfs:subClassOf seas:Activity ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#RampDownRate
+seas:RampDownRate rdf:type owl:Class ;
+  rdfs:label "RampDownRate" ;
+  rdfs:subClassOf seas:RampRate ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:MegaWattPerMin
+  ] ;
+  rdfs:comment "A description for ramp down rate of cogeneration plant or generator." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#RampRate
+seas:RampRate rdf:type owl:Class ;
+  rdfs:label "RampRate" ;
+  rdfs:subClassOf seas:Power ;
+  rdfs:comment "The rate at which a power plant or generator can change load is called ramp rate." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#RampUpRate
+seas:RampUpRate rdf:type owl:Class ;
+  rdfs:label "RampUpRate" ;
+  rdfs:subClassOf seas:RampRate ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:MegaWattPerMin
+  ] ;
+  rdfs:isDefinedBy "A description for ramp up  rate of cogeneration plant or generator." ,
+   seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Ratio
+seas:Ratio rdf:type owl:Class ;
+   rdfs:subClassOf seas:Quantity .
+
+###  http://smarteg.org/ontology/1.0/seas#ResourceScheduleOutput
+seas:ResourceScheduleOutput rdf:type owl:Class ;
+  rdfs:label "ResourceScheduleOutput" ;
+  rdfs:subClassOf seas:ServiceParameter ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:uniqueId ;
+  owl:allValuesFrom xsd:string
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:message ;
+  owl:allValuesFrom xsd:string
+  ] ;
+  rdfs:comment """A description for optimization service output that client request accepted or not. 
+  If request data has validation problem, 'message' includes  validation error details.
+  If request accepted, uniqueId generated by the server for querying the optimization result.""" ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ResourceUsageParameter
+seas:ResourceUsageParameter rdf:type owl:Class ;
+  rdfs:label "ResourceUsageParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:endPeriod ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:startPeriod ;
+  owl:allValuesFrom xsd:int
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:workDuration ;
+  owl:allValuesFrom xsd:int
+  ] ;
+  rdfs:comment "A description for resources work duration between start period and end period." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ResultQueryingActivity
+seas:ResultQueryingActivity rdf:type owl:Class ;
+  rdfs:label "ResultQueryingActivity" ;
+  rdfs:subClassOf seas:QueryingActivity ;
+  rdfs:comment "Querying  result of optimization." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#SalePower
+seas:SalePower rdf:type owl:Class ;
+   rdfs:label "SalePower" ;
+   rdfs:subClassOf seas:GridConstraintAmount ;
+   rdfs:comment "A description for power rate of sale to grid." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#SalePriceParameter
+seas:SalePriceParameter rdf:type owl:Class ;
+  rdfs:label "SalePriceParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:StochasticModelParameter
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:period ;
+  owl:allValuesFrom xsd:int
+  ] ;
+  rdfs:comment "A description for service parameter related to sale price of electricity." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Service
+seas:Service rdf:type owl:Class .
+
+###  http://smarteg.org/ontology/1.0/seas#ServiceParameter
+seas:ServiceParameter rdf:type owl:Class ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ServiceProvider
+seas:ServiceProvider rdf:type owl:Class .
+
+###  http://smarteg.org/ontology/1.0/seas#ShutDownCost
+seas:ShutDownCost rdf:type owl:Class ;
+  rdfs:label "ShutDownCost" ;
+  rdfs:subClassOf seas:Price ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:someValuesFrom seas:CurrencyUnit
+  ] ;
+  rdfs:comment "A description for cost of cogenerationplant or generator shutdown operation." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#SolarIrradiance
+seas:SolarIrradiance rdf:type owl:Class ;
+   rdfs:label "SolarIrradiance" ;
+   rdfs:subClassOf seas:Irradiance .
+
+###  http://smarteg.org/ontology/1.0/seas#SolarRadiationParameter
+seas:SolarRadiationParameter rdf:type owl:Class ;
+   rdfs:label "SolarRadiationParameter" ;
+   rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:period ;
+   owl:allValuesFrom xsd:int
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:allValuesFrom seas:SolarIrradiance
+   ] ;
+   rdfs:comment "A description of service parameter related to solar radiation." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#SquareMeter
+seas:SquareMeter rdf:type owl:Class ;
+   rdfs:label "SquareMeter" ;
+   rdfs:subClassOf seas:AreaUnit ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#StartupCost
+seas:StartupCost rdf:type owl:Class ;
+   rdfs:label "StartupCost" ;
+   rdfs:subClassOf seas:Price ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:someValuesFrom seas:CurrencyUnit
+   ] ;
+   rdfs:comment "A description for cost of cogenerationplant or generator startup operation." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#StatusQueryingActivity
+seas:StatusQueryingActivity rdf:type owl:Class ;
+  rdfs:label "StatusQueryingActivity" ;
+  rdfs:subClassOf seas:QueryingActivity ;
+  rdfs:comment "Querying status of optimization." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#StochasticModelParameter
+seas:StochasticModelParameter rdf:type owl:Class ;
+  rdfs:label "StochasticModelParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:deviation ;
+  owl:allValuesFrom xsd:double
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:distribution ;
+  owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+  owl:oneOf [ rdf:type rdf:List ;
+  rdf:first "0" ;
+  rdf:rest [ rdf:type rdf:List ;
+   rdf:first "1" ;
+   rdf:rest rdf:nil
+   ]
+  ]
+  ]
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:meanValue ;
+  owl:allValuesFrom xsd:int
+  ] ;
+  rdfs:comment "A description of service parameter related to stochastic model." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#StorageParameter
+seas:StorageParameter rdf:type owl:Class ;
+  rdfs:label "StorageParameter" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom [ rdf:type owl:Class ;
+  owl:unionOf ( seas:InitialStorageLevel
+  seas:MaximumStorageLevel
+  )
+  ]
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom [ rdf:type owl:Class ;
+  owl:unionOf ( seas:ChargeRate
+  seas:DischargeRate
+  )
+  ]
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom [ rdf:type owl:Class ;
+  owl:unionOf ( seas:ChargeEfficiency
+  seas:DischargeEfficiency
+  )
+  ]
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:Active ;
+  owl:allValuesFrom xsd:boolean
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom [ rdf:type owl:Class ;
+  owl:unionOf ( seas:ChargeCost
+  seas:DischargeCost
+  )
+  ]
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:name ;
+  owl:allValuesFrom xsd:string
+  ] ;
+  rdfs:comment "A description of service parameter related to storage devices at home or microgrid." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Temperature
+seas:Temperature rdf:type owl:Class ;
+   rdfs:label "Temperature" ;
+   rdfs:subClassOf seas:Quantity ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:someValuesFrom seas:TemperatureUnit
+   ] ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#TemperatureUnit
+seas:TemperatureUnit rdf:type owl:Class ;
+   rdfs:subClassOf seas:Unit .
+
+###  http://smarteg.org/ontology/1.0/seas#ThermalTransmittance
+seas:ThermalTransmittance rdf:type owl:Class ;
+  rdfs:label "ThermalTransmittance" ;
+  rdfs:subClassOf seas:Quantity ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:ThermalTransmittanceUnit
+  ] ;
+  rdfs:comment "Thermal transmittance, also known as U-value, is the rate of transfer of heat (in watts) through one square metre of a structure divided by the difference in temperature across the structure. It is expressed in watts per metres squared kelvin, or W/m²K." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#ThermalTransmittanceUnit
+seas:ThermalTransmittanceUnit rdf:type owl:Class ;
+  rdfs:label "ThermalTransmittanceUnit" ;
+  rdfs:subClassOf seas:Unit ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Time
+seas:Time rdf:type owl:Class ;
+  rdfs:subClassOf seas:Quantity ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#TotalCost
+seas:TotalCost rdf:type owl:Class ;
+   rdfs:label "TotalCost" ;
+   rdfs:subClassOf seas:Price ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:CurrencyUnit
+   ] ;
+   rdfs:comment "A description for total cost." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#TransmittanceOfFloor
+seas:TransmittanceOfFloor rdf:type owl:Class ;
+  rdfs:label "TransmittanceOfFloor" ;
+  rdfs:subClassOf seas:BuildingParameter ,
+  seas:ThermalTransmittance ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:WattPerSquareMeterPerDegreeCelcius
+  ] ;
+  rdfs:comment "A description for thermal transmittance of building floor." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#TransmittanceOfRoof
+seas:TransmittanceOfRoof rdf:type owl:Class ;
+   rdfs:label "TransmittanceOfRoof" ;
+   rdfs:subClassOf seas:BuildingParameter ,
+   seas:ThermalTransmittance ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:WattPerSquareMeterPerDegreeCelcius
+   ] ;
+   rdfs:comment "A description for thermal transmittance of building roof." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#TransmittanceOfWall
+seas:TransmittanceOfWall rdf:type owl:Class ;
+   rdfs:label "TransmittanceOfWall" ;
+   rdfs:subClassOf seas:BuildingParameter ,
+   seas:ThermalTransmittance ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:WattPerSquareMeterPerDegreeCelcius
+   ] ;
+   rdfs:comment "A description for thermal transmittance of building wall." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#TransmittanceOfWindow
+seas:TransmittanceOfWindow rdf:type owl:Class ;
+   rdfs:label "TransmittanceOfWindow" ;
+   rdfs:subClassOf seas:BuildingParameter ,
+   seas:ThermalTransmittance ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:WattPerSquareMeterPerDegreeCelcius
+   ] ;
+   rdfs:comment "A description for thermal transmittance of building window." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#TurkishLira
+seas:TurkishLira rdf:type owl:Class ;
+   rdfs:label "TurkishLira" ;
+   rdfs:subClassOf seas:CurrencyUnit ;
+   rdfs:comment "Turkish Lira (sign:₺ code:TL ) is the official currency of Turkey and Northern Cyprus." ;
+   rdfs:seeAlso "http://dbpedia.org/page/Turkish_lira" ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#TurkishLiraPerKwh
+seas:TurkishLiraPerKwh rdf:type owl:Class ;
+   rdfs:subClassOf seas:PricePerEnergy ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#UncontrollableApplianceParameter
+seas:UncontrollableApplianceParameter rdf:type owl:Class ;
+  rdfs:label "UncontrollableApplianceParameter" ;
+  rdfs:subClassOf seas:ApplianceParameter ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:ConsumptionRate
+  ] ;
+  rdfs:comment "A description of service parameter related to uncontrollable appliances such as Television, Laptop,Oven, Iron, Coffee Machine, Shaver, Game Consol etc." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#UncontrollableApplianceUsage
+seas:UncontrollableApplianceUsage rdf:type owl:Class ;
+  rdfs:label "UncontrollableApplianceUsage" ;
+  rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom [ rdf:type owl:Class ;
+  owl:intersectionOf ( seas:ResourceUsageParameter
+   seas:StochasticModelParameter
+   )
+  ]
+  ] ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Unit
+seas:Unit rdf:type owl:Class .
+
+###  http://smarteg.org/ontology/1.0/seas#Volume
+seas:Volume rdf:type owl:Class ;
+  rdfs:subClassOf seas:Quantity ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#VolumeUnit
+seas:VolumeUnit rdf:type owl:Class ;
+  rdfs:subClassOf seas:Unit ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#WallSurfaceArea
+seas:WallSurfaceArea rdf:type owl:Class ;
+   rdfs:label "WallSurfaceArea" ;
+   rdfs:subClassOf seas:Area ,
+   seas:BuildingParameter ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:SquareMeter
+   ] ;
+   rdfs:comment "A description for wall surface area of building." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#Watt
+seas:Watt rdf:type owl:Class ;
+  rdfs:subClassOf seas:PowerUnit .
+
+###  http://smarteg.org/ontology/1.0/seas#WattHour
+seas:WattHour rdf:type owl:Class ;
+  rdfs:label "WattHour" ;
+  rdfs:subClassOf seas:EnergyUnit ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#WattPerQubicMeterPerDegreeCelcius
+seas:WattPerQubicMeterPerDegreeCelcius rdf:type owl:Class ;
+   rdfs:label "Watt Per Cubic Meter Per Degree Celcius" ;
+   rdfs:subClassOf seas:AirCirculationUnit ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#WattPerSquareMeterPerDegreeCelcius
+seas:WattPerSquareMeterPerDegreeCelcius rdf:type owl:Class ;
+  rdfs:label "WattPerSquareMeterPerDegreeCelcius" ;
+  rdfs:subClassOf seas:ThermalTransmittanceUnit ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#WattPerSquareMeterPerKelvin
+seas:WattPerSquareMeterPerKelvin rdf:type owl:Class ;
+   rdfs:label "WattPerSquareMeterPerDegreeCelcius" ;
+   rdfs:subClassOf seas:ThermalTransmittanceUnit ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#WindEnergyGenerationForecasting
+seas:WindEnergyGenerationForecasting rdf:type owl:Class ;
+   rdfs:label "WindEnergyGenerationForecasting" ;
+   rdfs:subClassOf seas:ForecastingActivity ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:hasInput ;
+   owl:allValuesFrom seas:GenerationForecastParameter
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:hasOutput ;
+   owl:allValuesFrom seas:GenerationForecast
+   ] ;
+   rdfs:comment "Forecasting of a windmill energy production at specified time or time period  and specified location." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#WindMill
+seas:WindMill rdf:type owl:Class ;
+  rdfs:label "WindMill" ;
+  rdfs:subClassOf seas:ElectricEnergyGenerator ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:BladeArea
+  ] ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:quantity ;
+  owl:allValuesFrom seas:WindMillEfficiency
+  ] ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#WindMillEfficiency
+seas:WindMillEfficiency rdf:type owl:Class ;
+  rdfs:label "WindMillEfficiency" ;
+  rdfs:subClassOf seas:Efficiency ,
+  [ rdf:type owl:Restriction ;
+  owl:onProperty seas:unit ;
+  owl:allValuesFrom seas:Percent
+  ] ;
+  rdfs:comment "A description for efficiency of windmill." ;
+  rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#WindMillParameter
+seas:WindMillParameter rdf:type owl:Class ;
+   rdfs:label "WindMillParameter" ;
+   rdfs:subClassOf seas:OptimizationServiceEvaluation ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:allValuesFrom seas:DepreciationCost
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:Active ;
+   owl:allValuesFrom xsd:boolean
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:list ;
+   owl:allValuesFrom seas:PowerGenerationParameter
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:quantity ;
+   owl:allValuesFrom seas:WindMillEfficiency
+   ] ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:name ;
+   owl:allValuesFrom xsd:string
+   ] ;
+   rdfs:comment "A description of service parameter related to windmill." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+###  http://smarteg.org/ontology/1.0/seas#WindowSurfaceArea
+seas:WindowSurfaceArea rdf:type owl:Class ;
+   rdfs:label "WindowSurfaceArea" ;
+   rdfs:subClassOf seas:Area ,
+   seas:BuildingParameter ,
+   [ rdf:type owl:Restriction ;
+   owl:onProperty seas:unit ;
+   owl:allValuesFrom seas:SquareMeter
+   ] ;
+   rdfs:comment "A description for window surface area of building." ;
+   rdfs:isDefinedBy seas:InnovaOntology .
+
+
+#################################################################
+#
+#  Individuals
+#
+#################################################################
+
+###  http://smarteg.org/ontology/1.0/seas#ActorOntology
+seas:ActorOntology rdf:type owl:NamedIndividual .
+
+###  http://smarteg.org/ontology/1.0/seas#BuildingRelatedParameter
+seas:BuildingRelatedParameter rdf:type owl:NamedIndividual .
+
+
+
+###  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net

@@ -1,0 +1,210 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .  
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+@prefix time: <http://www.w3.org/2006/time#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Ontology a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+seas:TimeOntology a owl:Ontology , voaf:Ontology ;
+  dc:title "The SEAS Time Ontology."@en ;
+  dc:description """This ontology defines:
+
+- a set of subclasses of `seas:Evaluation` to better interpret evaluations of quantifiable properties.
+- a set of sub properties of `seas:hasProperty` to qualify time-related properties.
+"""@en ;
+  dc:issued "2016-07-05"^^xsd:date ;
+  dc:modified "2016-09-26"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <http://creativecommons.org/licenses/by/4.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:EvaluationOntology ;
+  owl:imports time: ;
+  owl:versionIRI <https://w3id.org/seas/TimeOntology-1.0> ;
+  owl:versionInfo "v1.0" . 
+
+seas:InstantaneousEvaluation a owl:ObjectProperty ;
+  rdfs:label "Instantaneous Evaluation"@en ;
+  rdfs:comment "The class of evaluations that are relative to an instant"@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:hasTemporalContext ; owl:someValuesFrom time:Instant ] ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology .
+
+seas:TimeIntervalEvaluation a owl:ObjectProperty ;
+  rdfs:label "Time Interval Evaluation"@en ;
+  rdfs:comment "The class of evaluations that are relative to a time interval"@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:hasTemporalContext ; owl:someValuesFrom time:ProperInterval ] ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology .
+
+seas:TimeVariationEvaluation a owl:Class ;
+  rdfs:label "Time Variation Evaluation"@en ;
+  rdfs:comment """The given value is the variation of the quantity over the temporal context."""@en ;
+  rdfs:subClassOf seas:TimeIntervalEvaluation ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology . 
+
+seas:TimeSumEvaluation a owl:Class ;
+  rdfs:label "Time Sum Evaluation"@en ;
+  rdfs:comment """The given value is the sum of the quantity over the temporal context."""@en ;
+  rdfs:subClassOf seas:TimeIntervalEvaluation ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology . 
+
+seas:TimeAverageEvaluation a owl:Class ;
+  rdfs:label "Time Average Evaluation"@en ;
+  rdfs:comment """The given value is the average of the quantity over the temporal context."""@en ;
+  rdfs:subClassOf seas:TimeIntervalEvaluation ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology . 
+
+seas:TimeMinimumEvaluation a owl:Class ;
+  rdfs:label "Time Minimum Evaluation"@en ;
+  rdfs:comment """The given value is the minimum of the quantity over the temporal context."""@en ;
+  rdfs:subClassOf seas:TimeIntervalEvaluation ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology . 
+
+seas:TimeMaximumEvaluation a owl:Class ;
+  rdfs:label "Time Maximum Evaluation"@en ;
+  rdfs:comment """The given value is the maximum of the quantity over the temporal context."""@en ;
+  rdfs:subClassOf seas:TimeIntervalEvaluation ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology . 
+
+seas:TimeConstantEvaluation a owl:Class ;
+  rdfs:label "Time Constant Evaluation"@en ;
+  rdfs:comment """The given value is the value of the quantity at any instant of the temporal context."""@en ;
+  rdfs:subClassOf seas:TimeIntervalEvaluation ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology . 
+
+
+
+seas:eventNumber a owl:ObjectProperty ;
+  rdfs:label "event number"@en ;
+  rdfs:comment """Links a feature of interest to a number of events during a temporal context. Functional sub properties of `seas:eventNumber` define the semantics of the event.
+
+For example, if a window was closed 5 times during last night:
+
+```
+seas:closingNumber a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:subPropertyOf seas:stateChangeNumber .
+
+<window> seas:closingNumber <window/closingNumber> .
+<window/closingNumber> seas:evaluation <window/closingNumber/evaluation/1> .
+<window/closingNumber/evaluation/1> seas:evaluatedValue 5 ; 
+  seas:hasTemporalContext [ 
+    time:hasBeginning [ time:asXSDDateTime "2016-09-25T23:00:00Z" ] ;
+    time:hasEnd [ time:asXSDDateTime "2016-09-26T07:00:00Z" ] ; ]
+```
+"""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology . 
+
+seas:eventFrequency a owl:ObjectProperty ;
+  rdfs:label "event frequency"@en ;
+  rdfs:comment """Links a feature of interest to a frequency of the events during a temporal context. Functional sub properties of `seas:eventFrequency` define the semantics of the event."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology . 
+
+
+seas:stateChangeNumber a owl:ObjectProperty ;
+  rdfs:label "state change number"@en ;
+  rdfs:comment """Links a feature of interest to the number of changes the value of a property experienced during the considered temporal context. Functional sub properties of `seas:stateDuration` define the semantics of the property.
+
+For example, if a window was opened and closed 5 times during last night:
+
+```
+seas:openCloseChangeNumber a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:subPropertyOf seas:stateChangeNumber .
+
+<window> seas:openCloseChangeNumber <window/openCloseChangeNumber> .
+<window/openCloseChangeNumber> seas:evaluation <window/openCloseChangeNumber/evaluation/1> .
+<window/openCloseChangeNumber/evaluation/1> seas:evaluatedValue 5 ; 
+  seas:hasTemporalContext [ 
+    time:hasBeginning [ time:asXSDDateTime "2016-09-25T23:00:00Z" ] ;
+    time:hasEnd [ time:asXSDDateTime "2016-09-26T07:00:00Z" ] ; ]
+```
+"""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology . 
+
+seas:stateChangeFrequency a owl:ObjectProperty ;
+  rdfs:label "state change frequency"@en ;
+  rdfs:comment """Links a feature of interest to the frequency of experienced property value changes during the considered temporal context. Functional sub properties of `seas:stateChangeFrequency` define the semantics of the property.
+
+"""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology . 
+
+seas:stateDuration a owl:ObjectProperty ;
+  rdfs:label "state duration"@en ;
+  rdfs:comment """Links a feature of interest to the duration during which a property has a given state during the considered temporal context. Functional sub properties of `seas:stateDuration` define the semantics of the property and the state.
+
+For example, if a window was open during 2 hours last night:
+
+```
+seas:openDuration a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:subPropertyOf seas:stateDuration .
+
+<window> seas:openDuration <window/openDuration> .
+<window/openDuration> seas:evaluation <window/openDuration/evaluation/1> .
+<window/openDuration/evaluation/1> seas:evaluatedValue "PT2H"^^xsd:duration ; 
+  seas:hasTemporalContext [ 
+    time:hasBeginning [ time:asXSDDateTime "2016-09-25T23:00:00Z" ] ;
+    time:hasEnd [ time:asXSDDateTime "2016-09-26T07:00:00Z" ] ; ]
+```
+"""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:TimeOntology . 

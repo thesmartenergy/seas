@@ -1,0 +1,261 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix gr: <http://purl.org/goodrelations/v1#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Ontology a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+seas:PlayerOntology a owl:Ontology , voaf:Ontology ;
+  dc:title "The SEAS Player ontology"@en ;
+  dc:description "The Seas Player Ontology defines a vocabulary of business players related to the SEAS domain."@en ;
+  dc:issued "2016-01-26"^^xsd:date ;
+  dc:modified "2016-09-26"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports pep: ;
+  owl:versionIRI <https://w3id.org/seas/PlayerOntology-1.0> ;
+  owl:versionInfo "v1.0" .
+
+seas:Player a owl:Class ; 
+  rdfs:label "Player"@en ;
+  rdfs:comment """one of the important people, companies etc involved in a particular industry, market, situation etc.
+
+(source: the Longman Business Dictionary)"""@en ;
+  rdfs:subClassOf pep:ProcessExecutor ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology.
+
+seas:Operator a owl:Class ;
+  rdfs:label "Operator"@en ;
+  rdfs:comment "An Operator is an actor that regulates operations of players in the system."@en ;
+  rdfs:subClassOf seas:Player ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology.
+
+seas:Aggregator a owl:Class ;  
+  rdfs:label "Aggregator"@en ;
+  rdfs:label "Agregador"@pt ;
+  rdfs:comment """The class of Aggregator SEAS actors. An entity responsible for planning, scheduling, accounting, billing,
+   and settlement for energy deliveries from the aggregator's portfolio of seller and/or buyers. Aggregators seek to bring 
+   together customers or generators so they can buy or sell power in bulk, making a profit on the transaction. 
+   An actor managing part of the behaviour of actors such as Loads, Generators and Storages and to the grid and the other actors, 
+   acts as one single entity. NOTE: any actors that look like an "aggregator" MUST be replaced by the best actor from this current list if it exists."""@en ;
+   rdfs:subClassOf seas:Player ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:Authority a seas:Player ;  
+  rdfs:label "Authority"@en ;
+  rdfs:comment """The class of Authority SEAS actors."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:SmartChargingProvider a seas:Player, gr:BusinessEntity ;
+  rdfs:label "Smart Charging Provider"@en ;
+  rdfs:comment "The class of SmartChargingProvider SEAS actors."@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:BalanceResponsibleParty a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Balance Responsible Party"@en ;
+  rdfs:comment """The class of BalanceResponsibleParty SEAS actors. A party that has a contract proving financial security and identifying balance responsibility with the Imbalance Settlement Responsible of the Market Balance Area entitling the party to operate in the market. This is the only role allowing a party to nominate energy on a wholesale level."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:BalanceServiceProvider a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Balance Service Provider"@en ;
+  rdfs:comment """The class of BalanceServiceProvider SEAS actors. Also called Balance Responsible Parties (BRP). The balance responsible party is the only role allowing a party to buy or sell energy on a wholesale level. The balance responsible party must declare to the TSO the production and consumption plans for the next day on its balance perimeter. It undertakes to pay financial compensation to the TSO for negative imbalances (production-consumption) and is financially compensated for positive imbalances."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:ChargeServiceProvider a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Charge Service Provider"@en ;
+  rdfs:comment """The class of ChargeServiceProvider SEAS actors. The CSP offers e-mobility services to Electric Vehicle users (may include charging, search &amp; find, routing and other services). It operates a contract party for the EV user, taking care of the authentication and billing process. It provides an access card available for many EVSE whose CSO have an agreement with the CSP, and may have some roaming agreement with other CSP registered by a clearing house."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:ChargingStationOperator a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Charging Station Operator"@en ;
+  rdfs:comment """The class of ChargingStationOperator SEAS actors. A Charging Station Operator is a party delivering and managing physical equipment to supply the charging process of the electrical vehicle (EVSE). The CSO is generally investor, owner and operator of EVSE and the private electricity network to which they are connected : which is defined as the charging station."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:ClearingHouse a seas:Player ; 
+  rdfs:label "Clearing House"@en ;
+  rdfs:comment """The class of ClearingHouse SEAS actors. The clearing house records all the roaming agreements between CSP and CSO (EV service roaming). It facilitates data exchange between roaming partners : authentication, validation of contracts, charge retail records (duration, energy, load...)"""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:CurtailmentServiceProvider a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Curtailment Service Provider"@en ;
+  rdfs:comment """The class of CurtailmentServiceProvider SEAS actors. A company that serves as an intermediary between utilities and customers, pooling together groups of customers who participate in demand response programs to reduce energy usage during periods of peak demand. Aggregate load profiles of small and medium consumers to have a better support for the participation in DR events."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:DataBroker a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Data Broker"@en ;
+  rdfs:comment """The class of DataBroker SEAS actors. An entity that collects data from a variety of sources, including Internet and online sources as well as databases, print documentation, and surveys to package and sell as a product or service to other entities. It can include personal consumer data or business data to serve information needs of private sector and governmental agencies, and could include information generated by Smart Grid or M2M applications. Also known as an information broker."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:DataManagementSystem a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Data Management System"@en ;
+  rdfs:comment """The class of DataManagementSystem SEAS actors. Retrieves, processes and recovers data."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:DistributedEnergyResourcesInformationProvider a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Distributed Energy Resources Information Provider"@en ;
+  rdfs:comment """The class of DistributedEnergyResourcesInformationProvider SEAS actors. Provides information of power system variables such as loads and production from renewables, forecasts, information on electric vehicles etc... It can act as a trusted third party responsible for dispatching the consumption between many energy suppliers and sharing a registry for metering data (electric roaming)."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:DistributionSystemOperator a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Distributed Energy Resources Information Provider"@en ;
+  rdfs:comment """The class of DistributionSystemOperator SEAS actors. Has the responsibility of operating the distribution network, ensuring the maintenance and development of the infrastructure and the respect of the quality of supply (reduced disconnection time, voltage within bands, etc...). The DSO is also responsible for the metering."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:Consumer a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Consumer"@en ;
+  rdfs:comment """The class of Consumer SEAS actors. Person for whom something was ultimately created or intended. NOTE: legal issues in dealing with privacy and market legislation."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:EnergyEndCustomer a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Energy end-customer"@en ;
+  rdfs:comment """The class of EnergyEndCustomer SEAS actors. Consumer, prosumer, End-user, Home-User, EV user, Buyer, Seller."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:EnergyMarket a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Energy Market"@en ;
+  rdfs:comment "The class of EnergyMarket SEAS actors"@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:EnergyProducerOperator a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Energy Producer Operator"@en ;
+  rdfs:comment """The class of EnergyProducerOperator SEAS actors. Produces energy. Either buys, sells or “lends” energy. Manages the electricity production and sells the electricity to the electricity market. He gives information (forecast (production, weather), real time production, price...)."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:EnergyProvider a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Energy Provider"@en ;
+  rdfs:comment "The class of EnergyProvider SEAS actors"@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:EnergyRetailer a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Energy Retailer"@en ;
+  rdfs:comment """The class of EnergyRetailer SEAS actors. Sell or Buy Energy to the End-Customer and purchases it on the electricity market. : it charges the customer based on the flexibility, duration and power. It communicates to the customer the energy metering values, in accordance with the DSO or TSO metering."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:ForecastProvider a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Forecast Provider"@en ;
+  rdfs:comment """The class of ForecastProvider SEAS actors. Provides through forecasts the value of power system variables such as loads and production from renewables or performs and updates the forecast values, which are transmitted to the network operator. Kind of value : weather, price, consumption, generation,..."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:GenerationEquipment a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Generation Equipment"@en ;
+  rdfs:comment """The class of GenerationEquipment SEAS actors. A customer of the network injecting electricity. Examples found in the different UCs are PV producer, CHP, and Wind producer"""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+seas:HomeAndBuildingManagementSystem a owl:Class ;
+  rdfs:subClassOf seas:Player ;
+  rdfs:label "Home and Building Management System"@en ;
+  rdfs:comment """The class of HomeAndBuildingManagementSystem SEAS actors. A Home and Building Manager System is a hardware device with communication ability, allowing access to a residential home or building and offering energy related services based on actions/command and data collection/restitution. Connects in-home digital devices, such as PCs, mobile phones, entertainment technology, thermostats, home security systems and smart appliances, into a common network. Extracts useful knowledge about consumption behaviour to be used in management methodologies, balancing demand and supply and possibly considering renewable sources available at buildings."""@en ;
+  rdfs:isDefinedBy seas:PlayerOntology .
+
+####################################
+# TO BE DISCUSSED...
+# 
+# At first sight I don't aggree with some of the actors present here, such as: EnergyStorage or GenerationEquipment, but it is discussable...
+# 
+# Ass:. gabrieljlsantos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+seas:offersService a owl:ObjectProperty;
+  rdfs:comment "offersService"@en ;
+  rdfs:domain seas:Entity;
+  rdfs:range seas:Service;  
+  rdfs:subPropertyOf pep:implements ;
+  rdfs:seeAlso <http://purl.org/goodrelations/v1#offers>;    
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:DeviceOntology .   
+  

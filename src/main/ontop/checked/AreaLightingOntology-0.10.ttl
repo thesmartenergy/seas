@@ -1,0 +1,202 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .  
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+seas:AreaLightingOntology a owl:Ontology , voaf:Vocabulary ;
+  dc:title "The SEAS Area Lighting ontology."@en ;
+  dc:description """The SEAS Area Lighting ontology describes light sources and illuminable areas. 
+
+Light sources and light source devices (subclass of `seas:Device`) may `seas:illuminates` illuminable areas (subclass of `seas:Areas`), while illuminable systems may transmit light to other illuminable areas (property `seas:transmitsLightTo`)
+
+Main source is http://www.compuphase.com/electronics/candela_lumen.htm"""@en ;
+  dc:issued "2016-07-19"^^xsd:date ;
+  dc:modified "2016-09-26"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:AreaOntology , seas:TechnicalSystemOntology ;
+  owl:versionIRI <https://w3id.org/seas/AreaLightingOntology-0.10> ;
+  owl:versionInfo "v0.10" .
+
+seas:IlluminableArea a owl:Class ;
+  rdfs:label "Illuminable Area" ;
+  rdfs:comment """The class of areas _in_ which one may measure/effect luminosity, and perceive brightness.
+
+Illuminable areas include the exterior, rooms, skylight systems.
+
+There is no particular assumption about how the light is transmitted in an illuminable area. Meaning: the luminosity may be non homogeneous in an illuminable area."""@en ;
+  rdfs:subClassOf seas:Area ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .
+
+  seas:transmitsLightTo a owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:label "transmits light to"@en ;
+    rdfs:comment """The subject illuminable area transmits light to the object illuminable area.
+
+This property may be qualified by class `seas:LightTransmissionSystemConnection`.
+
+To account for one-way mirrors, this property is not symmetric."""@en ;
+    rdfs:subPropertyOf seas:connectedTo ;
+    rdfs:domain seas:IlluminableArea ;
+    rdfs:range seas:IlluminableArea ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:LightSystemOntology .
+
+  seas:refractiveIndice a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "refractive indice"@en;
+    rdfs:comment """Qualifies the refractive indice of an illuminable area."""@en ;
+    rdfs:subPropertyOf seas:hasProperty ;
+    rdfs:domain seas:IlluminableArea ;
+    rdfs:range seas:Property ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:LightSystemOntology.
+
+
+seas:LightTransmissionSystemConnection a owl:Class ;
+  rdfs:label "Light Transmission System Connection" ;
+  rdfs:comment """The class of connections between illuminable areas, through which light can be transmitted.
+
+Examples of light transmission system connections include glasses, tinted glasses, one-way mirrors."""@en ;
+  rdfs:subClassOf seas:AreaConnection ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom seas:IlluminableArea ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom seas:IlluminableAreaFrontier ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .
+
+
+seas:IlluminableAreaFrontier a owl:Class ;
+  rdfs:label "Illuminable Area Frontier" ;
+  rdfs:comment """The class of areas frontiers _on_ which one may measure/effect luminosity, and perceive brightness.
+
+Illuminable areas are surfaces such as walls, tables, sheer curtains, mirrors, window.
+
+Light may be reflected, absorbed, and transmitted by illuminable area frontiers."""@en ;
+  rdfs:subClassOf seas:AreaFrontier ;
+  rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:IlluminableArea ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:LightTransmissionSystemConnection ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .
+
+  seas:luminosity a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "luminosity" ;
+    rdfs:comment """The luminosity at an illuminable area frontier."""@en ;
+    rdfs:subPropertyOf seas:hasProperty ;
+    rdfs:domain seas:IlluminableAreaFrontier ;
+    rdfs:range seas:Property ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:LightSystemOntology .
+
+  seas:lightTransmission a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "light transmission"@en;
+    rdfs:comment """The light transmission through an illuminable area frontier."""@en ;
+    rdfs:subPropertyOf seas:hasProperty ;
+    rdfs:domain seas:IlluminableAreaFrontier ;
+    rdfs:range seas:Property ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:LightSystemOntology.
+
+  seas:lightReflection a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "light reflection" ;
+    rdfs:comment """The light reflection at an illuminable area frontier."""@en ;
+    rdfs:subPropertyOf seas:hasProperty ;
+    rdfs:domain seas:IlluminableAreaFrontier ;
+    rdfs:range seas:Property ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:LightSystemOntology .
+
+
+seas:LightSource a owl:Class ;
+  rdfs:label "Light Source" ;
+  rdfs:comment """The class of systems that are capable of producing light."""@en ;
+  rdfs:subClassOf seas:System ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:LightSystemOntology .
+
+  seas:LightSourceDevice a owl:Class ;
+    rdfs:label "Light Source Device" ;
+    rdfs:comment """The class of devices that are capable of producing light."""@en ;
+    rdfs:subClassOf seas:LightSource ;
+    rdfs:subClassOf seas:Device ;
+    owl:equivalentClass [ owl:intersectionOf (seas:LightSource seas:Device ) ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:LightSystemOntology .
+
+  seas:subLightSourceOf a owl:ObjectProperty ;
+    rdfs:label "sub light source of"@en ;
+    rdfs:comment "Links an light source to another light source that contributes to it."@en ;
+    rdfs:subPropertyOf seas:subSystemOf ; 
+    rdfs:domain seas:LightSource ;
+    rdfs:range seas:LightSource ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:LightSystemOntology .
+
+  seas:illuminates a owl:ObjectProperty ;
+    rdfs:label "illuminates"@en ;
+    rdfs:comment "The subject light system may illuminate the object light system."@en ;
+    rdfs:subPropertyOf seas:connectedTo ;
+    rdfs:domain seas:LightSource ;
+    rdfs:range seas:IlluminableArea ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:LightSystemOntology .
+
+  seas:luminousEfficacy a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "luminous efficacy"@en;
+    rdfs:comment """There are ample ways to illuminate a surface or a room: incandescent lamps, fluorescent tubes, LEDs, tungsten-halogen bulbs, electroluminescent sheets, and others. These are often compared in their efficiency of turning electrical energy to luminous energy.
+
+The official name for lighting efficiency is "luminous efficacy of a source". This should not be confused with the "luminous efficacy of radiation", which disregards losses due to heat generation and others (and therefore gives significantly higher values). The lighting efficiency is measured in lm/W (lumen per Watt).
+
+Lighting efficiency is often expressed as a percentage, based on the theoretical maximum value of lighting efficiency of 683.002 lm/W (at a wavelength of 555 nm). For example, at the time of this writing, a white 1 Watt "lumiled" can reach an efficiency of over 100 lm/W, giving an efficiency of 15%. While this may seem low, LEDs are actually quite efficient in comparison with other lighting methods.
+
+(source: http://www.compuphase.com/electronics/candela_lumen.htm)"""@en ;
+    rdfs:subPropertyOf seas:hasProperty ;
+    rdfs:domain seas:LightSource ;
+    rdfs:range seas:Property ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:LightSystemOntology.

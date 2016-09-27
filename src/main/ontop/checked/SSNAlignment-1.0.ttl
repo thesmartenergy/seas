@@ -1,0 +1,70 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .  
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix qudt: <http://qudt.org/1.1/schema/qudt#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+seas:SSNAlignment a owl:Ontology , voaf:Vocabulary ;
+  dc:title "SSN Alignment."@en ;
+  dc:description """This ontology defines proposed alignemnts with the SSN ontology."""@en ;
+  dc:issued "2016-09-19"^^xsd:date ;
+  dc:modified "2016-09-19"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:versionIRI <https://w3id.org/seas/SSNAlignment-1.0> ;
+  owl:versionInfo "v1.0" ;
+  owl:imports seas:FeatureOfInterestOntology ;
+  owl:imports <http://www.w3.org/ns/ssn> . 
+
+seas:FeatureOfInterest  owl:equivalentClass ssn:FeatureOfInterest ;
+ rdfs:comment """  This concept is equivalent to ssn:FeatureOfInterest, which in the first version of the SSN ontology is defined as a subclass of the union of dul:Event and dul:Object. A dul:Event is any physical, social, or mental process, event, or state. A dul:Object is any physical, social, or mental object, or a substance."""@en .
+
+seas:Property owl:equivalentClass ssn:Property ;
+  rdfs:comment """seas:Property is equivalent to ssn:Property, which in the first version of the SSN ontology is a subclass of dul:Quality. dul:Quality is any aspect of an Entity (but not a part of it), which cannot exist without that Entity. """@en .
+
+ssn:hasProperty rdfs:subPropertyOf seas:hasProperty .
