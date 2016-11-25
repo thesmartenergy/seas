@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2006/time#" uri="../time.rdf"/>
+    <uri id="User Edited Redirect" name="https://w3id.org/pep/" uri="../pep-1.0.ttl"/>
+    <group id="manual" prefer="public">
+        <uri id="ArchitectureOntology" name="https://w3id.org/seas/ArchitectureOntology" uri="ArchitectureOntology-2.0.ttl"/>
+        <uri id="BatteryOntology" name="https://w3id.org/seas/BatteryOntology" uri="BatteryOntology-1.0.ttl"/>
+        <uri id="BooleanPropertyOntology" name="https://w3id.org/seas/BooleanPropertyOntology" uri="BooleanPropertyOntology-1.0.ttl"/>
+        <uri id="BuildingOntology" name="https://w3id.org/seas/BuildingOntology" uri="BuildingOntology-1.0.ttl"/>
+        <uri id="ComfortOntology" name="https://w3id.org/seas/ComfortOntology" uri="ComfortOntology-1.0.ttl"/>
+        <uri id="ComplexOntology" name="https://w3id.org/seas/ComplexOntology" uri="ComplexOntology-1.0.ttl"/>
+        <uri id="DeviceOntology" name="https://w3id.org/seas/DeviceOntology" uri="DeviceOntology-1.0.ttl"/>
+        <uri id="ElectricPowerSystemOntology" name="https://w3id.org/seas/ElectricPowerSystemOntology" uri="ElectricPowerSystemOntology-1.0.ttl"/>
+        <uri id="ElectricVehicleOntology" name="https://w3id.org/seas/ElectricVehicleOntology" uri="ElectricVehicleOntology-1.0.ttl"/>
+        <uri id="EnergyFormOntology" name="https://w3id.org/seas/EnergyFormOntology" uri="EnergyFormOntology-1.0.ttl"/>
+        <uri id="EvaluationOntology" name="https://w3id.org/seas/EvaluationOntology" uri="EvaluationOntology-1.0.ttl"/>
+        <uri id="FailableSystemOntology" name="https://w3id.org/seas/FailableSystemOntology" uri="FailableSystemOntology-1.0.ttl"/>
+        <uri id="FeatureOfInterestOntology" name="https://w3id.org/seas/FeatureOfInterestOntology" uri="FeatureOfInterestOntology-1.0.ttl"/>
+        <uri id="FlexibilityOntology" name="https://w3id.org/seas/FlexibilityOntology" uri="FlexibilityOntology-1.0.ttl"/>
+        <uri id="ForecastingOntology" name="https://w3id.org/seas/ForecastingOntology" uri="ForecastingOntology-1.0.ttl"/>
+        <uri id="GreenKPIOntology" name="https://w3id.org/seas/GreenKPIOntology" uri="GreenKPIOntology-1.0.ttl"/>
+        <uri id="OfferingOntology" name="https://w3id.org/seas/OfferingOntology" uri="OfferingOntology-1.0.ttl"/>
+        <uri id="OperatingOntology" name="https://w3id.org/seas/OperatingOntology" uri="OperatingOntology-1.0.ttl"/>
+        <uri id="OptimizationOntology" name="https://w3id.org/seas/OptimizationOntology" uri="OptimizationOntology-1.0.ttl"/>
+        <uri id="PeriodicSignalOntology" name="https://w3id.org/seas/PeriodicSignalOntology" uri="PeriodicSignalOntology-1.0.ttl"/>
+        <uri id="PhotovoltaicOntology" name="https://w3id.org/seas/PhotovoltaicOntology" uri="PhotovoltaicOntology-1.0.ttl"/>
+        <uri id="PlayerOntology" name="https://w3id.org/seas/PlayerOntology" uri="PlayerOntology-1.0.ttl"/>
+        <uri id="StatisticsOntology" name="https://w3id.org/seas/StatisticsOntology" uri="StatisticsOntology-1.0.ttl"/>
+        <uri id="SystemOntology" name="https://w3id.org/seas/SystemOntology" uri="SystemOntology-1.0.ttl"/>
+        <uri id="ThermodynamicSystemOntology" name="https://w3id.org/seas/ThermodynamicSystemOntology" uri="ThermodynamicSystemOntology-1.0.ttl"/>
+        <uri id="TimeOntology" name="https://w3id.org/seas/TimeOntology" uri="TimeOntology-1.0.ttl"/>
+        <uri id="TradingOntology" name="https://w3id.org/seas/TradingOntology" uri="TradingOntology-1.0.ttl"/>
+        <uri id="UpperOntology" name="https://w3id.org/seas/UpperOntology" uri="UpperOntology-0.10.ttl"/>
+        <uri id="ZoneLightingOntology" name="https://w3id.org/seas/ZoneLightingOntology" uri="ZoneLightingOntology-1.0.ttl"/>
+        <uri id="ZoneOntology" name="https://w3id.org/seas/ZoneOntology" uri="ZoneOntology-1.0.ttl"/>
+        <uri id="ArchitectureOntology-2.0" name="https://w3id.org/seas/ArchitectureOntology-2.0" uri="ArchitectureOntology-2.0.ttl"/>
+        <uri id="BatteryOntology-1.0" name="https://w3id.org/seas/BatteryOntology-1.0" uri="BatteryOntology-1.0.ttl"/>
+        <uri id="BooleanPropertyOntology-1.0" name="https://w3id.org/seas/BooleanPropertyOntology-1.0" uri="BooleanPropertyOntology-1.0.ttl"/>
+        <uri id="BuildingOntology-1.0" name="https://w3id.org/seas/BuildingOntology-1.0" uri="BuildingOntology-1.0.ttl"/>
+        <uri id="ComfortOntology-1.0" name="https://w3id.org/seas/ComfortOntology-1.0" uri="ComfortOntology-1.0.ttl"/>
+        <uri id="ComplexOntology-1.0" name="https://w3id.org/seas/ComplexOntology-1.0" uri="ComplexOntology-1.0.ttl"/>
+        <uri id="DeviceOntology-1.0" name="https://w3id.org/seas/DeviceOntology-1.0" uri="DeviceOntology-1.0.ttl"/>
+        <uri id="ElectricPowerSystemOntology-1.0" name="https://w3id.org/seas/ElectricPowerSystemOntology-1.0" uri="ElectricPowerSystemOntology-1.0.ttl"/>
+        <uri id="ElectricVehicleOntology-1.0" name="https://w3id.org/seas/ElectricVehicleOntology-1.0" uri="ElectricVehicleOntology-1.0.ttl"/>
+        <uri id="EnergyFormOntology-1.0" name="https://w3id.org/seas/EnergyFormOntology-1.0" uri="EnergyFormOntology-1.0.ttl"/>
+        <uri id="EvaluationOntology-1.0" name="https://w3id.org/seas/EvaluationOntology-1.0" uri="EvaluationOntology-1.0.ttl"/>
+        <uri id="FailableSystemOntology-1.0" name="https://w3id.org/seas/FailableSystemOntology-1.0" uri="FailableSystemOntology-1.0.ttl"/>
+        <uri id="FeatureOfInterestOntology-1.0" name="https://w3id.org/seas/FeatureOfInterestOntology-1.0" uri="FeatureOfInterestOntology-1.0.ttl"/>
+        <uri id="FlexibilityOntology-1.0" name="https://w3id.org/seas/FlexibilityOntology-1.0" uri="FlexibilityOntology-1.0.ttl"/>
+        <uri id="GreenKPIOntology-1.0" name="https://w3id.org/seas/GreenKPIOntology-1.0" uri="GreenKPIOntology-1.0.ttl"/>
+        <uri id="OfferingOntology-1.0" name="https://w3id.org/seas/OfferingOntology-1.0" uri="OfferingOntology-1.0.ttl"/>
+        <uri id="OperatingOntology-1.0" name="https://w3id.org/seas/OperatingOntology-1.0" uri="OperatingOntology-1.0.ttl"/>
+        <uri id="PeriodicSignalOntology-1.0" name="https://w3id.org/seas/PeriodicSignalOntology-1.0" uri="PeriodicSignalOntology-1.0.ttl"/>
+        <uri id="PhotovoltaicOntology-1.0" name="https://w3id.org/seas/PhotovoltaicOntology-1.0" uri="PhotovoltaicOntology-1.0.ttl"/>
+        <uri id="PlayerOntology-1.0" name="https://w3id.org/seas/PlayerOntology-1.0" uri="PlayerOntology-1.0.ttl"/>
+        <uri id="StatisticsOntology-1.0" name="https://w3id.org/seas/StatisticsOntology-1.0" uri="StatisticsOntology-1.0.ttl"/>
+        <uri id="SystemOntology-1.0" name="https://w3id.org/seas/SystemOntology-1.0" uri="SystemOntology-1.0.ttl"/>
+        <uri id="ThermodynamicSystemOntology-1.0" name="https://w3id.org/seas/ThermodynamicSystemOntology-1.0" uri="ThermodynamicSystemOntology-1.0.ttl"/>
+        <uri id="TimeOntology-1.0" name="https://w3id.org/seas/TimeOntology-1.0" uri="TimeOntology-1.0.ttl"/>
+        <uri id="TradingOntology-1.0" name="https://w3id.org/seas/TradingOntology-1.0" uri="TradingOntology-1.0.ttl"/>
+        <uri id="UpperOntology-0.10" name="https://w3id.org/seas/UpperOntology-0.10" uri="UpperOntology-0.10.ttl"/>
+        <uri id="ZoneLightingOntology-1.0" name="https://w3id.org/seas/ZoneLightingOntology-1.0" uri="ZoneLightingOntology-1.0.ttl"/>
+        <uri id="ZoneOntology-1.0" name="https://w3id.org/seas/ZoneOntology-1.0" uri="ZoneOntology-1.0.ttl"/>
+        <uri id="seas" name="https://w3id.org/seas/" uri="seas-1.0.ttl"/>
+        <uri id="seas-1.0" name="https://w3id.org/seas/seas-1.0" uri="seas-1.0.ttl"/>
+    </group>
+</catalog>

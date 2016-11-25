@@ -42,6 +42,7 @@ foaf:Person a owl:Class .
 foaf:name a owl:DatatypeProperty .
 
 
+
 seas:TechnicalSystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "SEAS-TechnicalSystemOntology ontology"@en ;
   dc:description "The Seas Technical System Ontology for the ITEA SEAS (Smart Energy Aware Systems) project. This vocabulary presents some abstract system level concepts that help to define common patterns to ease creating similar queries across more specific ontologies"@en ;

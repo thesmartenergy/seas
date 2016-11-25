@@ -41,12 +41,13 @@ foaf:Person a owl:Class .
 foaf:name a owl:DatatypeProperty .
 
 
+
 seas:TimeSeriesOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "SEAS-TimeSeriesOntology ontology"@en ;
   dc:description "The Seas TimeSeries Ontology that helps to define simple time-series as evaluation."@en ;
   dc:issued "2016-03-17"^^xsd:date ;
   dc:modified "2016-05-26"^^xsd:date ;
-  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
   dc:creator <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;

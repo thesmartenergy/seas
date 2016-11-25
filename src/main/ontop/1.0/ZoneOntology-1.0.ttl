@@ -1,0 +1,238 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:ZoneOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "The SEAS Zone ontology"@en ;
+  dc:description """The SEAS Zone ontology describes systems named `seas:Zone`s, that are connected through `seas:ZoneConnection`s at their `seas:zoneFrontier`s. """@en ;
+  dc:issued "2016-07-21"^^xsd:date ;
+  dc:modified "2016-07-21"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:SystemOntology , seas:DeviceOntology ;
+  owl:versionIRI <https://w3id.org/seas/ZoneOntology-1.0> ;
+  owl:versionInfo "v1.0" .
+
+
+seas:Zone a owl:Class ;
+  rdfs:label "Zone" ;
+  rdfs:comment """A part or a section of a building, campus, town, etc."""@en ;
+  rdfs:subClassOf seas:System ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ZoneOntology .
+
+seas:ZoneConnection a owl:Class ;
+  rdfs:label "Zone Connection"@en ;
+  rdfs:comment """When they are connected, zones may exchange light, heat, humidity, agents."""@en ;
+  rdfs:subClassOf seas:Connection ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:Zone ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:ZoneFrontier ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BuildingOntology.
+
+seas:ZoneFrontier a owl:Class ;
+  rdfs:label "Zone Frontier"@en ;
+  rdfs:comment """Surface that marks the frontier of an zone, and represents the connection point to other zones."""@en ;
+  rdfs:subClassOf seas:ConnectionPoint ;
+  rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:Zone ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:ZoneConnection ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BuildingOntology.  
+
+seas:subZoneOf a owl:ObjectProperty ;
+  rdfs:label "sub zone of"@en ;
+  rdfs:comment "Links an zone to another it is contained in."@en ;
+  rdfs:subPropertyOf seas:subSystemOf ; 
+  rdfs:domain seas:Zone ;
+  rdfs:range seas:Zone ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ZoneOntology .
+
+
+## properties
+
+seas:volume a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "volume" ;
+  rdfs:comment """Quantifies the volume of the zone."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:Zone ;
+  rdfs:range seas:VolumeProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ZoneOntology .
+
+  seas:VolumeProperty a owl:Class ; 
+    rdfs:label "Volume Property"@en ;
+    rdfs:comment """Volume is the quantity of three-dimensional space enclosed by a closed surface, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces. (source: Wikipedia)"""@en ;
+    rdfs:subClassOf seas:Property ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ZoneOntology .
+
+seas:area a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "area" ;
+  rdfs:comment """The area of the Zone."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain  [ owl:unionOf ( seas:Zone seas:ZoneConnection seas:ZoneFrontier ) ] ;
+  rdfs:range seas:AreaProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ZoneOntology .
+
+  seas:AreaProperty a owl:Class ; 
+    rdfs:label "Area Property"@en ;
+    rdfs:comment """Area is the quantity that expresses the extent of a two-dimensional figure or shape, or planar lamina, in the plane. Surface area is its analog on the two-dimensional surface of a three-dimensional object. Area can be understood as the amount of material with a given thickness that would be necessary to fashion a model of the shape, or the amount of paint necessary to cover the surface with a single coat.[1] It is the two-dimensional analog of the length of a curve (a one-dimensional concept) or the volume of a solid (a three-dimensional concept). (source: Wikipedia)"""@en ;
+    rdfs:subClassOf seas:Property ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ZoneOntology .
+
+
+seas:humidity a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "humidity" ;
+  rdfs:comment """Links a zone, zone connection, or zone frontier, to the property that qualifies its humidity.
+
+The humidity property has itself properties that quantify it, such as the specific humidity."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain [ owl:unionOf ( seas:Zone seas:ZoneConnection seas:ZoneFrontier ) ] ;
+  rdfs:range seas:HumidityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ZoneOntology .
+
+  seas:HumidityProperty a owl:Class ;
+    rdfs:label "Humidity Property"@en ;
+    rdfs:comment """The class of humidity properties of zones, zone connections, or zone frontiers."""@en ;
+    rdfs:subClassOf seas:Property ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ZoneOntology .
+
+    seas:specificHumidity a owl:ObjectProperty , owl:FunctionalProperty ;
+      rdfs:label "specific humidity" ;
+      rdfs:comment """The specific humidity is defined as the mass of water per unit mass of moist air."""@en ;
+      rdfs:subPropertyOf seas:hasProperty ;
+      rdfs:domain seas:HumidityProperty ;
+      rdfs:range seas:PercentageProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ZoneOntology .
+
+    seas:absoluteHumidity a owl:ObjectProperty , owl:FunctionalProperty ;
+      rdfs:label "absolute humidity" ;
+      rdfs:comment """The absolute humidity is defined by the mass of water vapor per humid air volume."""@en ;
+      rdfs:subPropertyOf seas:hasProperty ;
+      rdfs:domain seas:HumidityProperty ;
+      rdfs:range seas:VolumetricMassDensityProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ZoneOntology .
+
+      seas:VolumetricMassDensityProperty a owl:Class ; 
+        rdfs:label "Volumetric Mass Density Property"@en ;
+        rdfs:comment """The density, or more precisely, the volumetric mass density, of a substance is its mass per unit volume. The symbol most often used for density is ρ (the lower case Greek letter rho), although the Latin letter D can also be used. Mathematically, density is defined as mass divided by volume: \rho = \frac{m}{V}, where ρ is the density, m is the mass, and V is the volume. In some cases (for instance, in the United States oil and gas industry), density is loosely defined as its weight per unit volume, although this is scientifically inaccurate – this quantity is more specifically called specific weight. (source: Wikipedia)"""@en ;
+        rdfs:subClassOf seas:Property ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:ZoneOntology .
+
+    seas:saturatedVapourPressure a owl:ObjectProperty , owl:FunctionalProperty ;
+      rdfs:label "saturated vapor pressure" ;
+      rdfs:comment """The saturated vapor pressure of moist air."""@en ;
+      rdfs:subPropertyOf seas:hasProperty ;
+      rdfs:domain seas:HumidityProperty ;
+      rdfs:range seas:PressureProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ZoneOntology .
+
+      seas:PressureProperty a owl:Class ; 
+        rdfs:label "Pressure Property"@en ;
+        rdfs:comment """Pressure (symbol: p or P) is the force applied perpendicular to the surface of an object per unit area over which that force is distributed. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the ambient pressure. (source: Wikipedia)"""@en ;
+        rdfs:subClassOf seas:Property ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:ZoneOntology .
+
+seas:population a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "population" ;
+  rdfs:comment """Links a zone, zone connection or zone frontier to the property that quantifies its population in terms of agents.
+
+The population property may itself have properties such as the population flow."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain [ owl:unionOf ( seas:Zone seas:ZoneConnection seas:ZoneFrontier ) ] ;
+  rdfs:range seas:PopulationProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ZoneOntology .
+
+  seas:PopulationProperty a owl:Class ;
+    rdfs:label "Population Property"@en ;
+    rdfs:comment """The class of population properties of zones, zone connections, or zone frontiers."""@en ;
+    rdfs:subClassOf seas:Property ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ZoneOntology .
+
+    seas:populationFlow a owl:ObjectProperty , owl:FunctionalProperty ;
+      rdfs:label "population flow" ;
+      rdfs:comment """The flow of agents that cross a zone, a zone connection, or a zone frontier."""@en ;
+      rdfs:subPropertyOf seas:hasProperty ;
+      rdfs:domain seas:PopulationProperty ;
+      rdfs:range seas:Property ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ZoneOntology .
+
+
+## devices
+
+seas:HumiditySensor a owl:Class ;
+  rdfs:label "humidity" ;
+  rdfs:comment """Humidity sensors observe the humidity of a zone, zone connection, or zone frontier."""@en ;
+  rdfs:subClassOf seas:Sensor ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ZoneOntology .
+
+seas:HumidityActuator a seas:Actuator ;
+  rdfs:label "Humidity Actuator"@en ;
+  rdfs:comment """An actuator that is capable of modifying the humidity in zones."""@en ;
+  rdfs:subClassOf seas:Actuator ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ZoneOntology .
+
+
+seas:PresenceSensor a owl:Class ;
+  rdfs:label "Presence Sensor" ;
+  rdfs:comment """A Presence sensor observes the population inside a zone, zone connection or zone frontier."""@en ;
+  rdfs:subClassOf seas:Sensor ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ZoneOntology .

@@ -1,0 +1,101 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:ComplexOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "The SEAS Complex ontology"@en ;
+  dc:description """This ontology defines properties whose values may be represented as mathematical complexes.
+
+  It also defines common properties of such properties such as the real or the imaginary part."""@en ;
+  dc:issued "2015-11-01"^^xsd:date ;
+  dc:modified "2016-11-01"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:FeatureOfInterestOntology ;
+  owl:versionIRI <https://w3id.org/seas/ComplexOntology-1.0> ;
+  owl:versionInfo "v1.0" .
+
+seas:ComplexProperty a owl:Class ;
+  rdfs:label "Complex Property"@en ;
+  rdfs:comment "A property that is quantifiable by a complex value with a quantity dimension."@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ComplexOntology .
+
+seas:real a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "real"@en ;
+  rdfs:comment """The real part of a complex property."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:ComplexProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ComplexOntology . 
+
+seas:imaginary a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "imaginary"@en ;
+  rdfs:comment """The imaginary part of a complex property."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:ComplexProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ComplexOntology . 
+
+seas:module a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "module"@en ;
+  rdfs:comment """The module of a complex property."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:ComplexProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ComplexOntology . 
+
+seas:phase a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "phase"@en ;
+  rdfs:comment """The phase of a complex property."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:ComplexProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ComplexOntology . 
+

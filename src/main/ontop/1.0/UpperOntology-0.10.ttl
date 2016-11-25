@@ -1,0 +1,183 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:UpperOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "The SEAS Upper ontology"@en ;
+  dc:description """The SEAS Upper ontology presents abstract meta level concepts that may be aligned with existing upper ontologies.
+
+In version v0.10 onward, the upper ontology concepts are only used in the upper ontology."""@en ;
+  dc:issued "2015-10-10"^^xsd:date ;
+  dc:modified "2016-09-26"^^xsd:date ;
+  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:priorVersion <https://w3id.org/seas/UpperOntology-0.9> ;
+  owl:versionIRI <https://w3id.org/seas/UpperOntology-0.10> ;
+  owl:versionInfo "v0.10" .
+  
+
+seas:Entity a owl:Class ;
+  rdfs:label "Entity"@en ;
+  rdfs:comment """Can be used instead of thing to constraint only entities defined by seas ontology."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:UpperOntology.
+
+  seas:AbstractEntity a owl:Class ;
+    rdfs:label "Abstract Entity"@en ;
+    rdfs:comment """Abstract entity has no material existence.
+
+This may be aligned to `dul:Abstract` in the DOLCE+DnS Ultralite ontology."""@en ;
+    vs:term_status "testing" ;
+    rdfs:subClassOf seas:Entity; 
+    owl:disjointWith seas:PhysicalEntity; 
+    rdfs:isDefinedBy seas:UpperOntology.       
+    
+  seas:Perdurant a owl:Class ;
+    rdfs:label "Perdurant"@en;
+    rdfs:comment """Also known as occurrents, accidents or happenings, perdurants are those entities for which only a part exists if we look at them at any given snapshot in time. When we freeze time we can only see a part of the perdurant. Perdurants are often what we know as processes, for example: running. If we freeze time then we only see a part of the running, without any previous knowledge one might not even be able to determine the actual process as being a process of running. Other examples include an activation, a kiss, or a procedure.
+
+  (source: https://en.wikipedia.org/wiki/Formal_ontology#Perdurant)
+
+This may be aligned to `dul:Process` in the DOLCE+DnS Ultralite ontology."""@en;
+    rdfs:subClassOf seas:Entity;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:UpperOntology.   
+    
+  seas:Endurant a owl:Class ;
+    rdfs:label "Endurant"@en ;
+    rdfs:comment """Also known as continuants, or in some cases as substance, endurants are those entities that can be observed-perceived as a complete concept, at no matter which given snapshot of time. Were we to freeze time we would still be able to perceive/conceive the entire endurant.
+
+Examples include material objects (such as an apple or a human), and abstract flat objects (such as an organization, or the border of a country).
+
+  (source: https://en.wikipedia.org/wiki/Formal_ontology#Endurant)
+
+This may be aligned to `dul:Object` in the DOLCE+DnS Ultralite ontology."""@en ;
+    vs:term_status "testing" ;
+    rdfs:subClassOf seas:Entity;  
+    rdfs:isDefinedBy seas:UpperOntology.   
+
+    seas:PhysicalEntity a owl:Class ;
+      rdfs:label "Physical Entity"@en ;
+      rdfs:comment """Physical entity has material existence
+
+This may be aligned to `dul:PhysicalObject` in the DOLCE+DnS Ultralite ontology."""@en ;
+      vs:term_status "testing" ;
+      rdfs:subClassOf seas:Endurant;  
+      rdfs:isDefinedBy seas:UpperOntology.     
+      
+  seas:Quality a owl:Class ;
+    rdfs:label "Quality"@en ;
+    rdfs:comment """Qualities do not exist on their own, but they need another entity (in many formal ontologies this entity is restricted to be an endurant) which they occupy. Examples of qualities and the values they assume include colors (red color), or temperatures (warm).
+
+  (source: https://en.wikipedia.org/wiki/Formal_ontology#Qualities)
+
+This may be aligned to `dul:Quality` in the DOLCE+DnS Ultralite ontology."""@en ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:UpperOntology.  
+
+  seas:Phenomenon a owl:Class ;
+    rdfs:label "Phenomenon"@en ;
+    rdfs:comment """A phenomenon is something that can be observed.
+
+This may be aligned to `ssn:Property` in the Semantic Sensor Network ontology."""@en ;
+    rdfs:subClassOf seas:Entity;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:UpperOntology.      
+
+  seas:Link a owl:Class ;
+    rdfs:label "Link"@en ;
+    rdfs:comment """A relation between two entities.
+
+This may be aligned to `dul:Relation` in the DOLCE+DnS Ultralite ontology."""@en ;
+    rdfs:subClassOf seas:Entity;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:UpperOntology .      
+  
+  seas:Topology a owl:Class ;
+    rdfs:label "Topology"@en ;
+    rdfs:comment """A collection of entities and their links.
+
+This may be aligned to `dul:Collection` in the DOLCE+DnS Ultralite ontology."""@en ;
+    rdfs:subClassOf seas:Entity;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:UpperOntology .        
+
+# Some helpful whole/part properties that are related to UML aggragation and containment 
+# See also https://www.w3.org/2001/sw/BestPractices/OEP/SimplePartWhole/
+  
+seas:hasPart a owl:ObjectProperty, owl:TransitiveProperty;
+  rdfs:label "hasPart"@en ;
+  rdfs:comment """The object is a part of the object.
+
+This property is transitive, and is hence a non-simple DL property(= composite OWL property).
+
+c.f., https://www.w3.org/TR/owl2-syntax/#Property_Hierarchy_and_Simple_Object_Property_Expressions"""@en ;
+  vs:term_status "testing" ;
+  rdfs:domain seas:Entity ;
+  rdfs:range seas:Entity ;
+  rdfs:seeAlso "http://www.obofoundry.org/ro/#OBO_REL:part_of";
+  rdfs:isDefinedBy seas:UpperOntology .   
+  
+seas:hasDirectPart a owl:ObjectProperty;
+  rdfs:label "hasDirectPart"@en ;
+  rdfs:comment """The object is directly a part of the subject (not part of its parts)"""@en ;
+  rdfs:domain seas:Entity ;
+  rdfs:range seas:Entity ;
+  rdfs:subPropertyOf seas:hasPart;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:UpperOntology .   
+
+seas:contains a owl:ObjectProperty, owl:TransitiveProperty;
+  rdfs:label "contains"@en ;
+  rdfs:comment """The subject contains the object. The object exist individually, and is not a part of the subject.
+
+Examples include a person in a room"""@en ;
+  rdfs:domain seas:Entity ;
+  rdfs:range seas:Entity ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:UpperOntology .     
+

@@ -23,5 +23,8 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
+# ontologies
+/src/main/ontop/draft/
+
 # deploy to website
 make.sh

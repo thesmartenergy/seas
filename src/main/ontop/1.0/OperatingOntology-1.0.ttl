@@ -25,6 +25,9 @@
 @prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
 @prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
 @prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
 
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
@@ -45,63 +48,43 @@ foaf:name a owl:DatatypeProperty .
 
 
 
-seas:EnergyUnitVocabulary rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "SEAS-EnergyUnit vocabulary"@en ;
-  dc:description "The Seas Energy Unit Vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
-  dc:issued "2015-10-10"^^xsd:date ;
+seas:OperatingOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "The SEAS Failable System ontology"@en ;
+  dc:description """The SEAS Operating Ontology defines evaluations of operating features of interest."""@en ;
+  dc:issued "2016-07-24"^^xsd:date ;
   dc:modified "2016-07-24"^^xsd:date ;
-  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
-  owl:versionIRI <https://w3id.org/seas/EnergyUnitVocabulary-0.9> ;
-  owl:versionInfo "v0.9" .
+  owl:imports seas:EvaluationOntology ;
+  owl:versionIRI <https://w3id.org/seas/OperatingOntology-1.0> ;
+  owl:versionInfo "v1.0" .
 
-#SEnergy and Power, subcategories to be defined in other vocabularies
-#Just some of the most common units are defined here
-seas:Energy a owl:Class;
-  rdfs:label "Energy"@en ;
-  rdfs:seeAlso saref:Energy ;
-  rdfs:comment "Energy is still also defined as qudt quantity" ;
-  rdfs:isDefinedBy seas:EnergyUnitVocabulary ;   
-  rdfs:subClassOf seas:Quantity,qudt:EnergyAndWork, seas:Commodity.
+seas:MinimumOperatingEvaluation a owl:Class ;
+  rdfs:label "Minimum Operating Evaluation"@en ;
+  rdfs:comment """The evaluated value is the minimum operating value of the property."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "test" ;
+  rdfs:isDefinedBy seas:OperatingOntology . 
 
-seas:Power a owl:Class;
-  rdfs:label "Power"@en ;
-  rdfs:seeAlso saref:Power ;
-  rdfs:comment "Power is still also defined qudt quantity" ;
-  rdfs:isDefinedBy seas:EnergyUnitVocabulary ;   
-  rdfs:subClassOf seas:Quantity, qudt:Power, seas:Commodity.
-  
-seas:EnergyUnit a owl:Class;
-  rdfs:label "EnergyUnit"@en ;
-  rdfs:comment "Energy unit." ;
-  rdfs:isDefinedBy seas:EnergyUnitVocabulary ;   
-  rdfs:subClassOf seas:Unit,qudt:EnergyAndWorkUnit.    
+seas:NominalOperatingEvaluation a owl:Class ;
+  rdfs:label "Nominal"@en ;
+  rdfs:comment """The evaluated value is the nominal operating value of the property."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "test" ;
+  rdfs:isDefinedBy seas:OperatingOntology . 
 
-seas:PowerUnit a owl:Class;
-  rdfs:label "PowerUnit"@en ;
-  rdfs:comment "Power unit." ;
-  rdfs:isDefinedBy seas:EnergyUnitVocabulary ;   
-  rdfs:subClassOf seas:Unit,qudt:PowerUnit.    
-  
-seas:KiloWattHour a seas:EnergyUnit;
-  rdfs:label "KiloWattHour"@en ;
-  rdfs:sameAs qudt-unit:KilowattHour;
-  rdfs:comment "Kilowatt hour";
-  rdfs:isDefinedBy seas:EnergyUnitVocabulary ;   
-  rdfs:subClassOf seas:EnergyUnit.  
-  
-seas:KiloWatt a seas:PowerUnit;
-  rdfs:label "KiloWatt"@en ;
-  rdfs:sameAs qudt-unit:Kilowatt;
-  rdfs:comment "Kilowatt";
-  rdfs:isDefinedBy seas:EnergyUnitVocabulary ;   
-  rdfs:subClassOf seas:PowerUnit.    
-  
-seas:Watt a seas:PowerUnit;
-  rdfs:label "Watt"@en ;
-  rdfs:sameAs qudt-unit:Watt;
-  rdfs:comment "Watt";
-  rdfs:isDefinedBy seas:EnergyUnitVocabulary ;   
-  rdfs:subClassOf seas:PowerUnit.    
+seas:MaximumContinuousOperatingEvaluation a owl:Class ;
+  rdfs:label "Maximum Continuous Operating Evaluation"@en ;
+  rdfs:comment """The evaluated value is the maximum continuous operating value of the property."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "test" ;
+  rdfs:isDefinedBy seas:OperatingOntology . 
+
+seas:MaximumPeakRatingEvaluation a owl:Class ;
+  rdfs:label "Maximum Peak Rating Evaluation"@en ;
+  rdfs:comment """The evaluated value is the maximum peak rating value of the property."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "test" ;
+  rdfs:isDefinedBy seas:OperatingOntology . 

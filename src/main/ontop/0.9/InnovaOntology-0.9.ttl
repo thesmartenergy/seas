@@ -38,12 +38,12 @@ vs:term_status a owl:AnnotationProperty .
 foaf:Person a owl:Class .
 foaf:name a owl:DatatypeProperty .
 
+
 #Core roles and activities (for devices and systems), this is related to actor module and could specialize it but now here defined as new vocabulary
 seas:InnovaOntology a owl:Ontology , voaf:Vocabulary ;
   dc:title "SEAS-InnovaOntology ontology"@en ;
   dc:description """The Seas Innova Ontology is developed by Hilal CEYHAN AKÇOMAK for Innova defined optimization service parameters and  required vocabulary terms. These are to be integrated with the rest of the modules."""@en ;
   dc:issued "2015-10-08"^^xsd:date ;
-  dc:modified "2016-06-05"^^xsd:date ;
   dc:modified "2016-09-22"^^xsd:date ;
   dc:creator [a foaf:Person ; foaf:name "Hilal CEYHAN AKÇOMAK" ] ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;

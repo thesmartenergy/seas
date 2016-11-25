@@ -43,6 +43,7 @@ foaf:name a owl:DatatypeProperty .
 
 
 
+
 #Core roles and activities (for devices and systems), this is related to actor module and could specialize it but now here defined as new vocabulary
 seas:BuildingEnergyOntology a owl:Ontology , voaf:Vocabulary ;
   dc:title "SEAS-BuildingEnergyOntology ontology"@en ;

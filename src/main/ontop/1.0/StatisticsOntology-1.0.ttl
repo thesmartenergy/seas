@@ -1,0 +1,136 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .  
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+seas:StatisticsOntology a owl:Ontology , voaf:Vocabulary ;
+  dc:title "The SEAS Statistics ontology."@en ;
+  dc:description """This ontology defines common evaluation interpretation concepts for statistics."""@en ;
+  dc:issued "2016-07-21"^^xsd:date ;
+  dc:modified "2016-07-21"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:EvaluationOntology ;
+  owl:versionIRI <https://w3id.org/seas/StatisticsOntology-1.0> ;
+  owl:versionInfo "v1.0" .
+
+seas:DistributionMinimumEvaluation a owl:Class ;
+  rdfs:label "Distribution Minimum Evaluation"@en ;
+  rdfs:comment """The evaluated value is the minimum of the property value distribution."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StatisticsOntology . 
+
+seas:DistributionMaximumEvaluation a owl:Class ;
+  rdfs:label "Distribution Maximum Evaluation"@en ;
+  rdfs:comment """The evaluated value is the maximum of the property value distribution."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StatisticsOntology . 
+
+seas:DistributionMeanEvaluation a owl:Class ;
+  rdfs:label "Distribution Mean Evaluation"@en ;
+  rdfs:comment """The evaluated value is the mean of the property value distribution."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StatisticsOntology . 
+
+seas:DistributionMedianEvaluation a owl:Class ;
+  rdfs:label "Distribution Median Evaluation"@en ;
+  rdfs:comment """The evaluated value is the median of the property value distribution."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StatisticsOntology .
+
+seas:StandardDeviationEvaluation a owl:Class ;
+  rdfs:label "Standard Deviation Evaluation"@en ;
+  rdfs:comment """The evaluated value is the standard deviation of the property value distribution."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StatisticsOntology .
+
+seas:RankedDistributionEvaluation a owl:Class ;
+  rdfs:label "Ranked Distribution Evaluation"@en ;
+  rdfs:comment """The evaluated value is to be interpreted with respect to a rank, which is given as the object of property `seas:rank`."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:rank ; owl:cardinality 1 ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StatisticsOntology .
+
+  seas:rank a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "rank"@en ;
+    rdfs:comment "Rank number of a ranked distribution evaluation, such as for quartiles, deciles or percentiles."@en ;
+    rdfs:domain seas:RankedDistributionEvaluation ;
+    rdfs:range xsd:integer ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:StatisticsOntology .
+     
+  seas:QuartileEvaluation a owl:Class ;
+    rdfs:label "Quartile Evaluation"@en ;
+    rdfs:comment """The evaluated value is one of the quartiles of the property value distribution. The rank of the quartile is the object of property `seas:rank`."""@en ;
+    rdfs:subClassOf seas:RankedDistributionEvaluation ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:StatisticsOntology .
+
+  seas:DecileEvaluation a owl:Class ;
+    rdfs:label "Decile Evaluation"@en ;
+    rdfs:comment """The evaluated value is one of the deciles of the property value distribution. The rank of the decile is the object of property `seas:rank`."""@en ;
+    rdfs:subClassOf seas:RankedDistributionEvaluation ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:StatisticsOntology .
+
+  seas:PercentileEvaluation a owl:Class ;
+    rdfs:label "Percentile Evaluation"@en ;
+    rdfs:comment """The evaluated value is one of the percentiles of the property value distribution. The rank of the percentile is the object of property `seas:rank`."""@en ;
+    rdfs:subClassOf seas:RankedDistributionEvaluation ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:StatisticsOntology .
+

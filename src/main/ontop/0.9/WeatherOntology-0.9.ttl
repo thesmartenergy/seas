@@ -42,6 +42,7 @@ foaf:Person a owl:Class .
 foaf:name a owl:DatatypeProperty .
 
 
+
 seas:WeatherOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "SEAS-WeatherOntology ontology"@en ;
   dc:description "The Seas Weather vocabulary for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;

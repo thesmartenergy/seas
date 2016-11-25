@@ -1,0 +1,132 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:FlexibilityOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "The SEAS Flexibility ontology"@en ;
+  dc:description """The SEAS Flexibility ontology defines evaluation sub types to interpret evaluations of controllable properties.
+
+A controllable property is controlled by some `seas:Player`. 
+
+Evaluations of controllable properties may describe its flexibility in terms of reduction, augmentation, cut, or move."""@en ;
+  dc:issued "2016-07-24"^^xsd:date ;
+  dc:modified "2016-09-30"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:EvaluationOntology , seas:PlayerOntology ;
+  owl:versionIRI <https://w3id.org/seas/FlexibilityOntology-1.0> ;
+  owl:versionInfo "v1.0" .
+
+seas:ControllableProperty a owl:Class ;
+  rdfs:label "Controllable Property"@en ;
+  rdfs:comment """A property that is controllable and can be operated on."""@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlexibilityOntology . 
+
+  seas:controlledBy a owl:ObjectProperty ;
+    rdfs:label "controlled by"@en ;
+    rdfs:comment """Links a property to an agent that can control it."""@en ;
+    rdfs:domain seas:ControllableProperty ;
+    rdfs:range seas:Player ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:FlexibilityOntology . 
+
+  seas:CapabilityEvaluation a owl:Class ;
+    rdfs:label "Capability Evaluation"@en ;
+    rdfs:comment """The amount of the property that the feature of interest can produce or deal with.
+
+  The quantity dimension is that of the controllable property."""@en ;
+    rdfs:subClassOf seas:Evaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:ControllableProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+
+  seas:ReductionFlexibilityEvaluation a owl:Class ;
+    rdfs:label "Reduction Flexibility Evaluation"@en ;
+    rdfs:comment """An evaluation of the reduction flexibility of a controllable property.
+
+  The quantity dimension is that of the controllable property."""@en ;
+    rdfs:subClassOf seas:Evaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:ControllableProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:FlexibilityOntology . 
+
+  seas:AugmentationFlexibilityEvaluation a owl:Class ;
+    rdfs:label "Augmentation Flexibility Evaluation"@en ;
+    rdfs:comment """An evaluation of the augmentation flexibility of a controllable property.
+
+  The quantity dimension is that of the controllable property."""@en ;
+    rdfs:subClassOf seas:Evaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:ControllableProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:FlexibilityOntology . 
+
+  seas:CutFlexibilityEvaluation a owl:Class ;
+    rdfs:label "Cut Flexibility Evaluation"@en ;
+    rdfs:comment """An evaluation of the augmentation flexibility of a controllable property.
+
+  The quantity dimension is that of the controllable property."""@en ;
+    rdfs:subClassOf seas:Evaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:ControllableProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:FlexibilityOntology . 
+
+  seas:MoveFlexibilityEvaluation a owl:Class ;
+    rdfs:label "Move Flexibility Evaluation"@en ;
+    rdfs:comment """An evaluation of the move flexibility of a controllable property.
+
+  The quantity dimension is that of the controllable property."""@en ;
+    rdfs:subClassOf seas:Evaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:ControllableProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:FlexibilityOntology . 
+

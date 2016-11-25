@@ -1,0 +1,171 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+@prefix pep: <https://w3id.org/pep/>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:PhotovoltaicOntology rdf:type owl:Ontology  , voaf:Vocabulary ;
+  dc:title "The SEAS Photovoltaic ontology"@en ;
+  dc:description "The SEAS PhotovoltaicOntology Ontology describes solar panels and its components as electric power systems."@en ;
+  dc:issued "2016-01-01"^^xsd:date ;
+  dc:modified "2016-11-03"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
+  dc:contributor [a foaf:Person ; foaf:name "Antoine Zimmermann" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
+  dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:ElectricPowerSystemOntology , seas:DeviceOntology , seas:ForecastingOntology ;
+  owl:versionIRI <https://w3id.org/seas/PhotovoltaicOntology-1.0> ;
+  owl:versionInfo "v1.0" ;
+  owl:priorVersion <https://w3id.org/seas/PhotovoltaicOntology-0.9> .
+
+
+seas:SolarArray a owl:Class ;
+  rdfs:label "Solar Array"@en ;
+  rdfs:comment """Solar arrays consist of one or many solar panels."""@en ;
+  rdfs:subClassOf seas:ElectricPowerProducer ;
+  rdfs:subClassOf  [ owl:onProperty [ owl:inverseOf seas:subElectricPowerSystemOf ] ; owl:someValuesFrom seas:SolarPanel ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PhotovoltaicOntology .
+
+seas:SolarPanel a owl:Class ;
+  rdfs:label "Solar Panel"@en ;
+  rdfs:comment """Solar panels consist of one or many solar modules."""@en ;
+  rdfs:subClassOf seas:ElectricPowerProducer ;
+  rdfs:subClassOf  [ owl:onProperty [ owl:inverseOf seas:subElectricPowerSystemOf ] ; owl:someValuesFrom seas:SolarModule ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PhotovoltaicOntology .
+
+seas:SolarModule a owl:Class ;
+  rdfs:label "Solar Module"@en ;
+  rdfs:comment "Solar modules consist of one or many solar cells."@en ;
+  rdfs:subClassOf seas:ElectricPowerProducer ;
+  rdfs:subClassOf  [ owl:onProperty [ owl:inverseOf seas:subElectricPowerSystemOf ] ; owl:someValuesFrom seas:SolarCell ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PhotovoltaicOntology .
+
+seas:SolarCell a owl:Class ;
+  rdfs:label "Solar Cell"@en ;
+  rdfs:comment "Solar cells belong a solar module."@en ;
+  rdfs:subClassOf seas:ElectricPowerProducer ;
+  rdfs:subClassOf  [ owl:onProperty seas:subElectricPowerSystemOf ; owl:allValuesFrom seas:SolarModule ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PhotovoltaicOntology .
+
+
+seas:PowerInverter a owl:Class ;
+  rdfs:label "Power Inverter"@en ;
+  rdfs:comment """The class of electronic devices or circuitry that change direct current (DC) to alternating current (AC). (source: The Authoritative Dictionary of IEEE Standards Terms, Seventh Edition, IEEE Press, 2000, ISBN 0-7381-2601-2, page 588)"""@en ;
+  rdfs:subClassOf seas:ElectricPowerTransformer ;
+  rdfs:subClassOf [ owl:onProperty seas:primarilyConnectedThrough ; owl:allValuesFrom seas:DirectCurrentConnection ] ;
+  rdfs:subClassOf [ owl:onProperty seas:secondarilyConnectedThrough ; owl:allValuesFrom seas:AlternatingCurrentConnection ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsPrimarilyAt ; owl:allValuesFrom seas:DirectCurrentConnectionPoint ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSecondarilyAt ; owl:allValuesFrom seas:AlternatingCurrentConnectionPoint ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PhotovoltaicOntology .
+  
+seas:SolarTracker a owl:Class ;
+  rdfs:label "Solar Tracker"@en ;
+  rdfs:comment """A solar tracker is a device that orients a payload toward the Sun. Payloads are usually solar panels, parabolic troughs, fresnel reflectors, mirrors or lenses. (source: Wikipedia)"""@en ;
+  rdfs:subClassOf seas:Actuator ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PhotovoltaicOntology .
+
+
+
+
+
+seas:PVEnergyGenerationForecasting a owl:Class ;
+  rdfs:label "PV Energy Generation Forecasting"@en ;
+  rdfs:comment """Process of forecasting the outgoing electric power or energy of a solar array, panel, module, or cell."""@en ;
+  rdfs:subClassOf seas:Forecasting ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OptimizationOntology .
+
+[ owl:intersectionOf (
+    seas:Forecasting 
+    [ owl:onProperty seas:forecasts ; owl:someValuesFrom [ owl:unionOf ( seas:SolarArray seas:SolarPanel seas:SolarModule seas:SolarCell ) ] ]
+    [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom [ owl:unionOf ( seas:outgoingElectricPower seas:outgoingElectricEnergy ) ] ]
+  ) ] rdfs:subClassOf seas:PVEnergyGenerationForecasting .
+
+seas:PVEnergyGenerationForecaster a owl:Class ;
+  rdfs:label "PV Energy Generation Forecaster"@en ;
+  rdfs:comment """Forecaster of the outgoing electric power or energy of a solar array, panel, module, or cell."""@en ;
+  rdfs:subClassOf seas:Forecaster ;
+  rdfs:subClassOf [ owl:onProperty pep:implements ; owl:someValuesFrom seas:PVEnergyGenerationForecasting ] ;
+  owl:equivalentClass [ owl:onProperty pep:implements ; owl:someValuesFrom seas:PVEnergyGenerationForecasting ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OptimizationOntology .
+
+[ owl:intersectionOf (
+    seas:Forecaster 
+    [ owl:onProperty seas:forecasts ; owl:someValuesFrom [ owl:unionOf ( seas:SolarArray seas:SolarPanel seas:SolarModule seas:SolarCell ) ] ]
+    [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom [ owl:unionOf ( seas:outgoingElectricPower seas:outgoingElectricEnergy ) ] ]
+  ) ] rdfs:subClassOf seas:PVEnergyGenerationForecaster .
+
+seas:PVEnergyGenerationForecast a owl:Class ;
+  rdfs:label "PV Energy Generation Forecast"@en ;
+  rdfs:comment """A Forecast of the outgoing electric power or energy of a solar array, panel, module, or cell."""@en ;
+  rdfs:subClassOf seas:Forecast ;
+  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:PVEnergyGenerationForecaster ] ;
+  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:PVEnergyGenerationForecasting ] ;
+  rdfs:subClassOf [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom seas:outgoingElectricPower ] ;
+  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:PVEnergyGenerationForecasting ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OptimizationOntology .
+
+[ owl:intersectionOf (
+    seas:Forecast 
+    [ owl:onProperty seas:forecasts ; owl:someValuesFrom [ owl:unionOf ( seas:SolarArray seas:SolarPanel seas:SolarModule seas:SolarCell ) ] ]
+    [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom [ owl:unionOf ( seas:outgoingElectricPower seas:outgoingElectricEnergy ) ] ]
+  ) ] rdfs:subClassOf seas:PVEnergyGenerationForecast .
+

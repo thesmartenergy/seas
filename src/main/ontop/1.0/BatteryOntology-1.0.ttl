@@ -16,12 +16,18 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/terms/> .  
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix cc: <http://creativecommons.org/ns#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix qudt: <http://qudt.org/1.1/schema/qudt#>.
 
 @prefix seas: <https://w3id.org/seas/>.
 @base <https://w3id.org/seas/>.
@@ -42,44 +48,33 @@ foaf:name a owl:DatatypeProperty .
 
 
 
-#SEAS architecture related concepts
-seas:ArchitectureOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "SEAS-ArchitectureOntology ontology"@en ;
-  dc:description "The Seas Architecture Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
-  dc:issued "2016-01-26"^^xsd:date ;
-  dc:modified "2016-05-26"^^xsd:date ;
+seas:BatteryOntology a owl:Ontology , voaf:Vocabulary ;
+  dc:title "The SEAS Battery ontology."@en ;
+  dc:description """This ontology defines batteries and their state of charge ratio property"""@en ;
+  dc:issued "2016-10-30"^^xsd:date ;
+  dc:modified "2016-11-03"^^xsd:date ;
   dc:creator <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
-  owl:versionIRI <https://w3id.org/seas/ArchitectureOntology-0.9> ;
-  owl:versionInfo "v0.9" .
-   
-seas:ResourceManager a owl:Class ;
-  rdfs:label "ResourceManager"@en ;
-  rdfs:comment "The class of SEAS resource managers."@en ;
-  rdfs:isDefinedBy seas:ArchitectureOntology ;
-  rdfs:subClassOf seas:Node ;
-  vs:term_status "testing" .  
+  owl:imports seas:ElectricPowerSystemOntology ;
+  owl:versionIRI <https://w3id.org/seas/BatteryOntology-1.0> ;
+  owl:versionInfo "v1.0" .
 
-seas:ServiceProvider a owl:Class ;
-  rdfs:label "ServiceProvider"@en ;
-  rdfs:comment "The class of SEAS service providers."@en ;
-  rdfs:isDefinedBy seas:ArchitectureOntology ;
-  rdfs:subClassOf seas:Role ;
-  vs:term_status "testing" .  
-  
-seas:EndNode a owl:Class ;
-  rdfs:label "EndNode"@en ;
-  rdfs:comment "The class of SEAS end nodes."@en ;
-  rdfs:isDefinedBy seas:ArchitectureOntology ;
-  rdfs:subClassOf seas:Node ;
-  vs:term_status "testing" .  
-  
-seas:IPCapableEndNode a owl:Class ;
-  rdfs:label "IPCapableEndNode"@en ;
-  rdfs:comment "The class of IP capable SEAS end nodes."@en ;
-  rdfs:isDefinedBy seas:ArchitectureOntology ;
-  rdfs:subClassOf seas:EndNode ;
-  vs:term_status "testing" .  
-      
+seas:Battery a owl:Class;
+  rdfs:label "Battery" ;
+  rdfs:comment """The class of batteries, which are electric power storage systems."""@en ;
+  rdfs:subClassOf seas:ElectricPowerStorageSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BatteryOntology .
+
+seas:stateOfChargeRatio a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:label "state of charge ratio"@en ;
+  rdfs:comment """The state of charge of a battery, quantified by unitless values."""@en ;
+  rdfs:domain seas:Battery ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:PercentageProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BatteryOntology .
+
+

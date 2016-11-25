@@ -1,0 +1,244 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix qudt: <http://qudt.org/1.1/schema/qudt#>.
+@prefix prov: <http://www.w3.org/ns/prov#>.
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix time: <http://www.w3.org/2006/time#>.
+@prefix geo:  <http://www.w3.org/2003/01/geo/wgs84_pos#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+seas:EvaluationOntology a owl:Ontology , voaf:Vocabulary ;
+  dc:title "The SEAS Evaluation ontology"@en ;
+  dc:description """The Evaluation ontology describes evaluation of [`seas:Property`ies](https://w3id.org/seas/Property). There may be:
+
+- direct evaluations, or
+- qualified evaluations.
+
+### Direct evaluations
+
+The seas:Property may be given a unique, constant, quality or quantity value. This is done using property [`seas:value`](https://w3id.org/seas/value).
+
+A quality value may be any resource. 
+
+A quantity value may use external vocabularies such as QUDT (it would then be a [qudt:Quantity](https://qudt.org/schema/qudt#QuantityValue)), or OM (it would then be a [om:Quantity](http://www.wurvoc.org/vocabularies/om-1.8/)), or be directly encoded as a literal using an appropriate datatype. This ontology encourages the use of the `cdt:ucum` custom datatype. The lexical value of a `cdt:ucum` is an  `xsd:double`, followed by a space, and followed by a measurement unit unambiguously specified by the [Unified Code of Units of Measure](http://unitsofmeasure.org/ucum.html). This datatype is (will shortly be) a [Linked Datatype](https://w3id.org/lindt/), making it easy for any SPARQL engine to support the comparison of quantity values. 
+
+For example, the following triples quantify the consumption of a fridge using `cdt:ucum` literals:
+
+```
+<fridge/1/consumption/frequency> seas:value "50.1 Hz"^^cdt:ucum .
+<fridge/1/consumption/voltage> seas:value "231 V"^^cdt:ucum . 
+<fridge/1/consumption/tension> seas:value "2432 mA"^^cdt:ucum .
+<fridge/1/consumption/voltageTensionPhase> seas:value "1.68 RAD"^^cdt:ucum .
+```
+
+### Qualified evaluations
+
+Because property values may evolve in space and time, or because they can be approximate measures or forecasts, class [`seas:Evaluation`](https://w3id.org/seas/Evaluation) qualifies the link [`seas:value`](https://w3id.org/seas/value). In particular, an instance of seas:Evaluation may hold metadata about:
+
+1. the type of evaluation;
+2. the context of validity of the evaluation;
+3. provenance information or any other data.
+
+Let us shortly describe each of these categories.
+
+#### The type of evaluation
+
+The type of evaluation is defined by the hierarchy of `seas:Evaluation` sub classes. This hierarchy includes classes such as:
+
+- [seas:ExactEvaluation](https://w3id.org/seas/ExactEvaluation): the given value is the exact property value in all of the validity context;
+- [seas:TimeAverageEvaluation](https://w3id.org/seas/AverageEvaluation): the given value is the average of the property value over its temporal context;
+- [seas:MaximumOperatingValue](https://w3id.org/seas/MaximumOperatingValue): the given value is the maximum operating value for the property in all of its validity context.
+
+#### The evaluation validity context
+
+The [W3C Spatial Data on the Web Working Group](https://www.w3.org/2015/spatial/) may define a best practice for describing the validity context of some entity. See [Spatial Data on the Web Best Practices, W3C First Public Working Draft 19 January 2016](https://www.w3.org/TR/sdw-bp/):
+
+> _Best Practice 11: How to describe properties that change over time_
+> [...]
+> When entities and their properties can change over time, or are valid only at a given time, and this needs to be captured, it is important to specify a clear relationship between property data and its versioning information. 
+
+As soon as this is the case, we recommend to use the proposed best practice. In the meantime, an evaluation validity context is described using functional sub properties of [seas:hasValidityContext](https://w3id.org/seas/hasValidityContext). The SEAS ontologies define two such properties:
+
+- [seas:hasTemporalContext](https://w3id.org/seas/hasTemporalContext) links an entity to its temporal validity context, a [time:TemporalEntity](http://www.w3.org/2006/time#TemporalEntity);
+- [seas:hasSpatialContext](https://w3id.org/seas/hasSpatialContext) links an entity to its spatial validity context, a [geo:SpatialThing](http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing).
+
+#### Provenance or other metadata
+
+Other metadata may be added to describe an evaluation instance. For example the W3C [PROV Ontology](https://www.w3.org/TR/prov-o/) enables to describe the activity that generated the evaluation, or its generation time.
+
+Other vocabularies may be used to further describe evaluations. See the [Linked Open Vocabulary cloud](http://lov.okfn.org/dataset/lov/).
+
+#### Examples
+
+The day-ahead forecasted temperature at Aeroport de Lyon is 28.3 °C:
+
+```
+<air/temperature> seas:evaluation [
+  a seas:Forecast ;
+  prov:wasGeneratedBy <algorithm/1/execution/234> ;
+  prov:generatedAtTime "2016-08-12T12:00:00Z"^^xsd:dateTime ;
+  seas:hasTemporalContext [ a time:Instant ; time:inXSDDateTime "2016-08-13T12:00:00Z"^^xsd:dateTime ] ;
+  seas:hasSpatialContext [ a geo:Point ; geo:lat 45.7242502 ; geo:long 5.0914517 ] ;
+  seas:evaluatedValue "28.3 °C"^^cdt:ucum ] .
+```
+
+The average frequency of property `<fridge/1/consumption/frequency>` over time interval 12:00 - 13:00, as generated by `<algorithm/1/execution/12>`, is 50.1054 Hz:
+
+```
+<fridge/1/consumption/frequency> seas:evaluation [
+  a seas:TimeAverageEvaluation ;
+  prov:wasGeneratedBy <algorithm/2/execution/12> ;
+  seas:hasTemporalContext [ a time:Interval ; time:hasBeginning [ time:inXSDDateTime "2016-09-10T12:00:00Z"^^xsd:dateTime ] ; time:hasEnd [ time:inXSDDateTime "2016-09-10T13:00:00Z"^^xsd:dateTime ] ] ;
+  seas:evaluatedValue "50.1054 Hz"^^cdt:ucum ] .
+```
+
+The minimal operating value of `<fridge/1/consumption/frequency>` is 47.0 Hz:
+
+```
+<fridge/1/consumption/frequency> seas:evaluation [
+  a seas:MinimalOperatingValueEvaluation ;
+  seas:evaluatedValue "47.0 Hz"^^cdt:ucum ;
+] .
+```
+
+"""@en ;
+  dc:description <https://w3id.org/seas/evaluation.png> ;
+  dc:issued "2016-06-08"^^xsd:date ;
+  dc:modified "2016-09-21"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:FeatureOfInterestOntology ;
+  owl:versionIRI <https://w3id.org/seas/EvaluationOntology-1.0> ;
+  owl:versionInfo "v1.0" .
+
+# value
+
+seas:value a owl:DatatypeProperty ;
+  rdfs:label "value"@en ;
+  rdfs:comment """Links a property to a unique, constant, quality or quantity value for that property. A quality value may be any resource.
+
+For example, the exact length of `<car/1>` is  4.27 m, and this is true in the validity context of the RDF graph.
+
+```
+  <car/1/length> a seas:Property ;
+    seas:value "4.27 m"^^cdt:ucum .
+```
+
+This property is a shortcut for an exact evaluation with all context being the most generic contexts (although this notion is not planned to be formalized)."""@en ;
+  rdfs:domain seas:Property ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+# evaluation
+
+seas:evaluation a owl:ObjectProperty , owl:InverseFunctionalProperty ;
+  rdfs:label "evaluation"@en ;
+  rdfs:comment """Links a property to one of its evaluations."""@en ;
+  rdfs:domain seas:Property ;
+  rdfs:range seas:Evaluation ;
+  owl:inverseOf seas:evaluationOf ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+seas:evaluationOf a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "evaluation of"@en ;
+  rdfs:comment """Links an evaluation to the one and only property it evaluates."""@en ;
+  rdfs:domain seas:Evaluation ;
+  rdfs:range seas:Property ;
+  owl:inverseOf seas:evaluation ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+seas:Evaluation a owl:Class ;
+  rdfs:label "Evaluation"@en ;
+  rdfs:comment """Evaluations qualify the link [`seas:value`](https://w3id.org/seas/value). In particular, they may hold metadata about:
+
+1. the type of evaluation;
+2. the context of validity of the evaluation;
+3. provenance information or any other data.
+"""@en ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+seas:evaluatedValue a owl:DatatypeProperty , owl:FunctionalProperty ;
+  rdfs:label "evaluated value"@en ;
+  rdfs:comment """Links an evaluation to the literal that qualifies some aspect of the property."""@en ;
+  rdfs:domain seas:Evaluation ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+
+# evaluation context
+
+seas:hasValidityContext a owl:ObjectProperty ;
+  rdfs:label "has validity context"@en ;
+  rdfs:comment """Links some object to one of its validity contexts.
+
+A validity context is described using functional sub properties of [seas:hasValidityContext](https://w3id.org/seas/hasValidityContext). There are two such properties defined:
+
+- [seas:hasTemporalContext](https://w3id.org/seas/hasTemporalContext) links an entity to its temporal validity context, a [time:TemporalEntity](http://www.w3.org/2006/time#TemporalEntity);
+- [seas:hasSpatialContext](https://w3id.org/seas/hasSpatialContext) links an entity to its spatial validity context, a [geo:SpatialThing](http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing).
+"""@en ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+seas:hasTemporalContext a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "has temporal context"@en ;
+  rdfs:comment """Links an evaluation to its temporal validity context, a [time:TemporalEntity](http://www.w3.org/2006/time#TemporalEntity)."""@en ;
+  rdfs:subPropertyOf seas:hasValidityContext ;
+  rdfs:range time:TemporalEntity ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+  
+seas:hasSpatialContext a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "has spatial context"@en ;
+  rdfs:comment """Links an evaluation to its spatial validity context, a [geo:SpatialThing](http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing)."""@en ;
+  rdfs:subPropertyOf seas:hasValidityContext ;
+  rdfs:range geo:SpatialThing ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+
+

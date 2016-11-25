@@ -42,6 +42,7 @@ foaf:Person a owl:Class .
 foaf:name a owl:DatatypeProperty .
 
 
+
 seas:MarketOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dc:title "SEAS-MarketOntology ontology"@en ;
   dc:description "The Seas Market Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;

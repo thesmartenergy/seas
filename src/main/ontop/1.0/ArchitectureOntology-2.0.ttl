@@ -1,0 +1,383 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:ArchitectureOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "The SEAS Architecture ontology"@en ;
+  dc:description """The SEAS Architecture Ontology models the concepts from the SRAM Architecture model.
+
+See deliverable SEAS D1.3."""@en ;
+  dc:issued "2016-01-26"^^xsd:date ;
+  dc:modified "2016-09-26"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  dc:contributor [a foaf:Person ; foaf:name "Guillaume Habault" ] ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:priorVersion <https://w3id.org/seas/ArchitectureOntology-0.9> ;
+  owl:imports <https://w3id.org/seas/SystemOntology> ;
+  owl:versionIRI <https://w3id.org/seas/ArchitectureOntology-2.0> ;
+  owl:versionInfo "v2.0" .
+
+## electric power system
+
+seas:Entity a owl:Class ;
+  rdfs:label "SEAS Entity"@en ;
+  rdfs:comment """The class SEAS entity represents the abstract class of communicating nodes."""@en ;
+  rdfs:subClassOf seas:System ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ArchitectureOntology .
+
+seas:CoreEntity a owl:Class ;
+  rdfs:label "SEAS Core Entity"@en ;
+  rdfs:comment """SEAS core entities are SEAS nodes that belong to the SEAS core domain. 
+
+The SEAS core domain is where all SEAS core entities, group managers, and SEAS core services can be interconnected.
+
+Interconnections within the SEAS core domain all rely on the Internet Protocol. 
+
+SEAS core entities can be connected to other SEAS core entities in a peer-to-peer basis, and exchange information.
+
+SEAS core entities can be connected to SEAS field entities, provided that they have sufficient access right."""@en ;
+  rdfs:subClassOf seas:Entity ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ArchitectureOntology .
+
+  seas:RegistrationEntity a owl:Class ;
+    rdfs:label "Registration Entity"@en ;
+    rdfs:comment """The class of entities that provide the SEAS core registration services for SEAS core entities.
+
+A SEAS registration service is an API that enables SEAS core services to register themselves along with their capabilities for others to find them.
+
+The complete specification of the SEAS core registration services is available in SEAS Deliverable X.X."""@en ;
+    rdfs:subClassOf seas:CoreEntity ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ArchitectureOntology .
+
+  seas:TransactionEntity a owl:Class ;
+    rdfs:label "Transaction Entity"@en ;
+    rdfs:comment """The class of entities that provide the SEAS core transaction services for SEAS core entities.
+
+A SEAS core transaction service is an API that connects SEAS core entities to banks and payment systems, and acts as a trusted notary to enable compensation for participation in SEAS field entities management.
+
+The complete specification of the SEAS core transaction services is available in SEAS Deliverable X.X."""@en ;
+    rdfs:subClassOf seas:CoreEntity ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ArchitectureOntology .
+
+  seas:OntologyEntity a owl:Class ;
+    rdfs:label "Ontology Entity" ;
+    rdfs:comment """The class of entities that provide the SEAS core ontology services for SEAS core entities.
+
+A SEAS core ontology service is an API that exposes media types descriptions, notably information about:
+
+- how to validate a document with a specific media type;
+- how to lift a document with a specific media type to RDF;
+- how to validate a RDF Graph; 
+- how to lower a RDF Graph to a document with a specific media type.
+
+The complete specification of the SEAS core ontology services is available in SEAS Deliverable X.X."""@en ;
+    rdfs:subClassOf seas:CoreEntity ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ArchitectureOntology .
+
+  seas:SecurityEntity a owl:Class ; 
+    rdfs:label "Security Entity"@en ;
+    rdfs:comment """The class of entities that provide the SEAS core security services for SEAS core entities.
+
+A SEAS core security service is an API that enable:
+
+- SEAS core entities to communicate their access control preferences;
+- SEAS core entities to control the access rights of other SEAS core entities for some type information.
+
+The complete specification of the SEAS core security services is available in SEAS Deliverable X.X."""@en ;
+    rdfs:subClassOf seas:CoreEntity ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ArchitectureOntology .
+
+  seas:EndUser a owl:Class ; 
+    rdfs:label "End User"@en ;
+    rdfs:comment """The class of end user entities, that own SEAS field entities."""@en ;
+    rdfs:subClassOf seas:CoreEntity ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ArchitectureOntology .
+
+# field entity
+
+seas:FieldEntity a owl:Class ;
+  rdfs:label "SEAS Field Entity"@en ;
+  rdfs:comment """SEAS field entities are SEAS nodes that belong to the SEAS field domain.
+
+  The SEAS field domain is the link with the physical world.
+
+  SEAS field entities can be connected to other SEAS field entities in a client-server basis.
+
+  SEAS field entities can belong to one or several SEAS groups.
+
+  Every SEAS group is managed by exactly one group manager.
+
+  Field entities participate in the management of the group."""@en ;
+  rdfs:subClassOf seas:Entity ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ArchitectureOntology .
+
+  seas:GroupManager a owl:Class ;
+    rdfs:label "SEAS Group Manager"@en ;
+    rdfs:comment """SEAS group managers are both field and core entities. 
+    They manage exactly one group."""@en ;
+    rdfs:subClassOf seas:CoreEntity , seas:FieldEntity ;
+    owl:equivalentClass [ owl:intersectionOf ( seas:CoreEntity seas:FieldEntity ) ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ArchitectureOntology .
+
+  seas:Gateway a owl:Class ;
+    rdfs:label "SEAS Gateway"@en ;
+    rdfs:comment """SEAS Gateways are network nodes equipped for interfacing with entities in a field that use different communication protocols."""@en ;
+    rdfs:subClassOf seas:GroupManager ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ArchitectureOntology .
+
+# connections
+
+seas:exchangesInformationWith a owl:ObjectProperty , owl:SymmetricProperty ;
+  rdfs:label "exchanges information with"@en ;
+  rdfs:comment """Links a SEAS core entity to another SEAS core entity it exchanges information with. 
+
+  This property can be qualified using class seas:CoreEntityConnection, which connects (at least) the two core entities.
+
+  For example, for information to flow between a system operator and a market operator, then they must share a core entity connection:
+
+```
+<system_operator> a seas:CoreEntity .
+<market_operator> a seas:CoreEntity .
+<system_operator> seas:exchangesInformationWith <market_operator> . 
+```
+
+  If there is a core entity connection between several core entities, then one may infer these core entities can exchange information."""@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:CoreEntity ;
+  rdfs:range seas:CoreEntity ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ArchitectureOntology .
+
+seas:directlyAccesses a owl:ObjectProperty ;
+  rdfs:label "directly accesses"@en ;
+  rdfs:comment """Links a SEAS core entity to a SEAS field entity it has direct access to. 
+
+This property can be qualified using class seas:DirectAccessConnection, which connects the core entity and the field entity.
+
+For example, for a flexibility operator to directly access a solar panel, then it must have a direct access connection to it:
+
+```
+<flexibility_operator> a seas:CoreEntity .
+<solar_panel> a seas:FieldEntity .
+<flexibility_operator> seas:accessesDirectly <solar_panel> . 
+```
+
+If there is a direct access connection between a core entity and a field entity, then one may infer the core entity can directly access the field entity."""@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:CoreEntity ;
+  rdfs:range seas:FieldEntity ;
+  owl:inverseOf seas:directlyAccessedBy ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ArchitectureOntology .
+
+seas:directlyAccessedBy a owl:ObjectProperty ;
+  rdfs:label "directly accesses by"@en ;
+  rdfs:comment """Links a SEAS field entity to a core entity that directly accesses it. 
+
+This property can be qualified using class seas:DirectAccessConnection, which connects the core entity and the field entity.
+
+For example, for a flexibility operator to directly access a solar panel, then it must have a direct access connection to it:
+
+```
+<flexibility_operator> a seas:CoreEntity .
+<solar_panel> a seas:FieldEntity .
+<solar_panel> seas:accessesDirectly <flexibility_operator> . 
+```
+
+If there is a direct access connection between a core entity and a field entity, then one may infer the core entity can directly access the field entity."""@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:FieldEntity ;
+  rdfs:range seas:CoreEntity ;
+  owl:inverseOf seas:directlyAccesses ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ArchitectureOntology .
+
+
+seas:directlyManages a owl:ObjectProperty , owl:InverseFunctionalProperty ;
+  rdfs:label "directly manages"@en ;
+  rdfs:comment """Links a SEAS group manager to a SEAS field entity it directly manages. 
+
+This property can be qualified using class seas:DirectManagementConnection, which connects the group manager and the field entities it directly manages.
+
+For example, for a home management system to directly manage a smart fridge, then it must have a management connection to it:
+
+```
+<home_management_system> a seas:GroupManager .
+<smart_fridge> a seas:FieldEntity .
+<home_management_system> seas:directlyManages <smart_fridge> . 
+```
+
+If there is a direct management connection between a group manager and a field entity, then one may infer the group manager directly manages the field entity."""@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:GroupManager ;
+  rdfs:range seas:FieldEntity ;
+  owl:inverseOf seas:directlyManagedBy ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ArchitectureOntology .
+
+seas:directlyManagedBy a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "directly managed by"@en ;
+  rdfs:comment """Links a SEAS field entity to the group manager that directly manages it. 
+
+This property can be qualified using class seas:DirectManagementConnection, which connects the group manager and the field entities it directly manages.
+
+For example, for a home management system to directly manage a smart fridge, then it must have a management connection to it:
+
+```
+<home_management_system> a seas:GroupManager .
+<smart_fridge> a seas:FieldEntity .
+<home_management_system> seas:directlyManages <smart_fridge> . 
+```
+
+If there is a direct management connection between a group manager and a field entity, then one may infer the group manager directly manage the field entity."""@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:FieldEntity ;
+  rdfs:range seas:GroupManager ;
+  owl:inverseOf seas:directlyManages ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ArchitectureOntology .
+
+
+## connections
+
+seas:EntityConnection a owl:Class ;
+  rdfs:label "Entity Connection"@en ;
+  rdfs:comment """The class of entity connections between SEAS entities."""@en ;
+  rdfs:subClassOf seas:Connection ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:Entity ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:EntityAccessPoint ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ArchitectureOntology .
+
+  seas:CoreEntityConnection a owl:Class ;
+    rdfs:label "Core Entity Connection"@en ;
+    rdfs:comment """The class of SEAS core entity connections between SEAS core entities.
+    SEAS core entity connections describe potential information flows between the SEAS core entities it connects.
+
+For example, the following RDF graph states that a SEAS core entity connection connects a home management system with an aggregator and the transaction server:
+
+```
+<connection> a seas:ElectricalConnection ;
+   seas:connectsSystem <home_management_system> , <aggregator> , <transaction_server> .
+```
+
+Only SEAS core entities are connected through a SEAS core entity connection.
+
+A connection between SEAS core entities is not necessarily a SEAS core entity connection."""@en ;
+    rdfs:subClassOf seas:EntityConnection ;
+    rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:CoreEntity ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ArchitectureOntology .
+
+  seas:DirectAccessConnection a owl:Class ;
+    rdfs:label "Direct Access Connection"@en ;
+    rdfs:comment """The class of SEAS direct access connections between a SEAS core entity and one or more SEAS field entities it directly accesses.
+
+Direct access connections describe potential control of the SEAS core entity to the SEAS field entities.
+
+For example, the following RDF graph states that a SEAS direct access connection connects a distribution system operator with a solar panel:
+
+```
+<connection> a seas:DirectAccessConnection ;
+   seas:connectsSystem <distribution_system_operator> , <solar_panel> .
+```
+
+    Only SEAS entities are connected through a direct access connection.
+    A connection between SEAS entities is not necessarily a direct access connection."""@en ;
+    rdfs:subClassOf seas:EntityConnection ;
+    owl:disjointWith seas:CoreEntityConnection ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ArchitectureOntology .
+
+  seas:DirectManagementConnection a owl:Class ;
+    rdfs:label "Direct Management Connection"@en ;
+    rdfs:comment """The class of SEAS direct management connections between a SEAS group manager entity and each of the entities it directly manages (i.e., the group).
+
+Direct management connections describe the management of the SEAS field entities by the SEAS group manager.
+
+For example, the following RDF graph states that a home management system manages a group of field entities composed of a solar panel and a battery:
+
+```
+<connection> a seas:DirectManagementConnection ;
+   seas:connectsSystem <home_management_system> , <solar_panel> , <battery> .
+```
+
+Only SEAS entities and SEAS field entities are connected through a direct management connection.
+
+    A connection between SEAS entities is not necessarily a direct management connection."""@en ;
+    rdfs:subClassOf seas:EntityConnection ;
+    owl:disjointWith seas:CoreEntityConnection ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ArchitectureOntology .
+
+
+## entity access point
+
+seas:EntityAccessPoint a owl:Class ;
+  rdfs:label "Entity Access Point"@en ;
+  rdfs:comment """The class of access points of SEAS entities, at which they may access or be accessed by other entities.
+
+For example, a solar panel may have an access point where smart grid management systems can access the latest information about its electricity production.
+
+An entity access point describes the APIs that one may use to access the system.
+
+An entity access point only belongs to one entity, and connects it through entity connections.
+
+A connection point of an entity is not necessarily an entity access point."""@en ;
+  rdfs:subClassOf seas:ConnectionPoint ;
+  rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:Entity ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:EntityConnection ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ArchitectureOntology .

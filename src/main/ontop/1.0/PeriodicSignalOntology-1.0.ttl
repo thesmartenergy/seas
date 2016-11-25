@@ -1,0 +1,101 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+@prefix time: <http://www.w3.org/2006/time#>.
+
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:PeriodicSignalOntology a owl:Ontology , voaf:Vocabulary ;
+  dc:title "The SEAS Periodic Signal Property ontology."@en ;
+  dc:description "This ontology defines properties that evolve periodically in time, and evaluations of these properties."@en ;
+  dc:issued "2016-07-05"^^xsd:date ;
+  dc:modified "2016-11-03"^^xsd:date ;
+  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:TimeOntology ;
+  owl:versionIRI <https://w3id.org/seas/PeriodicSignalOntology-1.0> ;
+  owl:versionInfo "v1.0" . 
+
+seas:PeriodicProperty a owl:Class ;
+  rdfs:label "Periodic Property"@en ;
+  rdfs:comment "The class of properties that evolve periodically in time."@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PeriodicSignalOntology . 
+
+seas:frequency a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "frequency"@en ;
+  rdfs:comment """Links a periodic property to its frequency."""@en ;
+  rdfs:subPropertyOf seas:hasProperty , seas:eventFrequency ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PeriodicSignalOntology . 
+
+seas:PeakEvaluation a owl:Class ;
+  rdfs:label "Peak"@en ;
+  rdfs:comment """The evaluated value is the Peak of the periodic signal."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PeriodicSignalOntology . 
+
+seas:THDEvaluation a  owl:Class ;
+  rdfs:label "Total Harmonic Distortion"@en ;
+  rdfs:comment """The evaluated value is the total harmonic distortion of the periodic signal."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PeriodicSignalOntology . 
+
+seas:RMSAmplitudeEvaluation a owl:Class ;
+  rdfs:label "RMS Amplitude Evaluation"@en ;
+  rdfs:comment """The evaluated value is the Root Mean Square amplitude of the periodic signal."""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PeriodicSignalOntology . 
