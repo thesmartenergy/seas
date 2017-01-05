@@ -294,7 +294,7 @@ seas:marketPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:isDefinedBy seas:PricingOntology.  
 
 seas:penetrationPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
-  rdfs:label "market price"@en ;
+  rdfs:label "penetration price"@en ;
   rdfs:comment """Links an offer of a goods or a service to its penetration price."""@en ;
   rdfs:subPropertyOf seas:price ;
   rdfs:range seas:PenetrationtPriceProperty ;
