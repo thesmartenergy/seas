@@ -254,7 +254,7 @@ seas:nettPrice a owl:ObjectProperty , owl:FunctionalProperty ;
 
 seas:sellingPrice a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "selling price"@en ;
-  rdfs:comment """Links an offer of a good or a service to its selling price."""@en ;
+  rdfs:comment """Links an offer of a goods or a service to its selling price."""@en ;
   rdfs:subPropertyOf seas:price ;
   rdfs:range seas:SellingPriceProperty ;
   vs:term_status "testing" ;
@@ -262,7 +262,7 @@ seas:sellingPrice a owl:ObjectProperty , owl:FunctionalProperty ;
 
 seas:buyingPrice a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "selling price"@en ;
-  rdfs:comment """Links an offer of a good or a service to its buying price."""@en ;
+  rdfs:comment """Links an offer of a goods or a service to its buying price."""@en ;
   rdfs:subPropertyOf seas:price ;
   rdfs:range seas:BuyingPriceProperty ;
   vs:term_status "testing" ;
@@ -270,7 +270,7 @@ seas:buyingPrice a owl:ObjectProperty , owl:FunctionalProperty ;
 
 seas:recommendedRetailPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "recommended retail price"@en ;
-  rdfs:comment """Links an offer of a good or a service to its recommended retail price."""@en ;
+  rdfs:comment """Links an offer of a goods or a service to its recommended retail price."""@en ;
   rdfs:subPropertyOf seas:price ;
   rdfs:range seas:RecommendedRetailPriceProperty ;
   vs:term_status "testing" ;
@@ -279,7 +279,7 @@ seas:recommendedRetailPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
 
 seas:costPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "cost price"@en ;
-  rdfs:comment """Links an offer of a good or a service to its cost price."""@en ;
+  rdfs:comment """Links an offer of a goods or a service to its cost price."""@en ;
   rdfs:subPropertyOf seas:price ;
   rdfs:range seas:CostPriceProperty ;
   vs:term_status "testing" ;
@@ -287,7 +287,7 @@ seas:costPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
 
 seas:marketPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "market price"@en ;
-  rdfs:comment """Links an offer of a good or a service to its market price."""@en ;
+  rdfs:comment """Links an offer of a goods or a service to its market price."""@en ;
   rdfs:subPropertyOf seas:price ;
   rdfs:range seas:MarketPriceProperty ;
   vs:term_status "testing" ;
@@ -295,7 +295,7 @@ seas:marketPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
 
 seas:penetrationPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "market price"@en ;
-  rdfs:comment """Links an offer of a good or a service to its penetration price."""@en ;
+  rdfs:comment """Links an offer of a goods or a service to its penetration price."""@en ;
   rdfs:subPropertyOf seas:price ;
   rdfs:range seas:PenetrationtPriceProperty ;
   vs:term_status "testing" ;
