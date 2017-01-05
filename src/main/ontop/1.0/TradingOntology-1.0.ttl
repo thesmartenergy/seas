@@ -67,7 +67,7 @@ using a market license;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
-  owl:imports pep: , seas:PlayerOntology , seas:ElectricPowerSystemOntology , seas:OfferingOntology ;
+  owl:imports pep: , seas:PlayerOntology , seas:ElectricPowerSystemOntology , seas:OfferingOntology, seas:PricingOntology ;
   owl:versionIRI <https://w3id.org/seas/TradingOntology-1.0> ;
   owl:versionInfo "v1.0" .
 
@@ -163,56 +163,6 @@ For instance, the electric energy outgoing of a certain connection point can be 
       vs:term_status "testing" ;
       rdfs:isDefinedBy seas:TradingOntology .
 
-
-seas:PriceProperty a owl:Class ;
-  rdfs:label "Price Property"@en ;
-  rdfs:comment """The class of price properties, whose value is expressed using some currency."""@en ;
-  rdfs:subClassOf seas:Property ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:TradingOntology .
-
-  seas:NettPriceProperty a owl:Class ;
-    rdfs:label "Nett Price Property"@en ;
-    rdfs:comment """The class of nett price properties, that have no tax."""@en ;
-    rdfs:subClassOf seas:PriceProperty ;
-    owl:disjointWith seas:GrossPriceProperty ;
-    vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:TradingOntology .
-
-  seas:GrossPriceProperty a owl:Class ;
-    rdfs:label "Price Property"@en ;
-    rdfs:comment """The class of gross price properties, that have some tax.
-
-  A gross price has some properties such as a nett price, and some taxes."""@en ;
-    rdfs:subClassOf seas:PriceProperty ;
-    owl:disjointWith seas:NettPriceProperty ;
-    vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:TradingOntology .
-
-seas:price a owl:ObjectProperty , owl:FunctionalProperty ;
-  rdfs:label "price"@en ;
-  rdfs:comment """The price of some commodity."""@en ;
-  rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:Commodity ;
-  rdfs:range seas:PriceProperty ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:TradingOntology .
-    
-  seas:grossPrice a owl:ObjectProperty , owl:FunctionalProperty ;
-    rdfs:label "gross price"@en ;
-    rdfs:comment """Links a price property to its gross price, including any taxes."""@en ;
-    rdfs:subPropertyOf seas:price ;
-    rdfs:range seas:GrossPriceProperty ;
-    vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:TradingOntology .
-
-  seas:nettPrice a owl:ObjectProperty , owl:FunctionalProperty ;
-    rdfs:label "nett price"@en ;
-    rdfs:comment """Links a price property to its gross price, excluding any taxes."""@en ;
-    rdfs:subPropertyOf seas:price ;
-    rdfs:range seas:NettPriceProperty ;
-    vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:TradingOntology .
 
   seas:tax a owl:ObjectProperty ;
     rdfs:label "tax"@en ;
