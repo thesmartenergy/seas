@@ -53,11 +53,13 @@
         <uri id="PeriodicSignalOntology-1.0" name="https://w3id.org/seas/PeriodicSignalOntology-1.0" uri="PeriodicSignalOntology-1.0.ttl"/>
         <uri id="PhotovoltaicOntology-1.0" name="https://w3id.org/seas/PhotovoltaicOntology-1.0" uri="PhotovoltaicOntology-1.0.ttl"/>
         <uri id="PlayerOntology-1.0" name="https://w3id.org/seas/PlayerOntology-1.0" uri="PlayerOntology-1.0.ttl"/>
+        <uri id="SmartMeterOntology-1.0" name="https://w3id.org/seas/SmartMeterOntology-1.0" uri="SmartMeterOntology-1.0.ttl"/>
         <uri id="StatisticsOntology-1.0" name="https://w3id.org/seas/StatisticsOntology-1.0" uri="StatisticsOntology-1.0.ttl"/>
         <uri id="SystemOntology-1.0" name="https://w3id.org/seas/SystemOntology-1.0" uri="SystemOntology-1.0.ttl"/>
         <uri id="ThermodynamicSystemOntology-1.0" name="https://w3id.org/seas/ThermodynamicSystemOntology-1.0" uri="ThermodynamicSystemOntology-1.0.ttl"/>
         <uri id="TimeOntology-1.0" name="https://w3id.org/seas/TimeOntology-1.0" uri="TimeOntology-1.0.ttl"/>
         <uri id="TradingOntology-1.0" name="https://w3id.org/seas/TradingOntology-1.0" uri="TradingOntology-1.0.ttl"/>
+        <uri id="PricingOntology-1.0" name="https://w3id.org/seas/PricingOntology-1.0" uri="PricingOntology-1.0.ttl"/>
         <uri id="UpperOntology-0.10" name="https://w3id.org/seas/UpperOntology-0.10" uri="UpperOntology-0.10.ttl"/>
         <uri id="ZoneLightingOntology-1.0" name="https://w3id.org/seas/ZoneLightingOntology-1.0" uri="ZoneLightingOntology-1.0.ttl"/>
         <uri id="ZoneOntology-1.0" name="https://w3id.org/seas/ZoneOntology-1.0" uri="ZoneOntology-1.0.ttl"/>
