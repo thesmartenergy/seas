@@ -59,6 +59,7 @@
         <uri id="ThermodynamicSystemOntology-1.0" name="https://w3id.org/seas/ThermodynamicSystemOntology-1.0" uri="ThermodynamicSystemOntology-1.0.ttl"/>
         <uri id="TimeOntology-1.0" name="https://w3id.org/seas/TimeOntology-1.0" uri="TimeOntology-1.0.ttl"/>
         <uri id="TradingOntology-1.0" name="https://w3id.org/seas/TradingOntology-1.0" uri="TradingOntology-1.0.ttl"/>
+        <uri id="PricingOntology-1.0" name="https://w3id.org/seas/PricingOntology-1.0" uri="PricingOntology-1.0.ttl"/>
         <uri id="UpperOntology-0.10" name="https://w3id.org/seas/UpperOntology-0.10" uri="UpperOntology-0.10.ttl"/>
         <uri id="ZoneLightingOntology-1.0" name="https://w3id.org/seas/ZoneLightingOntology-1.0" uri="ZoneLightingOntology-1.0.ttl"/>
         <uri id="ZoneOntology-1.0" name="https://w3id.org/seas/ZoneOntology-1.0" uri="ZoneOntology-1.0.ttl"/>
