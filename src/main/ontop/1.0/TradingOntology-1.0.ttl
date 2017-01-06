@@ -180,7 +180,7 @@ seas:PriceProperty a owl:Class ;
     rdfs:isDefinedBy seas:TradingOntology .
 
   seas:GrossPriceProperty a owl:Class ;
-    rdfs:label "Price Property"@en ;
+    rdfs:label "Gross Price Property"@en ;
     rdfs:comment """The class of gross price properties, that have some tax.
 
   A gross price has some properties such as a nett price, and some taxes."""@en ;
