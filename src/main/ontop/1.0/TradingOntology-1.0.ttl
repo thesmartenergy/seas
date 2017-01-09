@@ -163,7 +163,6 @@ For instance, the electric energy outgoing of a certain connection point can be 
       vs:term_status "testing" ;
       rdfs:isDefinedBy seas:TradingOntology .
 
-
   seas:tax a owl:ObjectProperty ;
     rdfs:label "tax"@en ;
     rdfs:comment """Tax for the commodity, quantified as a percentage of something.
