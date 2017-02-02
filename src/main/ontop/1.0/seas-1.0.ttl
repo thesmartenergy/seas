@@ -109,6 +109,7 @@ We furthermore encourage the use of the following external ontologies:
               <https://w3id.org/seas/PeriodicSignalOntology-1.0> ,
               <https://w3id.org/seas/PhotovoltaicOntology-1.0> ,
               <https://w3id.org/seas/PlayerOntology-1.0> ,
+              <https://w3id.org/seas/PricingOntology-1.0> ,
               <https://w3id.org/seas/StatisticsOntology-1.0> ,
               <https://w3id.org/seas/SystemOntology-1.0> ,
               <https://w3id.org/seas/ThermodynamicSystemOntology-1.0> ,
