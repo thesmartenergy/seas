@@ -223,6 +223,27 @@ seas:PenetrationPriceEvaluation a owl:Class ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:PricingOntology .
 
+seas:FixedPriceProperty   a owl:Class ;
+    rdfs:label "Fixed Price Property"@en ;
+    rdfs:comment """A fixed price is a non-negotiable sum charged for a product, service or piece of work.
+                    The most common reason for a fixed price for a product is control or mandate by 
+                    some external entity. A regulatory organization might set a fixed price for some 
+                    commodity, for example. Fixed price contracts and services are an alternative 
+                    to other models."""@en ;
+    rdfs:subClassOf seas:PriceProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:FixedPriceEvaluation a owl:Class ;
+    rdfs:label "Fixed Price Evaluation"@en ;
+    rdfs:comment """he class of evaluation for fixed price properties"""@en ;
+    rdfs:subClassOf seas:PriceEvaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FixedPriceProperty ] ;
+    owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FixedPriceProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+
 
 ##############################################
 #######Object Properties
@@ -298,5 +319,13 @@ seas:penetrationPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:comment """Links an offer of a goods or a service to its penetration price."""@en ;
   rdfs:subPropertyOf seas:price ;
   rdfs:range seas:PenetrationtPriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology.    
+
+seas:fixedPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "fixed price"@en ;
+  rdfs:comment """Links an offer of a goods or a service to its fixed price."""@en ;
+  rdfs:subPropertyOf seas:price ;
+  rdfs:range seas:FixedPriceProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PricingOntology.    
