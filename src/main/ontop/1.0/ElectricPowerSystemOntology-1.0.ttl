@@ -909,6 +909,21 @@ seas:VoltageEvaluation a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
+seas:AngleProperty a owl:Class ;
+  rdfs:label "Angle Property" ;
+  rdfs:comment "The class of properties that are quantifiable and measure the angle property ."@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+seas:AngleEvaluation a owl:Class ;
+  rdfs:label "Angle Evaluation" ;
+  rdfs:comment "The class of evaluations for angle properties."@en ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AngleProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AngleProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
 seas:voltage a owl:ObjectProperty ;
   rdfs:label "voltage" ;
   rdfs:comment """Links an electrical connection or an electrical connection point to one of its voltage properties.
@@ -918,6 +933,16 @@ There may be many voltage properties of an electrical connection or an electrica
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain [ owl:unionOf ( seas:ElectricalConnection seas:ElectricalConnectionPoint ) ] ;
   rdfs:range seas:VoltageProperty ; 
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+seas:voltageAngle a owl:ObjectProperty ;
+  rdfs:label "voltage angle" ;
+  rdfs:comment """Link the voltage property to the angle.
+  """@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:VoltageProperty  ;
+  rdfs:range seas:AngleProperty ; 
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
@@ -1092,12 +1117,50 @@ There may be many power properties for a feature of interest, so this property i
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-  seas:outgoingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
+seas:chargingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "charging electric power" ;
+    rdfs:comment """Links an electric power system, or an electrical connection point, to the charging electric power.
+                """@en ;
+    rdfs:subPropertyOf seas:incomingElectricPower ;
+    rdfs:domain [ owl:unionOf ( seas:ElectricPowerSystem seas:ElectricalConnectionPoint ) ] ;
+    rdfs:range seas:ElectricPowerProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+seas:maximumChargingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "maximum charging electric power" ;
+    rdfs:comment """Links an electric power system, or an electrical connection point, to the maximum charging electric power.
+                """@en ;
+    rdfs:subPropertyOf seas:chargingElectricPower ;
+    rdfs:domain [ owl:unionOf ( seas:ElectricPowerSystem seas:ElectricalConnectionPoint ) ] ;
+    rdfs:range seas:ElectricPowerProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+seas:outgoingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "outgoing electric power" ;
     rdfs:comment """Links an electric power system, or an electrical connection point, to the outgoing electric power.
     (a) the sum of the electric power that leaves the system from the exterior, or
     (b) the electric power that leaves the system through this connection point."""@en ;
     rdfs:subPropertyOf seas:hasProperty , seas:electricPower ;
+    rdfs:domain [ owl:unionOf ( seas:ElectricPowerSystem seas:ElectricalConnectionPoint ) ] ;
+    rdfs:range seas:ElectricPowerProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+seas:dischargingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "discharging electric power" ;
+    rdfs:comment """Links an electric power system, or an electrical connection point, to the discharging electric power."""@en ;
+    rdfs:subPropertyOf seas:outgoingElectricPower;
+    rdfs:domain [ owl:unionOf ( seas:ElectricPowerSystem seas:ElectricalConnectionPoint ) ] ;
+    rdfs:range seas:ElectricPowerProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+seas:maximumDischargingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "maximum discharging electric power" ;
+    rdfs:comment """Links an electric power system, or an electrical connection point, to the maximum discharging electric power."""@en ;
+    rdfs:subPropertyOf seas:dischargingElectricPower;
     rdfs:domain [ owl:unionOf ( seas:ElectricPowerSystem seas:ElectricalConnectionPoint ) ] ;
     rdfs:range seas:ElectricPowerProperty ;
     vs:term_status "testing" ;
@@ -1859,6 +1922,49 @@ seas:ExtraHighVoltageEvaluation a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
+seas:EfficiencyProperty a owl:Class ;
+  rdfs:label "Efficiency Property" ;
+  rdfs:comment """Efficiency signifies a level of performance that describes a process that uses the lowest amount of inputs to create the greatest 
+                amount of outputs. Efficiency relates to the use of all inputs in producing any given 
+                output, including personal time and energy. Efficiency is a measurable concept that can be 
+                determined by determining the ratio of useful output to total input. It minimizes the waste 
+                of resources such as physical materials, energy and time, while successfully achieving the 
+                desired output."""@en ;
+  rdfs:subClassOf seas:Property ; # to be defined somewhere
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+seas:ChargingEfficiencyProperty a owl:Class ;
+  rdfs:label "Charging Efficiency Property" ;
+  rdfs:comment """Charging Efficiency Property is a Efficiency Property which concern the charging process"""@en ;
+  rdfs:subClassOf seas:EfficiencyProperty ; # to be defined somewhere
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+seas:EfficiencyEvaluation a owl:Class ;
+  rdfs:label "Efficiency Evaluation" ;
+  rdfs:comment "The class of evaluations for efficiency properties."@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:EfficiencyProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:EfficiencyProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
 
+  seas:ChargingEfficiencyEvaluation a owl:Class ;
+  rdfs:label "Charging Efficiency Evaluation" ;
+  rdfs:comment "The class of evaluations for efficiency properties."@en ;
+  rdfs:subClassOf seas:EfficiencyEvaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ChargingEfficiencyProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ChargingEfficiencyProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
+
+ seas:efficiency a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "efficiency"@en ;
+    rdfs:comment """The efficiency of the feature of interest."""@en ;
+    rdfs:subPropertyOf seas:hasProperty ;
+    rdfs:range seas:efficiencyProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .    
