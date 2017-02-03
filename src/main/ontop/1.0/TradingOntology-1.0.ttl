@@ -310,3 +310,53 @@ This concept needs polishing ... please ping me if necessary."""@en ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:TradingOntology .
 
+seas:LoadShifting a owl:Class ;
+  rdfs:label "Load Shifting"@en ;
+  rdfs:comment """Load Shifting is the process of balancing the supply of electricity on the network with the electrical load by adjusting or 
+                controlling the load rather than the power station output. (source:Wikipedia) ."""@en ;
+  rdfs:subClassOf seas:Balincing ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TradingOntology .
+
+seas:PositiveLoadShifting a owl:Class ;
+  rdfs:label "Positive Load Shifting"@en ;
+  rdfs:comment """Positive Load Shifting is a Load Shifting which occurs when the load is greater than the initial request. """@en ;
+  rdfs:subClassOf seas:LoadShifting ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TradingOntology .
+
+seas:NegativeLoadShifting a owl:Class ;
+  rdfs:label "Negative Load Shifting"@en ;
+  rdfs:comment """Negative Load Shifting is a Load Shifting which occurs when the load is less than the initial request."""@en ;
+  rdfs:subClassOf seas:LoadShifting ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TradingOntology .
+
+seas:LoadShiftingExecution a owl:Class ;
+  rdfs:label "Load Shifting Execution"@en ;
+  rdfs:comment """The execution of some Load Shifting process on a market."""@en ;
+  rdfs:subClassOf seas:BalancingExecution ;
+  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:TransmissionSystemOperator ] ;
+  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:LoadShifting ] ;
+  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:LoadShifting ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TradingOntology .
+
+  seas:PositiveLoadShiftingExecution a owl:Class ;
+  rdfs:label "Positive Load Shifting Execution"@en ;
+  rdfs:comment """The execution of some Positive Load Shifting process on a market."""@en ;
+  rdfs:subClassOf seas:LoadShiftingExecution ;
+  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:PositiveLoadShifting ] ;
+  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:PositiveLoadShifting ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TradingOntology .
+
+
+  seas:NegativeLoadShiftingExecution a owl:Class ;
+  rdfs:label "Negative Load Shifting Execution"@en ;
+  rdfs:comment """The execution of some Negative Load Shifting process on a market."""@en ;
+  rdfs:subClassOf seas:LoadShiftingExecution ;
+  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:NegativeLoadShifting ] ;
+  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:NegativeLoadShifting ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:TradingOntology .
