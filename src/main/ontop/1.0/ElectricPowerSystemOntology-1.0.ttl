@@ -1127,16 +1127,6 @@ seas:chargingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-seas:maximumChargingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
-    rdfs:label "maximum charging electric power" ;
-    rdfs:comment """Links an electric power system, or an electrical connection point, to the maximum charging electric power.
-                """@en ;
-    rdfs:subPropertyOf seas:chargingElectricPower ;
-    rdfs:domain [ owl:unionOf ( seas:ElectricPowerSystem seas:ElectricalConnectionPoint ) ] ;
-    rdfs:range seas:ElectricPowerProperty ;
-    vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
-
 seas:outgoingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "outgoing electric power" ;
     rdfs:comment """Links an electric power system, or an electrical connection point, to the outgoing electric power.
@@ -1152,15 +1142,6 @@ seas:dischargingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "discharging electric power" ;
     rdfs:comment """Links an electric power system, or an electrical connection point, to the discharging electric power."""@en ;
     rdfs:subPropertyOf seas:outgoingElectricPower;
-    rdfs:domain [ owl:unionOf ( seas:ElectricPowerSystem seas:ElectricalConnectionPoint ) ] ;
-    rdfs:range seas:ElectricPowerProperty ;
-    vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
-
-seas:maximumDischargingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
-    rdfs:label "maximum discharging electric power" ;
-    rdfs:comment """Links an electric power system, or an electrical connection point, to the maximum discharging electric power."""@en ;
-    rdfs:subPropertyOf seas:dischargingElectricPower;
     rdfs:domain [ owl:unionOf ( seas:ElectricPowerSystem seas:ElectricalConnectionPoint ) ] ;
     rdfs:range seas:ElectricPowerProperty ;
     vs:term_status "testing" ;
@@ -1222,7 +1203,7 @@ An alternating current power property cannot be directly quantified. One must qu
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology . 
 
   seas:importedActiveEnergy a owl:ObjectProperty , owl:FunctionalProperty ;
-    rdfs:label "imported active znergy"@en ;
+    rdfs:label "imported active energy"@en ;
     rdfs:comment """Links an alternating current power property to its imported active energy, often in Wh/10."""@en ;
     rdfs:subPropertyOf seas:hasProperty ;
     rdfs:domain seas:AlternatingCurrentPowerProperty ;
