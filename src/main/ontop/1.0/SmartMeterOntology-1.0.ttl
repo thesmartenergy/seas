@@ -192,7 +192,7 @@ seas:WaterMeter a owl:Class ;
                                  `seas:DiscMetering`, which allow them to measure the volume of water (`seas:WaterVolume`) that flow in the pipe."""@en ;
                 rdfs:label "Water Meter"@en ;
                 rdfs:subClassOf seas:Meter ;
-                rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
+         #       rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
                 vs:term_status "testing"^^xsd:string ;
                 rdfs:isDefinedBy seas:SmartMeterOntology . 
 
@@ -281,7 +281,7 @@ seas:GasMeter  a owl:Class ;
                             utility."""@en;
                 rdfs:label "Gas Meter"@en ;
                 rdfs:subClassOf seas:Meter ;
-                rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:GasVolumeProperty ] ;
+              #  rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:GasVolumeProperty ] ;
                 vs:term_status "testing"^^xsd:string ;
                 rdfs:isDefinedBy seas:SmartMeterOntology . 
 
@@ -417,13 +417,13 @@ seas:WaterSmartMeter a owl:Class;
                     rdfs:label "Water Smart Meter"@en;
                     rdfs:comment """A class of Smart Meter which is used for water metering. Water Smart Meter can only have 
                                   `seas:WaterMeter` as subsystem"""@en;
-                    rdfs:subClassOf seas:SmartMeter, 
-                    [
-                      rdf:type owl:Restriction;
-                      owl:onProperty seas:hasSubSystem;
-                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                      owl:onClass seas:WaterMeter
-                    ];
+                    rdfs:subClassOf seas:SmartMeter ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty seas:hasSubSystem ;
+                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                       owl:onClass seas:WaterMeter
+                                     ] ;
+                    rdfs:subClassOf [ owl:onProperty seas:hasSubSystem ; owl:someValuesFrom seas:WaterMeter ] ;                 
                     vs:term_status "unstable"^^xsd:string ;
                      rdfs:isDefinedBy seas:SmartMeterOntology.
 
@@ -438,6 +438,7 @@ seas:ElectricitySmartMeter a owl:Class;
                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                       owl:onClass seas:ElectricityMeter
                     ];
+                    rdfs:subClassOf [ owl:onProperty seas:hasSubSystem ; owl:someValuesFrom seas:ElectricityMeter ] ;
                     vs:term_status "unstable"^^xsd:string ;
                     rdfs:isDefinedBy seas:SmartMeterOntology.
 
@@ -453,6 +454,7 @@ seas:GasSmartMeter a owl:Class;
                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                       owl:onClass seas:GasMeter
                     ];
+                    rdfs:subClassOf [ owl:onProperty seas:hasSubSystem ; owl:someValuesFrom seas:GasMeter ] ;
                     vs:term_status "unstable"^^xsd:string ;
                     rdfs:isDefinedBy seas:SmartMeterOntology.
 
@@ -684,108 +686,6 @@ seas:MeteringMechanism a owl:Class;
                vs:term_status "unstable"^^xsd:string ;
                rdfs:isDefinedBy seas:SmartMeterOntology .
 
-seas:FrequencyProperty a owl:Class; 
-                  rdfs:subClassOf seas:Property;
-                  rdfs:label "Frequency Property"@en;
-                  rdfs:comment "Frequency is the number of occurrences of a repeating event per unit time."@en;
-                  vs:term_status "unstable"^^xsd:string;
-                  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:FrequencyEvaluation a owl:Class ;
-  rdfs:label "Frequency Evaluation"@en;
-  rdfs:comment "The class of evaluations for frequency properties."@en ;
-  rdfs:subClassOf seas:Evaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FrequencyProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:FrequencyProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:VolumeProperty a owl:Class;
-                        rdfs:subClassOf seas:Property;
-                        rdfs:comment """The Volume is a property which is inherent to a physical entity. 
-                                      That measure the quantity in three dimensional space. """@en;
-                        rdfs:label "Volume Property"@en;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology.
-                 
-
-seas:VolumeEvaluation a owl:Class ;
-  rdfs:label "Volume Evaluation"@en;
-  rdfs:comment "The class of evaluations for volume properties."@en ;
-  rdfs:subClassOf seas:Evaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:VolumeProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:VolumeProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-seas:WaterVolumeProperty a owl:Class;
-                        rdfs:subClassOf seas:VolumeProperty;
-                        rdfs:label "Water Volume Property"@en;
-                        rdfs:comment "The Water Volume is a property inherent in water. Could be computed in litre or in meter cube. "@en;
-                        owl:equivalentClass [ owl:onProperty seas:isPropertyOf ; owl:allValuesFrom seas:Water ] ;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:WaterVolumeEvaluation a owl:Class ;
-  rdfs:label "Water Volume Evaluation"@en;
-  rdfs:comment "The class of evaluations for water volume properties."@en ;
-  rdfs:subClassOf seas:VolumeEvaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:WaterVolumeProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:GasVolumeProperty a owl:Class;
-                        rdfs:subClassOf seas:VolumeProperty;
-                        rdfs:label "Gas Volume Property"@en;
-                        rdfs:comment "The Gas Volume is a property inherent in Gas. Could be computed in litre or in meter cube. "@en;
-                        owl:equivalentClass [ owl:onProperty seas:isPropertyOf ; owl:allValuesFrom seas:NaturalGas ] ;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:GasVolumeEvaluation a owl:Class ;
-  rdfs:label "Gas Volume Evaluation"@en;
-  rdfs:comment "The class of evaluations for Gas volume properties."@en ;
-  rdfs:subClassOf seas:VolumeEvaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:GasVolumeProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:GasVolumeProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-seas:ConsumptionProperty a owl:Class;
-                        rdfs:subClassOf seas:Property;
-                        rdfs:label "Consumption Property"@en;
-                        rdfs:comment "The consumption property is a property to measure any consumption."@en;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:ConsumptionEvaluation a owl:Class ;
-  rdfs:label "Consumption Evaluation"@en ;
-  rdfs:comment "The class of evaluations for consumption properties."@en ;
-  rdfs:subClassOf seas:Evaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ConsumptionProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:ConsumptionProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:ProductionProperty a owl:Class;
-                        rdfs:subClassOf seas:Property;
-                        rdfs:label "Production Property"@en;
-                        rdfs:comment "The production property is a property to measure any production."@en;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:ProductionEvaluation a owl:Class ;
-  rdfs:label "Production Evaluation"@en ;
-  rdfs:comment "The class of evaluations for production properties."@en ;
-  rdfs:subClassOf seas:Evaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ProductionEvaluation ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:ProductionEvaluation ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
 
 seas:AmountOfMatter a owl:Class;
                     rdfs:label "Amount of Matter"@en;
@@ -814,26 +714,107 @@ seas:NaturalGas a owl:Class;
             rdfs:isDefinedBy seas:SmartMeterOntology.
 
 
-######################
-# Obejcts and data Properties
-###################### 
+seas:VolumeProperty a owl:Class;
+                        rdfs:subClassOf seas:Property;
+                        rdfs:comment """The Volume is a property which is inherent to a physical entity. 
+                                      That measure the quantity in three dimensional space. """@en;
+                        rdfs:label "Volume Property"@en;
+                        vs:term_status "unstable"^^xsd:string;
+                        rdfs:isDefinedBy seas:SmartMeterOntology.
+                 
 
-seas:communicatesWithProtocol rdf:type owl:ObjectProperty;
-                              rdfs:label " communicates with protocol"@en;
-                              rdfs:comment "Link a system with the communication protocol used to communicate with other systems."@en;
-                              rdfs:domain seas:System;
-                              rdfs:range  seas:CommunicationsProtocol;
-                              vs:term_status "unstable"^^xsd:string ;
-                              rdfs:isDefinedBy seas:SmartMeterOntology .
+seas:VolumeEvaluation a owl:Class ;
+  rdfs:label "Volume Evaluation"@en;
+  rdfs:comment "The class of evaluations for volume properties."@en ;
+  rdfs:subClassOf seas:Evaluation;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:VolumeProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:VolumeProperty ] ;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
 
-seas:allowsCommunicationsThrough rdf:type owl:ObjectProperty;
-                              rdfs:label " allows Communications Through"@en;
-                              rdfs:comment "Link a communication protocol with the communication methods used to communicate with other systems."@en;
-                              rdfs:domain seas:CommunicationsProtocol;
-                              rdfs:range  seas:CommunicationsMethod;
-                              vs:term_status "unstable"^^xsd:string ;
-                              rdfs:isDefinedBy seas:SmartMeterOntology .
-                               
+  seas:WaterVolumeProperty a owl:Class;
+                        rdfs:subClassOf seas:VolumeProperty;
+                        rdfs:label "Water Volume Property"@en;
+                        rdfs:comment "The Water Volume is a property inherent in water. Could be computed in litre or in meter cube. "@en;
+                        vs:term_status "unstable"^^xsd:string;
+                        rdfs:isDefinedBy seas:SmartMeterOntology.
+
+seas:WaterVolumeEvaluation a owl:Class ;
+  rdfs:label "Water Volume Evaluation"@en;
+  rdfs:comment "The class of evaluations for water volume properties."@en ;
+  rdfs:subClassOf seas:VolumeEvaluation;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+
+  seas:FrequencyProperty a owl:Class; 
+                  rdfs:subClassOf seas:Property;
+                  rdfs:label "Frequency Property"@en;
+                  rdfs:comment "Frequency is the number of occurrences of a repeating event per unit time."@en;
+                  vs:term_status "unstable"^^xsd:string;
+                  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+seas:FrequencyEvaluation a owl:Class ;
+  rdfs:label "Frequency Evaluation"@en;
+  rdfs:comment "The class of evaluations for frequency properties."@en ;
+  rdfs:subClassOf seas:Evaluation;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FrequencyProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FrequencyProperty ] ;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+
+seas:GasVolumeProperty a owl:Class;
+                        rdfs:subClassOf seas:VolumeProperty;
+                        rdfs:label "Gas Volume Property"@en;
+                        rdfs:comment "The Gas Volume is a property inherent in Gas. Could be computed in litre or in meter cube. "@en;
+                        vs:term_status "unstable"^^xsd:string;
+                        rdfs:isDefinedBy seas:SmartMeterOntology.
+
+seas:GasVolumeEvaluation a owl:Class ;
+  rdfs:label "Gas Volume Evaluation"@en;
+  rdfs:comment "The class of evaluations for Gas volume properties."@en ;
+  rdfs:subClassOf seas:VolumeEvaluation;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:GasVolumeProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:GasVolumeProperty ] ;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+
+seas:ConsumptionProperty a owl:Class;
+                        rdfs:subClassOf seas:Property;
+                        rdfs:label "Consumption Property"@en;
+                        rdfs:comment "The consumption property is a property to measure any consumption."@en;
+                        vs:term_status "unstable"^^xsd:string;
+                        rdfs:isDefinedBy seas:SmartMeterOntology.
+
+seas:ConsumptionEvaluation a owl:Class ;
+  rdfs:label "Consumption Evaluation"@en ;
+  rdfs:comment "The class of evaluations for consumption properties."@en ;
+  rdfs:subClassOf seas:Evaluation;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ConsumptionProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ConsumptionProperty ] ;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+seas:ProductionProperty a owl:Class;
+                        rdfs:subClassOf seas:Property;
+                        rdfs:label "Production Property"@en;
+                        rdfs:comment "The production property is a property to measure any production."@en;
+                        vs:term_status "unstable"^^xsd:string;
+                        rdfs:isDefinedBy seas:SmartMeterOntology.
+
+seas:ProductionEvaluation a owl:Class ;
+  rdfs:label "Production Evaluation"@en ;
+  rdfs:comment "The class of evaluations for production properties."@en ;
+  rdfs:subClassOf seas:Evaluation;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ProductionProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ProductionProperty ] ;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
 seas:trameSendingFrequency rdf:type owl:ObjectProperty ;    
                         rdfs:subPropertyOf seas:FrequencyProperty;
                         rdfs:label "trame Sending Frequency"@en;  
@@ -861,6 +842,28 @@ seas:measuringFrequency rdf:type owl:ObjectProperty ;
                         rdfs:range seas:FrequencyProperty;
                         vs:term_status "unstable"^^xsd:string  ;
                         rdfs:isDefinedBy seas:SmartMeterOntology .
+
+######################
+# Obejcts and data Properties
+###################### 
+
+seas:communicatesWithProtocol rdf:type owl:ObjectProperty;
+                              rdfs:label " communicates with protocol"@en;
+                              rdfs:comment "Link a system with the communication protocol used to communicate with other systems."@en;
+                              rdfs:domain seas:System;
+                              rdfs:range  seas:CommunicationsProtocol;
+                              vs:term_status "unstable"^^xsd:string ;
+                              rdfs:isDefinedBy seas:SmartMeterOntology .
+
+seas:allowsCommunicationsThrough rdf:type owl:ObjectProperty;
+                              rdfs:label " allows Communications Through"@en;
+                              rdfs:comment "Link a communication protocol with the communication methods used to communicate with other systems."@en;
+                              rdfs:domain seas:CommunicationsProtocol;
+                              rdfs:range  seas:CommunicationsMethod;
+                              vs:term_status "unstable"^^xsd:string ;
+                              rdfs:isDefinedBy seas:SmartMeterOntology .
+                               
+
                     
 
 
