@@ -73,10 +73,10 @@ seas:SmartMeterOntology rdf:type voaf:Vocabulary , owl:Ontology ;
 
 ## Concept added to model  information about the USE case
 seas:Meter a owl:Class;
-          rdfs:subClassOf seas:Sensor;
+          rdfs:subClassOf seas:Device;
           rdfs:label "Meter"@en;
           skos:altLabel "Measuring instrument"@en;
-          rdfs:comment "A Meter is a sensor that is designed to allow to carry out a metering process"@en;
+          rdfs:comment "A Meter is a device that is designed to allow to carry out a metering process"@en;
           rdfs:subClassOf [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
           owl:equivalentClass [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
           vs:term_status "testing" ;
@@ -85,7 +85,7 @@ seas:Meter a owl:Class;
 seas:Metering a owl:Class;
               rdfs:label "Metering"@en ;
               rdfs:comment """Metering is the process that allow to carry out some measuring on a property."""@en ;
-              rdfs:subClassOf seas:Sensing ;
+              rdfs:subClassOf pep:Process ;
               vs:term_status "testing" ;
               rdfs:isDefinedBy seas:SmartMeterOntology .
 
@@ -113,7 +113,7 @@ seas:OpticMetering a owl:Class;
 seas:MeteringExecution a owl:Class ;
   rdfs:label "Metering Execution"@en ;
   rdfs:comment """An MeteringExecution is the execution of the measuring process which is executed by a meter device."""@en ;
-  rdfs:subClassOf seas:Observation ;
+  rdfs:subClassOf pep:ProcessExecutor ;
   rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Meter ] ;
   rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Metering ] ;
   rdfs:subClassOf [ owl:onProperty seas:observesProperty ; owl:someValuesFrom seas:Property ] ;
@@ -124,7 +124,6 @@ seas:MeteringExecution a owl:Class ;
 
 
 seas:measuresProperty a owl:ObjectProperty ;
-  rdfs:subPropertyOf seas:observesProperty;
   rdfs:label "measures property"@en ;
   rdfs:comment """Links a Metering, meter, or metering execution, to a property it measures.
 
@@ -147,7 +146,6 @@ seas:measuresProperty < pep:executedBy o seas:measuresProperty .
 
 
 seas:measures a owl:ObjectProperty ;
-  rdfs:subPropertyOf seas:observes;
   rdfs:label "measures"@en ;
   rdfs:comment """Links a metering, meter, or metering execution, to the feature of interest a property of which it measures.
 
@@ -562,19 +560,18 @@ seas:ProductionMeteringExecution a owl:Class ;
 ###############
 
 seas:FludiaConnectorModule a owl:Class; # the part which is connected to a meter to send the consumption data 
-                owl:equivalentClass [ owl:intersectionOf ( seas:ConnectorModule
-                                                            [ rdf:type owl:Restriction ;
-                                                              owl:onProperty gr:hasManufaturer ;
-                                                              owl:hasValue seas:Fludia
-                                                            ]
-                                                          ) ;
-                                     rdf:type owl:Class
-                                   ] ;
+#                owl:equivalentClass [ owl:intersectionOf ( seas:ConnectorModule
+#                                                            [ rdf:type owl:Restriction ;
+#                                                              owl:onProperty gr:hasManufaturer ;
+#                                                              owl:hasValue seas:Fludia
+#                                                            ]
+#                                                          ) ;
+#                                     rdf:type owl:Class
+#                                   ] ;
+#                [owl:onProperty gr:hasManufaturer ; owl:hasValue seas:Fludia];   
                 rdfs:subClassOf seas:ConnectorModule,
-                [owl:onProperty gr:hasManufaturer ; owl:hasValue seas:Fludia];   
                 rdfs:label "Fludia Connector Module"@en;
                 rdfs:comment "Fludia Connector Module is connector module which is manufactured by fludia."@en;
-
                 vs:term_status "unstable"^^xsd:string ;
                 rdfs:isDefinedBy seas:SmartMeterOntology .                         
 
@@ -815,33 +812,38 @@ seas:ProductionEvaluation a owl:Class ;
   vs:term_status "unstable" ;
   rdfs:isDefinedBy seas:SmartMeterOntology.
 
-seas:trameSendingFrequency rdf:type owl:ObjectProperty ;    
-                        rdfs:subPropertyOf seas:FrequencyProperty;
-                        rdfs:label "trame Sending Frequency"@en;  
-                         rdfs:domain seas:FeatureOfInterest;                                               
-                        rdfs:range seas:FrequencyProperty;                                              
-                        rdfs:comment "A trame sending frequency relationship connects an entity to the frequency between two successive sending of trames by the entity"@en;
+
+seas:MeterIndexProperty a owl:Class;
+                        rdfs:subClassOf seas:Property;
+                        rdfs:label "Meter Index Property"@en;
+                        rdfs:comment "The Meter index property is a property which is inherent in the Index of the Meter."@en;
                         vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology . 
+                        rdfs:isDefinedBy seas:SmartMeterOntology.
 
 
-seas:evaluationFrequency rdf:type owl:ObjectProperty;    
-                        rdfs:subPropertyOf seas:frequency;
-                        rdfs:label "evaluation frequency"@en;                                                
-                        rdfs:comment "An evaluation frequency relationship connects an entity to the frequency between two successive evaluations given by the entity"@en;
-                        rdfs:domain seas:FeatureOfInterest;                                               
-                        rdfs:range seas:FrequencyProperty;
-                        vs:term_status "unstable"^^xsd:string  ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology .
+seas:MeterIndexEvaluation a owl:Class ;
+  rdfs:label "Meter Index  Evaluation"@en ;
+  rdfs:comment "The class of evaluations for meter index  properties."@en ;
+  rdfs:subClassOf seas:Evaluation;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MeterIndexProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MeterIndexProperty ] ;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
 
-seas:measuringFrequency rdf:type owl:ObjectProperty ;    
-                        rdfs:subPropertyOf seas:frequency;
-                        rdfs:label "measuring frequency"@en;                                                
-                        rdfs:comment "A measuring frequency relationship connects an entity to the frequency between two successives measuring made by the entity"@en;
-                        rdfs:domain seas:FeatureOfInterest;                                               
-                        rdfs:range seas:FrequencyProperty;
-                        vs:term_status "unstable"^^xsd:string  ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology .
+
+#todo à valider !
+seas:InstallingDateMeterIndexEvaluation a owl:Class ;
+  rdfs:label "Installing Date Meter Index  Evaluation"@en ;
+  rdfs:comment "The class of evaluations for meter index  properties at installing date."@en ;
+  rdfs:subClassOf seas:MeterIndexEvaluation;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MeterIndexProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MeterIndexProperty ] ;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+
+
+
 
 ######################
 # Obejcts and data Properties
@@ -865,20 +867,64 @@ seas:allowsCommunicationsThrough rdf:type owl:ObjectProperty;
                                
 
                     
+seas:meterIndexProperty rdf:type owl:ObjectProperty, owl:FunctionalProperty ;    
+                        rdfs:subPropertyOf seas:hasProperty;
+                        rdfs:label "Meter index Property"@en;  
+                        rdfs:domain seas:Meter;                                               
+                        rdfs:range seas:MeterIndexProperty;                                              
+                        rdfs:comment "A trame sending frequency relationship connects an entity to the frequency between two successive sending of trames by the entity"@en;
+                        vs:term_status "unstable"^^xsd:string;
+                        rdfs:isDefinedBy seas:SmartMeterOntology .
+
+seas:trameSendingFrequency rdf:type owl:ObjectProperty , owl:FunctionalProperty;    
+                        rdfs:subPropertyOf seas:frequency;
+                        rdfs:label "trame Sending Frequency"@en;  
+                         rdfs:domain seas:FeatureOfInterest;                                               
+                        rdfs:range seas:FrequencyProperty;                                              
+                        rdfs:comment "A trame sending frequency relationship connects an entity to the frequency between two successive sending of trames by the entity"@en;
+                        vs:term_status "unstable"^^xsd:string;
+                        rdfs:isDefinedBy seas:SmartMeterOntology . 
 
 
+seas:evaluationFrequency rdf:type owl:ObjectProperty, owl:FunctionalProperty;    
+                        rdfs:subPropertyOf seas:frequency;
+                        rdfs:label "evaluation frequency"@en;                                                
+                        rdfs:comment "An evaluation frequency relationship connects an entity to the frequency between two successive evaluations given by the entity"@en;
+                        rdfs:domain seas:FeatureOfInterest;                                               
+                        rdfs:range seas:FrequencyProperty;
+                        vs:term_status "unstable"^^xsd:string  ;
+                        rdfs:isDefinedBy seas:SmartMeterOntology .
+
+seas:measuringFrequency rdf:type owl:ObjectProperty , owl:FunctionalProperty;    
+                        rdfs:subPropertyOf seas:frequency;
+                        rdfs:label "measuring frequency"@en;                                                
+                        rdfs:comment "A measuring frequency relationship connects an entity to the frequency between two successives measuring made by the entity"@en;
+                        rdfs:domain seas:FeatureOfInterest;                                               
+                        rdfs:range seas:FrequencyProperty;
+                        vs:term_status "unstable"^^xsd:string  ;
+                        rdfs:isDefinedBy seas:SmartMeterOntology .
+
+seas:production rdf:type owl:ObjectProperty , owl:FunctionalProperty;    
+                        rdfs:subPropertyOf seas:hasProperty;
+                        rdfs:label "production"@en;                                                
+                        rdfs:comment "A production relationship connects an entity to its production property. "@en;
+                        rdfs:domain seas:FeatureOfInterest;                                               
+                        rdfs:range seas:ProductionProperty;
+                        vs:term_status "unstable"^^xsd:string  ;
+                        rdfs:isDefinedBy seas:SmartMeterOntology .
+
+seas:consumption rdf:type owl:ObjectProperty , owl:FunctionalProperty;    
+                        rdfs:subPropertyOf seas:hasProperty;
+                        rdfs:label "consumption"@en;                                                
+                        rdfs:comment "A production relationship connects an entity to its consumption property. "@en;
+                        rdfs:domain seas:FeatureOfInterest;                                               
+                        rdfs:range seas:ConsumptionProperty;
+                        vs:term_status "unstable"^^xsd:string  ;
+                        rdfs:isDefinedBy seas:SmartMeterOntology .
 ########################
 #  data property 
 ########################
-
-seas:installationIndexValue  rdf:type owl:DatatypeProperty ;
-                        rdfs:label "installation index value"@en;
-                        rdfs:comment "link the smartMeter to the value of the index when the installation. "@en;
-                        rdfs:domain seas:SmartMeter;
-                        rdfs:range xsd:integer; #  
-                        vs:term_status "unstable"^^xsd:string ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology .                     
-
+                   
 seas:hasInstallationDate  rdf:type owl:DatatypeProperty ;
                         rdfs:label "has installation date"@en; # 
                         rdfs:comment "link the smartMeter to the installation installation. "@en;
@@ -901,12 +947,12 @@ seas:SigFoxProtocol a seas:CommunicationsProtocol;
 seas:SigFoxProtocol a seas:CommunicationsProtocol;
                     rdfs:label "SigFoxProtocol"@en;
                     skos:prefLabel "SigFox"@en;
-                    gr:hasManufaturer seas:SigFoxCompany;
+                    gr:hasManufaturer dbr:Sigfox;
                     seas:allowsCommunicationsThrough seas:RadioWave.
 ```
 """@en ;
      skos:prefLabel "SigFox"@en;
-     gr:hasManufaturer seas:SigFoxCompany;
+     gr:hasManufaturer dbr:Sigfox;
      seas:allowsCommunicationsThrough seas:RadioWave;
      vs:term_status "unstable"^^xsd:string ;
      rdfs:isDefinedBy seas:SmartMeterOntology .
@@ -944,42 +990,6 @@ seas:RadioWave a seas:RadioWave;
 """@en ;
    vs:term_status "unstable"^^xsd:string ;
    rdfs:isDefinedBy seas:SmartMeterOntology .
-
-
-seas:Fludia a gr:BusinessEntity;
-    skos:prefLabel "Fludia"@en;
-    rdfs:label "Fludia"@en;
-    foaf:homePage <https://www.fludia.com>;
-     rdfs:comment """The Fludia is defined like this 
-
-```
-seas:Fludia a gr:BusinessEntity;
-            skos:prefLabel "Fludia"@en;
-            rdfs:label "Fludia"@en;
-            foaf:homePage <https://www.fludia.com>.
-```
-"""@en ;
-    vs:term_status "unstable"^^xsd:string ;
-    rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-
-seas:SigFoxCompany a gr:BusinessEntity;
-    rdfs:label "SigFox"@en;
-    skos:prefLabel "SigFox"@en;
-    foaf:homePage <https://www.sigfox.com>;
-    owl:sameAs dbr:Sigfox;
-    rdfs:comment """The sigFox company is defined like this 
-
-```
-seas:SigFoxCompany a gr:BusinessEntity;
-                    rdfs:label "SigFox"@en;
-                    skos:prefLabel "SigFox"@en;
-                    foaf:homePage <https://www.sigfox.com>;
-                    owl:sameAs dbr:Sigfox.
-```
-"""@en ;
-    vs:term_status "unstable"^^xsd:string ;
-    rdfs:isDefinedBy seas:SmartMeterOntology .  
 
 
 seas:BelSensoFM420Model a seas:FludiaModel;
