@@ -259,7 +259,7 @@ seas:LowPressureSodiumLamp a owl:Class ;
                           vs:term_status "testing" ;
                           rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
-seas:MetalHalidLamp a owl:Class ;
+seas:MetalHalideLamp a owl:Class ;
                     rdfs:subClassOf seas:HighPressureDischargeLamp ;
                     rdfs:comment """A metal-halide lamp  is a  high-intensity discharge (HID) gas discharge 
                                   lamp which is an electrical lamp that produces light by an electric arc through
@@ -267,17 +267,17 @@ seas:MetalHalidLamp a owl:Class ;
                                   with bromine or iodine). It is a type of high-intensity discharge (HID) gas discharge
                                   lamp. (source:wikipedia)"""@en ;
                     rdfs:label "Lampe halogenure metallique"@fr ,
-                               "Metal Halid Lamp"@en ;                          
+                               "Metal Halide Lamp"@en ;                          
                     vs:term_status "testing" ;
                     rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:CeramicMetalHalideLamp a owl:Class ;
-                    rdfs:subClassOf seas:MetalHalidLamp ;
+                    rdfs:subClassOf seas:MetalHalideLamp ;
                     rdfs:comment """The ceramic discharge metal-halide (CDM) lamp, often referred to as Ceramic Metal Halide lamp
                                    (CMH) is a source of light that is a type of metal-halide lamp which is 10-20% more efficient
                                   than the traditional quartz metal halide and produces a superior color rendition (80-96 CRI). 
                                   (source:wikipedia)"""@en ;
-                    rdfs:label "Ceramic Metal Halid Lamp"@en ;                          
+                    rdfs:label "Ceramic Metal Halide Lamp"@en ;                          
                     vs:term_status "testing" ;
                     rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 

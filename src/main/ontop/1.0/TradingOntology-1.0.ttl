@@ -314,7 +314,7 @@ seas:LoadShifting a owl:Class ;
   rdfs:label "Load Shifting"@en ;
   rdfs:comment """Load Shifting is the process of balancing the supply of electricity on the network with the electrical load by adjusting or 
                 controlling the load rather than the power station output. (source:Wikipedia) ."""@en ;
-  rdfs:subClassOf seas:Balincing ;
+  rdfs:subClassOf seas:Balancing ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:TradingOntology .
 

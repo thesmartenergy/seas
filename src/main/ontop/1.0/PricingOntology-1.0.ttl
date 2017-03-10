@@ -236,7 +236,7 @@ seas:FixedPriceProperty   a owl:Class ;
 
 seas:FixedPriceEvaluation a owl:Class ;
     rdfs:label "Fixed Price Evaluation"@en ;
-    rdfs:comment """he class of evaluation for fixed price properties"""@en ;
+    rdfs:comment """The class of evaluation for fixed price properties"""@en ;
     rdfs:subClassOf seas:PriceEvaluation ;
     rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FixedPriceProperty ] ;
     owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FixedPriceProperty ] ;
