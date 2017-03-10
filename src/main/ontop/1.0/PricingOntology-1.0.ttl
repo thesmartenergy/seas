@@ -1,0 +1,331 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix saref: <https://w3id.org/saref#>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix pep: <https://w3id.org/pep/> .
+@prefix gr: <http://purl.org/goodrelations/v1#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dbr: <http://dbpedia.org/resource/> .
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:PricingOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "The SEAS Pricing ontology"@en ;
+  dc:description """The SEAS Pricing ontology defines the different categories of princing we can meet in the market vacabulary
+"""@en ;
+  dc:issued "2017-01-05"^^xsd:date ;
+  dc:modified "2017-01-05"^^xsd:date ;
+  dc:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
+  dc:contributor <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;
+  owl:imports seas:EvaluationOntology ;
+  owl:versionIRI <https://w3id.org/seas/PricingOntology-1.0> ;
+  owl:versionInfo "v1.0" .
+
+
+seas:PriceProperty a owl:Class ;
+  rdfs:label "Price Property"@en ;
+  rdfs:comment """The class of price properties, whose value is expressed using some currency."""@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology .
+
+seas:PriceEvaluation a owl:Class ;
+  rdfs:label "Price Evaluation"@en ;
+  rdfs:comment """The class of evaluation for price properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:PriceProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:PriceProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology .
+
+  seas:NettPriceProperty a owl:Class ;
+    rdfs:label "Nett Price Property"@en ;
+    rdfs:comment """The class of nett price properties, that have no tax."""@en ;
+    rdfs:subClassOf seas:PriceProperty ;
+    owl:disjointWith seas:GrossPriceProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+ 
+seas:NettPriceEvaluation a owl:Class ;
+    rdfs:label "Nett Price Property"@en ;
+    rdfs:comment """The class of evaluation for  nett price properties."""@en ;
+    rdfs:subClassOf seas:PriceEvaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:NettPriceProperty ] ;
+    owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:NettPriceProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+  seas:GrossPriceProperty a owl:Class ;
+    rdfs:label "Gross Price Property"@en ;
+    rdfs:comment """The class of gross price properties, that have some tax.
+
+   A gross price has some properties such as a nett price, and some taxes."""@en ;
+    rdfs:subClassOf seas:PriceProperty ;
+    owl:disjointWith seas:NettPriceProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+ seas:GrossPriceEvaluation a owl:Class ;
+    rdfs:label "Gross Price Evaluation"@en ;
+    rdfs:comment """The class of evaluation for gross price properties."""@en ;
+    rdfs:subClassOf seas:PriceEvaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:GrossPriceProperty ] ;
+    owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:GrossPriceProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:SellingPriceProperty a owl:Class ;
+    rdfs:label "Selling Price Property"@en ;
+    rdfs:comment """The class of selling price properties,"""@en ;
+    rdfs:subClassOf seas:PriceProperty ;
+    owl:disjointWith seas:BuyingPriceProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+ seas:SellingPriceEvaluation a owl:Class ;
+    rdfs:label "Selling Price Evaluation"@en ;
+    rdfs:comment """The class of evaluation for selling price Properties"""@en ;
+    rdfs:subClassOf seas:PriceEvaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:SellingPriceProperty ] ;
+    owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:SellingPriceProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:BuyingPriceProperty a owl:Class ;
+    rdfs:label "Buying Price Property"@en ;
+    rdfs:comment """The class of Buying price properties,"""@en ;
+    rdfs:subClassOf seas:PriceProperty ;
+    owl:disjointWith seas:SellingPriceProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:BuyingPriceEvaluation a owl:Class ;
+    rdfs:label "Buying Price Evaluation"@en ;
+    rdfs:comment """The class of evaluation for buying price properties."""@en ;
+    rdfs:subClassOf seas:PriceEvaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:BuyingPriceProperty ] ;
+    owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:BuyingPriceProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:RecommendedRetailPriceProperty a owl:Class ;
+    rdfs:label "Recommended Retail Price Property"@en ;
+    rdfs:comment """The class of Recommended Retail Price properties is the price at which a manufacturer suggests a product should be sold on the retail market, 
+                    though this may be reduced by the retailer."""@en ;
+    rdfs:subClassOf seas:PriceProperty ;
+    owl:disjointWith seas:BuyingPriceProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:RecommendedRetailPriceEvaluation a owl:Class ;
+    rdfs:label "Recommended Retail Price Evaluation"@en ;
+    rdfs:comment """The class of evaluation for recommended retail price properties."""@en ;
+    rdfs:subClassOf seas:PriceEvaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:RecommendedRetailPriceProperty ] ;
+    owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:RecommendedRetailPriceProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:CostPriceProperty a owl:Class ;
+    rdfs:label "Cost Price Property"@en ;
+    rdfs:comment """The class of Cost price properties, is a selling price that is the same as the price paid by the seller, 
+                which results in no profit being made
+                  """@en ;
+    rdfs:subClassOf seas:SellingPriceProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:CostPriceEvaluation a owl:Class ;
+    rdfs:label "Cost Price Evaluation"@en ;
+    rdfs:comment """The class of evaluation for cost price properties."""@en ;
+    rdfs:subClassOf seas:PriceEvaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:CostPriceProperty ] ;
+    owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:CostPriceProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:MarketPriceProperty a owl:Class ;
+    rdfs:label "Market Price Property"@en ;
+    rdfs:comment """The class of Market price properties, is a Unique price at which buyers and sellers agree to trade in an open market at a particular time. 
+                    In formal markets (such stock exchanges) there are two market prices: the offer (selling) price which is higher, and bid (buying) price that is lower.
+                     The difference between these two price is called margin or spread. Read more: http://www.businessdictionary.com/definition/market-price.html
+                  """@en ;
+    rdfs:subClassOf seas:SellingPriceProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:MarketPriceEvaluation a owl:Class ;
+    rdfs:label "Market Price Evaluation"@en ;
+    rdfs:comment """he class of evaluation for market price properties"""@en ;
+    rdfs:subClassOf seas:PriceEvaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MarketPriceProperty ] ;
+    owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MarketPriceProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:PenetrationPriceProperty   a owl:Class ;
+    rdfs:label "Penetration Price Property"@en ;
+    rdfs:comment """The class of Penetration price properties, is a is a pricing strategy where the selling price of a product is initially set low to rapidly reach 
+                    a wide fraction of the market and initiate word of mouth. The strategy works on the expectation that customers will switch to the new brand because of the lower price. 
+                    Penetration pricing is most commonly associated with marketing objectives of enlarging market share and exploiting economies of scale or experience
+                  """@en ;
+    rdfs:subClassOf seas:SellingPriceProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:PenetrationPriceEvaluation a owl:Class ;
+    rdfs:label "Penetration Price Evaluation"@en ;
+    rdfs:comment """he class of evaluation for penetration price properties"""@en ;
+    rdfs:subClassOf seas:PriceEvaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:PenetrationPriceProperty ] ;
+    owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:PenetrationPriceProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:FixedPriceProperty   a owl:Class ;
+    rdfs:label "Fixed Price Property"@en ;
+    rdfs:comment """A fixed price is a non-negotiable sum charged for a product, service or piece of work.
+                    The most common reason for a fixed price for a product is control or mandate by 
+                    some external entity. A regulatory organization might set a fixed price for some 
+                    commodity, for example. Fixed price contracts and services are an alternative 
+                    to other models."""@en ;
+    rdfs:subClassOf seas:PriceProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:FixedPriceEvaluation a owl:Class ;
+    rdfs:label "Fixed Price Evaluation"@en ;
+    rdfs:comment """The class of evaluation for fixed price properties"""@en ;
+    rdfs:subClassOf seas:PriceEvaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FixedPriceProperty ] ;
+    owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FixedPriceProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+
+
+##############################################
+#######Object Properties
+##############################################
+seas:price a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "price"@en ;
+  rdfs:comment """The price of some commodity."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:Commodity ;
+  rdfs:range seas:PriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology .
+    
+seas:grossPrice a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "gross price"@en ;
+  rdfs:comment """Links a price property to its gross price, including any taxes."""@en ;
+  rdfs:subPropertyOf seas:price ;
+  rdfs:range seas:GrossPriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology .
+
+seas:nettPrice a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "nett price"@en ;
+  rdfs:comment """Links a price property to its gross price, excluding any taxes."""@en ;
+  rdfs:subPropertyOf seas:price ;
+  rdfs:range seas:NettPriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology .
+
+seas:sellingPrice a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "selling price"@en ;
+  rdfs:comment """Links an offer of a goods or a service to its selling price."""@en ;
+  rdfs:subPropertyOf seas:price ;
+  rdfs:range seas:SellingPriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology .
+
+seas:buyingPrice a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "selling price"@en ;
+  rdfs:comment """Links an offer of a goods or a service to its buying price."""@en ;
+  rdfs:subPropertyOf seas:price ;
+  rdfs:range seas:BuyingPriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology .
+
+seas:recommendedRetailPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "recommended retail price"@en ;
+  rdfs:comment """Links an offer of a goods or a service to its recommended retail price."""@en ;
+  rdfs:subPropertyOf seas:price ;
+  rdfs:range seas:RecommendedRetailPriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology.
+
+
+seas:costPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "cost price"@en ;
+  rdfs:comment """Links an offer of a goods or a service to its cost price."""@en ;
+  rdfs:subPropertyOf seas:price ;
+  rdfs:range seas:CostPriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology.
+
+seas:marketPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "market price"@en ;
+  rdfs:comment """Links an offer of a goods or a service to its market price."""@en ;
+  rdfs:subPropertyOf seas:price ;
+  rdfs:range seas:MarketPriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology.  
+
+seas:penetrationPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "penetration price"@en ;
+  rdfs:comment """Links an offer of a goods or a service to its penetration price."""@en ;
+  rdfs:subPropertyOf seas:price ;
+  rdfs:range seas:PenetrationtPriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology.    
+
+seas:fixedPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "fixed price"@en ;
+  rdfs:comment """Links an offer of a goods or a service to its fixed price."""@en ;
+  rdfs:subPropertyOf seas:price ;
+  rdfs:range seas:FixedPriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology.    

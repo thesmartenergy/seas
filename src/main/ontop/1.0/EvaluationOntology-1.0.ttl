@@ -202,6 +202,30 @@ seas:Evaluation a owl:Class ;
   vs:term_status "stable" ;
   rdfs:isDefinedBy seas:EvaluationOntology .
 
+seas:AverageEvaluation a owl:Class ;
+  rdfs:label "Average Evaluation"@en ;
+  rdfs:comment """Average Evaluation is an Evaluation wich evaluate  the sum of a list 
+                  of evaluations divided by the number of evalautions in the list."""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+seas:MaximumEvaluation a owl:Class ;
+  rdfs:label "Maximum Evaluation"@en ;
+  rdfs:comment """Maximum Evaluation is an Evaluation which is the maximum value that the evaluation 
+                can take for the evaluated property.
+                """@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+seas:MinimumEvaluation a owl:Class ;
+  rdfs:label "Minimum Evaluation"@en ;
+  rdfs:comment """Minimum Evaluation is an Evaluation which is the minimum value that the evaluation 
+              can take for the evaluated property.
+                """@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:EvaluationOntology .
+
+
 seas:evaluatedValue a owl:DatatypeProperty , owl:FunctionalProperty ;
   rdfs:label "evaluated value"@en ;
   rdfs:comment """Links an evaluation to the literal that qualifies some aspect of the property."""@en ;
