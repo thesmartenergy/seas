@@ -569,7 +569,7 @@ seas:FludiaConnectorModule a owl:Class; # the part which is connected to a meter
 #                                     rdf:type owl:Class
 #                                   ] ;
 #                [owl:onProperty gr:hasManufaturer ; owl:hasValue seas:Fludia];   
-                rdfs:subClassOf seas:ConnectorModule,
+                rdfs:subClassOf seas:ConnectorModule;
                 rdfs:label "Fludia Connector Module"@en;
                 rdfs:comment "Fludia Connector Module is connector module which is manufactured by fludia."@en;
                 vs:term_status "unstable"^^xsd:string ;
