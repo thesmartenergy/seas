@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="https://w3id.org/seas/ForecastingOntology-1.0" uri="ForecastingOntology-1.0.ttl"/>
     <uri id="User Entered Import Resolution" name="http://www.w3.org/2006/time#" uri="../time.rdf"/>
     <uri id="User Edited Redirect" name="https://w3id.org/pep/" uri="../pep-1.0.ttl"/>
     <group id="manual" prefer="public">
@@ -42,6 +43,7 @@
         <uri id="DeviceOntology-1.0" name="https://w3id.org/seas/DeviceOntology-1.0" uri="DeviceOntology-1.0.ttl"/>
         <uri id="ElectricPowerSystemOntology-1.0" name="https://w3id.org/seas/ElectricPowerSystemOntology-1.0" uri="ElectricPowerSystemOntology-1.0.ttl"/>
         <uri id="ElectricVehicleOntology-1.0" name="https://w3id.org/seas/ElectricVehicleOntology-1.0" uri="ElectricVehicleOntology-1.0.ttl"/>
+        <uri id="ElectricLightSourceOntology-1.0" name="https://w3id.org/seas/ElectricLightSourceOntology-1.0" uri="ElectricLightSourceOntology-1.0.ttl"/>
         <uri id="EnergyFormOntology-1.0" name="https://w3id.org/seas/EnergyFormOntology-1.0" uri="EnergyFormOntology-1.0.ttl"/>
         <uri id="EvaluationOntology-1.0" name="https://w3id.org/seas/EvaluationOntology-1.0" uri="EvaluationOntology-1.0.ttl"/>
         <uri id="FailableSystemOntology-1.0" name="https://w3id.org/seas/FailableSystemOntology-1.0" uri="FailableSystemOntology-1.0.ttl"/>

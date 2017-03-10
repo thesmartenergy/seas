@@ -151,8 +151,20 @@ Due to the open world assumption of RDF, it is not possible to model the closed 
 """@en ;
   rdfs:domain seas:System ;
   rdfs:range seas:System ;
+  owl:inverseOf seas:hasSubSystem ;
   vs:term_status "stable" ;
   rdfs:isDefinedBy seas:SystemOntology .
+
+
+seas:hasSubSystem a owl:ObjectProperty , owl:InverseFunctionalProperty ;
+  rdfs:label "has sub system"@en ;
+  rdfs:comment """Links a system to its sub system."""@en ;
+  rdfs:domain seas:System ;
+  rdfs:range seas:System ;
+  owl:inverseOf seas:subSystemOf ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:SystemOntology .
+
 
 # connections
 

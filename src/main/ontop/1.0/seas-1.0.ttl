@@ -96,6 +96,7 @@ We furthermore encourage the use of the following external ontologies:
               <https://w3id.org/seas/DeviceOntology-1.0> ,
               <https://w3id.org/seas/ElectricPowerSystemOntology-1.0> ,
               <https://w3id.org/seas/ElectricVehicleOntology-1.0> ,
+              <https://w3id.org/seas/ElectricLightSourceOntology-1.0> ,
               <https://w3id.org/seas/EnergyFormOntology-1.0> ,
               <https://w3id.org/seas/EvaluationOntology-1.0> ,
               <https://w3id.org/seas/FailableSystemOntology-1.0> ,
