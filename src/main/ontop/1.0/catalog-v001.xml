@@ -55,6 +55,7 @@
         <uri id="PeriodicSignalOntology-1.0" name="https://w3id.org/seas/PeriodicSignalOntology-1.0" uri="PeriodicSignalOntology-1.0.ttl"/>
         <uri id="PhotovoltaicOntology-1.0" name="https://w3id.org/seas/PhotovoltaicOntology-1.0" uri="PhotovoltaicOntology-1.0.ttl"/>
         <uri id="PlayerOntology-1.0" name="https://w3id.org/seas/PlayerOntology-1.0" uri="PlayerOntology-1.0.ttl"/>
+        <uri id="SmartMeterOntology-1.0" name="https://w3id.org/seas/SmartMeterOntology-1.0" uri="SmartMeterOntology-1.0.ttl"/>
         <uri id="PricingOntology-1.0" name="https://w3id.org/seas/PricingOntology-1.0" uri="PricingOntology-1.0.ttl"/>
         <uri id="StatisticsOntology-1.0" name="https://w3id.org/seas/StatisticsOntology-1.0" uri="StatisticsOntology-1.0.ttl"/>
         <uri id="SystemOntology-1.0" name="https://w3id.org/seas/SystemOntology-1.0" uri="SystemOntology-1.0.ttl"/>
