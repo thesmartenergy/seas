@@ -56,7 +56,7 @@ seas:SmartMeterOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   The two systems form the smartMeter.
   In this ontology you will find concepts about 
     - Meters (`seas:WaterMeter`, `seas:GasMeter`, `seas:ElectricityMeter`) and their metering mechanism (`seas:Pulse`, `seas:Optic`, `seas:Disc`..). 
-    - Connectors module (we treat currently the case of Fludia connectors seas:FludiaConnectors), these connectors can communicate thanks to  a 
+    - Connectors module, these connectors can communicate thanks to  a 
     - `seas:CommunicationProtocol` such as `seas:LoraProtocol` and `seas:SigFoxProtocol`. These protocols communicate through `seas:RadioWave` Technologies.  
 """@en ;
   dc:issued "2016-05-10"^^xsd:date ;
@@ -554,51 +554,19 @@ seas:ProductionMeteringExecution a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:SmartMeterOntology .                         
 
-###############
-# connector module, partie spécifique au connecteur fludia. Est ce qu'il faut la mettre dans une nouvelle onntologie sur les connecteurs fludia ?
-# remarque: je ne sais pas trop dans quelle ontology il faut représenter les individus lorsqu'on nous avons besoin ?
-###############
-
-seas:FludiaConnectorModule a owl:Class; # the part which is connected to a meter to send the consumption data 
-#                owl:equivalentClass [ owl:intersectionOf ( seas:ConnectorModule
-#                                                            [ rdf:type owl:Restriction ;
-#                                                              owl:onProperty gr:hasManufaturer ;
-#                                                              owl:hasValue seas:Fludia
-#                                                            ]
-#                                                          ) ;
-#                                     rdf:type owl:Class
-#                                   ] ;
-#                [owl:onProperty gr:hasManufaturer ; owl:hasValue seas:Fludia];   
-                rdfs:subClassOf seas:ConnectorModule;
-                rdfs:label "Fludia Connector Module"@en;
-                rdfs:comment "Fludia Connector Module is connector module which is manufactured by fludia."@en;
-                vs:term_status "unstable"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .                         
 
 
-seas:BelSensoFM420   a owl:Class; # the part which is connected to a meter to send the consumption data 
-                    rdfs:label "BelSenso FM420"@en;
-                    rdfs:comment "A class of fludia connector which has as model the value `seas:BelSensoFM420Model`"@en;
-                   rdfs:subClassOf seas:FludiaConnectorModule,
-                  [   owl:onProperty gr:hasMakeAndModel;
-                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                      owl:hasValue seas:BelSensoFM420Model
-                  ];
-                  owl:equivalentClass [ owl:onProperty gr:hasMakeAndModel ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger; owl:hasValue seas:BelSensoFM420Model ] ;
-                  vs:term_status "unstable"^^xsd:string ;
-                 rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-seas:FludiaSigFox a owl:Class;
-                       rdfs:label "Fludia Sig Fox"@en;
-                       rdfs:comment "A class of fludia connector which communicates with `seas:SigFoxProtocol`."@en;
-                      rdfs:subClassOf seas:FludiaConnectorModule,
+seas:SigFoxConnectorModule a owl:Class;
+                       rdfs:label "Sig Fox Connector Module"@en;
+                       rdfs:comment "A class of connector module which communicates with `seas:SigFoxProtocol`."@en;
+                      rdfs:subClassOf seas:ConnectorModule,
                       [
                         rdf:type owl:Restriction;
                         owl:onProperty seas:communicatesWithProtocol;
                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                         owl:hasValue seas:SigFoxProtocol
                       ];
-                      owl:equivalentClass [ owl:intersectionOf ( seas:FludiaConnectorModule
+                      owl:equivalentClass [ owl:intersectionOf ( seas:ConnectorModule
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty seas:communicatesWithProtocol ;
                                                               owl:hasValue seas:SigFoxProtocol
@@ -611,17 +579,17 @@ seas:FludiaSigFox a owl:Class;
                       rdfs:isDefinedBy seas:SmartMeterOntology .                   
 
 
-seas:FludiaLora a owl:Class;
-                       rdfs:label "Fludia Lora"@en;
-                       rdfs:comment "A class of fludia connector which communicates with `seas:LoraProtocol`."@en;
-                      rdfs:subClassOf seas:FludiaConnectorModule,
+seas:LoraConnectorModule a owl:Class;
+                       rdfs:label "Lora Connector Module"@en;
+                       rdfs:comment "A class of  connector module which communicates with `seas:LoraProtocol`."@en;
+                      rdfs:subClassOf seas:ConnectorModule,
                       [
                         rdf:type owl:Restriction;
                         owl:onProperty seas:communicatesWithProtocol;
                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                         owl:hasValue seas:LoraProtocol
                       ];
-                      owl:equivalentClass [ owl:intersectionOf ( seas:FludiaConnectorModule
+                      owl:equivalentClass [ owl:intersectionOf ( seas:ConnectorModule
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty seas:communicatesWithProtocol ;
                                                               owl:hasValue seas:LoraProtocol
@@ -632,12 +600,6 @@ seas:FludiaLora a owl:Class;
                       vs:term_status "unstable"^^xsd:string ;
                       rdfs:isDefinedBy seas:SmartMeterOntology . 
 
-seas:FludiaModel a owl:Class;                  
-                  rdfs:subClassOf gr:ProductOrServiceModel;
-                  rdfs:label "Fludia Model"@en;
-                  rdfs:comment "The class of model of Fludia such as BelSenso FM 420 Model"@en;
-                  vs:term_status "unstable"^^xsd:string ;
-                  rdfs:isDefinedBy seas:SmartMeterOntology .
 
 seas:Protocol a owl:Class;
             rdfs:label "Protocol"@en;
@@ -836,8 +798,6 @@ seas:InstallingDateMeterIndexEvaluation a owl:Class ;
   rdfs:label "Installing Date Meter Index  Evaluation"@en ;
   rdfs:comment "The class of evaluations for meter index  properties at installing date."@en ;
   rdfs:subClassOf seas:MeterIndexEvaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MeterIndexProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MeterIndexProperty ] ;
   vs:term_status "unstable" ;
   rdfs:isDefinedBy seas:SmartMeterOntology.
 
@@ -979,7 +939,7 @@ seas:RadioWave a seas:RadioWave;
     skos:prefLabel "Radio Wave"@en;
     rdfs:label "Radio Wave"@en;
     rdfs:seeAlso dbr:Radio_wave;
-    rdfs:comment """The Fludia is defined like this 
+    rdfs:comment """The RadioWave is defined like this 
 
 ```
 seas:RadioWave a seas:RadioWave;
@@ -992,14 +952,3 @@ seas:RadioWave a seas:RadioWave;
    rdfs:isDefinedBy seas:SmartMeterOntology .
 
 
-seas:BelSensoFM420Model a seas:FludiaModel;
-                    rdfs:label "BelSonsoFM20Model"@en;
-                    rdfs:comment """BelSonsoFM20 is a model designed by `seas:Fludia`
-
-```
-seas:BelSensoFM420Model a seas:FludiaModel;
-                        rdfs:label "BelSonsoFM20Model"@en.
-```
-"""@en ;
-                    vs:term_status "unstable"^^xsd:string ;
-                    rdfs:isDefinedBy seas:SmartMeterOntology .
