@@ -16,7 +16,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .  
+@prefix dcterms: <http://purl.org/dc/terms/> .  
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -34,12 +34,12 @@
 @base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
 cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
@@ -50,12 +50,12 @@ foaf:name a owl:DatatypeProperty .
 
 
 seas:ElectricLightSourceOntology a owl:Ontology , voaf:Vocabulary ;
-  dc:title "The SEAS Electric Light Source Ontology."@en ;
-  dc:description """The SEAS Electric Light source ontology describes Electric light sources."""@en ;
-  dc:issued "2017-02-22"^^xsd:date ;
-  dc:modified "2017-02-23"^^xsd:date ;
-  dc:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
-  dc:contributor <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:title "The SEAS Electric Light Source Ontology."@en ;
+  dcterms:description """The SEAS Electric Light source ontology describes Electric light sources."""@en ;
+  dcterms:issued "2017-02-22"^^xsd:date ;
+  dcterms:modified "2017-02-23"^^xsd:date ;
+  dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
+  dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
@@ -67,269 +67,268 @@ seas:ElectricLightSourceOntology a owl:Ontology , voaf:Vocabulary ;
 seas:ElectricLightSource a owl:Class ;
   rdfs:label "Electric Light Source"@en ;
   rdfs:comment """An electric light is a device that produces visible light by the flow of electric current. 
-                It is the most common form of artificial lighting and is essential 
-                to modern society, providing interior lighting for buildings and 
-                exterior light for evening and nighttime activities. 
-                In technical usage, a replaceable component that produces light from 
-                electricity is called a lamp. (source: Wikipedia)"""@en ;
+  It is the most common form of artificial lighting and is essential 
+  to modern society, providing interior lighting for buildings and 
+  exterior light for evening and nighttime activities. 
+  In technical usage, a replaceable component that produces light from 
+  electricity is called a lamp. (source: Wikipedia)"""@en ;
   rdfs:subClassOf seas:ElectricPowerSystem, seas:LightSource, seas:Device ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricLightSourceOntology .
- 
+
 seas:IncandescenceLight a owl:Class ;
-                        rdfs:subClassOf seas:ElectricLightSource;
-                        rdfs:label "Incandescence Light"@en ,
-                                   "Lampe a Incandescence"@fr ;
-                        rdfs:comment """ Incandescence Light are Electric Light Source which produce light by a filament heated white-hot by electric current.
-                                        (source: wikipedia)"""@en ;         
-                        vs:term_status "testing" ;
-                        rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:subClassOf seas:ElectricLightSource;
+  rdfs:label "Incandescence Light"@en ,
+  "Lampe a Incandescence"@fr ;
+  rdfs:comment """ Incandescence Light are Electric Light Source which produce light by a filament heated white-hot by electric current.
+  (source: wikipedia)"""@en ;         
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:IncandescentLamp a owl:Class ;
-                      rdfs:subClassOf seas:IncandescenceLight ;
-                      rdfs:comment """An incandescent light bulb, incandescent lamp or incandescent light globe 
-                                        is an electric light with a wire filament heated to such a high temperature 
-                                        that it glows with visible light (incandescence). 
-                                        The filament, heated by passing an electric current through it, is protected from 
-                                        oxidation with a glass or quartz bulb that is filled with inert gas or evacuated. 
-                                        In a halogen lamp, filament evaporation is prevented by a chemical process that redeposits 
-                                        metal vapor onto the filament, extending its life. The light bulb is supplied with 
-                                        electric current by feed-through terminals or wires embedded in the glass. 
-                                        Most bulbs are used in a socket which provides mechanical support and electrical connections.
-                                        (source: wikipedia)"""@en ,
-                                     """Le courant électrique passe dans le filament en tungstène et le porte à une 
-                                         température élevée par effet Joule. Le filament devient incandescent : 
-                                         il émet de la lumière ainsi que de la chaleur. Des atomes de tungstène sont éjectés 
-                                         du filament par sublimation et sont déposés au niveau de la surface interne de l’ampoule 
-                                         en verre plus froide. Il s’ensuit un noircissement de l’ampoule après un temps d’utilisation 
-                                         relativement court. source: http://www.energieplus-lesite.be/index.php?id=10682"""@fr ;
-                      rdfs:label "Incandescent Lamp"@en , "Lampe Incandescente"@en ;
-                      vs:term_status "testing" ;
-                      rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:subClassOf seas:IncandescenceLight ;
+  rdfs:comment """An incandescent light bulb, incandescent lamp or incandescent light globe 
+  is an electric light with a wire filament heated to such a high temperature 
+  that it glows with visible light (incandescence). 
+  The filament, heated by passing an electric current through it, is protected from 
+  oxidation with a glass or quartz bulb that is filled with inert gas or evacuated. 
+  In a halogen lamp, filament evaporation is prevented by a chemical process that redeposits 
+  metal vapor onto the filament, extending its life. The light bulb is supplied with 
+  electric current by feed-through terminals or wires embedded in the glass. 
+  Most bulbs are used in a socket which provides mechanical support and electrical connections.
+  (source: wikipedia)"""@en ,
+  """Le courant électrique passe dans le filament en tungstène et le porte à une 
+  température élevée par effet Joule. Le filament devient incandescent : 
+  il émet de la lumière ainsi que de la chaleur. Des atomes de tungstène sont éjectés 
+  du filament par sublimation et sont déposés au niveau de la surface interne de l’ampoule 
+  en verre plus froide. Il s’ensuit un noircissement de l’ampoule après un temps d’utilisation 
+  relativement court. source: http://www.energieplus-lesite.be/index.php?id=10682"""@fr ;
+  rdfs:label "Incandescent Lamp"@en , "Lampe Incandescente"@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 
-                                            
+
 seas:HalogenLamp a owl:Class ;
-             rdfs:subClassOf seas:IncandescenceLight ;
-             rdfs:comment """A halogen lamp, also known as a tungsten halogen, quartz-halogen or quartz iodine lamp, 
-                            is an incandescent lamp that has a small amount of a halogen such as iodine 
-                            or bromine added. The combination of the halogen gas and the tungsten filament produces
-                            a halogen cycle chemical reaction which redeposits evaporated tungsten to the filament, 
-                            increasing its life and maintaining the clarity of the envelope. Because of this, a halogen lamp 
-                            can be operated at a higher temperature than a standard gas-filled lamp of similar power and
-                            operating life, producing light of a higher luminous efficacy and color temperature. 
-                            The small size of halogen lamps permits their use in compact optical systems for projectors and illumination. 
-                            (source: wikipedia)"""@en ,
-                          """La lampe halogène fonctionne sur le même principe qu’une lampe à incandescence : 
-                            elle produit de la lumière visible à partir d’un filament de tungstène porté à incandescence.
-                            Pour éviter une dégradation très rapide du filament, celui-ci est placé dans une ampoule à verre de quartz 
-                            (pour les hautes températures) renfermant des gaz halogénés à haute pression comme l’iode et 
-                            le brome. source : http://www.energieplus-lesite.be/index.php?id=10681"""@fr ;
-            rdfs:label "Halogen Lamp"@en ,"Lampe Halogene"@fr ;
-            vs:term_status "testing" ;
-            rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:subClassOf seas:IncandescenceLight ;
+  rdfs:comment """A halogen lamp, also known as a tungsten halogen, quartz-halogen or quartz iodine lamp, 
+  is an incandescent lamp that has a small amount of a halogen such as iodine 
+  or bromine added. The combination of the halogen gas and the tungsten filament produces
+  a halogen cycle chemical reaction which redeposits evaporated tungsten to the filament, 
+  increasing its life and maintaining the clarity of the envelope. Because of this, a halogen lamp 
+  can be operated at a higher temperature than a standard gas-filled lamp of similar power and
+  operating life, producing light of a higher luminous efficacy and color temperature. 
+  The small size of halogen lamps permits their use in compact optical systems for projectors and illumination. 
+  (source: wikipedia)"""@en ,
+  """La lampe halogène fonctionne sur le même principe qu’une lampe à incandescence : 
+  elle produit de la lumière visible à partir d’un filament de tungstène porté à incandescence.
+  Pour éviter une dégradation très rapide du filament, celui-ci est placé dans une ampoule à verre de quartz 
+  (pour les hautes températures) renfermant des gaz halogénés à haute pression comme l’iode et 
+  le brome. source : http://www.energieplus-lesite.be/index.php?id=10681"""@fr ;
+  rdfs:label "Halogen Lamp"@en ,"Lampe Halogene"@fr ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:LEDLamp a owl:Class ;
-             rdfs:label "LED Lamp"@en ,"Lampe LED"@fr ;
-             rdfs:subClassOf seas:ElectricLightSource ;
-             rdfs:comment """An LED lamp is a light-emitting diode (LED) product which is 
-                            assembled into a lamp (or light bulb) for use in lighting fixtures. 
-                            LED lamps have a lifespan and electrical efficiency which are several times 
-                            greater than incandescent lamps, and are significantly more efficient than 
-                            most fluorescent lamps, with some chips able to emit more than 300 lumens per watt 
-                            (as claimed by Cree and some other LED manufacturers)."""@en ,
-                          """La lampe LED est un système complet conçu de manière à permettre le remplacement aisé des 
-                            technologies traditionnelles moins efficaces (retrofit). Ces lampes reprennent pour cela les formes
-                            et les culots normalisés des lampes traditionnelles. source: http://www.energieplus-lesite.be/index.php?id=17173"""@fr ;
-             
-            vs:term_status "testing" ;
-            rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:label "LED Lamp"@en ,"Lampe LED"@fr ;
+  rdfs:subClassOf seas:ElectricLightSource ;
+  rdfs:comment """An LED lamp is a light-emitting diode (LED) product which is 
+  assembled into a lamp (or light bulb) for use in lighting fixtures. 
+  LED lamps have a lifespan and electrical efficiency which are several times 
+  greater than incandescent lamps, and are significantly more efficient than 
+  most fluorescent lamps, with some chips able to emit more than 300 lumens per watt 
+  (as claimed by Cree and some other LED manufacturers)."""@en ,
+  """La lampe LED est un système complet conçu de manière à permettre le remplacement aisé des 
+  technologies traditionnelles moins efficaces (retrofit). Ces lampes reprennent pour cela les formes
+  et les culots normalisés des lampes traditionnelles. source: http://www.energieplus-lesite.be/index.php?id=17173"""@fr ;
+
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:GasDischargeLamp a owl:Class ;
-                      rdfs:label "Gas Discharge Lamp"@en ;
-                      rdfs:subClassOf seas:ElectricLightSource;
-                      rdfs:comment """Gas-discharge lamps are a family of artificial light sources that generate light 
-                                      by sending an electrical discharge through an ionized gas, a plasma. 
-                                      Typically, such lamps use a noble gas (argon, neon, krypton, and xenon) or 
-                                      a mixture of these gases. Some include additional substances, 
-                                      like mercury, sodium, and metal halides, which are vaporized during startup to become 
-                                      part of the gas mixture. (source:wikipedia)"""@en ,
-                                   """Une lampe dite \"à décharge\" fonctionne par décharge d'un courant électrique dans une atmosphère gazeuse. 
-                                      La décharge se fait au travers d'un tube à décharge qui se trouve lui-même dans une ampoule vide.
-                                      Lorsqu'on met la lampe sous tension, des électrons sont émis par les deux électrodes de tungstène. 
-                                      Lors de leur trajet au travers du tube à décharge, ils entrent en collision avec les atomes de gaz. 
-                                      Il en résulte une libération d'énergie soit sous forme de lumière visible, 
-                                      soit sous forme de rayonnement ultraviolet invisible (principalement pour les lampes 
-                                      au mercure haute pression). Ce dernier est absorbé par le revêtement fluorescent présent 
-                                      sur la face interne de la lampe et converti en rayonnement visible.
-                                      Selon la pression du gaz dans le tube ou l'ampoule, on distingue les lampes à basse et à haute pression. source : http://www.energieplus-lesite.be/index.php?id=10685"""@fr ,
-                                   """Une lampe à décharge est une lampe électrique constituée d'un tube ou d'une ampoule en verre remplie de gaz ou de vapeur métallique, sous haute ou basse pression, au travers duquel on fait passer un courant électrique, il s'ensuit une conversion en photons donc de la lumière.
-                                    La couleur de la lumière émise par luminescence, par ces lampes dépend du gaz utilisé :
-                                    Le néon donne une couleur rouge.
-                                    Le mercure s'approche du bleu tout en produisant une quantité d'ultraviolet importante.
-                                    Le sodium rayonne dans le jaune. Souvent on le mélange avec du néon pour rendre la lumière orangée.
-                                    Le xénon (récemment employé pour l'éclairage des automobiles) est le gaz qui permet de s'approcher le plus possible du blanc pur. source:https://fr.wikipedia.org/wiki/Lampe_%C3%A0_d%C3%A9charge"""@fr ;
-                      vs:term_status "testing" ;
-                      rdfs:isDefinedBy seas:ElectricLightSourceOntology .
-                                 
+  rdfs:label "Gas Discharge Lamp"@en ;
+  rdfs:subClassOf seas:ElectricLightSource;
+  rdfs:comment """Gas-discharge lamps are a family of artificial light sources that generate light 
+  by sending an electrical discharge through an ionized gas, a plasma. 
+  Typically, such lamps use a noble gas (argon, neon, krypton, and xenon) or 
+  a mixture of these gases. Some include additional substances, 
+  like mercury, sodium, and metal halides, which are vaporized during startup to become 
+  part of the gas mixture. (source:wikipedia)"""@en ,
+  """Une lampe dite \"à décharge\" fonctionne par décharge d'un courant électrique dans une atmosphère gazeuse. 
+  La décharge se fait au travers d'un tube à décharge qui se trouve lui-même dans une ampoule vide.
+  Lorsqu'on met la lampe sous tension, des électrons sont émis par les deux électrodes de tungstène. 
+  Lors de leur trajet au travers du tube à décharge, ils entrent en collision avec les atomes de gaz. 
+  Il en résulte une libération d'énergie soit sous forme de lumière visible, 
+  soit sous forme de rayonnement ultraviolet invisible (principalement pour les lampes 
+  au mercure haute pression). Ce dernier est absorbé par le revêtement fluorescent présent 
+  sur la face interne de la lampe et converti en rayonnement visible.
+  Selon la pression du gaz dans le tube ou l'ampoule, on distingue les lampes à basse et à haute pression. source : http://www.energieplus-lesite.be/index.php?id=10685"""@fr ,
+  """Une lampe à décharge est une lampe électrique constituée d'un tube ou d'une ampoule en verre remplie de gaz ou de vapeur métallique, sous haute ou basse pression, au travers duquel on fait passer un courant électrique, il s'ensuit une conversion en photons donc de la lumière.
+  La couleur de la lumière émise par luminescence, par ces lampes dépend du gaz utilisé :
+  Le néon donne une couleur rouge.
+  Le mercure s'approche du bleu tout en produisant une quantité d'ultraviolet importante.
+  Le sodium rayonne dans le jaune. Souvent on le mélange avec du néon pour rendre la lumière orangée.
+  Le xénon (récemment employé pour l'éclairage des automobiles) est le gaz qui permet de s'approcher le plus possible du blanc pur. source:https://fr.wikipedia.org/wiki/Lampe_%C3%A0_d%C3%A9charge"""@fr ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
 seas:LowPressureDischargeLamp a owl:Class ;
-                          rdfs:subClassOf seas:GasDischargeLamp ;
-                          rdfs:label "Low Pressure Discharge Lamp"@en ;
-                          rdfs:comment """Low-pressure lamps have working pressure much less than atmospheric pressure. 
-                                          For example, common fluorescent lamps operate at a pressure of about 0.3% of 
-                                          atmospheric pressure. (source: wikipedia)"""@en ;
-                          vs:term_status "testing" ;
-                          rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:subClassOf seas:GasDischargeLamp ;
+  rdfs:label "Low Pressure Discharge Lamp"@en ;
+  rdfs:comment """Low-pressure lamps have working pressure much less than atmospheric pressure. 
+  For example, common fluorescent lamps operate at a pressure of about 0.3% of 
+  atmospheric pressure. (source: wikipedia)"""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:HighPressureDischargeLamp a owl:Class ;
-                               rdfs:subClassOf seas:GasDischargeLamp ;
-                               rdfs:label "High Pressure Discharge Lamp"@en;
-                               rdfs:comment """High-pressure lamps have a discharge that takes place in gas under slightly 
-                                              less to greater than atmospheric pressure. For example, a high pressure sodium 
-                                              lamp has an arc tube under 100 to 200 torr pressure, about 14% to 28% of atmospheric 
-                                              pressure; some automotive HID headlamps have up to 50 bar or fifty times atmospheric 
-                                              pressure. (source:wikipedia)"""@en ;
-                               vs:term_status "testing" ;
-                               rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:subClassOf seas:GasDischargeLamp ;
+  rdfs:label "High Pressure Discharge Lamp"@en;
+  rdfs:comment """High-pressure lamps have a discharge that takes place in gas under slightly 
+  less to greater than atmospheric pressure. For example, a high pressure sodium 
+  lamp has an arc tube under 100 to 200 torr pressure, about 14% to 28% of atmospheric 
+  pressure; some automotive HID headlamps have up to 50 bar or fifty times atmospheric 
+  pressure. (source:wikipedia)"""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:HighPressureMercuryLamp a owl:Class ;
-                             rdfs:subClassOf seas:HighPressureDischargeLamp ;
-                             rdfs:label "High Pressure Mercury Lamp"@en ,
-                                        "Lampe Mercure Haute Pression"@fr;
-                             rdfs:comment """L'ampoule contient de la vapeur de mercure et de l'argon.
-                                              La lumière est émise exclusivement sous forme de rayons 
-                                              ultraviolets invisibles rendus visibles par les poudres 
-                                              fluorescentes placées sur la face interne de l'ampoule.
-                                              La lampe à mercure haute pression dispose d'électrodes 
-                                              auxiliaires servant de démarreur interne. Pour bien fonctionner, 
-                                              elle ne doit donc être équipée que d'un ballast et d'un condensateur. 
-                                              source :http://www.energieplus-lesite.be/index.php?id=10686"""@fr,
-                                              """A High pressure mercury-vapor lamp is a  high pressure gas discharge 
-                                              lamp that uses an electric arc through vaporized mercury under high pression
-                                              to produce light. (source:wikipedia)"""@en ;
-                            vs:term_status "testing" ;
-                            rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:subClassOf seas:HighPressureDischargeLamp ;
+  rdfs:label "High Pressure Mercury Lamp"@en ,
+  "Lampe Mercure Haute Pression"@fr;
+  rdfs:comment """L'ampoule contient de la vapeur de mercure et de l'argon.
+  La lumière est émise exclusivement sous forme de rayons 
+  ultraviolets invisibles rendus visibles par les poudres 
+  fluorescentes placées sur la face interne de l'ampoule.
+  La lampe à mercure haute pression dispose d'électrodes 
+  auxiliaires servant de démarreur interne. Pour bien fonctionner, 
+  elle ne doit donc être équipée que d'un ballast et d'un condensateur. 
+  source :http://www.energieplus-lesite.be/index.php?id=10686"""@fr,
+  """A High pressure mercury-vapor lamp is a  high pressure gas discharge 
+  lamp that uses an electric arc through vaporized mercury under high pression
+  to produce light. (source:wikipedia)"""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:LowPressureMercuryLamp a owl:Class ;
-                             rdfs:subClassOf seas:LowPressureDischargeLamp ;
-                             rdfs:label "Low Pressure Mercury Lamp"@en ,
-                                        "Lampe Mercure Basse Pression"@fr;
-                             rdfs:comment """L'ampoule contient de la vapeur de mercure et de l'argon.
-                                              La lumière est émise exclusivement sous forme de rayons 
-                                              ultraviolets invisibles rendus visibles par les poudres 
-                                              fluorescentes placées sur la face interne de l'ampoule.
-                                              source :http://www.energieplus-lesite.be/index.php?id=10686"""@fr,
-                                              """A Low pressure mercury-vapor lamp is a low pressure gas discharge 
-                                              lamp that uses an electric arc through vaporized mercury under low pression
-                                              to produce light. (source:wikipedia)"""@en ;
-                            vs:term_status "testing" ;
-                            rdfs:isDefinedBy seas:ElectricLightSourceOntology .     
+  rdfs:subClassOf seas:LowPressureDischargeLamp ;
+  rdfs:label "Low Pressure Mercury Lamp"@en ,
+  "Lampe Mercure Basse Pression"@fr;
+  rdfs:comment """L'ampoule contient de la vapeur de mercure et de l'argon.
+  La lumière est émise exclusivement sous forme de rayons 
+  ultraviolets invisibles rendus visibles par les poudres 
+  fluorescentes placées sur la face interne de l'ampoule.
+  source :http://www.energieplus-lesite.be/index.php?id=10686"""@fr,
+  """A Low pressure mercury-vapor lamp is a low pressure gas discharge 
+  lamp that uses an electric arc through vaporized mercury under low pression
+  to produce light. (source:wikipedia)"""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .     
 
 
 seas:HighPressureSodiumLamp a owl:Class ;
-                            rdfs:subClassOf seas:HighPressureDischargeLamp ;
-                             rdfs:label "High Pressure Sodium Lamp"@en ,
-                                        "Lampe Sodium Basse Pression"@fr;
-                            rdfs:comment """High-pressure sodium lamps are high pressur gas discharge lamp which produce a broader spectrum of 
-                                          light than the low-pressure lamps, but they still have poorer color rendering than 
-                                          other types of lamps. Low-pressure sodium lamps only give monochromatic yellow light 
-                                          and so inhibit color vision at night. They have been widely used in industrial lighting, 
-                                          especially in large manufacturing facilities, and are commonly used as plant grow lights. 
-                                          They have also been widely used for outdoor area lighting, such as on roadways, parking lots 
-                                          and security areas. (source: wikipedia)"""@en ,
-                                         """La lampe à vapeur de sodium fait partie des lampes à décharge. Son principe de fonctionnement est donc identique."""@fr;
-                            vs:term_status "testing" ;
-                            rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:subClassOf seas:HighPressureDischargeLamp ;
+  rdfs:label "High Pressure Sodium Lamp"@en ,
+  "Lampe Sodium Basse Pression"@fr;
+  rdfs:comment """High-pressure sodium lamps are high pressur gas discharge lamp which produce a broader spectrum of 
+  light than the low-pressure lamps, but they still have poorer color rendering than 
+  other types of lamps. Low-pressure sodium lamps only give monochromatic yellow light 
+  and so inhibit color vision at night. They have been widely used in industrial lighting, 
+  especially in large manufacturing facilities, and are commonly used as plant grow lights. 
+  They have also been widely used for outdoor area lighting, such as on roadways, parking lots 
+  and security areas. (source: wikipedia)"""@en ,
+  """La lampe à vapeur de sodium fait partie des lampes à décharge. Son principe de fonctionnement est donc identique."""@fr;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:LowPressureSodiumLamp a owl:Class ;
-                          rdfs:label  "Low Pressure Sodium Lamp"@en,
-                                      "Lampe Sodium Basse Pression"@fr ,
-                                      "SBP"@fr ;
-                           rdfs:subClassOf seas:LowPressureDischargeLamp ;
-                           rdfs:comment """La lampe au sodium basse pression fait partie des lampes à décharge. 
-                           Son principe de fonctionnement est donc identique. L'ensemble amorceur, ballast conventionnel
-                           et condensateur peut être remplacé par un ballast électronique.
-                          Particularités: Cette lampe est constituée d'un tube à décharge en forme de \"U\" logé
-                          dans une ampoule extérieure. Le tube à décharge contient un mélange de vapeur de sodium 
-                          et de gaz tels que le néon et l'argon. La lumière est émise, en majeure partie sous forme de 
-                          rayonnements visibles, sa face interne n'est donc pas recouverte d'une couche de poudre fluorescente. source http://www.energieplus-lesite.be/index.php?id=10687"""@fr ,
-                          """Low-pressure sodium lamp is a gas-discharge lamp that uses sodium in an excited state to 
-                          produce light at a characteristic wavelength near 589 nm. They are highly efficient electrical light sources, 
-                          but their yellow light restricts applications to outdoor lighting such as street lamps. (source : wikipedia)"""@en ;
-                          vs:term_status "testing" ;
-                          rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:label  "Low Pressure Sodium Lamp"@en,
+  "Lampe Sodium Basse Pression"@fr ,
+  "SBP"@fr ;
+  rdfs:subClassOf seas:LowPressureDischargeLamp ;
+  rdfs:comment """La lampe au sodium basse pression fait partie des lampes à décharge. 
+  Son principe de fonctionnement est donc identique. L'ensemble amorceur, ballast conventionnel
+  et condensateur peut être remplacé par un ballast électronique.
+  Particularités: Cette lampe est constituée d'un tube à décharge en forme de \"U\" logé
+  dans une ampoule extérieure. Le tube à décharge contient un mélange de vapeur de sodium 
+  et de gaz tels que le néon et l'argon. La lumière est émise, en majeure partie sous forme de 
+  rayonnements visibles, sa face interne n'est donc pas recouverte d'une couche de poudre fluorescente. source http://www.energieplus-lesite.be/index.php?id=10687"""@fr ,
+  """Low-pressure sodium lamp is a gas-discharge lamp that uses sodium in an excited state to 
+  produce light at a characteristic wavelength near 589 nm. They are highly efficient electrical light sources, 
+  but their yellow light restricts applications to outdoor lighting such as street lamps. (source : wikipedia)"""@en ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:MetalHalideLamp a owl:Class ;
-                    rdfs:subClassOf seas:HighPressureDischargeLamp ;
-                    rdfs:comment """A metal-halide lamp  is a  high-intensity discharge (HID) gas discharge 
-                                  lamp which is an electrical lamp that produces light by an electric arc through
-                                  a gaseous mixture of vaporized mercury and metal halides (compounds of metals 
-                                  with bromine or iodine). It is a type of high-intensity discharge (HID) gas discharge
-                                  lamp. (source:wikipedia)"""@en ;
-                    rdfs:label "Lampe halogenure metallique"@fr ,
-                               "Metal Halide Lamp"@en ;                          
-                    vs:term_status "testing" ;
-                    rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:subClassOf seas:HighPressureDischargeLamp ;
+  rdfs:comment """A metal-halide lamp  is a  high-intensity discharge (HID) gas discharge 
+  lamp which is an electrical lamp that produces light by an electric arc through
+  a gaseous mixture of vaporized mercury and metal halides (compounds of metals 
+  with bromine or iodine). It is a type of high-intensity discharge (HID) gas discharge
+  lamp. (source:wikipedia)"""@en ;
+  rdfs:label "Lampe halogenure metallique"@fr ,
+  "Metal Halide Lamp"@en ;                          
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:CeramicMetalHalideLamp a owl:Class ;
-                    rdfs:subClassOf seas:MetalHalideLamp ;
-                    rdfs:comment """The ceramic discharge metal-halide (CDM) lamp, often referred to as Ceramic Metal Halide lamp
-                                   (CMH) is a source of light that is a type of metal-halide lamp which is 10-20% more efficient
-                                  than the traditional quartz metal halide and produces a superior color rendition (80-96 CRI). 
-                                  (source:wikipedia)"""@en ;
-                    rdfs:label "Ceramic Metal Halide Lamp"@en ;                          
-                    vs:term_status "testing" ;
-                    rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:subClassOf seas:MetalHalideLamp ;
+  rdfs:comment """The ceramic discharge metal-halide (CDM) lamp, often referred to as Ceramic Metal Halide lamp
+  (CMH) is a source of light that is a type of metal-halide lamp which is 10-20% more efficient
+  than the traditional quartz metal halide and produces a superior color rendition (80-96 CRI). 
+  (source:wikipedia)"""@en ;
+  rdfs:label "Ceramic Metal Halide Lamp"@en ;                          
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:FluorescentTube a owl:Class ;
-                     rdfs:subClassOf seas:LowPressureMercuryLamp;
-                     rdfs:comment """A fluorescent lamp or a fluorescent tube is a low pressure mercury-vapor gas-discharge
-                                     lamp that uses fluorescence to produce visible light. An electric current in the gas 
-                                     excites mercury vapor which produces short-wave ultraviolet light that then causes 
-                                     a phosphor coating on the inside of the lamp to glow. A fluorescent lamp converts electrical 
-                                     energy into useful light much more efficiently than incandescent lamps. The typical luminous 
-                                     efficacy of fluorescent lighting systems is 50–100 lumens per watt, several times the efficacy 
-                                     of incandescent bulbs with comparable light output. (wikipedia:Source)"""@en ,
-                                  """Les lampes fluorescentes font partie des lampes à décharge. Elles fonctionnent par décharge d'un 
-                                      courant électrique dans une atmosphère gazeuse. Les lampes fluorescentes utilisent de la 
-                                      vapeur de mercure sous basse pression. source :http://www.energieplus-lesite.be/index.php?id=10683"""@fr ;
-                    rdfs:label "Fluorescent Tube"@en ,
-                                "TF"@fr ,
-                                "Tube Fluorescent"@fr ;                    
-                    vs:term_status "testing" ;
-                    rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:subClassOf seas:LowPressureMercuryLamp;
+  rdfs:comment """A fluorescent lamp or a fluorescent tube is a low pressure mercury-vapor gas-discharge
+  lamp that uses fluorescence to produce visible light. An electric current in the gas 
+  excites mercury vapor which produces short-wave ultraviolet light that then causes 
+  a phosphor coating on the inside of the lamp to glow. A fluorescent lamp converts electrical 
+  energy into useful light much more efficiently than incandescent lamps. The typical luminous 
+  efficacy of fluorescent lighting systems is 50–100 lumens per watt, several times the efficacy 
+  of incandescent bulbs with comparable light output. (wikipedia:Source)"""@en ,
+  """Les lampes fluorescentes font partie des lampes à décharge. Elles fonctionnent par décharge d'un 
+  courant électrique dans une atmosphère gazeuse. Les lampes fluorescentes utilisent de la 
+  vapeur de mercure sous basse pression. source :http://www.energieplus-lesite.be/index.php?id=10683"""@fr ;
+  rdfs:label "Fluorescent Tube"@en ,
+  "TF"@fr ,
+  "Tube Fluorescent"@fr ;                    
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:CompactFluorescentLamp a owl:Class ;
-                            rdfs:subClassOf seas:LowPressureMercuryLamp;
-                            rdfs:label "Compact Fluorescent Lamp"@en ,
-                                       "FLC"@fr ,
-                                       "Lampe Fluocompactes"@fr  ;
-                            rdfs:comment """A compact fluorescent lamp (CFL), also called compact fluorescent light, 
-                                          energy-saving light, and compact fluorescent tube, is a fluorescent lamp designed 
-                                          to replace an incandescent light bulb; some types fit into light fixtures designed 
-                                          for incandescent bulbs. The lamps use a tube which is curved or folded to fit into 
-                                          the space of an incandescent bulb, and a compact electronic ballast in the base of 
-                                          the lamp. (source: wikipedia)"""@en;           
-                            vs:term_status "testing" ;
-                            rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+  rdfs:subClassOf seas:LowPressureMercuryLamp;
+  rdfs:label "Compact Fluorescent Lamp"@en ,
+  "FLC"@fr ,
+  "Lampe Fluocompactes"@fr  ;
+  rdfs:comment """A compact fluorescent lamp (CFL), also called compact fluorescent light, 
+  energy-saving light, and compact fluorescent tube, is a fluorescent lamp designed 
+  to replace an incandescent light bulb; some types fit into light fixtures designed 
+  for incandescent bulbs. The lamps use a tube which is curved or folded to fit into 
+  the space of an incandescent bulb, and a compact electronic ballast in the base of 
+  the lamp. (source: wikipedia)"""@en;           
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 seas:InductionLamp a owl:Class ;
-                   rdfs:subClassOf seas:LowPressureMercuryLamp ;
-                   rdfs:comment """La lampe à induction est une lampe à mercure basse pression comme le tube fluorescent 
-                                  et la lampe fluocompacte. Comme dans la lampe fluorescente, la lumière est produite par 
-                                  ionisation des atomes de gaz présents dans l'ampoule. Les rayonnements invisibles produits 
-                                  sont rendus visibles grâce à une poudre fluorescente présente sur la face interne de l'ampoule.
-                                  Dans une lampe à induction, il n'y a pas d'électrode. L'ionisation des atomes est réalisée 
-                                  par un champ électromagnétique créé par la circulation d'un courant à haute fréquence dans une 
-                                  bobine appelée \"antenne\". Cette bobine est placée au centre de l'ampoule dans la cavité prévue 
-                                  à cet effet. Le courant à haute fréquence est produit par un générateur extérieur. Celui-ci est 
-                                  directement relié à l'antenne. source :http://www.energieplus-lesite.be/index.php?id=10680"""@fr,
-                                  """Induction light is a gas discharge lamp in which the power required to generate light is transferred
-                                  from outside the lamp envelope to the gas inside via an electric or magnetic field, in contrast with a 
-                                  typical gas discharge lamp that uses internal electrodes connected to the power supply by conductors 
-                                  that pass through the lamp envelope (source:wikipedia)"""@en ;
-                  rdfs:label "Induction Lamp"@en ,
-                              "Lampe à Induction"@fr ;
-                  vs:term_status "testing" ;
-                  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
-                  
+  rdfs:subClassOf seas:LowPressureMercuryLamp ;
+  rdfs:comment """La lampe à induction est une lampe à mercure basse pression comme le tube fluorescent 
+  et la lampe fluocompacte. Comme dans la lampe fluorescente, la lumière est produite par 
+  ionisation des atomes de gaz présents dans l'ampoule. Les rayonnements invisibles produits 
+  sont rendus visibles grâce à une poudre fluorescente présente sur la face interne de l'ampoule.
+  Dans une lampe à induction, il n'y a pas d'électrode. L'ionisation des atomes est réalisée 
+  par un champ électromagnétique créé par la circulation d'un courant à haute fréquence dans une 
+  bobine appelée \"antenne\". Cette bobine est placée au centre de l'ampoule dans la cavité prévue 
+  à cet effet. Le courant à haute fréquence est produit par un générateur extérieur. Celui-ci est 
+  directement relié à l'antenne. source :http://www.energieplus-lesite.be/index.php?id=10680"""@fr,
+  """Induction light is a gas discharge lamp in which the power required to generate light is transferred
+  from outside the lamp envelope to the gas inside via an electric or magnetic field, in contrast with a 
+  typical gas discharge lamp that uses internal electrodes connected to the power supply by conductors 
+  that pass through the lamp envelope (source:wikipedia)"""@en ;
+  rdfs:label "Induction Lamp"@en ,
+  "Lampe à Induction"@fr ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .

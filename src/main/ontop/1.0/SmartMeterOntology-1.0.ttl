@@ -16,7 +16,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -32,12 +32,12 @@
 @base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
 cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
@@ -47,9 +47,9 @@ foaf:name a owl:DatatypeProperty .
 
 
 
-seas:SmartMeterOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "The SEAS Smart Meter ontology"@en ;
-  dc:description """The SEAS Smart Meter ontology defines `seas:SmartMeter` as physical system (`seas:Sensor`) that are designed to Compute 
+seas:SmartMeterOntology a voaf:Vocabulary , owl:Ontology ;
+  dcterms:title "The SEAS Smart Meter ontology"@en ;
+  dcterms:description """The SEAS Smart Meter ontology defines `seas:SmartMeter` as physical system (`seas:Sensor`) that are designed to Compute 
   Metering on different  amount of matter, such as Natural Gas, Water and Electricity. Smart Meters are connected systems 
   which are able to send metering evaluation to some managing systems. In the current version Smart meter are composed 
   (`seas:subsystemOf`) of a traditional meter and a connector module which is connected to the meter. 
@@ -59,896 +59,538 @@ seas:SmartMeterOntology rdf:type voaf:Vocabulary , owl:Ontology ;
     - Connectors module, these connectors can communicate thanks to  a 
     - `seas:CommunicationProtocol` such as `seas:LoraProtocol` and `seas:SigFoxProtocol`. These protocols communicate through `seas:RadioWave` Technologies.  
 """@en ;
-  dc:issued "2016-05-10"^^xsd:date ;
-  dc:modified "2016-11-24"^^xsd:date ;
-  dc:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
-  dc:contributor <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:issued "2016-05-10"^^xsd:date ;
+  dcterms:modified "2016-11-24"^^xsd:date ;
+  dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
+  dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
-  owl:imports seas:DeviceOntology, seas:ElectricPowerSystemOntology ;
+  owl:imports seas:DeviceOntology, seas:ElectricPowerSystemOntology , seas:CommunicationOntology ;
   owl:versionIRI <https://w3id.org/seas/SmartMeterOntology-1.0> ;
   owl:versionInfo "v1.0" .
 
 
-## Concept added to model  information about the USE case
-seas:Meter a owl:Class;
-          rdfs:subClassOf seas:Device;
-          rdfs:label "Meter"@en;
-          skos:altLabel "Measuring instrument"@en;
-          rdfs:comment "A Meter is a device that is designed to allow to carry out a metering process"@en;
-          rdfs:subClassOf [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
-          owl:equivalentClass [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
-          vs:term_status "testing" ;
-          rdfs:isDefinedBy seas:SmartMeterOntology .
+## Metering, Meter, MeteringExecution
 
 seas:Metering a owl:Class;
-              rdfs:label "Metering"@en ;
-              rdfs:comment """Metering is the process that allow to carry out some measuring on a property."""@en ;
-              rdfs:subClassOf pep:Process ;
-              vs:term_status "testing" ;
-              rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:PulseMetering a owl:Class;
-              rdfs:label "Pulse Metering"@en ;
-              rdfs:comment """Pulse Metering is a Metering which use the pulse methods to measure the property."""@en ;
-              rdfs:subClassOf seas:Metering ;
-              vs:term_status "testing" ;
-              rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:DiscMetering a owl:Class;
-              rdfs:label "Disc Metering"@en ;
-              rdfs:comment """Disc Metering is a Metering which use the disc methods to measure the property."""@en ;
-              rdfs:subClassOf seas:Metering ;
-              vs:term_status "testing" ;
-              rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:OpticMetering a owl:Class;
-              rdfs:label "Optic Metering"@en ;
-              rdfs:comment """Optic Metering is a Metering which use the optic methods to measure the property."""@en ;
-              rdfs:subClassOf seas:Metering ;
-              vs:term_status "testing" ;
-              rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:MeteringExecution a owl:Class ;
-  rdfs:label "Metering Execution"@en ;
-  rdfs:comment """An MeteringExecution is the execution of the measuring process which is executed by a meter device."""@en ;
-  rdfs:subClassOf pep:ProcessExecutor ;
-  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Meter ] ;
-  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Metering ] ;
-  rdfs:subClassOf [ owl:onProperty seas:observesProperty ; owl:someValuesFrom seas:Property ] ;
-  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Metering ] ;
+  rdfs:label "Metering"@en ;
+  rdfs:comment """Metering is the process that allows to carry out some measuring on a property."""@en ;
+  rdfs:subClassOf pep:Process ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:SmartMeterOntology .
 
+  seas:measuresProperty a owl:ObjectProperty ;
+    rdfs:label "measures property"@en ;
+    rdfs:comment """Links a Metering, meter, or metering execution, to a property it measures.
+
+  If a Metering measures a property, then any meter that implements this Metering also measures this property, and any MeteringExecution that used this Metering also measures this property. 
+  Furthermore, if a meter measures a property, then any metering execution executed by this meter also measures this property:
+
+  ```
+  seas:measuresProperty < pep:implements o seas:measuresProperty .
+  seas:measuresProperty < pep:methodUsed o seas:measuresProperty .
+  seas:measuresProperty < pep:executedBy o seas:measuresProperty .
+  ```
+  """@en ;
+    rdfs:domain [ owl:unionOf ( seas:Metering seas:Meter seas:MeteringExecution ) ] ;
+    rdfs:range seas:Property ;
+    owl:propertyChainAxiom ( pep:implements seas:measuresProperty ) ;
+    owl:propertyChainAxiom ( pep:methodUsed seas:measuresProperty ) ;
+    owl:propertyChainAxiom ( pep:executedBy seas:measuresProperty ) ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
 
 
-seas:measuresProperty a owl:ObjectProperty ;
-  rdfs:label "measures property"@en ;
-  rdfs:comment """Links a Metering, meter, or metering execution, to a property it measures.
+  seas:measures a owl:ObjectProperty ;
+    rdfs:label "measures"@en ;
+    rdfs:comment """Links a metering, meter, or metering execution, to the feature of interest a property of which it measures.
 
-If a Metering measures a property, then any meter that implements this Metering also measures this property, and any MeteringExecution that used this Metering also measures this property. 
-Furthermore, if a meter measures a property, then any metering execution executed by this meter also measures this property:
+  If `x` measures a property, then it also measures the feature of interest of this property:
 
-```
-seas:measuresProperty < pep:implements o seas:measuresProperty .
-seas:measuresProperty < pep:methodUsed o seas:measuresProperty .
-seas:measuresProperty < pep:executedBy o seas:measuresProperty .
-```
-"""@en ;
-  rdfs:domain [ owl:unionOf ( seas:Metering seas:Meter seas:MeteringExecution ) ] ;
-  rdfs:range seas:Property ;
-  owl:propertyChainAxiom ( pep:implements seas:measuresProperty ) ;
-  owl:propertyChainAxiom ( pep:methodUsed seas:measuresProperty ) ;
-  owl:propertyChainAxiom ( pep:executedBy seas:measuresProperty ) ;
+  ```
+  seas:measures < seas:measuresProperty o seas:isPropertyOf .
+  ```
+
+  If a metering measures a feature of interest, then any meter that implements this metering also measures this feature of interest, and any metering execution that used this metering also measures this feature of interest. 
+  Furthermore, if a meter measures a feature of interest, then any Metering Execution executed by this meter also measures this feature of interest:
+
+  ```
+  seas:measures < pep:implements o seas:measures .
+  seas:measures < pep:methodUsed o seas:measures .
+  seas:measures < pep:executedBy o seas:measures .
+  ```
+    
+  """@en ;
+    rdfs:domain [ owl:unionOf ( seas:Metering seas:Meter seas:MeteringExecution ) ] ;
+    rdfs:range seas:FeatureOfInterest ;
+  #  owl:propertyChainAxiom ( seas:observesProperty seas:isPropertyOf ) ; # not allowed in OWL 2 DL
+    owl:propertyChainAxiom ( pep:implements seas:measures ) ;
+    owl:propertyChainAxiom ( pep:methodUsed seas:measures ) ;
+    owl:propertyChainAxiom ( pep:executedBy seas:measures ) ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
+
+
+  seas:PulseMetering a owl:Class;
+    rdfs:label "Pulse Metering"@en ;
+    rdfs:comment """Pulse Metering is a Metering which uses the pulse methods to measure the property."""@en ;
+    rdfs:subClassOf seas:Metering ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
+
+  seas:DiscMetering a owl:Class;
+    rdfs:label "Disc Metering"@en ;
+    rdfs:comment """Disc Metering is a Metering which use the disc methods to measure the property."""@en ;
+    rdfs:subClassOf seas:Metering ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
+
+  seas:OpticMetering a owl:Class;
+    rdfs:label "Optic Metering"@en ;
+    rdfs:comment """Optic Metering is a Metering which use the optic methods to measure the property."""@en ;
+    rdfs:subClassOf seas:Metering ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
+
+  seas:WaterVolumeMetering a owl:Class ;
+    rdfs:label "Water Volume Metering"@en ;
+    rdfs:comment "The Measure of the volume of the water which flow in the meter"@en ;
+    rdfs:subClassOf seas:Metering ;
+    vs:term_status "unstable"   ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+  seas:GasVolumeMetering a owl:Class;
+    rdfs:label "Gas Volume Metering"@en;
+    rdfs:comment "The Measure of the volume of the gas which flow in the meter. Generally for consumption metering."@en;
+    rdfs:subClassOf seas:Metering;
+    vs:term_status "unstable"   ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+  seas:ElectricityMetering a owl:Class;
+    rdfs:label "Electricity Metering"@en;
+    rdfs:comment """The Measure of the electricity which flow through  the meter device.      It Could be a metering about a consumption or a production of  the electricity"""@en;
+    rdfs:subClassOf seas:Metering;
+    vs:term_status "unstable"   ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+  seas:ConsumptionMetering  a owl:Class;
+    rdfs:label "Consumption Metering"@en;
+    rdfs:comment "Any metering about some consumption. "@en;
+    rdfs:subClassOf  seas:Metering;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+  seas:ProductionMetering  a owl:Class;
+    rdfs:label "Production Metering"@en;
+    rdfs:comment "Any metering about some production."@en;
+    rdfs:subClassOf  seas:Metering;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology. 
+
+
+
+seas:Meter a owl:Class;
+  rdfs:subClassOf seas:Device;
+  rdfs:label "Meter"@en;
+  skos:altLabel "Measuring instrument"@en;
+  rdfs:comment "A Meter is a device that is designed to allow to carry out a metering process"@en;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
+  owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:SmartMeterOntology .
 
-
-seas:measures a owl:ObjectProperty ;
-  rdfs:label "measures"@en ;
-  rdfs:comment """Links a metering, meter, or metering execution, to the feature of interest a property of which it measures.
-
-If `x` measures a property, then it also measures the feature of interest of this property:
-
-```
-seas:measures < seas:measuresProperty o seas:isPropertyOf .
-```
-
-If a metering measures a feature of interest, then any meter that implements this metering also measures this feature of interest, and any metering execution that used this metering also measures this feature of interest. 
-Furthermore, if a meter measures a feature of interest, then any Metering Execution executed by this meter also measures this feature of interest:
-
-```
-seas:measures < pep:implements o seas:measures .
-seas:measures < pep:methodUsed o seas:measures .
-seas:measures < pep:executedBy o seas:measures .
-```
-  
-"""@en ;
-  rdfs:domain [ owl:unionOf ( seas:Metering seas:Meter seas:MeteringExecution ) ] ;
-  rdfs:range seas:FeatureOfInterest ;
-#  owl:propertyChainAxiom ( seas:observesProperty seas:isPropertyOf ) ; # not allowed in OWL 2 DL
-  owl:propertyChainAxiom ( pep:implements seas:measures ) ;
-  owl:propertyChainAxiom ( pep:methodUsed seas:measures ) ;
-  owl:propertyChainAxiom ( pep:executedBy seas:measures ) ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology .
-
-
-seas:ConnectorModule a owl:Class; # the part which is connected to a meter to send the consumption data 
-                rdfs:subClassOf seas:Sensor;
-                rdfs:label "Connector Module"@en;
-                rdfs:comment "A connector Module is a sensor which is designed to be connected to a meter. It can read the metering data (with some methods) and send the data at regular frequency to a configured  system."@en;
-                vs:term_status "testing" ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-
-seas:WaterMeter a owl:Class ;
-                rdfs:comment """A water meter is a Meter which is designed to be able to measure the quantity of water that flow through a pipe. 
-                                The waterMeter can measure water consumption or water supplying. 
-                                Every `seas:WaterMeter` implements a specific metering methods  such as `seas:PulseMetering`,`seas:DiscMetering`,
-                                 `seas:DiscMetering`, which allow them to measure the volume of water (`seas:WaterVolume`) that flow in the pipe."""@en ;
-                rdfs:label "Water Meter"@en ;
-                rdfs:subClassOf seas:Meter ;
-         #       rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-seas:DisplacementWaterMeter a owl:Class ;
-                rdfs:comment """This type of water meter is most often used in residential and small commercial applications and 
-                                homes. Displacement meters are commonly referred to as Positive Displacement, or "PD" meters. 
-                                Two common types are oscillating piston meters and nutating disk meters. Either method relies on 
-                                the water to physically displace the moving measuring element in direct proportion to the amount 
-                                of water that passes through the meter. The piston or disk moves a magnet that drives the register."""@en ;
-                rdfs:label "Displacement Water Meter"@en ;
-                rdfs:subClassOf seas:WaterMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:VelocityWaterMeter a owl:Class ;
-                rdfs:comment """A velocity-type water meter measures the velocity of flow through a meter of a known internal capacity.
-                             The speed of the flow can then be converted into volume of flow to determine the usage. 
-                             There are several types of meters that measure water flow velocity, including jet meters (single-jet and multi-jet), 
-                             turbine meters, propeller meters and mag meters. Most velocity-based meters have an adjustment vane for calibrating 
-                             the meter to the required accuracy."""@en ;
-                rdfs:label "Velocity Water Meter"@en ;
-                rdfs:subClassOf seas:WaterMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-seas:MultiJetWaterMeter  a owl:Class ;
-                rdfs:comment """Multi-jet meters are very accurate in small sizes and are commonly used for residential and small commercial users. 
-                           Multi-jet meters use multiple ports surrounding an internal chamber to create multiple jets of water against an impeller, 
-                           whose rotation speed depends on the velocity of water flow. Multi-jets are very accurate at low flow rates, 
-                           but there are no large size meters since they do not have the straight-through flow path needed for the high flow rates used in large pipe diameters."""@en ;
-                rdfs:label "Multi-jet Water Meter"@en ;
-                rdfs:subClassOf seas:VelocityWaterMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:TurbineWaterMeter  a owl:Class ;
-                rdfs:comment """Turbine water meters are less accurate than displacement and jet meters at low flow rates, 
-                              but the measuring element does not occupy or severely restrict the entire path of flow. 
-                              The flow direction is generally straight through the meter, allowing for higher flow rates and 
-                              less pressure loss than displacement-type meters. They are the meter of choice for large 
-                              commercial users, fire protection and as master meters for the water distribution system."""@en ;
-                rdfs:label "Turbine Water Meter"@en ;
-                rdfs:subClassOf seas:VelocityWaterMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:CompoundWaterMeter  a owl:Class ;
-                rdfs:comment """A compound water meter is used where high flow rates are necessary, but where at times there are also smaller rates of 
-                                flow that need to be accurately measured. Compound meters have two measuring elements and a check valve 
-                                to regulate flow between them. At high flow rates, water is normally diverted primarily or completely 
-                                to the high flow element. The high flow element is typically a turbine meter. When flow rates drop to where
-                                the high flow element cannot measure accurately, a check valve closes to divert water to a smaller element 
-                                that can measure the lower flow rates accurately. The low flow element is typically a multi-jet or PD meter. 
-                                By adding the values registered by the high and low elements, the utility has a record of the total consumption 
-                                of water flowing through the meter."""@en ;
-                rdfs:label "Compound Water Meter"@en ;
-                rdfs:subClassOf seas:VelocityWaterMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:ElectromagneticWaterMeter  a owl:Class ;
-                rdfs:comment """Magnetic flow water meters, commonly referred to as "mag meters", are technically a velocity-type water meter, 
-                                except that they use electromagnetic properties to determine the water flow velocity, rather than the mechanical 
-                                means used by jet and turbine meters. Mag meters use the physics principle of Faraday's law of induction for 
-                                measurement, and require AC or DC electricity from a power line or battery to operate the electromagnets. """@en ;
-                rdfs:label "Electromagnetic Water Meter"@en ;
-                rdfs:subClassOf seas:WaterMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:UltrasonicWaterMeter  a owl:Class ;
-                rdfs:comment """Ultrasonic water meters use one or more ultrasonic transducer to send ultrasonic sound waves 
-                                through the fluid to determine the velocity of the water. Since the cross-sectional area of the 
-                                meter body is a fixed and known value, when the velocity of water is detected, the volume of 
-                                water passing through the meter can be calculated with very high accuracy. Because water density 
-                                changes with temperature, most ultrasonic water meters also measure the water temperature as a 
-                                component of the volume calculation. """@en ;
-                rdfs:label "Ultrasonic  Water Meter"@en ;
-                rdfs:subClassOf seas:WaterMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:GasMeter  a owl:Class ;
-                rdfs:comment """A gas meter is a meter, used to measure the volume of fuel gases such as natural gas and propane. 
-                            Gas meters are used at residential, commercial, and industrial buildings that consume fuel gas supplied by a gas 
-                            utility."""@en;
-                rdfs:label "Gas Meter"@en ;
-                rdfs:subClassOf seas:Meter ;
-              #  rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:GasVolumeProperty ] ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-seas:DiaphragmGasMeter  a owl:Class ;
-                rdfs:comment """Diaphragm Gas Meter are the most common type of gas meter, seen in almost all residential and small commercial installations.
-                                Within the meter there are two or more chambers formed by movable diaphragms. With the gas flow directed by 
-                                internal valves, the chambers alternately fill and expel gas, producing a near continuous flow through the meter. 
-                                As the diaphragms expand and contract, levers connected to cranks convert the linear motion of the diaphragms into 
-                                rotary motion of a crank shaft which serves as the primary flow element. This shaft can drive an odometer-like counter 
-                                mechanism or it can produce electrical pulses for a flow computer."""@en;
-                rdfs:label "Diaphragm Gas Meter"@en ;
-                rdfs:subClassOf seas:GasMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:RotaryGasMeter  a owl:Class ;
-                rdfs:comment """Rotary gas meters are highly machined precision instruments capable of handling higher volumes 
-                                and pressures than diaphragm meters. Within the meter, two figure "8" shaped lobes, the rotors 
-                                (also known as impellers or pistons), spin in precise alignment. With each turn, they move a specific quantity 
-                                of gas through the meter. The operating principle is similar to that of a Roots blower. The rotational movement 
-                                of the crank shaft serves as a primary flow element and may produce electrical pulses for a flow computer or may 
-                                drive an odometer-like counter."""@en;
-                rdfs:label "Rotary Gas Meter"@en ;
-                rdfs:subClassOf seas:GasMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:TurbineGasMeter  a owl:Class ;
-                rdfs:comment """Turbine gas meters infer gas volume by determining the speed of the gas moving through the meter. 
-                                Because the volume of gas is inferred by the flow, it is important that flow conditions are good. 
-                                A small internal turbine measures the speed of the gas, which is transmitted mechanically to a mechanical 
-                                or electronic counter. These meters do not impede the flow of gas, but are limited at measuring lower flow rates."""@en;
-                rdfs:label "Turbine Gas Meter"@en ;
-                rdfs:subClassOf seas:GasMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:OrificeGasMeter  a owl:Class ;
-                rdfs:comment """An orifice gas meter consists of a straight length of pipe inside which a precisely known 
-                                orifice creates a pressure drop, thereby affecting flow. Orifice meters are a type of differential meter, 
-                                all of which infer the rate of gas flow by measuring the pressure difference across a deliberately designed and 
-                                installed flow disturbance. The gas static pressure, density, viscosity, and temperature must be measured or 
-                                known in addition to the differential pressure for the meter to accurately measure the fluid. 
-                                Orifice meters often do not handle a large range of flow rates. They are however accepted and understood in 
-                                industrial applications since they are easy to field-service and have no moving parts."""@en;
-                rdfs:label "Orifice Gas Meter"@en ;
-                rdfs:subClassOf seas:GasMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:UltrasonicFlowGasMeter  a owl:Class ;
-                rdfs:comment """Ultrasonic flow gas meters are more complex than meters that are purely mechanical, as they require 
-                                significant signal processing and computation capabilities. Ultrasonic meters measure the speed of 
-                                gas movement by measuring the speed at which sound travels in the gaseous medium within the pipe. """@en;
-                rdfs:label "Ultrasonic flow Gas Meter"@en ;
-                rdfs:subClassOf seas:GasMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:CoriolisGasMeter  a owl:Class ;
-                rdfs:comment """A coriolis meter is usually one or more pipes with longitudinally or axially displaced section(s) 
-                                that are excited to vibrate at resonant frequency. Coriolis meters are used with liquids and gases. 
-                                When the fluid within the displaced section is at rest, both the upstream and downstream portion of 
-                                the displaced section will vibrate in phase with each other. The frequency of this vibration is 
-                                determined by the overall density of the pipe (including its contents). This allows the meter to 
-                                measure the flowing density of the gas in real time. Once the fluid begins to flow, however, the 
-                                coriolis effect comes into play. This effect implies a relationship between the phase difference in 
-                                the vibration of the upstream and downstream sections and the mass flow rate of the fluid contained 
-                                by the pipe. """@en;
-                rdfs:label "Coriolis Gas Meter"@en ;
-                rdfs:subClassOf seas:GasMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-
-seas:ElectricityMeter  a owl:Class ;
-                rdfs:comment """An electricity meter, electric meter, electrical meter, or energy meter is a meter that measures 
-                              the amount of electric energy consumed by a residence, a business, or an electrically powered device."""@en ;
-                rdfs:label "Electricity Meter"@en ;
-                rdfs:subClassOf seas:Meter ;
-                rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:ElectricEnergyProperty ] ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-
-seas:ElectromechanicalElectricityMeter  a owl:Class ;
-                rdfs:comment """The most common type of electricity meter is the electromechanical induction watt-hour meter.
-                                The electromechanical induction meter operates by counting the revolutions of a non-magnetic, 
-                                but electrically conductive, metal disc which is made to rotate at a speed proportional to the 
-                                power passing through the meter. The number of revolutions is thus proportional to the energy usage. """@en;
-                rdfs:label "Electromechanical Electricity Meter"@en ;
-                rdfs:subClassOf seas:ElectricityMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:ElectronicElectricityMeter  a owl:Class ;
-                rdfs:comment """Electronic meters display the energy used on an LCD or LED display, and some can also transmit 
-                                readings to remote places. In addition to measuring energy used, electronic meters can also record 
-                                other parameters of the load and supply such as instantaneous and maximum rate of usage demands, 
-                                voltages, power factor and reactive power used etc. They can also support time-of-day billing, 
-                                for example, recording the amount of energy used during on-peak and off-peak hours. """@en;
-                rdfs:label "Electronic Electricity Meter"@en ;
-                rdfs:subClassOf seas:ElectricityMeter ;
-                vs:term_status "testing"^^xsd:string ;
-                rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:SmartMeter a owl:Class;
-                rdfs:comment """A smart meter is a meter that records consumption on specific property at regular frequency and 
-                                communicates that information at least daily back to the utility for monitoring and billing.
-                                A smart meter, is a meter which may be composed of two subSystems : a basic meter to implement a metering 
-                                and a connector to read the data and send them to a specific system that can process the data. 
-                                The current smartMeter are composition of two systems, but in the future smart meter will be designed to be physically a unique system"""@en ;
-                rdfs:label "Smart Meter"@en ;
-                rdfs:subClassOf seas:Meter,                                   
-                    [
-                      rdf:type owl:Restriction;
-                      owl:onProperty seas:hasSubSystem;
-                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                      owl:someValuesFrom seas:ConnectorModule
-                    ],
-                    [
-                      rdf:type owl:Restriction;
-                      owl:onProperty seas:hasSubSystem;
-                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                      owl:someValuesFrom seas:Meter
-                    ]
-               ;              
-               vs:term_status "unstable"^^xsd:string;
-               rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-seas:WaterSmartMeter a owl:Class;
-                    rdfs:label "Water Smart Meter"@en;
-                    rdfs:comment """A class of Smart Meter which is used for water metering. Water Smart Meter can only have 
-                                  `seas:WaterMeter` as subsystem"""@en;
-                    rdfs:subClassOf seas:SmartMeter ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty seas:hasSubSystem ;
-                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onClass seas:WaterMeter
-                                     ] ;
-                    rdfs:subClassOf [ owl:onProperty seas:hasSubSystem ; owl:someValuesFrom seas:WaterMeter ] ;                 
-                    vs:term_status "unstable"^^xsd:string ;
-                     rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:ElectricitySmartMeter a owl:Class;
-                    rdfs:label "Electricity Smart Meter"@en;
-                    rdfs:comment """A class of Smart Meter which is used for Electricity metering.
-                                    Electricity Smart Meter can only have `seas:ElectricityMeter` as subsystem"""@en;
-                    rdfs:subClassOf seas:SmartMeter, 
-                    [
-                      rdf:type owl:Restriction;
-                      owl:onProperty seas:hasSubSystem;
-                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                      owl:onClass seas:ElectricityMeter
-                    ];
-                    rdfs:subClassOf [ owl:onProperty seas:hasSubSystem ; owl:someValuesFrom seas:ElectricityMeter ] ;
-                    vs:term_status "unstable"^^xsd:string ;
-                    rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-seas:GasSmartMeter a owl:Class;
-                    rdfs:label "Gas Smart Meter"@en;
-                    rdfs:comment """"A class of Smart Meter which is used for Gas metering.
-                                     Gas Smart Meter can only have `seas:GasMeter` as subsystem"""@en;
-                    rdfs:subClassOf seas:SmartMeter, 
-                    [
-                      rdf:type owl:Restriction;
-                      owl:onProperty seas:hasSubSystem;
-                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                      owl:onClass seas:GasMeter
-                    ];
-                    rdfs:subClassOf [ owl:onProperty seas:hasSubSystem ; owl:someValuesFrom seas:GasMeter ] ;
-                    vs:term_status "unstable"^^xsd:string ;
-                    rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:WaterVolumeMetering a owl:Class; 
-                        rdfs:subClassOf seas:Metering; 
-                        rdfs:comment "The Measure of the volume of the water which flow in the meter"@en;                           
-                        rdfs:label "Water Volume Metering"@en;                    
-                        vs:term_status "unstable"^^xsd:string  ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-seas:WaterVolumeMeteringExecution a owl:Class ;
-  rdfs:label "Water Volume Metering Execution"@en ;
-  rdfs:comment """A Water Volume Metering Execution is the execution of some Water Volume Metering implemented by some Water Meter."""@en ;
-  rdfs:subClassOf seas:MeteringExecution ;
-  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:WaterMeter ] ;
-  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:WaterVolumeMetering ] ;
-  rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
-  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:WaterVolumeMetering ] ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-
-seas:GasVolumeMetering a owl:Class; 
-                        rdfs:subClassOf seas:Metering; 
-                        rdfs:comment "The Measure of the volume of the gas which flow in the meter. Generally for consumption metering."@en;                           
-                        rdfs:label "Gas Volume Metering"@en;                    
-                        vs:term_status "unstable"^^xsd:string  ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-seas:GasVolumeMeteringExecution a owl:Class ;
-  rdfs:label "Gas Volume Metering Execution"@en ;
-  rdfs:comment """The Measure of the volume of the gas which flow in the meter. Generally for consumption metering but could be for production."""@en ;
-  rdfs:subClassOf seas:MeteringExecution ;
-  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:GasMeter ] ;
-  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:GasVolumeMetering ] ;
-  rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:GasVolumeProperty ] ;
-  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:GasVolumeMetering ] ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-
-seas:ElectricityMetering a owl:Class; 
-                        rdfs:subClassOf seas:Metering; 
-                        rdfs:comment """The Measure of the electricity which flow through  the meter device.  
-                                        It Could be a metering about a consumption or a production of  the electricity"""@en;                           
-                        rdfs:label "Electricity Metering"@en;                    
-                        vs:term_status "unstable"^^xsd:string  ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-seas:ElectricityMeteringExecution a owl:Class ;
-  rdfs:label "Electricity Metering Execution"@en ;
-  rdfs:comment """An Electricity Metering Execution is the execution of some Electricity Metering process by some electricity meter."""@en ;
-  rdfs:subClassOf seas:MeteringExecution ;
-  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:ElectricityMeter ] ;
-  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ElectricityMetering ] ;
-  rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:ElectricEnergyProperty ] ;
-  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ElectricityMetering ] ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-
-
-seas:ConsumptionMetering  a owl:Class;
-                        rdfs:label "Consumption Metering"@en;
-                        rdfs:comment "Any metering about some consumption. "@en;
-                        rdfs:subClassOf  seas:Metering;
-                        vs:term_status "testing" ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-seas:ProductionMetering  a owl:Class;
-                        rdfs:label "Production Metering"@en;
-                        rdfs:comment "Any metering about some production."@en;
-                        rdfs:subClassOf  seas:Metering;
-                        vs:term_status "testing" ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology. 
-
-
-seas:ConsumptionMeteringExecution a owl:Class ;
-  rdfs:label "Consumption Metering Execution"@en ;
-  rdfs:comment """A Consumption Metering Execution is the execution of some Consumption metering implemented by some meter."""@en ;
-  rdfs:subClassOf seas:MeteringExecution ;
-  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Meter ] ;
-  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ConsumptionMetering ] ;
-  rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:ConsumptionProperty ] ;
-  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ConsumptionMetering ] ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-
-     
-seas:ProductionMeteringExecution a owl:Class ;
-  rdfs:label "Production Metering Execution"@en ;
-  rdfs:comment """A Production Metering Execution is the execution of some Production Metering implemented by some meter."""@en ;
-  rdfs:subClassOf seas:MeteringExecution ;
-  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Meter ] ;
-  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ProductionMetering ] ;
-  rdfs:subClassOf [ owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:ProductionProperty ] ;
-  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ProductionMetering ] ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology .                         
-
-
-
-seas:SigFoxConnectorModule a owl:Class;
-                       rdfs:label "Sig Fox Connector Module"@en;
-                       rdfs:comment "A class of connector module which communicates with `seas:SigFoxProtocol`."@en;
-                      rdfs:subClassOf seas:ConnectorModule,
-                      [
-                        rdf:type owl:Restriction;
-                        owl:onProperty seas:communicatesWithProtocol;
-                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                        owl:hasValue seas:SigFoxProtocol
-                      ];
-                      owl:equivalentClass [ owl:intersectionOf ( seas:ConnectorModule
-                                                            [ rdf:type owl:Restriction ;
-                                                              owl:onProperty seas:communicatesWithProtocol ;
-                                                              owl:hasValue seas:SigFoxProtocol
-                                                            ]
-                                                          ) ;
-                                     rdf:type owl:Class
-                                   ] ;
-                  
-                      vs:term_status "unstable"^^xsd:string ;
-                      rdfs:isDefinedBy seas:SmartMeterOntology .                   
-
-
-seas:LoraConnectorModule a owl:Class;
-                       rdfs:label "Lora Connector Module"@en;
-                       rdfs:comment "A class of  connector module which communicates with `seas:LoraProtocol`."@en;
-                      rdfs:subClassOf seas:ConnectorModule,
-                      [
-                        rdf:type owl:Restriction;
-                        owl:onProperty seas:communicatesWithProtocol;
-                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                        owl:hasValue seas:LoraProtocol
-                      ];
-                      owl:equivalentClass [ owl:intersectionOf ( seas:ConnectorModule
-                                                            [ rdf:type owl:Restriction ;
-                                                              owl:onProperty seas:communicatesWithProtocol ;
-                                                              owl:hasValue seas:LoraProtocol
-                                                            ]
-                                                          ) ;
-                                     rdf:type owl:Class
-                                   ] ;
-                      vs:term_status "unstable"^^xsd:string ;
-                      rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-
-seas:Protocol a owl:Class;
-            rdfs:label "Protocol"@en;
-            rdfs:comment "A class of protocol which define a set of procedure or rules."@en;
-            rdfs:subClassOf seas:System;
-            vs:term_status "unstable"^^xsd:string ;
-            rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:CommunicationsProtocol a owl:Class;
-                            rdfs:subClassOf seas:Protocol;
-                            rdfs:label "Communications Protocol"@en;
-                            rdfs:comment """In telecommunications, a communication protocol is a system of rules that allow two or more entities of a communications system to transmit 
-                                          information via any kind of variation of a physical quantity. These are the rules or standard that defines the syntax, semantics and synchronization 
-                                          of communication and possible error recovery methods. Protocols may be implemented by hardware, software, or a combination of both"""@en;
-                            vs:term_status "unstable"^^xsd:string ;
-                            rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-seas:CommunicationsMethod a owl:Class ;
-                          rdfs:label "Communications Method"@en;
-                          rdfs:comment """Communications methods is a method used to communicate between two Systems. It is a kind of connections. 
-                                          Example of methods of communications is `seas:RadioWave`."""@en;
-                          rdfs:subClassOf seas:Connection;
-                          vs:term_status "unstable"^^xsd:string ;
-                          rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-seas:RadioWave a owl:Class;
-               rdfs:label "Radio Wave"@en;
-               rdfs:comment  """Radio waves are a type of electromagnetic radiation with wavelseasths in the electromagnetic spectrum longer than infrared light. 
-                                Radio waves have frequencies from 300 GHz to as low as 3 kHz, and corresponding wavelseasths ranging from 1 millimeter (0.039 in) 4
-                                to 100 kilometers (62 mi). Like all other electromagnetic waves, they travel at the speed of light. Naturally occurring radio waves 
-                                are made by lightning, or by astronomical objects. Artificially generated radio waves are used for fixed and mobile radio communication, 
-                                broadcasting, radar and other navigation systems, communications satellites, computer networks and innumerable other applications. 
-                                Radio waves are generated by radio transmitters and received by radio receivers. Different frequencies of radio waves have different 
-                                propagati (en)"""@en; 
-               rdfs:subClassOf seas:CommunicationsMethod;
-               vs:term_status "unstable"^^xsd:string ;
-               rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:MeteringMechanism a owl:Class;
-               rdfs:label "Metering Mechanism"@en;
-               rdfs:comment  """"""@en; 
-               rdfs:subClassOf seas:FeatureOfInterest;
-               vs:term_status "unstable"^^xsd:string ;
-               rdfs:isDefinedBy seas:SmartMeterOntology .
-
-
-seas:AmountOfMatter a owl:Class;
-                    rdfs:label "Amount of Matter"@en;
-                    rdfs:comment """The common trait of amounts of matter is that they are endurants with no unity 
-                                  (according to Gangemi et a. 2001 none of them is an essential  whole). 
-                                  Amounts of matter - 'stuffs' referred to by mass nouns like 'gold', 'iron', 'wood',  '
-                                  sand', 'meat', etc. - are mereologically  invariant, in the sense that they change their  identity 
-                                  when they change some parts."""@en;
-                    rdfs:subClassOf seas:FeatureOfInterest;
-                    vs:term_status "unstable" ;
-                    owl:sameAs <http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#amount-of-matter>;
-                    rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:Water a owl:Class;
-            rdfs:subClassOf seas:AmountOfMatter;
-            rdfs:label "Water"@en ;
-            rdfs:comment "Water in its liquid state."@en ;
-            vs:term_status "unstable" ;
-            rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:NaturalGas a owl:Class;
-            rdfs:subClassOf seas:AmountOfMatter;
-            rdfs:label "Natural Gas"@en ;
-            rdfs:comment "Natural Gas in its liquid state."@en ;
-            vs:term_status "unstable" ;
-            rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-seas:VolumeProperty a owl:Class;
-                        rdfs:subClassOf seas:Property;
-                        rdfs:comment """The Volume is a property which is inherent to a physical entity. 
-                                      That measure the quantity in three dimensional space. """@en;
-                        rdfs:label "Volume Property"@en;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology.
-                 
-
-seas:VolumeEvaluation a owl:Class ;
-  rdfs:label "Volume Evaluation"@en;
-  rdfs:comment "The class of evaluations for volume properties."@en ;
-  rdfs:subClassOf seas:Evaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:VolumeProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:VolumeProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-  seas:WaterVolumeProperty a owl:Class;
-                        rdfs:subClassOf seas:VolumeProperty;
-                        rdfs:label "Water Volume Property"@en;
-                        rdfs:comment "The Water Volume is a property inherent in water. Could be computed in litre or in meter cube. "@en;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:WaterVolumeEvaluation a owl:Class ;
-  rdfs:label "Water Volume Evaluation"@en;
-  rdfs:comment "The class of evaluations for water volume properties."@en ;
-  rdfs:subClassOf seas:VolumeEvaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-  seas:FrequencyProperty a owl:Class; 
-                  rdfs:subClassOf seas:Property;
-                  rdfs:label "Frequency Property"@en;
-                  rdfs:comment "Frequency is the number of occurrences of a repeating event per unit time."@en;
-                  vs:term_status "unstable"^^xsd:string;
-                  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:FrequencyEvaluation a owl:Class ;
-  rdfs:label "Frequency Evaluation"@en;
-  rdfs:comment "The class of evaluations for frequency properties."@en ;
-  rdfs:subClassOf seas:Evaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FrequencyProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FrequencyProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-seas:GasVolumeProperty a owl:Class;
-                        rdfs:subClassOf seas:VolumeProperty;
-                        rdfs:label "Gas Volume Property"@en;
-                        rdfs:comment "The Gas Volume is a property inherent in Gas. Could be computed in litre or in meter cube. "@en;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:GasVolumeEvaluation a owl:Class ;
-  rdfs:label "Gas Volume Evaluation"@en;
-  rdfs:comment "The class of evaluations for Gas volume properties."@en ;
-  rdfs:subClassOf seas:VolumeEvaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:GasVolumeProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:GasVolumeProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-seas:ConsumptionProperty a owl:Class;
-                        rdfs:subClassOf seas:Property;
-                        rdfs:label "Consumption Property"@en;
-                        rdfs:comment "The consumption property is a property to measure any consumption."@en;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:ConsumptionEvaluation a owl:Class ;
-  rdfs:label "Consumption Evaluation"@en ;
-  rdfs:comment "The class of evaluations for consumption properties."@en ;
-  rdfs:subClassOf seas:Evaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ConsumptionProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ConsumptionProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:ProductionProperty a owl:Class;
-                        rdfs:subClassOf seas:Property;
-                        rdfs:label "Production Property"@en;
-                        rdfs:comment "The production property is a property to measure any production."@en;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology.
-
-seas:ProductionEvaluation a owl:Class ;
-  rdfs:label "Production Evaluation"@en ;
-  rdfs:comment "The class of evaluations for production properties."@en ;
-  rdfs:subClassOf seas:Evaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ProductionProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ProductionProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-seas:MeterIndexProperty a owl:Class;
-                        rdfs:subClassOf seas:Property;
-                        rdfs:label "Meter Index Property"@en;
-                        rdfs:comment "The Meter index property is a property which is inherent in the Index of the Meter."@en;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-seas:MeterIndexEvaluation a owl:Class ;
-  rdfs:label "Meter Index  Evaluation"@en ;
-  rdfs:comment "The class of evaluations for meter index  properties."@en ;
-  rdfs:subClassOf seas:Evaluation;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MeterIndexProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MeterIndexProperty ] ;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-#todo à valider !
-seas:InstallingDateMeterIndexEvaluation a owl:Class ;
-  rdfs:label "Installing Date Meter Index  Evaluation"@en ;
-  rdfs:comment "The class of evaluations for meter index  properties at installing date."@en ;
-  rdfs:subClassOf seas:MeterIndexEvaluation;
-  vs:term_status "unstable" ;
-  rdfs:isDefinedBy seas:SmartMeterOntology.
-
-
-
-
-
-######################
-# Obejcts and data Properties
-###################### 
-
-seas:communicatesWithProtocol rdf:type owl:ObjectProperty;
-                              rdfs:label " communicates with protocol"@en;
-                              rdfs:comment "Link a system with the communication protocol used to communicate with other systems."@en;
-                              rdfs:domain seas:System;
-                              rdfs:range  seas:CommunicationsProtocol;
-                              vs:term_status "unstable"^^xsd:string ;
-                              rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:allowsCommunicationsThrough rdf:type owl:ObjectProperty;
-                              rdfs:label " allows Communications Through"@en;
-                              rdfs:comment "Link a communication protocol with the communication methods used to communicate with other systems."@en;
-                              rdfs:domain seas:CommunicationsProtocol;
-                              rdfs:range  seas:CommunicationsMethod;
-                              vs:term_status "unstable"^^xsd:string ;
-                              rdfs:isDefinedBy seas:SmartMeterOntology .
-                               
-
-                    
-seas:meterIndexProperty rdf:type owl:ObjectProperty, owl:FunctionalProperty ;    
-                        rdfs:subPropertyOf seas:hasProperty;
-                        rdfs:label "Meter index Property"@en;  
-                        rdfs:domain seas:Meter;                                               
-                        rdfs:range seas:MeterIndexProperty;                                              
-                        rdfs:comment "A trame sending frequency relationship connects an entity to the frequency between two successive sending of trames by the entity"@en;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:trameSendingFrequency rdf:type owl:ObjectProperty , owl:FunctionalProperty;    
-                        rdfs:subPropertyOf seas:frequency;
-                        rdfs:label "trame Sending Frequency"@en;  
-                         rdfs:domain seas:FeatureOfInterest;                                               
-                        rdfs:range seas:FrequencyProperty;                                              
-                        rdfs:comment "A trame sending frequency relationship connects an entity to the frequency between two successive sending of trames by the entity"@en;
-                        vs:term_status "unstable"^^xsd:string;
-                        rdfs:isDefinedBy seas:SmartMeterOntology . 
-
-
-seas:evaluationFrequency rdf:type owl:ObjectProperty, owl:FunctionalProperty;    
-                        rdfs:subPropertyOf seas:frequency;
-                        rdfs:label "evaluation frequency"@en;                                                
-                        rdfs:comment "An evaluation frequency relationship connects an entity to the frequency between two successive evaluations given by the entity"@en;
-                        rdfs:domain seas:FeatureOfInterest;                                               
-                        rdfs:range seas:FrequencyProperty;
-                        vs:term_status "unstable"^^xsd:string  ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:measuringFrequency rdf:type owl:ObjectProperty , owl:FunctionalProperty;    
-                        rdfs:subPropertyOf seas:frequency;
-                        rdfs:label "measuring frequency"@en;                                                
-                        rdfs:comment "A measuring frequency relationship connects an entity to the frequency between two successives measuring made by the entity"@en;
-                        rdfs:domain seas:FeatureOfInterest;                                               
-                        rdfs:range seas:FrequencyProperty;
-                        vs:term_status "unstable"^^xsd:string  ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:production rdf:type owl:ObjectProperty , owl:FunctionalProperty;    
-                        rdfs:subPropertyOf seas:hasProperty;
-                        rdfs:label "production"@en;                                                
-                        rdfs:comment "A production relationship connects an entity to its production property. "@en;
-                        rdfs:domain seas:FeatureOfInterest;                                               
-                        rdfs:range seas:ProductionProperty;
-                        vs:term_status "unstable"^^xsd:string  ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:consumption rdf:type owl:ObjectProperty , owl:FunctionalProperty;    
-                        rdfs:subPropertyOf seas:hasProperty;
-                        rdfs:label "consumption"@en;                                                
-                        rdfs:comment "A production relationship connects an entity to its consumption property. "@en;
-                        rdfs:domain seas:FeatureOfInterest;                                               
-                        rdfs:range seas:ConsumptionProperty;
-                        vs:term_status "unstable"^^xsd:string  ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology .
-########################
-#  data property 
-########################
-                   
-seas:hasInstallationDate  rdf:type owl:DatatypeProperty ;
-                        rdfs:label "has installation date"@en; # 
-                        rdfs:comment "link the smartMeter to the installation installation. "@en;
-                        rdfs:domain seas:SmartMeter; 
-                        rdfs:range xsd:dateTime;
-                        vs:term_status "unstable"^^xsd:string ;
-                        rdfs:isDefinedBy seas:SmartMeterOntology .                     
-
-
-
-########################
-#  some needed instances 
-########################
-
-seas:SigFoxProtocol a seas:CommunicationsProtocol;
-     rdfs:label "SigFoxProtocol"@en;
-     rdfs:comment """The sigFox is defined like this 
-
-```
-seas:SigFoxProtocol a seas:CommunicationsProtocol;
-                    rdfs:label "SigFoxProtocol"@en;
-                    skos:prefLabel "SigFox"@en;
-                    gr:hasManufaturer dbr:Sigfox;
-                    seas:allowsCommunicationsThrough seas:RadioWave.
-```
-"""@en ;
-     skos:prefLabel "SigFox"@en;
-     gr:hasManufaturer dbr:Sigfox;
-     seas:allowsCommunicationsThrough seas:RadioWave;
-     vs:term_status "unstable"^^xsd:string ;
-     rdfs:isDefinedBy seas:SmartMeterOntology .
-
-seas:LoraProtocol a seas:CommunicationsProtocol;
-      rdfs:label "Lora"@en;
-      skos:prefLabel "Lora"@en;
-      rdfs:comment """Long Range Wide Area Network, Lora is defined like this 
-
-```
- seas:LoraProtocol  a seas:CommunicationsProtocol;
-                    rdfs:label "Lora"@en;
-                    skos:prefLabel "Lora"@en;
-                    rdfs:comment "Long Range Wide Area Network"@en;
-                    owl:sameAs dbr:LoRaWAN. # 
-```
-"""@en ;
-      owl:sameAs dbr:LoRaWAN;
-      vs:term_status "unstable"^^xsd:string ;
+  seas:hasInstallationDate  a owl:DatatypeProperty ;
+    rdfs:label "has installation date"@en; # rdfs:comment "link the smartMeter to the installation installation. "@en;
+    rdfs:domain seas:SmartMeter;
+    rdfs:range xsd:dateTime;
+    vs:term_status "unstable"  ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .    
+
+  seas:WaterMeter a owl:Class ;
+    rdfs:label "Water Meter"@en ;
+    rdfs:comment """A water meter is a Meter designed to measure the quantity of water that flows through a pipe. 
+    The water meter can measures water consumption or water supply. Every `seas:WaterMeter` implements a specific metering method such as `seas:PulseMetering`,`seas:DiscMetering`,
+    `seas:DiscMetering`, which allow them to measure the volume of water (`seas:WaterVolume`) that flow in the pipe.  (Source: Wikipedia)"""@en ;
+    rdfs:subClassOf seas:Meter ;
+    #       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
+    vs:term_status "testing"  ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+    seas:DisplacementWaterMeter a owl:Class ;
+      rdfs:label "Displacement Water Meter"@en ;
+      rdfs:comment """Displacement water meters are most often used in residential and small commercial applications and homes. Displacement meters are commonly referred to as Positive Displacement, or "PD" meters. 
+
+  Two common types are oscillating piston meters and nutating disk meters. Either method relies on the water to physically displace the moving measuring element in direct proportion to the amount of water that passes through the meter. The piston or disk moves a magnet that drives the register. (Source: Wikipedia)"""@en ;
+      rdfs:subClassOf seas:WaterMeter ;
+      vs:term_status "testing"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .
+
+    seas:VelocityWaterMeter a owl:Class ;
+      rdfs:label "Velocity Water Meter"@en ;
+      rdfs:comment """A velocity-type water meter measures the velocity of flow through a meter of a known internal capacity. The speed of the flow can then be converted into volume of flow to determine the usage. There are several types of meters that measure water flow velocity, including jet meters (single-jet and multi-jet), turbine meters, propeller meters and mag meters. Most velocity-based meters have an adjustment vane for calibrating the meter to the required accuracy. (Source: Wikipedia)"""@en ;
+      rdfs:subClassOf seas:WaterMeter ;
+      vs:term_status "testing"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+      seas:MultiJetWaterMeter  a owl:Class ;
+        rdfs:label "Multi-jet Water Meter"@en ;
+        rdfs:comment """Multi-jet meters are very accurate in small sizes and are commonly used for residential and small commercial users. Multi-jet meters use multiple ports surrounding an internal chamber to create multiple jets of water against an impeller, whose rotation speed depends on the velocity of water flow. Multi-jets are very accurate at low flow rates, but there are no large size meters since they do not have the straight-through flow path needed for the high flow rates used in large pipe diameters. (Source: Wikipedia)"""@en ;
+        rdfs:subClassOf seas:VelocityWaterMeter ;
+        vs:term_status "testing"  ;
+        rdfs:isDefinedBy seas:SmartMeterOntology .
+
+      seas:TurbineWaterMeter  a owl:Class ;
+        rdfs:label "Turbine Water Meter"@en ;
+        rdfs:comment """Turbine water meters are less accurate than displacement and jet meters at low flow rates, but the measuring element does not occupy or severely restrict the entire path of flow. The flow direction is generally straight through the meter, allowing for higher flow rates and less pressure loss than displacement-type meters. They are the meter of choice for large commercial users, fire protection and as master meters for the water distribution system. (Source: Wikipedia)"""@en ;
+        rdfs:subClassOf seas:VelocityWaterMeter ;
+        vs:term_status "testing"  ;
+        rdfs:isDefinedBy seas:SmartMeterOntology .
+
+      seas:CompoundWaterMeter  a owl:Class ;
+        rdfs:label "Compound Water Meter"@en ;
+        rdfs:comment """A compound water meter is used where high flow rates are necessary, but where at times there are also smaller rates of flow that need to be accurately measured. Compound meters have two measuring elements and a check valve to regulate flow between them. At high flow rates, water is normally diverted primarily or completely to the high flow element. The high flow element is typically a turbine meter. When flow rates drop to where the high flow element cannot measure accurately, a check valve closes to divert water to a smaller element that can measure the lower flow rates accurately. The low flow element is typically a multi-jet or PD meter. By adding the values registered by the high and low elements, the utility has a record of the total consumption of water flowing through the meter. (Source: Wikipedia)"""@en ;
+        rdfs:subClassOf seas:VelocityWaterMeter ;
+        vs:term_status "testing"  ;
+        rdfs:isDefinedBy seas:SmartMeterOntology .
+
+    seas:ElectromagneticWaterMeter  a owl:Class ;
+      rdfs:label "Electromagnetic Water Meter"@en ;
+      rdfs:comment """Magnetic flow water meters, commonly referred to as "mag meters", are technically a velocity-type water meter, except that they use electromagnetic properties to determine the water flow velocity, rather than the mechanical means used by jet and turbine meters. Mag meters use the physics principle of Faraday's law of induction for measurement, and require AC or DC electricity from a power line or battery to operate the electromagnets. (Source: Wikipedia)"""@en ;
+      rdfs:subClassOf seas:WaterMeter ;
+      vs:term_status "testing"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .
+
+    seas:UltrasonicWaterMeter  a owl:Class ;
+      rdfs:label "Ultrasonic  Water Meter"@en ;
+      rdfs:comment """Ultrasonic water meters use one or more ultrasonic transducer to send ultrasonic sound waves through the fluid to determine the velocity of the water. Since the cross-sectional area of the meter body is a fixed and known value, when the velocity of water is detected, the volume of water passing through the meter can be calculated with very high accuracy. Because water density changes with temperature, most ultrasonic water meters also measure the water temperature as a component of the volume calculation. (Source: Wikipedia)"""@en;
+      rdfs:subClassOf seas:WaterMeter ;
+      vs:term_status "testing"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .
+
+  seas:GasMeter  a owl:Class ;
+    rdfs:label "Gas Meter"@en ;
+    rdfs:comment """A gas meter is a meter, used to measure the volume of fuel gases such as natural gas and propane. Gas meters are used at residential, commercial, and industrial buildings that consume fuel gas supplied by a gas utility. (Source: Wikipedia)"""@en;
+    rdfs:subClassOf seas:Meter ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:GasVolumeProperty ] ;
+    vs:term_status "testing"  ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+    seas:DiaphragmGasMeter  a owl:Class ;
+      rdfs:comment """Diaphragm Gas Meter are the most common type of gas meter, seen in almost all residential and small commercial installations. Within the meter there are two or more chambers formed by movable diaphragms. With the gas flow directed by  internal valves, the chambers alternately fill and expel gas, producing a near continuous flow through the meter.  As the diaphragms expand and contract, levers connected to cranks convert the linear motion of the diaphragms into  rotary motion of a crank shaft which serves as the primary flow element. This shaft can drive an odometer-like counter  mechanism or it can produce electrical pulses for a flow computer. (Source: Wikipedia)"""@en;
+      rdfs:label "Diaphragm Gas Meter"@en ;
+      rdfs:subClassOf seas:GasMeter ;
+      vs:term_status "testing"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .
+
+    seas:RotaryGasMeter  a owl:Class ;
+      rdfs:comment """Rotary gas meters are highly machined precision instruments capable of handling higher volumes  and pressures than diaphragm meters. Within the meter, two figure "8" shaped lobes, the rotors  (also known as impellers or pistons), spin in precise alignment. With each turn, they move a specific quantity  of gas through the meter. The operating principle is similar to that of a Roots blower. The rotational movement  of the crank shaft serves as a primary flow element and may produce electrical pulses for a flow computer or may  drive an odometer-like counter. (Source: Wikipedia)"""@en;
+      rdfs:label "Rotary Gas Meter"@en ;
+      rdfs:subClassOf seas:GasMeter ;
+      vs:term_status "testing"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .
+
+    seas:TurbineGasMeter  a owl:Class ;
+      rdfs:comment """Turbine gas meters infer gas volume by determining the speed of the gas moving through the meter.  Because the volume of gas is inferred by the flow, it is important that flow conditions are good.  A small internal turbine measures the speed of the gas, which is transmitted mechanically to a mechanical  or electronic counter. These meters do not impede the flow of gas, but are limited at measuring lower flow rates. (Source: Wikipedia)"""@en;
+      rdfs:label "Turbine Gas Meter"@en ;
+      rdfs:subClassOf seas:GasMeter ;
+      vs:term_status "testing"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .
+
+    seas:OrificeGasMeter  a owl:Class ;
+      rdfs:label "Orifice Gas Meter"@en ;
+      rdfs:comment """An orifice gas meter consists of a straight length of pipe inside which a precisely known  orifice creates a pressure drop, thereby affecting flow. Orifice meters are a type of differential meter,  all of which infer the rate of gas flow by measuring the pressure difference across a deliberately designed and  installed flow disturbance. The gas static pressure, density, viscosity, and temperature must be measured or  known in addition to the differential pressure for the meter to accurately measure the fluid.  Orifice meters often do not handle a large range of flow rates. They are however accepted and understood in  industrial applications since they are easy to field-service and have no moving parts. (Source: Wikipedia)"""@en;
+      rdfs:subClassOf seas:GasMeter ;
+      vs:term_status "testing"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .
+
+    seas:UltrasonicFlowGasMeter  a owl:Class ;
+      rdfs:label "Ultrasonic flow Gas Meter"@en ;
+      rdfs:comment """Ultrasonic flow gas meters are more complex than meters that are purely mechanical, as they require  significant signal processing and computation capabilities. Ultrasonic meters measure the speed of  gas movement by measuring the speed at which sound travels in the gaseous medium within the pipe. (Source: Wikipedia)"""@en;
+      rdfs:subClassOf seas:GasMeter ;
+      vs:term_status "testing"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .
+
+    seas:CoriolisGasMeter  a owl:Class ;
+      rdfs:label "Coriolis Gas Meter"@en ;
+      rdfs:comment """A coriolis meter is usually one or more pipes with longitudinally or axially displaced section(s)  that are excited to vibrate at resonant frequency. Coriolis meters are used with liquids and gases.  When the fluid within the displaced section is at rest, both the upstream and downstream portion of  the displaced section will vibrate in phase with each other. The frequency of this vibration is  determined by the overall density of the pipe (including its contents). This allows the meter to  measure the flowing density of the gas in real time. Once the fluid begins to flow, however, the  coriolis effect comes into play. This effect implies a relationship between the phase difference in  the vibration of the upstream and downstream sections and the mass flow rate of the fluid contained  by the pipe. (Source: Wikipedia)"""@en;
+      rdfs:subClassOf seas:GasMeter ;
+      vs:term_status "testing"  ;
       rdfs:isDefinedBy seas:SmartMeterOntology .
 
 
-seas:RadioWave a seas:RadioWave;
-    skos:prefLabel "Radio Wave"@en;
-    rdfs:label "Radio Wave"@en;
-    rdfs:seeAlso dbr:Radio_wave;
-    rdfs:comment """The RadioWave is defined like this 
+  seas:ElectricityMeter  a owl:Class ;
+    rdfs:label "Electricity Meter"@en ;
+    rdfs:comment """An electricity meter, electric meter, electrical meter, or energy meter is a meter that measures the amount of electric energy consumed by a residence, a business, or an electrically powered device. (Source: Wikipedia)"""@en;
+    rdfs:subClassOf seas:Meter ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:ElectricEnergyProperty ] ;
+    vs:term_status "testing"  ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
 
-```
-seas:RadioWave a seas:RadioWave;
-                skos:prefLabel "Radio Wave"@en;
-                rdfs:label "Radio Wave"@en;
-                rdfs:seeAlso dbr:Radio_wave.
-```
-"""@en ;
-   vs:term_status "unstable"^^xsd:string ;
-   rdfs:isDefinedBy seas:SmartMeterOntology .
+    seas:ElectromechanicalElectricityMeter  a owl:Class ;
+      rdfs:comment """The most common type of electricity meter is the electromechanical induction watt-hour meter. The electromechanical induction meter operates by counting the revolutions of a non-magnetic,  but electrically conductive, metal disc which is made to rotate at a speed proportional to the  power passing through the meter. The number of revolutions is thus proportional to the energy usage.  (Source: Wikipedia)"""@en;
+      rdfs:label "Electromechanical Electricity Meter"@en ;
+      rdfs:subClassOf seas:ElectricityMeter ;
+      vs:term_status "testing"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .
+
+    seas:ElectronicElectricityMeter  a owl:Class ;
+      rdfs:comment """Electronic meters display the energy used on an LCD or LED display, and some can also transmit  readings to remote places. In addition to measuring energy used, electronic meters can also record  other parameters of the load and supply such as instantaneous and maximum rate of usage demands,  voltages, power factor and reactive power used etc. They can also support time-of-day billing,  for example, recording the amount of energy used during on-peak and off-peak hours.  (Source: Wikipedia)"""@en;
+      rdfs:label "Electronic Electricity Meter"@en ;
+      rdfs:subClassOf seas:ElectricityMeter ;
+      vs:term_status "testing"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .
 
 
+
+seas:MeteringExecution a owl:Class ;
+  rdfs:label "Metering Execution"@en ;
+  rdfs:comment """A Metering Execution is the execution of the measuring process which is executed by a meter device."""@en ;
+  rdfs:subClassOf pep:ProcessExecutor ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Meter ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Metering ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:observesProperty ; owl:someValuesFrom seas:Property ] ;
+  owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Metering ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology .
+
+  seas:WaterVolumeMeteringExecution a owl:Class ;
+    rdfs:label "Water Volume Metering Execution"@en ;
+    rdfs:comment """A Water Volume Metering Execution is the execution of some Water Volume Metering implemented by some Water Meter."""@en ;
+    rdfs:subClassOf seas:MeteringExecution ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:WaterMeter ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:WaterVolumeMetering ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:WaterVolumeMetering ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+  seas:GasVolumeMeteringExecution a owl:Class ;
+    rdfs:label "Gas Volume Metering Execution"@en ;
+    rdfs:comment """The Measure of the volume of the gas which flow in the meter. Generally for consumption metering but could be for production."""@en ;
+    rdfs:subClassOf seas:MeteringExecution ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:GasMeter ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:GasVolumeMetering ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:GasVolumeProperty ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:GasVolumeMetering ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+  seas:ElectricityMeteringExecution a owl:Class ;
+    rdfs:label "Electricity Metering Execution"@en ;
+    rdfs:comment """An Electricity Metering Execution is the execution of some Electricity Metering process by some electricity meter."""@en ;
+    rdfs:subClassOf seas:MeteringExecution ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:ElectricityMeter ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ElectricityMetering ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:ElectricEnergyProperty ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ElectricityMetering ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+  seas:ConsumptionMeteringExecution a owl:Class ;
+    rdfs:label "Consumption Metering Execution"@en ;
+    rdfs:comment """A Consumption Metering Execution is the execution of some Consumption metering implemented by some meter."""@en ;
+    rdfs:subClassOf seas:MeteringExecution ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Meter ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ConsumptionMetering ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:ConsumptionProperty ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ConsumptionMetering ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+  seas:ProductionMeteringExecution a owl:Class ;
+    rdfs:label "Production Metering Execution"@en ;
+    rdfs:comment """A Production Metering Execution is the execution of some Production Metering implemented by some meter."""@en ;
+    rdfs:subClassOf seas:MeteringExecution ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Meter ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ProductionMetering ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:ProductionProperty ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ProductionMetering ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
+
+
+seas:SmartMeter a owl:Class;
+  rdfs:label "Smart Meter"@en ;
+  rdfs:comment """A smart meter is a Meter that implements a metering and records a specific property at regular frequency, and also a CommunicationDevice that communicates this data regularly back to the utility for monitoring and billing."""@en ;
+  owl:equivalentClass [ owl:intersectionOf ( seas:Meter seas:CommunicationDevice ) ] ;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+
+seas:VolumeProperty a owl:Class;
+  rdfs:label "Volume Property"@en;
+  rdfs:comment """The Volume is a property which is inherent to a physical entity. That measure the quantity in three dimensional space."""@en;
+  rdfs:subClassOf seas:Property;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+      
+  seas:VolumeEvaluation a owl:Class ;
+    rdfs:label "Volume Evaluation"@en;
+    rdfs:comment "The class of evaluations for volume properties."@en ;
+    rdfs:subClassOf seas:Evaluation;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:VolumeProperty ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:VolumeProperty ] ;
+    vs:term_status "unstable" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology.
+
+  seas:WaterVolumeProperty a owl:Class;
+    rdfs:label "Water Volume Property"@en;
+    rdfs:comment "The Water Volume is a property inherent in water. Could be computed in litre or in meter cube. "@en;
+    rdfs:subClassOf seas:VolumeProperty;
+    vs:term_status "unstable" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology.
+
+    seas:WaterVolumeEvaluation a owl:Class ;
+      rdfs:label "Water Volume Evaluation"@en;
+      rdfs:comment "The class of evaluations for water volume properties."@en ;
+      rdfs:subClassOf seas:VolumeEvaluation;
+      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
+      owl:equivalentClass [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
+      vs:term_status "unstable" ;
+      rdfs:isDefinedBy seas:SmartMeterOntology.
+
+  seas:GasVolumeProperty a owl:Class;
+    rdfs:label "Gas Volume Property"@en;
+    rdfs:comment "The Gas Volume is a property inherent in Gas. Could be computed in litre or in meter cube. "@en;
+    rdfs:subClassOf seas:VolumeProperty;
+    vs:term_status "unstable" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology.
+
+    seas:GasVolumeEvaluation a owl:Class ;
+      rdfs:label "Gas Volume Evaluation"@en;
+      rdfs:comment "The class of evaluations for Gas volume properties."@en ;
+      rdfs:subClassOf seas:VolumeEvaluation;
+      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:GasVolumeProperty ] ;
+      owl:equivalentClass [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:GasVolumeProperty ] ;
+      vs:term_status "unstable" ;
+      rdfs:isDefinedBy seas:SmartMeterOntology.
+
+
+
+seas:FrequencyProperty a owl:Class; 
+ rdfs:subClassOf seas:Property;
+ rdfs:label "Frequency Property"@en;
+ rdfs:comment "Frequency is the number of occurrences of a repeating event per unit time."@en;
+ vs:term_status "unstable" ;
+ rdfs:isDefinedBy seas:SmartMeterOntology.
+
+  seas:FrequencyEvaluation a owl:Class ;
+    rdfs:label "Frequency Evaluation"@en;
+    rdfs:comment "The class of evaluations for frequency properties."@en ;
+    rdfs:subClassOf seas:Evaluation;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FrequencyProperty ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FrequencyProperty ] ;
+    vs:term_status "unstable" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology.
+
+  seas:trameSendingFrequency a owl:ObjectProperty , owl:FunctionalProperty;
+    rdfs:subPropertyOf seas:frequency;
+    rdfs:label "trame Sending Frequency"@en;
+    rdfs:domain seas:SmartMeter ;
+    rdfs:range seas:FrequencyProperty;
+    rdfs:comment "A trame sending frequency relationship connects an entity to the frequency between two successive sending of trames by the entity"@en;
+    vs:term_status "unstable" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology . 
+
+  seas:evaluationFrequency a owl:ObjectProperty, owl:FunctionalProperty;
+    rdfs:subPropertyOf seas:frequency;
+    rdfs:label "evaluation frequency"@en;
+    rdfs:comment "An evaluation frequency relationship connects an entity to the frequency between two successive evaluations given by the entity"@en;
+    rdfs:domain seas:Meter ;
+    rdfs:range seas:FrequencyProperty;
+    vs:term_status "unstable"   ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
+
+  seas:measuringFrequency a owl:ObjectProperty , owl:FunctionalProperty;
+    rdfs:subPropertyOf seas:frequency;
+    rdfs:label "measuring frequency"@en;
+    rdfs:comment "A measuring frequency relationship connects an entity to the frequency between two successives measuring made by the entity"@en;
+    rdfs:domain seas:FeatureOfInterest;
+    rdfs:range seas:FrequencyProperty;
+    vs:term_status "unstable"   ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
+
+
+seas:ConsumptionProperty a owl:Class;
+  rdfs:subClassOf seas:Property;
+  rdfs:label "Consumption Property"@en;
+  rdfs:comment "The consumption property is a property to measure any consumption."@en;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+  seas:consumption a owl:ObjectProperty , owl:FunctionalProperty;
+    rdfs:subPropertyOf seas:hasProperty;
+    rdfs:label "consumption"@en;
+    rdfs:comment "A production relationship connects an entity to its consumption property. "@en;
+    rdfs:domain seas:FeatureOfInterest;
+    rdfs:range seas:ConsumptionProperty;
+    vs:term_status "unstable"   ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+  seas:ConsumptionEvaluation a owl:Class ;
+    rdfs:label "Consumption Evaluation"@en ;
+    rdfs:comment "The class of evaluations for consumption properties."@en ;
+    rdfs:subClassOf seas:Evaluation;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ConsumptionProperty ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ConsumptionProperty ] ;
+    vs:term_status "unstable" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology.
+
+seas:ProductionProperty a owl:Class;
+  rdfs:subClassOf seas:Property;
+  rdfs:label "Production Property"@en;
+  rdfs:comment "The production property is a property to measure any production."@en;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+  seas:production a owl:ObjectProperty , owl:FunctionalProperty;
+    rdfs:subPropertyOf seas:hasProperty;
+    rdfs:label "production"@en;
+    rdfs:comment "A production relationship connects an entity to its production property. "@en;
+    rdfs:domain seas:FeatureOfInterest;
+    rdfs:range seas:ProductionProperty;
+    vs:term_status "unstable"   ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
+
+  seas:ProductionEvaluation a owl:Class ;
+    rdfs:label "Production Evaluation"@en ;
+    rdfs:comment "The class of evaluations for production properties."@en ;
+    rdfs:subClassOf seas:Evaluation;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ProductionProperty ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ProductionProperty ] ;
+    vs:term_status "unstable" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology.
+
+
+seas:MeterIndexProperty a owl:Class;
+  rdfs:label "Meter Index Property"@en;
+  rdfs:comment "The Meter index property is a property which is inherent in the Index of the Meter."@en;
+  rdfs:subClassOf seas:Property;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+  seas:meterIndex a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "meter index"@en;
+    rdfs:comment "A trame sending frequency relationship connects an entity to the frequency between two successive sending of trames by the entity"@en;
+    rdfs:subPropertyOf seas:hasProperty;
+    rdfs:domain seas:Meter;
+    rdfs:range seas:MeterIndexProperty;
+    vs:term_status "unstable" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
+
+  seas:MeterIndexEvaluation a owl:Class ;
+    rdfs:label "Meter Index  Evaluation"@en ;
+    rdfs:comment "The class of evaluations for meter index  properties."@en ;
+    rdfs:subClassOf seas:Evaluation;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MeterIndexProperty ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:MeterIndexProperty ] ;
+    vs:term_status "unstable" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology.
+
+    seas:InstallingDateMeterIndexEvaluation a owl:Class ;
+      rdfs:label "Installing Date Meter Index  Evaluation"@en ;
+      rdfs:comment "The class of evaluations for meter index  properties at installing date."@en ;
+      rdfs:subClassOf seas:MeterIndexEvaluation;
+      vs:term_status "unstable" ;
+      rdfs:isDefinedBy seas:SmartMeterOntology.

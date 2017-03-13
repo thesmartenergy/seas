@@ -16,7 +16,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .  
+@prefix dcterms: <http://purl.org/dc/terms/> .  
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -33,12 +33,12 @@
 @base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
 cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
@@ -49,14 +49,14 @@ foaf:name a owl:DatatypeProperty .
 
 
 seas:FeatureOfInterestOntology a owl:Ontology , voaf:Vocabulary ;
-  dc:title "The SEAS Feature of Interest ontology."@en ;
-  dc:description """This ontology defines feature of interest and their properties, as an extension of the core classes of the SSN ontology (https://www.w3.org/ns/ssn/).
+  dcterms:title "The SEAS Feature of Interest ontology."@en ;
+  dcterms:description """This ontology defines feature of interest and their properties, as an extension of the core classes of the SSN ontology (https://www.w3.org/ns/ssn/).
 
 A feature of interest is an abstraction of a real world phenomena (thing, person, event, etc). A feature of interest is then defined in terms of its properties, which are qualifiable, quantifiable, observable or operable qualities of the feature of interest. 
 
 Figure below provides an overview of the concepts in this ontology:
 
-[![Overview of the System ontology](https://w3id.org/seas/feature_of_interest.png)](https://w3id.org/seas/feature_of_interest.png)
+[![Overview of the System ontology](https://w3id.org/seas/featureofinterest.png)](https://w3id.org/seas/featureofinterest.png)
 
 For example the following RDF Graph describes a fridge, with its property `<fridge/1/consumption>`:
 
@@ -101,7 +101,7 @@ One may also define the class of electric power systems as the class of feature 
 ex:ElectricPowerSystem a owl:Class ;
   rdfs:subClassOf [
     owl:onProperty ex:consumption ;
-    owl:someValuesFrom seas:Property ] .
+    owl:someValuesFrom seas:EnergyProperty ] .
 ```
 
 Alignments to other ontologies are proposed in external documents: 
@@ -114,9 +114,9 @@ Sub types of `seas:Property` constrain the type of the value of the property. Th
 
 There may be many other sub properties of `seas:hasProperty` define the semantics of the link between a feature of interest and its property. This ontology defines only one such subproperty of hasProperty: `seas:location`. Other ontologies may define many more. 
 """@en ;
-  dc:issued "2016-07-01"^^xsd:date ;
-  dc:modified "2016-09-21"^^xsd:date ;
-  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:issued "2016-07-01"^^xsd:date ;
+  dcterms:modified "2016-09-21"^^xsd:date ;
+  dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  

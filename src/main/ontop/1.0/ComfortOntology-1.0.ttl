@@ -16,7 +16,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -31,12 +31,12 @@
 @base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
 cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
@@ -47,16 +47,16 @@ foaf:name a owl:DatatypeProperty .
 
 
 seas:ComfortOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "The Comfort Ontology"@en ;
-  dc:description """The SEAS Comfort ontology describes evaluations that are relative to the comfort of some agent (`foaf:Agent`).
+  dcterms:title "The Comfort Ontology"@en ;
+  dcterms:description """The SEAS Comfort ontology describes evaluations that are relative to the comfort of some agent (`foaf:Agent`).
 
-Given a property and an agent, one may characterize that some evaluation of the property is relative ot an agent, and that it is comfortable, uncomfortable, or critically uncomfortable for the agent.
+Given a property and an agent, one may characterize that some evaluation of the property is relative to an agent, and that it is comfortable, uncomfortable, or critically uncomfortable for the agent.
 
 """@en ;
-  dc:issued "2016-09-22"^^xsd:date ;
-  dc:modified "2016-09-23"^^xsd:date ;
-  dc:creator <http://www.maxime-lefrancois.info/me#> ;
-  dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
+  dcterms:issued "2016-09-22"^^xsd:date ;
+  dcterms:modified "2016-09-23"^^xsd:date ;
+  dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:contributor <http://www.vtt.fi/JarmoKalaoja> ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
@@ -87,22 +87,63 @@ seas:relativeToAgent a owl:ObjectProperty ;
   
 seas:ComfortableEvaluation a owl:Class ;
   rdfs:label "Comfortable Evaluation"@en ;
-  rdfs:comment """A comfortable evaluation is an evaluation of a property that is considered comfortable for the assocated agent."""@en ;
+  rdfs:comment """A comfortable evaluation is an evaluation of a property that is considered comfortable for the associated agent."""@en ;
   rdfs:subClassOf seas:AgentComfortEvaluation ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ComfortOntology.
+
+  seas:MinimumComfortableEvaluation a owl:Class ;
+    rdfs:label "Minimum Comfortable Evaluation"@en ;
+    rdfs:comment """A minimum comfortable evaluation is an evaluation of the minimum value for a property that is considered comfortable for the associated agent."""@en ;
+    rdfs:subClassOf seas:ComfortableEvaluation ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ComfortOntology.
+
+  seas:MaximumComfortableEvaluation a owl:Class ;
+    rdfs:label "Maximum Comfortable Evaluation"@en ;
+    rdfs:comment """A maximum comfortable evaluation is an evaluation of the maximum value for a property that is considered comfortable for the associated agent."""@en ;
+    rdfs:subClassOf seas:ComfortableEvaluation ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ComfortOntology.
 
 seas:UncomfortableEvaluation a owl:Class ;
   rdfs:label "Uncomfortable Evaluation"@en ;
-  rdfs:comment """An uncomfortable evaluation is an evaluation of a property that is considered uncomfortable for the assocated agent."""@en ;
+  rdfs:comment """An uncomfortable evaluation is an evaluation of a property that is considered uncomfortable for the associated agent."""@en ;
   rdfs:subClassOf seas:AgentComfortEvaluation ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ComfortOntology.
+
+  seas:MinimumComfortableEvaluation a owl:Class ;
+    rdfs:label "Minimum Uncomfortable Evaluation"@en ;
+    rdfs:comment """A minimum uncomfortable evaluation is an evaluation of the minimum value for a property that is considered uncomfortable for the associated agent."""@en ;
+    rdfs:subClassOf seas:UncomfortableEvaluation ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ComfortOntology.
+
+  seas:MaximumComfortableEvaluation a owl:Class ;
+    rdfs:label "Maximum Uncomfortable Evaluation"@en ;
+    rdfs:comment """A maximum uncomfortable evaluation is an evaluation of the maximum value for a property that is considered uncomfortable for the associated agent."""@en ;
+    rdfs:subClassOf seas:UncomfortableEvaluation ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ComfortOntology.
 
 seas:CriticallyUncomfortableEvaluation a owl:Class ;
   rdfs:label "Critically Uncomfortable Evaluation"@en ;
-  rdfs:comment """A critically uncomfortable evaluation is an evaluation of a property that is considered critically uncomfortable for the assocated agent. It may be dangerous for the agent."""@en ;
+  rdfs:comment """A critically uncomfortable evaluation is an evaluation of a property that is considered critically uncomfortable for the associated agent. It may be dangerous for the agent."""@en ;
   rdfs:subClassOf seas:AgentComfortEvaluation ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ComfortOntology.
 
+  seas:MinimumCriticallyUncomfortableEvaluation a owl:Class ;
+    rdfs:label "Minimum Critically Uncomfortable Evaluation"@en ;
+    rdfs:comment """A minimum critically uncomfortable evaluation is an evaluation of the minimum value for a property that is considered critically uncomfortable for the associated agent."""@en ;
+    rdfs:subClassOf seas:CriticallyUncomfortableEvaluation ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ComfortOntology.
+
+  seas:MaximumCriticallyUncomfortableEvaluation a owl:Class ;
+    rdfs:label "Maximum Critically Uncomfortable Evaluation"@en ;
+    rdfs:comment """A maximum critically uncomfortable evaluation is an evaluation of the maximum value for a property that is considered critically uncomfortable for the associated agent."""@en ;
+    rdfs:subClassOf seas:CriticallyUncomfortableEvaluation ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ComfortOntology.

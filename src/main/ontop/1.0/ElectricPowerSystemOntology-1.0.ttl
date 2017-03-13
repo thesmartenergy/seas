@@ -16,7 +16,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -33,12 +33,12 @@
 @base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
 cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
@@ -48,15 +48,16 @@ foaf:name a owl:DatatypeProperty .
 
 
 seas:ElectricPowerSystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "The SEAS Electric Power System ontology"@en ;
-  dc:description """The SEAS Electric Power System Vocabulary defines:
+  dcterms:title "The SEAS Electric Power System ontology"@en ;
+  dcterms:description """The SEAS Electric Power System Vocabulary defines:
 
 1. Electric power systems that consume, produce, or store electricity,
 2. electrical connections between electric power systems, where electricity is exchanged, and
 3. electrical connection Points of electric power systems, through which electricity flows in/out the power systems."""@en ;
-  dc:issued "2016-06-06"^^xsd:date ;
-  dc:modified "2016-07-24"^^xsd:date ;
-  dc:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:issued "2016-06-06"^^xsd:date ;
+  dcterms:modified "2016-07-24"^^xsd:date ;
+  dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Gabriel Santos" ] ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
@@ -124,7 +125,7 @@ seas:subElectricPowerSystemOf a owl:ObjectProperty , owl:FunctionalProperty ;
 seas:ElectricalConnection a owl:Class ;
   rdfs:label "Electrical Connection"@en ;
   rdfs:comment """The class of electrical connections between electric power systems.
-  an electrical connection describes potential electricity flows between the electric power systems it connects.
+  An electrical connection describes potential electricity flows between the electric power systems it connects.
   For example, the following RDF graph states that a power bus connects two power lines and a transformer:
 
 ```
@@ -165,7 +166,7 @@ seas:ElectricalConnection a owl:Class ;
 seas:ElectricalConnectionPoint a owl:Class ;
   rdfs:label "Electrical Connection Point"@en ;
   rdfs:comment """The class of electrical connection points of electric power systems, at which they may be electricaly connected to other systems.
-  For example, an electric vehicle service equipment may have three electric power connection points: two different kinds of plugs that enable to charge electric vehicles, and a three phase power bus connection point to the grid:
+  For example, an electric vehicle service equipment may have three electric power connection points: two different kinds of plugs that enable to charge electric vehicles, and a three-phase power bus connection point to the grid:
 
 ```
   <electric_vehicle> a seas:ElectricPowerSystem ;
@@ -226,7 +227,7 @@ seas:ElectricPowerProducer a owl:Class ;
 
 seas:ElectricPowerStorageSystem a owl:Class ;
   rdfs:label "Electric Power Storage System"@en ;
-  rdfs:comment """an electric power storage system is an electric power system that is capable of storing electricity. Usually a battery, an electric vehicle, or a microgrid"""@en ;
+  rdfs:comment """An electric power storage system is an electric power system that is capable of storing electricity. Usually a battery, an electric vehicle, or a microgrid"""@en ;
   rdfs:subClassOf seas:ElectricPowerSystem ;  
   rdfs:subClassOf [ owl:onProperty seas:storageElectricPower ; owl:someValuesFrom seas:Property ] ;
   vs:term_status "testing" ;
@@ -329,8 +330,8 @@ seas:DirectCurrentConnection a owl:Class ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
   seas:TwoWireDirectCurrentPowerBus a owl:Class ;
-    rdfs:label "Two Wire Direct Current Power Bus"@en ;
-    rdfs:comment """A two wire direct current power bus is a connection composed of two wires (potentialy plus the protective earth): 
+    rdfs:label "Two-Wire Direct Current Power Bus"@en ;
+    rdfs:comment """A two-wire direct current power bus is a connection composed of two wires (potentialy plus the protective earth): 
      wire for the positive;
      wire for the negative."""@en ;
     rdfs:subClassOf seas:DirectCurrentConnection ;  
@@ -338,8 +339,8 @@ seas:DirectCurrentConnection a owl:Class ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
   seas:ThreeWireDirectCurrentPowerBus a owl:Class ;
-    rdfs:label "Three Wire Direct Current Power Bus"@en ;
-    rdfs:comment """A three wire direct current power bus is a connection composed of three wires (potentialy plus the protective earth): 
+    rdfs:label "Three-Wire Direct Current Power Bus"@en ;
+    rdfs:comment """A three-wire direct current power bus is a connection composed of three wires (potentialy plus the protective earth): 
      wire for the positive;
      wire for the mid-wire;
      wire for the negative."""@en ;
@@ -357,8 +358,8 @@ seas:AlternatingCurrentConnection a owl:Class ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
   seas:ThreePhasePowerBus a owl:Class ;
-    rdfs:label "Three Phase Power Bus"@en ;
-    rdfs:comment """A three phase power bus is a connection composed of four wires (plus the protective earth): 
+    rdfs:label "Three-Phase Power Bus"@en ;
+    rdfs:comment """A three-phase power bus is a connection composed of four wires (plus the protective earth): 
      wires R, S, T, for the phases;
      wire N for the neutral."""@en ;
     rdfs:subClassOf seas:AlternatingCurrentConnection ;  
@@ -367,7 +368,7 @@ seas:AlternatingCurrentConnection a owl:Class ;
 
     seas:connectsSystemInStar a owl:ObjectProperty ;
       rdfs:label "connects system in star"@en ;
-      rdfs:comment "Links a three phase power bus to one of the electric power systems it connects with a star configuration."@en ;
+      rdfs:comment "Links a three-phase power bus to one of the electric power systems it connects with a star configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystem ;
       rdfs:domain seas:ThreePhasePowerBus ;
       rdfs:range seas:ElectricPowerSystem ;
@@ -377,7 +378,7 @@ seas:AlternatingCurrentConnection a owl:Class ;
 
     seas:connectedInStarThrough a owl:ObjectProperty ;
       rdfs:label "connected in star through"@en ;
-      rdfs:comment "Links an electric power system to a three phase power bus connection with which it is connected with a star configuration."@en ;
+      rdfs:comment "Links an electric power system to a three-phase power bus connection with which it is connected with a star configuration."@en ;
       rdfs:subPropertyOf seas:connectedThrough ;
       rdfs:domain seas:ElectricPowerSystem ;
       rdfs:range seas:ThreePhasePowerBus ;
@@ -387,7 +388,7 @@ seas:AlternatingCurrentConnection a owl:Class ;
 
     seas:connectsSystemInTriangle a owl:ObjectProperty ;
       rdfs:label "connects system in triangle"@en ;
-      rdfs:comment "Links a three phase power bus to one of the electric power systems it connects with a triangle configuration."@en ;
+      rdfs:comment "Links a three-phase power bus to one of the electric power systems it connects with a triangle configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystem ;
       rdfs:domain seas:ThreePhasePowerBus ;
       rdfs:range seas:ElectricPowerSystem ;
@@ -397,7 +398,7 @@ seas:AlternatingCurrentConnection a owl:Class ;
 
     seas:connectedInTriangleThrough a owl:ObjectProperty ;
       rdfs:label "connected in triangle through"@en ;
-      rdfs:comment "Links an electric power system to a three phase power bus connection with which it is connected with a triangle configuration."@en ;
+      rdfs:comment "Links an electric power system to a three-phase power bus connection with which it is connected with a triangle configuration."@en ;
       rdfs:subPropertyOf seas:connectedThrough ;
       rdfs:domain seas:ElectricPowerSystem ;
       rdfs:range seas:ThreePhasePowerBus ;
@@ -418,7 +419,7 @@ seas:AlternatingCurrentConnection a owl:Class ;
 
     seas:connectsSystemInRN a owl:ObjectProperty ;
       rdfs:label "connects system in RN"@en ;
-      rdfs:comment "Links a three phase power bus to one of the electric power systems it connects with a RN configuration."@en ;
+      rdfs:comment "Links a three-phase power bus to one of the electric power systems it connects with a RN configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystem ;
       rdfs:domain seas:ThreePhasePowerBus ;
       rdfs:range seas:ElectricPowerSystem ;
@@ -428,7 +429,7 @@ seas:AlternatingCurrentConnection a owl:Class ;
 
     seas:connectedInRNThrough a owl:ObjectProperty ;
       rdfs:label "connected in RN through"@en ;
-      rdfs:comment "Links an electric power system to a three phase power bus connection with which it is connected with a RN configuration."@en ;
+      rdfs:comment "Links an electric power system to a three-phase power bus connection with which it is connected with a RN configuration."@en ;
       rdfs:subPropertyOf seas:connectedThrough ;
       rdfs:domain seas:ElectricPowerSystem ;
       rdfs:range seas:ThreePhasePowerBus ;
@@ -438,7 +439,7 @@ seas:AlternatingCurrentConnection a owl:Class ;
 
     seas:connectsSystemInSN a owl:ObjectProperty ;
       rdfs:label "connects system in SN"@en ;
-      rdfs:comment "Links a three phase power bus to one of the electric power systems it connects with a SN configuration."@en ;
+      rdfs:comment "Links a three-phase power bus to one of the electric power systems it connects with a SN configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystem ;
       rdfs:domain seas:ThreePhasePowerBus ;
       rdfs:range seas:ElectricPowerSystem ;
@@ -448,7 +449,7 @@ seas:AlternatingCurrentConnection a owl:Class ;
 
     seas:connectedInSNThrough a owl:ObjectProperty ;
       rdfs:label "connected in SN through"@en ;
-      rdfs:comment "Links an electric power system to a three phase power bus connection with which it is connected with a SN configuration."@en ;
+      rdfs:comment "Links an electric power system to a three-phase power bus connection with which it is connected with a SN configuration."@en ;
       rdfs:subPropertyOf seas:connectedThrough ;
       rdfs:domain seas:ElectricPowerSystem ;
       rdfs:range seas:ThreePhasePowerBus ;
@@ -458,7 +459,7 @@ seas:AlternatingCurrentConnection a owl:Class ;
 
     seas:connectsSystemInTN a owl:ObjectProperty ;
       rdfs:label "connects system in TN"@en ;
-      rdfs:comment "Links a three phase power bus to one of the electric power systems it connects with a TN configuration."@en ;
+      rdfs:comment "Links a three-phase power bus to one of the electric power systems it connects with a TN configuration."@en ;
       rdfs:domain seas:ThreePhasePowerBus ;
       rdfs:range seas:ElectricPowerSystem ;
       owl:inverseOf seas:connectedInTNThrough ;
@@ -467,7 +468,7 @@ seas:AlternatingCurrentConnection a owl:Class ;
 
     seas:connectedInTNThrough a owl:ObjectProperty ;
       rdfs:label "connected in TN through"@en ;
-      rdfs:comment "Links an electric power system to a three phase power bus connection with which it is connected with a TN configuration."@en ;
+      rdfs:comment "Links an electric power system to a three-phase power bus connection with which it is connected with a TN configuration."@en ;
       rdfs:domain seas:ElectricPowerSystem ;
       rdfs:range seas:ThreePhasePowerBus ;
       owl:inverseOf seas:connectsSystemInTN ;
@@ -594,8 +595,8 @@ seas:DirectCurrentConnectionPoint a owl:Class ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
   seas:TwoWireDirectCurrentConnectionPoint a owl:Class ;
-    rdfs:label "Two Wire Direct Current Connection Point"@en ;
-    rdfs:comment """A two wire direct current connection point is a connection point composed of two wires (potentialy plus the protective earth): 
+    rdfs:label "Two-Wire Direct Current Connection Point"@en ;
+    rdfs:comment """A two-wire direct current connection point is a connection point composed of two wires (potentialy plus the protective earth): 
      wire for the positive;
      wire for the negative."""@en ;
     rdfs:subClassOf seas:DirectCurrentConnectionPoint ;  
@@ -603,8 +604,8 @@ seas:DirectCurrentConnectionPoint a owl:Class ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
   seas:ThreeWireDirectCurrentConnectionPoint a owl:Class ;
-    rdfs:label "Three Wire Direct Current Connection Point"@en ;
-    rdfs:comment """A three wire direct current power connection point is a connection point composed of three wires (potentialy plus the protective earth): 
+    rdfs:label "Three-Wire Direct Current Connection Point"@en ;
+    rdfs:comment """A three-wire direct current power connection point is a connection point composed of three wires (potentialy plus the protective earth): 
 
 - wire for the positive;
 - wire for the mid-wire;
@@ -624,8 +625,8 @@ seas:AlternatingCurrentConnectionPoint a owl:Class ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
   seas:ThreePhaseConnectionPoint a owl:Class ;
-    rdfs:label "Three Phase Connection Point"@en ;
-    rdfs:comment """A three phase connection point is a connection point composed of four wires (plus the protective earth): 
+    rdfs:label "Three-Phase Connection Point"@en ;
+    rdfs:comment """A three-phase connection point is a connection point composed of four wires (plus the protective earth): 
 
 - wires R, S, T, for the phases;
 - wire N for the neutral.
@@ -636,7 +637,7 @@ seas:AlternatingCurrentConnectionPoint a owl:Class ;
 
     seas:connectsSystemInStarAt a owl:ObjectProperty ;
       rdfs:label "connects system in star at"@en ;
-      rdfs:comment "Links a three phase power bus to one of the three phase connection points it connects with a star configuration."@en ;
+      rdfs:comment "Links a three-phase power bus to one of the three-phase connection points it connects with a star configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystemAt ;
       rdfs:domain seas:ThreePhasePowerBus ;
       rdfs:range seas:ThreePhaseConnectionPoint ;
@@ -646,7 +647,7 @@ seas:AlternatingCurrentConnectionPoint a owl:Class ;
 
     seas:connectsSystemInStarThrough a owl:ObjectProperty ;
       rdfs:label "connects system in star through"@en ;
-      rdfs:comment "Links a three phase connection point to a three phase power bus connection with which it is connected with a star configuration."@en ;
+      rdfs:comment "Links a three-phase connection point to a three-phase power bus connection with which it is connected with a star configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystemThrough ;
       rdfs:domain seas:ThreePhaseConnectionPoint ;
       rdfs:range seas:ThreePhasePowerBus ;
@@ -656,7 +657,7 @@ seas:AlternatingCurrentConnectionPoint a owl:Class ;
 
     seas:connectsSystemInTriangleAt a owl:ObjectProperty ;
       rdfs:label "connects system in triangle at"@en ;
-      rdfs:comment "Links a three phase power bus to one of the three phase connection points it connects with a triangle configuration."@en ;
+      rdfs:comment "Links a three-phase power bus to one of the three-phase connection points it connects with a triangle configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystemAt ;
       rdfs:domain seas:ThreePhasePowerBus ;
       rdfs:range seas:ThreePhaseConnectionPoint ;
@@ -666,7 +667,7 @@ seas:AlternatingCurrentConnectionPoint a owl:Class ;
 
     seas:connectsSystemInTriangleThrough a owl:ObjectProperty ;
       rdfs:label "connects system in triangle through"@en ;
-      rdfs:comment "Links a three phase connection point to a three phase power bus connection with which it is connected with a triangle configuration."@en ;
+      rdfs:comment "Links a three-phase connection point to a three-phase power bus connection with which it is connected with a triangle configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystemThrough ;
       rdfs:domain seas:ThreePhaseConnectionPoint ;
       rdfs:range seas:ThreePhasePowerBus ;
@@ -688,7 +689,7 @@ seas:AlternatingCurrentConnectionPoint a owl:Class ;
 
     seas:connectsSystemInRNAt a owl:ObjectProperty ;
       rdfs:label "connects system in RN at"@en ;
-      rdfs:comment "Links a three phase power bus to one of the single phase connection points it connects with a RN configuration."@en ;
+      rdfs:comment "Links a three-phase power bus to one of the single phase connection points it connects with a RN configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystemAt ;
       rdfs:domain seas:ThreePhasePowerBus ;
       rdfs:range seas:SinglePhaseConnectionPoint ;
@@ -698,7 +699,7 @@ seas:AlternatingCurrentConnectionPoint a owl:Class ;
 
     seas:connectsSystemInRNThrough a owl:ObjectProperty ;
       rdfs:label "connects system in RN through"@en ;
-      rdfs:comment "Links a single phase connection point to a three phase power bus connection with which it is connected with a RN configuration."@en ;
+      rdfs:comment "Links a single phase connection point to a three-phase power bus connection with which it is connected with a RN configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystemThrough ;
       rdfs:domain seas:SinglePhaseConnectionPoint ;
       rdfs:range seas:ThreePhasePowerBus ;
@@ -708,7 +709,7 @@ seas:AlternatingCurrentConnectionPoint a owl:Class ;
 
     seas:connectsSystemInSNAt a owl:ObjectProperty ;
       rdfs:label "connects system in SN at"@en ;
-      rdfs:comment "Links a three phase power bus to one of the single phase connection points it connects with a SN configuration."@en ;
+      rdfs:comment "Links a three-phase power bus to one of the single phase connection points it connects with a SN configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystemAt ;
       rdfs:domain seas:ThreePhasePowerBus ;
       rdfs:range seas:SinglePhaseConnectionPoint ;
@@ -718,7 +719,7 @@ seas:AlternatingCurrentConnectionPoint a owl:Class ;
 
     seas:connectsSystemInSNThrough a owl:ObjectProperty ;
       rdfs:label "connects system in SN through"@en ;
-      rdfs:comment "Links a single phase connection point to a three phase power bus connection with which it is connected with a SN configuration."@en ;
+      rdfs:comment "Links a single phase connection point to a three-phase power bus connection with which it is connected with a SN configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystemThrough ;
       rdfs:domain seas:SinglePhaseConnectionPoint ;
       rdfs:range seas:ThreePhasePowerBus ;
@@ -728,7 +729,7 @@ seas:AlternatingCurrentConnectionPoint a owl:Class ;
 
     seas:connectsSystemInTNAt a owl:ObjectProperty ;
       rdfs:label "connects system in TN at"@en ;
-      rdfs:comment "Links a three phase power bus to one of the single phase connection points it connects with a TN configuration."@en ;
+      rdfs:comment "Links a three-phase power bus to one of the single phase connection points it connects with a TN configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystemAt ;
       rdfs:domain seas:ThreePhasePowerBus ;
       rdfs:range seas:SinglePhaseConnectionPoint ;
@@ -738,7 +739,7 @@ seas:AlternatingCurrentConnectionPoint a owl:Class ;
 
     seas:connectsSystemInTNThrough a owl:ObjectProperty ;
       rdfs:label "connects system in TN through"@en ;
-      rdfs:comment "Links a single phase connection point to a three phase power bus connection with which it is connected with a TN configuration."@en ;
+      rdfs:comment "Links a single phase connection point to a three-phase power bus connection with which it is connected with a TN configuration."@en ;
       rdfs:subPropertyOf seas:connectsSystemThrough ;
       rdfs:domain seas:SinglePhaseConnectionPoint ;
       rdfs:range seas:ThreePhasePowerBus ;
@@ -850,11 +851,11 @@ There may be many current properties of a connection point, so this property is 
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-  ### for three phase connection points 
+  ### for three-phase connection points 
 
   seas:rCurrent a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "R Current"@en ;
-    rdfs:comment """Links a three phase connection point to the current in its R wire. By convention, the value is positive if it enters the system."""@en ;
+    rdfs:comment """Links a three-phase connection point to the current in its R wire. By convention, the value is positive if it enters the system."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:CurrentProperty ;
@@ -863,7 +864,7 @@ There may be many current properties of a connection point, so this property is 
 
   seas:sCurrent a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "S Current"@en ;
-    rdfs:comment """Links a three phase connection point to the current in its S wire. By convention, the value is positive if it enters the system."""@en ;
+    rdfs:comment """Links a three-phase connection point to the current in its S wire. By convention, the value is positive if it enters the system."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:CurrentProperty ;
@@ -872,7 +873,7 @@ There may be many current properties of a connection point, so this property is 
 
   seas:tCurrent a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T Current"@en ;
-    rdfs:comment """Links a three phase connection point to the current in its T wire. By convention, the value is positive if it enters the system."""@en ;
+    rdfs:comment """Links a three-phase connection point to the current in its T wire. By convention, the value is positive if it enters the system."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:CurrentProperty ;
@@ -881,7 +882,7 @@ There may be many current properties of a connection point, so this property is 
 
   seas:nCurrent a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "N Current"@en ;
-    rdfs:comment """Links a three phase connection point to the current in its N wire. By convention, the value is positive if it enters the system."""@en ;
+    rdfs:comment """Links a three-phase connection point to the current in its N wire. By convention, the value is positive if it enters the system."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:CurrentProperty ;
@@ -938,8 +939,7 @@ There may be many voltage properties of an electrical connection or an electrica
 
 seas:voltageAngle a owl:ObjectProperty ;
   rdfs:label "voltage angle" ;
-  rdfs:comment """Link the voltage property to the angle.
-  """@en ;
+  rdfs:comment """Link the voltage property to the angle."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:VoltageProperty  ;
   rdfs:range seas:AngleProperty ; 
@@ -986,11 +986,11 @@ seas:voltageAngle a owl:ObjectProperty ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-  ### for three phase power busses and three phase connection points 
+  ### for three-phase power busses and three-phase connection points 
 
   seas:RSVoltage a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "R-to-S voltage"@en ;
-    rdfs:comment """Links a three phase power bus or a three phase connection point to the voltage between its R and its S wires."""@en ;
+    rdfs:comment """Links a three-phase power bus or a three-phase connection point to the voltage between its R and its S wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain [ owl:unionOf ( seas:ThreePhasePowerBus seas:ThreePhaseConnectionPoint ) ] ;
     rdfs:range seas:VoltageProperty ;
@@ -999,7 +999,7 @@ seas:voltageAngle a owl:ObjectProperty ;
 
   seas:STVoltage a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "S-to-T voltage"@en ;
-    rdfs:comment """Links a three phase power bus or a three phase connection point to the voltage between its S and its T wires."""@en ;
+    rdfs:comment """Links a three-phase power bus or a three-phase connection point to the voltage between its S and its T wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain [ owl:unionOf ( seas:ThreePhasePowerBus seas:ThreePhaseConnectionPoint ) ] ;
     rdfs:range seas:VoltageProperty ;
@@ -1008,7 +1008,7 @@ seas:voltageAngle a owl:ObjectProperty ;
 
   seas:TRVoltage a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T-to-R voltage"@en ;
-    rdfs:comment """Links a three phase power bus or a three phase connection point to the voltage between its T and its R wires."""@en ;
+    rdfs:comment """Links a three-phase power bus or a three-phase connection point to the voltage between its T and its R wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain [ owl:unionOf ( seas:ThreePhasePowerBus seas:ThreePhaseConnectionPoint ) ] ;
     rdfs:range seas:VoltageProperty ;
@@ -1017,7 +1017,7 @@ seas:voltageAngle a owl:ObjectProperty ;
 
   seas:RNVoltage a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "R-to-N voltage"@en ;
-    rdfs:comment """Links a three phase power bus or a three phase connection point to the voltage between its R and its N wires."""@en ;
+    rdfs:comment """Links a three-phase power bus or a three-phase connection point to the voltage between its R and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain [ owl:unionOf ( seas:ThreePhasePowerBus seas:ThreePhaseConnectionPoint ) ] ;
     rdfs:range seas:VoltageProperty ;
@@ -1026,7 +1026,7 @@ seas:voltageAngle a owl:ObjectProperty ;
 
   seas:SNVoltage a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "S-to-N voltage"@en ;
-    rdfs:comment """Links a three phase power bus or a three phase connection point to the voltage between its S and its N wires."""@en ;
+    rdfs:comment """Links a three-phase power bus or a three-phase connection point to the voltage between its S and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain [ owl:unionOf ( seas:ThreePhasePowerBus seas:ThreePhaseConnectionPoint ) ] ;
     rdfs:range seas:VoltageProperty ;
@@ -1035,7 +1035,7 @@ seas:voltageAngle a owl:ObjectProperty ;
 
   seas:TNVoltage a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T-to-N voltage"@en ;
-    rdfs:comment """Links a three phase power bus or a three phase connection point to the voltage between its T and its N wires."""@en ;
+    rdfs:comment """Links a three-phase power bus or a three-phase connection point to the voltage between its T and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain [ owl:unionOf ( seas:ThreePhasePowerBus seas:ThreePhaseConnectionPoint ) ] ;
     rdfs:range seas:VoltageProperty ;
@@ -1117,31 +1117,12 @@ There may be many power properties for a feature of interest, so this property i
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-seas:chargingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
-    rdfs:label "charging electric power" ;
-    rdfs:comment """Links an electric power system, or an electrical connection point, to the charging electric power.
-                """@en ;
-    rdfs:subPropertyOf seas:incomingElectricPower ;
-    rdfs:domain [ owl:unionOf ( seas:ElectricPowerSystem seas:ElectricalConnectionPoint ) ] ;
-    rdfs:range seas:ElectricPowerProperty ;
-    vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
-
-seas:outgoingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
+  seas:outgoingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "outgoing electric power" ;
     rdfs:comment """Links an electric power system, or an electrical connection point, to the outgoing electric power.
     (a) the sum of the electric power that leaves the system from the exterior, or
     (b) the electric power that leaves the system through this connection point."""@en ;
     rdfs:subPropertyOf seas:hasProperty , seas:electricPower ;
-    rdfs:domain [ owl:unionOf ( seas:ElectricPowerSystem seas:ElectricalConnectionPoint ) ] ;
-    rdfs:range seas:ElectricPowerProperty ;
-    vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
-
-seas:dischargingElectricPower a owl:ObjectProperty , owl:FunctionalProperty ;
-    rdfs:label "discharging electric power" ;
-    rdfs:comment """Links an electric power system, or an electrical connection point, to the discharging electric power."""@en ;
-    rdfs:subPropertyOf seas:outgoingElectricPower;
     rdfs:domain [ owl:unionOf ( seas:ElectricPowerSystem seas:ElectricalConnectionPoint ) ] ;
     rdfs:range seas:ElectricPowerProperty ;
     vs:term_status "testing" ;
@@ -1203,7 +1184,7 @@ An alternating current power property cannot be directly quantified. One must qu
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology . 
 
   seas:importedActiveEnergy a owl:ObjectProperty , owl:FunctionalProperty ;
-    rdfs:label "imported active energy"@en ;
+    rdfs:label "imported active znergy"@en ;
     rdfs:comment """Links an alternating current power property to its imported active energy, often in Wh/10."""@en ;
     rdfs:subPropertyOf seas:hasProperty ;
     rdfs:domain seas:AlternatingCurrentPowerProperty ;
@@ -1280,11 +1261,11 @@ There may be many resistance properties of an electrical connection point, so th
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-  ### for three phase power busses and three phase connection points 
+  ### for three-phase power busses and three-phase connection points 
 
   seas:RSResistance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "R-to-S resistance"@en ;
-    rdfs:comment """Links a three phase connection point to the resistance between its R and its S wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the resistance between its R and its S wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricResistanceProperty ;
@@ -1293,7 +1274,7 @@ There may be many resistance properties of an electrical connection point, so th
 
   seas:STResistance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "S-to-T resistance"@en ;
-    rdfs:comment """Links a three phase connection point to the resistance between its S and its T wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the resistance between its S and its T wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricResistanceProperty ;
@@ -1302,7 +1283,7 @@ There may be many resistance properties of an electrical connection point, so th
 
   seas:TRResistance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T-to-R resistance"@en ;
-    rdfs:comment """Links a three phase connection point to the resistance between its T and its R wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the resistance between its T and its R wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricResistanceProperty ;
@@ -1311,7 +1292,7 @@ There may be many resistance properties of an electrical connection point, so th
 
   seas:RNResistance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "R-to-N resistance"@en ;
-    rdfs:comment """Links a three phase connection point to the resistance between its R and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the resistance between its R and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricResistanceProperty ;
@@ -1320,7 +1301,7 @@ There may be many resistance properties of an electrical connection point, so th
 
   seas:SNResistance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T-to-N resistance"@en ;
-    rdfs:comment """Links a three phase connection point to the resistance between its S and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the resistance between its S and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricResistanceProperty ;
@@ -1329,7 +1310,7 @@ There may be many resistance properties of an electrical connection point, so th
 
   seas:TNResistance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T-to-N resistance"@en ;
-    rdfs:comment """Links a three phase connection point to the resistance between its T and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the resistance between its T and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricResistanceProperty ;
@@ -1409,11 +1390,11 @@ There may be many reactance properties of an electrical connection point, so thi
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-  ### for three phase power busses and three phase connection points 
+  ### for three-phase power busses and three-phase connection points 
 
   seas:RSReactance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "R-to-S reactance"@en ;
-    rdfs:comment """Links a three phase connection point to the reactance between its R and its S wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the reactance between its R and its S wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricReactanceProperty ;
@@ -1422,7 +1403,7 @@ There may be many reactance properties of an electrical connection point, so thi
 
   seas:STReactance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "S-to-T reactance"@en ;
-    rdfs:comment """Links a three phase connection point to the reactance between its S and its T wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the reactance between its S and its T wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricReactanceProperty ;
@@ -1431,7 +1412,7 @@ There may be many reactance properties of an electrical connection point, so thi
 
   seas:TRReactance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T-to-R reactance"@en ;
-    rdfs:comment """Links a three phase connection point to the reactance between its T and its R wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the reactance between its T and its R wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricReactanceProperty ;
@@ -1440,7 +1421,7 @@ There may be many reactance properties of an electrical connection point, so thi
 
   seas:RNReactance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "R-to-N reactance"@en ;
-    rdfs:comment """Links a three phase connection point to the reactance between its R and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the reactance between its R and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricReactanceProperty ;
@@ -1449,7 +1430,7 @@ There may be many reactance properties of an electrical connection point, so thi
 
   seas:SNReactance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "S-to-N reactance"@en ;
-    rdfs:comment """Links a three phase connection point to the reactance between its S and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the reactance between its S and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricReactanceProperty ;
@@ -1458,7 +1439,7 @@ There may be many reactance properties of an electrical connection point, so thi
 
   seas:TNReactance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T-to-N reactance"@en ;
-    rdfs:comment """Links a three phase connection point to the reactance between its T and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the reactance between its T and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricReactanceProperty ;
@@ -1540,11 +1521,11 @@ There may be many conductance properties of an electrical connection point, so t
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-  ### for three phase power busses and three phase connection points 
+  ### for three-phase power busses and three-phase connection points 
 
   seas:RSConductance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "R-to-S conductance"@en ;
-    rdfs:comment """Links a three phase connection point to the conductance between its R and its S wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the conductance between its R and its S wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricConductanceProperty ;
@@ -1553,7 +1534,7 @@ There may be many conductance properties of an electrical connection point, so t
 
   seas:STConductance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "S-to-T conductance"@en ;
-    rdfs:comment """Links a three phase connection point to the conductance between its S and its T wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the conductance between its S and its T wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricConductanceProperty ;
@@ -1562,7 +1543,7 @@ There may be many conductance properties of an electrical connection point, so t
 
   seas:TRConductance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T-to-R conductance"@en ;
-    rdfs:comment """Links a three phase connection point to the conductance between its T and its R wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the conductance between its T and its R wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricConductanceProperty ;
@@ -1571,7 +1552,7 @@ There may be many conductance properties of an electrical connection point, so t
 
   seas:RNConductance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "R-to-N conductance"@en ;
-    rdfs:comment """Links a three phase connection point to the conductance between its R and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the conductance between its R and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricConductanceProperty ;
@@ -1580,7 +1561,7 @@ There may be many conductance properties of an electrical connection point, so t
 
   seas:SNConductance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "S-to-N conductance"@en ;
-    rdfs:comment """Links a three phase connection point to the conductance between its S and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the conductance between its S and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricConductanceProperty ;
@@ -1589,7 +1570,7 @@ There may be many conductance properties of an electrical connection point, so t
 
   seas:TNConductance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T-to-N conductance"@en ;
-    rdfs:comment """Links a three phase connection point to the conductance between its T and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the conductance between its T and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricConductanceProperty ;
@@ -1668,11 +1649,11 @@ There may be many susceptance properties of an electrical connection point, so t
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-  ### for three phase power busses and three phase connection points 
+  ### for three-phase power busses and three-phase connection points 
 
   seas:RSSusceptance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "R-to-S susceptance"@en ;
-    rdfs:comment """Links a three phase connection point to the susceptance between its R and its S wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the susceptance between its R and its S wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricSusceptanceProperty ;
@@ -1681,7 +1662,7 @@ There may be many susceptance properties of an electrical connection point, so t
 
   seas:STSusceptance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "S-to-T susceptance"@en ;
-    rdfs:comment """Links a three phase connection point to the susceptance between its S and its T wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the susceptance between its S and its T wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricSusceptanceProperty ;
@@ -1690,7 +1671,7 @@ There may be many susceptance properties of an electrical connection point, so t
 
   seas:TRSusceptance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T-to-R susceptance"@en ;
-    rdfs:comment """Links a three phase connection point to the susceptance between its T and its R wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the susceptance between its T and its R wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricSusceptanceProperty ;
@@ -1699,7 +1680,7 @@ There may be many susceptance properties of an electrical connection point, so t
 
   seas:RNSusceptance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "R-to-N susceptance"@en ;
-    rdfs:comment """Links a three phase connection point to the susceptance between its R and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the susceptance between its R and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricSusceptanceProperty ;
@@ -1708,7 +1689,7 @@ There may be many susceptance properties of an electrical connection point, so t
 
   seas:SNSusceptance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "S-to-N susceptance"@en ;
-    rdfs:comment """Links a three phase connection point to the susceptance between its S and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the susceptance between its S and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricSusceptanceProperty ;
@@ -1717,7 +1698,7 @@ There may be many susceptance properties of an electrical connection point, so t
 
   seas:TNSusceptance a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "T-to-N susceptance"@en ;
-    rdfs:comment """Links a three phase connection point to the susceptance between its T and its N wires."""@en ;
+    rdfs:comment """Links a three-phase connection point to the susceptance between its T and its N wires."""@en ;
     rdfs:subPropertyOf seas:electricCurrent ;
     rdfs:domain seas:ThreePhaseConnectionPoint ;
     rdfs:range seas:ElectricSusceptanceProperty ;
@@ -1859,15 +1840,6 @@ seas:ExtraHighVoltage a owl:Class ;
 
 # classification of voltage evaluations
 
-seas:VoltageEvaluation a owl:Class ;
-  rdfs:label "Voltage Evaluation"@en ;
-  rdfs:comment """The class of evaluation of voltage properties"""@en ;
-  rdfs:subClassOf seas:Evaluation ; 
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:VoltageProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:VoltageProperty ] ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
-
 seas:ExtraLowVoltageEvaluation a owl:Class ;
   rdfs:label "Extra-Low Voltage Evaluation"@en ;
   rdfs:comment """The voltage is Extra-Low according to IEC 60038."""@en ;
@@ -1903,6 +1875,15 @@ seas:ExtraHighVoltageEvaluation a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
+
+seas:efficiency a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "efficiency"@en ;
+  rdfs:comment """The efficiency of the feature of interest."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:EfficiencyProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemOntology .    
+
 seas:EfficiencyProperty a owl:Class ;
   rdfs:label "Efficiency Property" ;
   rdfs:comment """Efficiency signifies a level of performance that describes a process that uses the lowest amount of inputs to create the greatest 
@@ -1911,14 +1892,14 @@ seas:EfficiencyProperty a owl:Class ;
                 determined by determining the ratio of useful output to total input. It minimizes the waste 
                 of resources such as physical materials, energy and time, while successfully achieving the 
                 desired output."""@en ;
-  rdfs:subClassOf seas:Property ; # to be defined somewhere
+  rdfs:subClassOf seas:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
 seas:ChargingEfficiencyProperty a owl:Class ;
   rdfs:label "Charging Efficiency Property" ;
   rdfs:comment """Charging Efficiency Property is a Efficiency Property which concern the charging process"""@en ;
-  rdfs:subClassOf seas:EfficiencyProperty ; # to be defined somewhere
+  rdfs:subClassOf seas:EfficiencyProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
@@ -1931,8 +1912,7 @@ seas:EfficiencyEvaluation a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-
-  seas:ChargingEfficiencyEvaluation a owl:Class ;
+seas:ChargingEfficiencyEvaluation a owl:Class ;
   rdfs:label "Charging Efficiency Evaluation" ;
   rdfs:comment "The class of evaluations for efficiency properties."@en ;
   rdfs:subClassOf seas:EfficiencyEvaluation ;
@@ -1941,11 +1921,3 @@ seas:EfficiencyEvaluation a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-
- seas:efficiency a owl:ObjectProperty , owl:FunctionalProperty ;
-    rdfs:label "efficiency"@en ;
-    rdfs:comment """The efficiency of the feature of interest."""@en ;
-    rdfs:subPropertyOf seas:hasProperty ;
-    rdfs:range seas:efficiencyProperty ;
-    vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .    

@@ -16,7 +16,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -29,12 +29,12 @@
 @base <https://w3id.org/seas/> .
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
 cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
@@ -44,8 +44,8 @@ foaf:name a owl:DatatypeProperty .
 
 
 seas:TradingOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "The SEAS Trading ontology"@en ;
-  dc:description """The Seas Trading Ontology defines concepts and relations to describe ownership, trading, bilateral contracts and market licenses:
+  dcterms:title "The SEAS Trading ontology"@en ;
+  dcterms:description """The Seas Trading Ontology defines concepts and relations to describe ownership, trading, bilateral contracts and market licenses:
 
 - players own systems and trade commodities, which have a price;
 - bilateral electricity contracts are connections between electricity traders at which they exchange
@@ -56,14 +56,13 @@ using a market license;
 - evaluations can have a traded volume validity context
 
   """@en ;
-  dc:issued "2016-11-15"^^xsd:date ;
-  dc:modified "2016-11-15"^^xsd:date ;
-  dc:creator <http://www.maxime-lefrancois.info/me#> ;
-  dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
-  dc:contributor [a foaf:Person ; foaf:name "Antoine Zimmermann" ] ;
-  dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
-  dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
-  dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
+  dcterms:issued "2016-11-15"^^xsd:date ;
+  dcterms:modified "2016-11-15"^^xsd:date ;
+  dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:contributor <http://www.vtt.fi/JarmoKalaoja> ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Antoine Zimmermann" ] ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Gabriel Santos" ] ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
@@ -112,7 +111,7 @@ seas:isTradedBy a owl:ObjectProperty , owl:FunctionalProperty ;
 
 seas:Commodity a owl:Class ;
   rdfs:label "Commodity"@en ;
-  rdfs:comment """In economics, a commodity is a marketable item produced to satisfy wants or needs. Often the item is fungible. Economic commodities comprise goods and services. (source: Wikipedia)
+  rdfs:comment """In economics, a commodity is a marketable item produced to satisfy wants or needs. Often the item is fungible. Economic commodities comprise goods and services (source: Wikipedia).
 
 For instance, the electric energy outgoing of a certain connection point can be a commodity, and have a price:
 
@@ -139,7 +138,7 @@ For instance, the electric energy outgoing of a certain connection point can be 
 
   seas:Good a owl:Class ;
     rdfs:label "Good"@en ;
-    rdfs:comment """In economics, a good is a material that satisfies human wants and provides utility, for example, to a consumer making a purchase while getting an enough-satisfying product. A common distinction is made between 'goods' that are tangible property, and services, which are non-physical. (source: Wikipedia)"""@en ;
+    rdfs:comment """In economics, a good is a material that satisfies human wants and provides utility, for example, to a consumer making a purchase while getting an enough-satisfying product. A common distinction is made between 'goods' that are tangible property, and services, which are non-physical (source: Wikipedia)."""@en ;
     rdfs:subClassOf seas:Commodity ;
     owl:disjointWith seas:Service ;
     vs:term_status "testing" ;
@@ -147,7 +146,7 @@ For instance, the electric energy outgoing of a certain connection point can be 
 
   seas:Service a owl:Class ;
     rdfs:label "Service"@en ;
-    rdfs:comment """In economics, a service is an economic activity where an immaterial exchange of value occurs. When a service such as labor is performed the buyer does not take exclusive ownership of that which is purchased, unless agreed upon by buyer and seller. The benefits of such a service, if priced, are held to be self-evident in the buyer's willingness to pay for it. (source: Wikipedia).
+    rdfs:comment """In economics, a service is an economic activity where an immaterial exchange of value occurs. When a service such as labor is performed the buyer does not take exclusive ownership of that which is purchased, unless agreed upon by buyer and seller. The benefits of such a service, if priced, are held to be self-evident in the buyer's willingness to pay for it (source: Wikipedia).
     """@en ;
     rdfs:subClassOf seas:Commodity ;
     owl:disjointWith seas:Good ;
@@ -156,7 +155,7 @@ For instance, the electric energy outgoing of a certain connection point can be 
 
     seas:AncillaryService a owl:Class ;
       rdfs:label "Ancillary Service"@en ;
-      rdfs:comment """Ancillary services are the specialty services and functions provided by the electric grid that facilitate and support the continuous flow of electricity so that supply will continually meet demand. (source: Wikipedia)
+      rdfs:comment """Ancillary services are the specialty services and functions provided by the electric grid that facilitate and support the continuous flow of electricity so that supply will continually meet demand (source: Wikipedia).
 
     These include black start capability (the ability to restart a grid following a blackout); frequency response (to maintain system frequency with automatic and very fast responses); fast reserve (which can provide additional energy when needed); the provision of reactive power and various other services. (source: Entso-e)"""@en ;
       rdfs:subClassOf seas:Service ;
@@ -175,7 +174,7 @@ Functional sub properties of `seas:tax` must precise what that _something_ is.""
 
     seas:valueAddedTax a owl:ObjectProperty , owl:FunctionalProperty ;
       rdfs:label "value added tax"@en ;
-      rdfs:comment """A value-added tax (VAT), known in some countries as a goods and services tax (GST), is a type of general consumption tax that is collected incrementally, based on the value added, at each stage of production and is usually implemented as a destination-based tax, where the tax rate is based on the location of the customer. (source: Wikipedia).
+      rdfs:comment """A value-added tax (VAT), known in some countries as a goods and services tax (GST), is a type of general consumption tax that is collected incrementally, based on the value added, at each stage of production and is usually implemented as a destination-based tax, where the tax rate is based on the location of the customer (source: Wikipedia).
 
       The value added tax is quantified as a percentage of the nett price."""@en ;
       rdfs:subPropertyOf seas:tax , seas:hasProperty ;
@@ -220,7 +219,32 @@ seas:tradesElectricityOn a owl:ObjectProperty ;
   rdfs:label "trades electricity on"@en ;
   rdfs:comment """An Electricity Player can trade electricity on an Electricity Market.
 
-These connections are qualified with class `seas:ElectricityMarketLicense`."""@en ;
+For example,
+
+```
+<http://market.com/> a seas:ElectricityMarket .
+
+<http://agregator.com> a seas:ElectricityTrader ;
+  seas:tradesElectricityOn <http://market.com/> .
+
+<http://otheragregator.com> a seas:ElectricityTrader ;
+  seas:tradesElectricityOn <http://market.com/> .
+```
+
+These connections are qualified with class `seas:ElectricityMarketLicense`.
+
+
+For example,
+
+```
+<http://agregator.com> seas:hasElectricityMarketLicense <http://market.com/license12> .
+<http://otheragregator.com> seas:hasElectricityMarketLicense <http://market.com/license32> .
+
+<http://market.com/> seas:connectsSystem <http://agregator.com> , <http://otheragregator.com> .
+<http://market.com/> seas:connectsSystemAt <http://market.com/license12> , <http://market.com/license32> .
+```
+
+"""@en ;
   rdfs:subPropertyOf seas:connectedThrough ;
   rdfs:domain seas:ElectricityTrader ;
   rdfs:range seas:ElectricityMarket ;
@@ -250,7 +274,7 @@ These connections are qualified with class `seas:ElectricityMarketLicense`."""@e
 
 seas:Clearing a owl:Class ;
   rdfs:label "Clearing"@en ;
-  rdfs:comment """A process. In economics, market clearing is the process by which, in an economic market, the supply of whatever is traded is equated to the demand, so that there is no leftover supply or demand. (source: Wikipedia)
+  rdfs:comment """In economics, market clearing is the process by which, in an economic market, the supply of whatever is traded is equated to the demand, so that there is no leftover supply or demand (source: Wikipedia).
   """@en ;
   rdfs:subClassOf pep:Process ;
   vs:term_status "testing" ;
@@ -269,7 +293,7 @@ seas:ClearingExecution a owl:Class ;
 
 seas:Balancing a owl:Class ;
   rdfs:label "Balancing"@en ;
-  rdfs:comment "A process. Balancing refers to the situation after markets have closed (gate closure) in which a Balance responsible party acts to ensure that demand is equal to supply, in and near real time (source: Entso-e)."@en ;
+  rdfs:comment "Balancing refers to the process in which a Balance responsible party acts to ensure that demand is equal to supply after markets have closed, in and near real time (source: Entso-e)."@en ;
   rdfs:subClassOf pep:Process ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:TradingOntology .
@@ -309,6 +333,7 @@ This concept needs polishing ... please ping me if necessary."""@en ;
   rdfs:range seas:ElectricEnergyProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:TradingOntology .
+
 
 seas:LoadShifting a owl:Class ;
   rdfs:label "Load Shifting"@en ;

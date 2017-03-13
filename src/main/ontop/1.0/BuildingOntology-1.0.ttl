@@ -16,7 +16,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -31,12 +31,12 @@
 @base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
 cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
@@ -47,8 +47,8 @@ foaf:name a owl:DatatypeProperty .
 
 
 seas:BuildingOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "The SEAS Building Ontology"@en ;
-  dc:description """The SEAS Building ontology describes a taxonomy of buildings, building spaces, and rooms.
+  dcterms:title "The SEAS Building Ontology"@en ;
+  dcterms:description """The SEAS Building ontology describes a taxonomy of buildings, building spaces, and rooms.
 
 Some categorizations are based on the energy efficiency related to their insulation etc., although the actual values for classes depend the country specific regulations and geographical locations.
 
@@ -66,13 +66,13 @@ This ontology should limit the overlap with the following existing specialized o
 - [ifcOWL ontology](http://www.buildingsmart-tech.org/ifcOWL/IFC4), which is a OWL version of the Building Information Model standard.
 - the potential ontology that might be developed in the context of the [Linked Building Data community group](https://www.w3.org/community/lbd/), or its successor Working Group.
 """@en ;
-  dc:issued "2016-01-26"^^xsd:date ;
-  dc:modified "2016-09-26"^^xsd:date ;
-  dc:creator <http://www.maxime-lefrancois.info/me#> ;
-  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
-  dc:contributor [a foaf:Person ; foaf:name "Gabriel Santos" ] ;
-  dc:contributor [a foaf:Person ; foaf:name "Francisco Silva" ] ;
-  dc:contributor [a foaf:Person ; foaf:name "Brigida Teixeira" ] ;
+  dcterms:issued "2016-01-26"^^xsd:date ;
+  dcterms:modified "2016-09-26"^^xsd:date ;
+  dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Francisco Silva" ] ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Brigida Teixeira" ] ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
@@ -85,7 +85,7 @@ This ontology should limit the overlap with the following existing specialized o
 
 seas:SiteOfBuilding a owl:Class ;
   rdfs:label "SiteOfBuilding"@en ;
-  rdfs:comment "Building site is a locale containing one or more separate buildings."@en ;
+  rdfs:comment "Building site is a locale containing one or more separate buildings. They are zones."@en ;
   rdfs:subClassOf seas:Zone ;
   rdf:seeAlso ifc:Site;  
   vs:term_status "testing" ;
@@ -116,7 +116,7 @@ seas:BuildingSpace a owl:Class ;
 
   seas:BuildingSpatialStructure a owl:Class ;
     rdfs:label "BuildingSpatialStructure"@en ;
-    rdfs:comment "A man made structure with spatial properties"@en ;
+    rdfs:comment "A man made structure with spatial properties."@en ;
     rdfs:subClassOf seas:BuildingSpace; 
     vs:term_status "testing" ;
     rdf:seeAlso ifc:IfcSpatialStructureElementType;
@@ -124,7 +124,7 @@ seas:BuildingSpace a owl:Class ;
 
     seas:BuildingStorey a owl:Class ;
       rdfs:label "BuildingStorey"@en ;
-      rdfs:comment "The storey represents a (nearly) horizontal aggregation of spaces that are vertically bound"@en;
+      rdfs:comment "The storey represents a (nearly) horizontal aggregation of spaces that are vertically bound."@en;
       rdfs:subClassOf seas:BuildingSpatialStructure;
       vs:term_status "testing" ;
       rdf:seeAlso ifc:BuildingStorey;  
@@ -197,7 +197,7 @@ seas:BuildingSpace a owl:Class ;
       seas:SmallHouse a owl:Class ;
         rdfs:label "SmallHouse"@en ;
         rdfs:label "Pientalo"@en ;  
-        rdfs:comment "A detached small residential building"@en ;
+        rdfs:comment "A detached small residential building."@en ;
         rdfs:subClassOf seas:ResidentalBuilding;
         vs:term_status "testing" ;
         rdfs:isDefinedBy seas:BuildingOntology.   
@@ -205,7 +205,7 @@ seas:BuildingSpace a owl:Class ;
         seas:OneDwellingBuilding a owl:Class ;
           rdfs:label "OneDwellingBuilding"@en ;
           rdfs:label "YhdenAsunnonTalo"@fi ;  
-          rdfs:comment "Detached house"@en ;
+          rdfs:comment "Detached house."@en ;
           rdfs:subClassOf seas:SmallHouse;
           vs:term_status "testing" ;
           rdfs:isDefinedBy seas:BuildingOntology.   
@@ -228,7 +228,7 @@ seas:BuildingSpace a owl:Class ;
       seas:OfficeBuilding a owl:Class ;
         rdfs:label "BusinessBuilding"@en ;
         rdfs:label "Toimistorakennus"@fi;  
-        rdfs:comment "Places where services are provided. Examples: banks, insurance agencies"@en ;
+        rdfs:comment "Places where services are provided. Examples: banks, insurance agencies."@en ;
         rdfs:subClassOf seas:NonResidentalBuilding;
         vs:term_status "testing" ;
         rdfs:isDefinedBy seas:BuildingOntology.    
@@ -236,7 +236,7 @@ seas:BuildingSpace a owl:Class ;
       seas:AssemblyBuilding a owl:Class ;
         rdfs:label "AssemblyBuilding"@en ;
         rdfs:label "Kokoontumisrakennus"@fi ;  
-        rdfs:comment "places used for people gathering for entertainment, worship, and eating or drinking. Examples: churches, restaurants"@en;
+        rdfs:comment "places used for people gathering for entertainment, worship, and eating or drinking. Examples: churches, restaurants."@en;
         rdfs:subClassOf seas:NonResidentalBuilding;
         vs:term_status "testing" ;
         rdfs:isDefinedBy seas:BuildingOntology.    
@@ -244,7 +244,7 @@ seas:BuildingSpace a owl:Class ;
       seas:InstitutionalBuilding a owl:Class ;
         rdfs:label "InstitutionalBuilding"@en ;  
         rdfs:label "HoitoalanRakennus"@fi;    
-        rdfs:comment "Institutions such as hospitals providing medical and surgical treatment and nursing care for ill or injured people"@en ;
+        rdfs:comment "Institutions such as hospitals providing medical and surgical treatment and nursing care for ill or injured people."@en ;
         rdfs:subClassOf seas:NonResidentalBuilding;
         vs:term_status "testing" ;
         rdfs:isDefinedBy seas:BuildingOntology.     
@@ -267,7 +267,7 @@ seas:BuildingSpace a owl:Class ;
         seas:PowerplantBuilding a owl:Class ;
           rdfs:label "PowerplantBuilding"@en ;
           rdfs:label "VoimalaRakennus"@fi ;  
-          rdfs:comment "Places housing any type of a power plants"@en ;
+          rdfs:comment "Places housing any type of a power plants."@en ;
           rdfs:subClassOf seas:IndustrialBuilding;
           vs:term_status "testing" ;
           rdfs:isDefinedBy seas:BuildingOntology.      
@@ -550,7 +550,7 @@ seas:BuildingSpaceFrontier a owl:Class ;
 
   seas:Ceiling a owl:Class ;
     rdfs:label "Ceiling"@en ;
-    rdfs:comment "Ceiling is a downwards tilted horizontal surface"@en ;
+    rdfs:comment "Ceiling is a downwards tilted horizontal surface."@en ;
     rdfs:subClassOf seas:BuildingSpaceFrontier;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:BuildingOntology.    
