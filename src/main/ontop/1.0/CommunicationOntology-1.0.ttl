@@ -1,0 +1,562 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+seas:CommunicationOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dcterms:title "The SEAS Communication ontology"@en ;
+  dcterms:description """The SEAS Communication ontology defines:
+
+1. Communication devices that ca connect to exchange information,
+2. Communication connections between Communication devices, where information is exchanged, and
+3. Communication connection points of communication devices, through which information flows in/out the communication device."""@en ;
+  dcterms:issued "2017-03-13"^^xsd:date ;
+  dcterms:modified "2017-03-13"^^xsd:date ;
+  dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:DeviceOntology ;
+  owl:versionIRI <https://w3id.org/seas/CommunicationOntology-1.0> ;
+  owl:versionInfo "v1.0" .
+
+## communication device
+
+seas:CommunicationDevice a owl:Class ;
+  rdfs:label "Communication Device"@en ;
+  rdfs:comment """The class of communication devices, i.e., devices that exchange information with other communication devices.
+
+  These exchange are only possible through information connections between communication devices."""@en ;
+  rdfs:subClassOf seas:Device ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:CommunicationOntology .
+
+  seas:WireCommunicationDevice a owl:Class ;
+    rdfs:label "Wire Communication Device"@en ;
+    rdfs:comment """The class of communication devices capable of communicating through a wire.
+
+    SEAS defines a taxonomy of communication devices used by SEAS partners. If another user requires some addition to this list, please contact us."""@en ;
+    rdfs:subClassOf seas:CommunicationDevice ;
+    owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:WireCommunicationConnectionPoint ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:CommunicationOntology .
+
+    seas:SerialCommunicationDevice a owl:Class ;
+      rdfs:label "Serial Communication Device"@en ;
+      rdfs:comment """The class of communication devices capable of communicating using the serial protocol."""@en ;
+      rdfs:subClassOf seas:WireCommunicationDevice ;
+      owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:SerialCommunicationConnectionPoint ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CommunicationOntology .
+
+    seas:USBCommunicationDevice a owl:Class ;
+      rdfs:label "USB Communication Device"@en ;
+      rdfs:comment """The class of communication devices capable of communicating using the USB protocol."""@en ;
+      rdfs:subClassOf seas:WireCommunicationDevice ;
+      owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:USBCommunicationConnectionPoint ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CommunicationOntology .
+
+  seas:WirelessCommunicationDevice a owl:Class ;
+    rdfs:label "Wireless Communication Device"@en ;
+    rdfs:comment """The class of communication devices capable of communicating wirelessly."""@en ;
+    rdfs:subClassOf seas:CommunicationDevice ;
+    owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:WirelessCommunicationConnectionPoint ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:CommunicationOntology .
+
+    seas:RadioCommunicationDevice a owl:Class ;
+      rdfs:label "Radio Communication Device"@en ;
+      rdfs:comment """The class of communication devices capable of communicating using radio waves."""@en ;
+      rdfs:subClassOf seas:WirelessCommunicationDevice ;
+      owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:RadioCommunicationConnectionPoint ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:SigFoxCommunicationDevice a owl:Class ;
+        rdfs:label "SigFox Communication Device"@en ;
+        rdfs:comment """The class of communication devices capable of communicating using the SigFox protocol."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationDevice ;
+        owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:SigFoxCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:ZigBeeCommunicationDevice a owl:Class ;
+        rdfs:label "ZigBee Communication Device"@en ;
+        rdfs:comment """The class of communication devices capable of communicating using the ZigBee protocol."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationDevice ;
+        owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:ZigBeeCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:LoRaCommunicationDevice a owl:Class ;
+        rdfs:label "LoRa Communication Device"@en ;
+        rdfs:comment """The class of communication devices capable of communicating using the LoRa protocol."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationDevice ;
+        owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:LoRaCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:BLECommunicationDevice a owl:Class ;
+        rdfs:label "BLE Communication Device"@en ;
+        rdfs:comment """The class of communication devices capable of communicating using the BLE protocol."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationDevice ;
+        owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:BLECommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:BluetoothCommunicationDevice a owl:Class ;
+        rdfs:label "Bluetooth Communication Device"@en ;
+        rdfs:comment """The class of communication devices capable of communicating using the Bluetooth protocol."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationDevice ;
+        owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:BluetoothCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:WiFiCommunicationDevice a owl:Class ;
+        rdfs:label "WiFi Communication Device"@en ;
+        rdfs:comment """The class of communication devices capable of communicating using the WiFi protocol."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationDevice ;
+        owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:WiFiCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:EnOceanCommunicationDevice a owl:Class ;
+        rdfs:label "EnOcean Communication Device"@en ;
+        rdfs:comment """The class of communication devices capable of communicating using the EnOcean protocol."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationDevice ;
+        owl:equivalentClass [ owl:onProperty seas:connectsAt ; owl:someValuesFrom  seas:EnOceanCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+
+seas:communicatesWith a owl:ObjectProperty , owl:SymmetricProperty ;
+  rdfs:label "communicates with"@en ;
+  rdfs:comment """Links a communication device to another communication device it exchanges information with. 
+
+  For example, for information to flow between a water smart meter and a smart home management system, then they must share a communication connection:
+
+```
+  <waterSmartMeter> a seas:CommunicationDevice .
+  <smartHMS> a seas:CommunicationDevice .
+  <waterSmartMeter> seas:communicatesWith <smartHMS> . 
+```
+
+  This property can be further specialized to describe the communication protocol used. For example, sub property `seas:communicatesIn80211aWith` links a communication device to another communication device it exchanges information with using WiFi 802.11a norm.
+
+  This property can be qualified using class seas:CommunicationConnection, which connects (at least) the two communication systems.
+  If there is a communication connection between several communication devices, then one may infer these communication devices can exchange information.
+
+    SEAS defines a some communicatesWith sub properties used by SEAS partners. If another user requires some addition to this list, please contact us."""@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:CommunicationDevice ;
+  rdfs:range seas:CommunicationDevice ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:CommunicationOntology .
+
+  seas:communicatesUsingWireWith a owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:label "communicates using wire with"@en;
+    rdfs:comment """Links a communication device to another communication device it exchanges information with using some wire."""@en;
+    rdfs:subPropertyOf seas:communicatesWith;
+    vs:term_status "unstable"  ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
+
+    seas:communicatesInSerialWith a owl:ObjectProperty , owl:SymmetricProperty ;
+      rdfs:label "communicates in Serial With"@en;
+      rdfs:comment """Links a communication device to another communication device it exchanges information with using Serial protocol."""@en;
+      rdfs:subPropertyOf seas:communicatesUsingWireWith;
+      vs:term_status "unstable"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+    seas:communicatesInUSBWith a owl:ObjectProperty , owl:SymmetricProperty ;
+      rdfs:label "communicates in USB With"@en;
+      rdfs:comment """Links a communication device to another communication device it exchanges information with using USB protocol."""@en;
+      rdfs:subPropertyOf seas:communicatesUsingWireWith;
+      vs:term_status "unstable"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+  seas:communicatesWirelesslyWith a owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:label "communicates wirelessly with"@en;
+    rdfs:comment """Links a communication device to another communication device it exchanges information with wirelessly."""@en;
+    rdfs:subPropertyOf seas:communicatesWith;
+    vs:term_status "unstable"  ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+    seas:communicatesInRadioWith a owl:ObjectProperty , owl:SymmetricProperty ;
+      rdfs:label "communicates in Radio With"@en;
+      rdfs:comment """Links a communication device to another communication device it exchanges information with using Radio Waves."""@en;
+      rdfs:subPropertyOf seas:communicatesWirelesslyWith;
+      vs:term_status "unstable"  ;
+      rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+      seas:communicatesInSigFoxWith a owl:ObjectProperty , owl:SymmetricProperty ;
+        rdfs:label "communicates in SigFox With"@en;
+        rdfs:comment """Links a communication device to another communication device it exchanges information with using the SigFox protocol."""@en;
+        rdfs:subPropertyOf seas:communicatesInRadioWith;
+        vs:term_status "unstable"  ;
+        rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+      seas:communicatesInZigBeeWith a owl:ObjectProperty , owl:SymmetricProperty ;
+        rdfs:label "communicates in Zig Bee With"@en;
+        rdfs:comment """Links a communication device to another communication device it exchanges information with using the Zig Bee protocol."""@en;
+        rdfs:subPropertyOf seas:communicatesInRadioWith;
+        vs:term_status "unstable"  ;
+        rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+      seas:communicatesInLoRaWith a owl:ObjectProperty , owl:SymmetricProperty ;
+        rdfs:label "communicates in LoRa With"@en;
+        rdfs:comment """Links a communication device to another communication device it exchanges information with using the LoRa protocol."""@en;
+        rdfs:subPropertyOf seas:communicatesInRadioWith;
+        vs:term_status "unstable"  ;
+        rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+      seas:communicatesInBLEWith a owl:ObjectProperty , owl:SymmetricProperty ;
+        rdfs:label "communicates in BLE With"@en;
+        rdfs:comment """Links a communication device to another communication device it exchanges information with using the Bluetooth Low Energy protocol."""@en;
+        rdfs:subPropertyOf seas:communicatesInRadioWith;
+        vs:term_status "unstable"  ;
+        rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+      seas:communicatesInBluetoothWith a owl:ObjectProperty , owl:SymmetricProperty ;
+        rdfs:label "communicates in Bluetooth With"@en;
+        rdfs:comment """Links a communication device to another communication device it exchanges information with using the Bluetooth protocol."""@en;
+        rdfs:subPropertyOf seas:communicatesInRadioWith;
+        vs:term_status "unstable"  ;
+        rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+      seas:communicatesInWifiWith a owl:ObjectProperty , owl:SymmetricProperty ;
+        rdfs:label "communicates in Wifi With"@en;
+        rdfs:comment """Links a communication device to another communication device it exchanges information with using the Wifi protocol."""@en;
+        rdfs:subPropertyOf seas:communicatesInRadioWith;
+        vs:term_status "unstable"  ;
+        rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+      seas:communicatesInEnOceanWith a owl:ObjectProperty , owl:SymmetricProperty ;
+        rdfs:label "communicates in EnOcean With"@en;
+        rdfs:comment """Links a communication device to another communication device it exchanges information with using the EnOcean protocol."""@en;
+        rdfs:subPropertyOf seas:communicatesInRadioWith;
+        vs:term_status "unstable"  ;
+        rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+      # ...
+
+
+## communication connection
+
+seas:CommunicationConnection a owl:Class ;
+  rdfs:label "Communication Connection"@en ;
+  rdfs:comment """The class of communication connections between communication devices.
+  a communication connection describes the information flows between the communication devices it connects.
+  For example, the following RDF graph states that a 802.11a (WiFi) connection connects two :
+
+```
+  <wifi_connection_12> a seas:CommunicationConnection ;
+    seas:connectsSystem <waterSmartMeter> , <smartHMS> .
+```
+
+  Only communication devices and communication connection points are connected through a communication connection.
+  A connection between communication devices is not necessarily a communication connection.
+
+  Any communication device that exchanges information through a communication connection is connected at least through one of its communication connection points to the communication connection:
+  if:
+
+```
+  <waterSmartMeter> a seas:CommunicationDevice .
+  <wifi_connection_12> a seas:CommunicationConnection .
+  <waterSmartMeter> seas:connectedThrough <wifi_connection_12> .
+```
+
+  then there exists `_:communicationConnectionPoint` such that:
+
+```
+  _:communicationConnectionPoint a seas:CommunicationConnectionPoint ;
+    seas:connectionPointOf <waterSmartMeter> ;
+    seas:connectsSystemThrough <wifi_connection_12> .
+```
+
+    SEAS defines a taxonomy of communication connections used by SEAS partners. If another user requires some addition to this list, please contact us.
+"""@en ;
+  rdfs:subClassOf seas:Connection ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:CommunicationDevice ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:CommunicationConnectionPoint ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:CommunicationOntology .
+
+  seas:WireCommunicationConnection a owl:Class ;
+    rdfs:label "Wire Communication Connection"@en ;
+    rdfs:comment """The class of wire communication connections between communication devices."""@en ;
+    rdfs:subClassOf seas:CommunicationConnection ;
+    rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:WireCommunicationDevice ] ;
+    rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:WireCommunicationConnectionPoint ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:CommunicationOntology .
+      
+    seas:SerialCommunicationConnection a owl:Class ;
+      rdfs:label "Serial Communication Connection"@en ;
+      rdfs:comment """The class of Serial communication connections between communication devices."""@en ;
+      rdfs:subClassOf seas:WireCommunicationConnection ;
+      rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:SerialCommunicationDevice ] ;
+      rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:SerialCommunicationConnectionPoint ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CommunicationOntology .
+
+    seas:USBCommunicationConnection a owl:Class ;
+      rdfs:label "USB Communication Connection"@en ;
+      rdfs:comment """The class of USB communication connections between communication devices."""@en ;
+      rdfs:subClassOf seas:WireCommunicationConnection ;
+      rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:USBCommunicationDevice ] ;
+      rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:USBCommunicationConnectionPoint ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CommunicationOntology .
+
+  seas:WirelessCommunicationConnection a owl:Class ;
+    rdfs:label "Wireless Communication Connection"@en ;
+    rdfs:comment """The class of wireless communication connections between communication devices."""@en ;
+    rdfs:subClassOf seas:CommunicationConnection ;
+    rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:WirelessCommunicationDevice ] ;
+    rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:WirelessCommunicationConnectionPoint ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:CommunicationOntology .
+
+    seas:RadioCommunicationConnection a owl:Class ;
+      rdfs:label "Radio Communication Connection"@en ;
+      rdfs:comment """The class of radio communication connections between communication devices."""@en ;
+      rdfs:subClassOf seas:WirelessCommunicationConnection ;
+      rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:RadioCommunicationDevice ] ;
+      rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:RadioCommunicationConnectionPoint ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:SigFoxCommunicationConnection a owl:Class ;
+        rdfs:label "SigFox Communication Connection"@en ;
+        rdfs:comment """The class of SigFox communication connections between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnection ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:SigFoxCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:SigFoxCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:ZigBeeCommunicationConnection a owl:Class ;
+        rdfs:label "ZigBee Communication Connection"@en ;
+        rdfs:comment """The class of ZigBee communication connections between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnection ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:ZigBeeCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:ZigBeeCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:LoRaCommunicationConnection a owl:Class ;
+        rdfs:label "LoRa Communication Connection"@en ;
+        rdfs:comment """The class of LoRa communication connections between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnection ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:LoRaCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:LoRaCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:BLECommunicationConnection a owl:Class ;
+        rdfs:label "BLE Communication Connection"@en ;
+        rdfs:comment """The class of BLE communication connections between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnection ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:BLECommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:BLECommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:BluetoothCommunicationConnection a owl:Class ;
+        rdfs:label "Bluetooth Communication Connection"@en ;
+        rdfs:comment """The class of Bluetooth communication connections between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnection ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:BluetoothCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:BluetoothCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:WiFiCommunicationConnection a owl:Class ;
+        rdfs:label "WiFi Communication Connection"@en ;
+        rdfs:comment """The class of WiFi communication connections between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnection ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:WiFiCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:WiFiCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:EnOceanCommunicationConnection a owl:Class ;
+        rdfs:label "EnOcean Communication Connection"@en ;
+        rdfs:comment """The class of EnOcean communication connections between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnection ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:EnOceanCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:EnOceanCommunicationConnectionPoint ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+
+## communication connection point
+
+seas:CommunicationConnectionPoint a owl:Class ;
+  rdfs:label "Communication Connection Point"@en ;
+  rdfs:comment """The class of communication connection points of communication devices, at which they may be connected to other systems.
+  For example, a water smart meter may have three communication connection points: Wireless M-Bus, Zigbee and LoRa:
+
+```
+  <waterSmartMeter> a seas:CommunicationDevice ;
+    seas:connectsAt <waterSmartMeter_mbus> , <waterSmartMeter_zigbee> , <waterSmartMeter_lora> .
+```
+"""@en ;
+  rdfs:subClassOf seas:ConnectionPoint ;
+  rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:CommunicationDevice ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:CommunicationConnection ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:CommunicationOntology .
+
+  seas:WireCommunicationConnectionPoint a owl:Class ;
+    rdfs:label "Wire Communication Connection Point"@en ;
+    rdfs:comment """The class of wire communication connection points between communication devices."""@en ;
+    rdfs:subClassOf seas:CommunicationConnectionPoint ;
+    rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:WireCommunicationDevice ] ;
+    rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:WireCommunicationConnection ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:CommunicationOntology .
+        
+    seas:SerialCommunicationConnectionPoint a owl:Class ;
+      rdfs:label "Serial Communication Connection Point"@en ;
+      rdfs:comment """The class of Serial communication connection points between communication devices."""@en ;
+      rdfs:subClassOf seas:WireCommunicationConnectionPoint ;
+      rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:SerialCommunicationDevice ] ;
+      rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:SerialCommunicationConnection ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CommunicationOntology .
+        
+    seas:USBCommunicationConnectionPoint a owl:Class ;
+      rdfs:label "USB Communication Connection Point"@en ;
+      rdfs:comment """The class of USB communication connection points between communication devices."""@en ;
+      rdfs:subClassOf seas:WireCommunicationConnectionPoint ;
+      rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:USBCommunicationDevice ] ;
+      rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:USBCommunicationConnection ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CommunicationOntology .
+       
+  seas:WirelessCommunicationConnectionPoint a owl:Class ;
+    rdfs:label "Wireless Communication Connection Point"@en ;
+    rdfs:comment """The class of wireless communication connection points between communication devices."""@en ;
+    rdfs:subClassOf seas:CommunicationConnectionPoint ;
+    rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:WirelessCommunicationDevice ] ;
+    rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:WirelessCommunicationConnection ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:CommunicationOntology .
+         
+    seas:RadioCommunicationConnectionPoint a owl:Class ;
+      rdfs:label "Radio Communication Connection Point"@en ;
+      rdfs:comment """The class of Radio communication connection points between communication devices."""@en ;
+      rdfs:subClassOf seas:WirelessCommunicationConnectionPoint ;
+      rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:RadioCommunicationDevice ] ;
+      rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:RadioCommunicationConnection ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:SigFoxCommunicationConnectionPoint a owl:Class ;
+        rdfs:label "SigFox Communication Connection Point"@en ;
+        rdfs:comment """The class of SigFox communication connection points between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnectionPoint ;
+        rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:SigFoxCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:SigFoxCommunicationConnection ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:ZigBeeCommunicationConnectionPoint a owl:Class ;
+        rdfs:label "ZigBee Communication Connection Point"@en ;
+        rdfs:comment """The class of ZigBee communication connection points between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnectionPoint ;
+        rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:ZigBeeCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:ZigBeeCommunicationConnection ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+
+      seas:LoRaCommunicationConnectionPoint a owl:Class ;
+        rdfs:label "LoRa Communication Connection Point"@en ;
+        rdfs:comment """The class of LoRa communication connection points between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnectionPoint ;
+        rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:LoRaCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:LoRaCommunicationConnection ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+           
+      seas:BLECommunicationConnectionPoint a owl:Class ;
+        rdfs:label "BLE Communication Connection Point"@en ;
+        rdfs:comment """The class of BLE communication connection points between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnectionPoint ;
+        rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:BLECommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:BLECommunicationConnection ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+           
+      seas:BluetoothCommunicationConnectionPoint a owl:Class ;
+        rdfs:label "Bluetooth Communication Connection Point"@en ;
+        rdfs:comment """The class of Bluetooth communication connection points between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnectionPoint ;
+        rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:BluetoothCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:BluetoothCommunicationConnection ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+           
+      seas:WiFiCommunicationConnectionPoint a owl:Class ;
+        rdfs:label "WiFi Communication Connection Point"@en ;
+        rdfs:comment """The class of WiFi communication connection points between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnectionPoint ;
+        rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:WiFiCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:WiFiCommunicationConnection ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
+            
+      seas:EnOceanCommunicationConnectionPoint a owl:Class ;
+        rdfs:label "EnOcean Communication Connection Point"@en ;
+        rdfs:comment """The class of EnOcean communication connection points between communication devices."""@en ;
+        rdfs:subClassOf seas:RadioCommunicationConnectionPoint ;
+        rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:EnOceanCommunicationDevice ] ;
+        rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:EnOceanCommunicationConnection ] ;
+        vs:term_status "testing" ;
+        rdfs:isDefinedBy seas:CommunicationOntology .
