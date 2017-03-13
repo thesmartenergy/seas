@@ -15,7 +15,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .              #Owl ontolow 
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -27,12 +27,12 @@
 @base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
 cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
@@ -45,11 +45,11 @@ foaf:name a owl:DatatypeProperty .
 
 #Core roles and activities (for devices and systems), this is related to actor module and could specialize it but now here defined as new vocabulary
 seas:BuildingLoadsOntology a owl:Ontology , voaf:Vocabulary ;
-  dc:title "SEAS-BuildingLoadsOntology ontology"@en ;
-  dc:description "The Seas Building specific energy load categories for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
-  dc:issued "2016-02-22"^^xsd:date ;
-  dc:modified "2016-05-26"^^xsd:date ;
-  dc:creator <http://www.vtt.fi/JarmoKalaoja> ;
+  dcterms:title "SEAS-BuildingLoadsOntology ontology"@en ;
+  dcterms:description "The Seas Building specific energy load categories for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
+  dcterms:issued "2016-02-22"^^xsd:date ;
+  dcterms:modified "2016-05-26"^^xsd:date ;
+  dcterms:creator <http://www.vtt.fi/JarmoKalaoja> ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  

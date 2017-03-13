@@ -28,12 +28,12 @@ SEAS ontologies are modularized and versionned. An ontology instance uses the fo
 Then every ontology instance must have the following recommended metadata:
 
 - type `voaf:Vocabulary`;
-- at least one `dc:title` with a language tag;
-- at least one `dc:description` with a language tag (it SHOULD use the markdown syntax);
-- a `dc:issued` (some `xsd:date`);
-- a `dc:modified` (some `xsd:date`);
-- a `dc:creator` (some `foaf:Person`);
-- zero or more `dc:contributor` (some `foaf:Person`);
+- at least one `dcterms:title` with a language tag;
+- at least one `dcterms:description` with a language tag (it SHOULD use the markdown syntax);
+- a `dcterms:issued` (some `xsd:date`);
+- a `dcterms:modified` (some `xsd:date`);
+- a `dcterms:creator` (some `foaf:Person`);
+- zero or more `dcterms:contributor` (some `foaf:Person`);
 - a `cc:licence` equal to `<https://www.apache.org/licenses/LICENSE-2.0>`;
 - a `vann:preferredNamespacePrefix` equal to `"seas"`;
 - a `vann:preferredNamespaceUri` equal to `"https://w3id.org/seas/"`;
