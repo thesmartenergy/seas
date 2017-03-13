@@ -63,6 +63,7 @@ Figure below provides an overview of the concepts in this ontology:
 ### Direct evaluations
 
 The `seas:Property` may be given a unique, constant, quality or quantity value. This is done using properties:
+
  - [`seas:value`](https://w3id.org/seas/value), if the value is modeled as a RDF IRI or blank node;
  - [`seas:simpleValue`](https://w3id.org/seas/simpleValue), if the value is modeled as a RDF Literal.
 
