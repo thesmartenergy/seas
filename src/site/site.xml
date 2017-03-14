@@ -20,9 +20,14 @@ See the License for the specific language governing permissions and
         <src>logo.png</src>
         <href>${organization.url}</href>
     </bannerLeft>
-    
+
     <body>
-        
+        <head>
+      <![CDATA[
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href='style.css' rel='stylesheet' type='text/css'/>]]>
+        </head>
         <menu name="Overview">
             <item name="Introduction" href="index.html"/>
         </menu>
