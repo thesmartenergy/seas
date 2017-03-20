@@ -1,0 +1,320 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix saref: <https://w3id.org/saref#>.
+@prefix cc: <http://creativecommons.org/ns#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix pep: <https://w3id.org/pep/> .
+@prefix gr: <http://purl.org/goodrelations/v1#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dbr: <http://dbpedia.org/resource/> .
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:GenericPropertyOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dcterms:title "The SEAS Generic Property ontology"@en ;
+  dcterms:description """The SEAS Generic Property ontology defines the different categories of Generic Properties we can met
+in different domains. Such as Temperature, Speed, length.... These properties are dependants entities: they are inherent in
+some entity and that cannot exist without this entity.
+ """@en ;
+  dcterms:issued "2017-03-20"^^xsd:date ;
+  dcterms:modified "2017-03-20"^^xsd:date ;
+  dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
+  dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;
+  owl:imports  seas:FeatureOfInterestOntology, seas:EvaluationOntology ;
+  owl:versionIRI <https://w3id.org/seas/GenericPropertyOntology-1.0> ;
+  owl:versionInfo "v1.0" .
+
+
+
+
+#######################################
+#Temperature
+#######################################
+seas:TemperatureProperty a owl:Class ;
+  rdfs:label "Temperature Property"@en ;
+  rdfs:comment """A temperature is an objective comparative measurement of hot or cold. It is measured by a thermometer. 
+                  Several scales and units exist for measuring temperature, the most common being Celsius (denoted °C; formerly called centigrade), 
+                  Fahrenheit (denoted °F), and, especially in science, Kelvin (denoted K).(source:wikipedia)"""@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:TemperatureEvaluation a owl:Class ;
+  rdfs:label "Temperature Evaluation"@en ;
+  rdfs:comment """The class of evaluation for temperature properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:TemperatureProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:TemperatureProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:temperature a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "price"@en ;
+  rdfs:comment """The temperature of some physical entity."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:range seas:TemperatureProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+
+#######################################
+#Speed
+#######################################
+
+seas:SpeedProperty a owl:Class ;
+  rdfs:label "Speed Property"@en ;
+  rdfs:comment """the speed of an object is the magnitude of its velocity (the rate of change of its position); 
+                  it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance t
+                  ravelled by the object divided by the duration of the interval;.(source:wikipedia)"""@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:SpeedEvaluation a owl:Class ;
+  rdfs:label "Speed Evaluation"@en ;
+  rdfs:comment """The class of evaluation for speed properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:SpeedProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:SpeedProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+seas:speed a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "speed"@en ;
+  rdfs:comment """The speed of some physical entity."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:range seas:SpeedProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+
+#######################################
+#Length
+#######################################
+
+seas:LengthProperty a owl:Class ;
+  rdfs:label "Length Property"@en ;
+  rdfs:comment """length is the most extended dimension of an object.[1] In the International System of Quantities,
+                   length is any quantity with dimension distance. 
+                   In other contexts "length" is the measured dimension of an object..(source:wikipedia)"""@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:LengthEvaluation a owl:Class ;
+  rdfs:label "Length Evaluation"@en ;
+  rdfs:comment """The class of evaluation for length properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LengthProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LengthProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:length a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "length"@en ;
+  rdfs:comment """The length of some physical entity."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:range seas:LengthProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+#######################################
+#Direction
+#######################################
+
+seas:DirectionProperty a owl:Class ;
+  rdfs:label "Direction Property"@en ;
+  rdfs:comment """Direction is the information vested in the relative position of a destination 
+                  (or target) point with respect to a starting point, absent the distance information. 
+                  Directions may be either relative to some indicated reference  or 
+                  absolute according to some previously agreed upon frame of reference.(source:wikipedia)"""@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:DirectionEvaluation a owl:Class ;
+  rdfs:label "Direction Evaluation"@en ;
+  rdfs:comment """The class of evaluation for direction properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:DirectionProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:DirectionProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:direction a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "length"@en ;
+  rdfs:comment """The direction of some physical entity."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:range seas:DirectionProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+#######################################
+# Wind Direction
+#######################################
+ seas:WindDirectionProperty a owl:Class ;
+  rdfs:label "Wind Direction Property"@en ;
+  rdfs:comment """Wind direction is reported by the direction from which it originates. 
+                  For example, a northerly wind blows from the north to the south. 
+                  Wind direction is usually reported in cardinal directions or in azimuth degrees. 
+                  For example, a wind coming from the south is given as 180 degrees; 
+                  one from the east is 90 degrees.(source:wikipedia)"""@en ;
+  rdfs:subClassOf seas:DirectionProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+  seas:WindDirectionEvaluation a owl:Class ;
+  rdfs:label "Wind Direction Evaluation"@en ;
+  rdfs:comment """The class of evaluation for wind direction properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WindDirectionProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WindDirectionProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+#######################################
+# Wind Speed Direction
+#######################################
+ seas:WindSpeedProperty a owl:Class ;
+  rdfs:label "Wind Speed Property"@en ;
+  rdfs:comment """Wind speed, or wind flow velocity, is a fundamental atmospheric quantity.
+                  Wind speed is caused by air moving from high pressure to low pressure, 
+                  usually due to changes in temperature.(source:wikipedia)"""@en ;
+  rdfs:subClassOf seas:SpeedProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+  seas:WindSpeedEvaluation a owl:Class ;
+  rdfs:label "Wind Speed Evaluation"@en ;
+  rdfs:comment """The class of evaluation for wind speed properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WindSpeedProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WindSpeedProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+#######################################
+# Wind Speed Direction
+#######################################
+ seas:DiameterProperty a owl:Class ;
+  rdfs:label "Wind Speed Property"@en ;
+  rdfs:comment """In geometry, a diameter of a circle is any straight line segment that passes through 
+                  the center of the circle and whose endpoints lie on the circle. 
+                  It can also be defined as the longest chord of the circle. 
+                  Both definitions are also valid for the diameter of a sphere.
+                  In more modern usage, the length of a diameter is also called the diameter. 
+                  In this sense one speaks of the diameter rather than a diameter (which refers to the line itself),
+                  because all diameters of a circle or sphere have the same length, this being twice the radius r.(source:wikipedia)"""@en ;
+  rdfs:subClassOf seas:LengthProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+  seas:DiameterEvaluation a owl:Class ;
+  rdfs:label "Diameter Evaluation"@en ;
+  rdfs:comment """The class of evaluation for diameter properties"""@en ;
+  rdfs:subClassOf seas:LengthEvaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:DiameterProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:DiameterProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+#######################################
+# Shape property
+#######################################
+  seas:ShapeProperty a owl:Class ;
+  rdfs:label "Shape Property"@en ;
+  rdfs:comment """A shape is the form of an object or its external boundary, outline, 
+                  or external surface, as opposed to other properties such as color, texture, 
+                  or material composition.(source:wikipedia)"""@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:ShapeEvaluation a owl:Class ;
+  rdfs:label "Shape Evaluation"@en ;
+  rdfs:comment """The class of evaluation for shape properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ShapeProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ShapeProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+seas:shape a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "shape"@en ;
+  rdfs:comment """The shape of some physical entity."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:range seas:ShapeProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+#######################################
+# Air Quality property
+#######################################
+  seas:AirQualityProperty a owl:Class ;
+  rdfs:label "Air Quality Property"@en ;
+  rdfs:comment """Air Quality is the properties inherent in the Air to measure its quality"""@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:AirQualityEvaluation a owl:Class ;
+  rdfs:label "Air Quality Evaluation"@en ;
+  rdfs:comment """The class of evaluation for air quality properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirQualityProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirQualityProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+seas:airQuality a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "shape"@en ;
+  rdfs:comment """The shape of some physical entity."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
