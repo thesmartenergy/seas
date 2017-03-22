@@ -346,7 +346,7 @@ seas:Meter a owl:Class;
 seas:MeteringExecution a owl:Class ;
   rdfs:label "Metering Execution"@en ;
   rdfs:comment """A Metering Execution is the execution of the measuring process which is executed by a meter device."""@en ;
-  rdfs:subClassOf pep:ProcessExecutor ;
+  rdfs:subClassOf pep:ProcessExecution ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Meter ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Metering ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:observesProperty ; owl:someValuesFrom seas:Property ] ;
