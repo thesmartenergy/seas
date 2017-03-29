@@ -86,11 +86,42 @@ seas:TemperatureEvaluation a owl:Class ;
   rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:TemperatureProperty ] ;
   owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:TemperatureProperty ] ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:GenericPropertyOntology .
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
 
 seas:temperature a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "price"@en ;
   rdfs:comment """The temperature of some physical entity."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:range seas:TemperatureProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+
+#######################################
+#Noise Level
+#######################################
+seas:NoiseLevelProperty a owl:Class ;
+  rdfs:label "Noise Level Property"@en ;
+  rdfs:comment """A temperature is an objective comparative measurement of hot or cold. It is measured by a thermometer. 
+                  Several scales and units exist for measuring temperature, the most common being Celsius (denoted °C; formerly called centigrade), 
+                  Fahrenheit (denoted °F), and, especially in science, Kelvin (denoted K).(source:wikipedia)"""@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:NoiseLevelEvaluation a owl:Class ;
+  rdfs:label "Noise Level Evaluation"@en ;
+  rdfs:comment """The class of evaluation for noise level properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:NoiseLevelProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:NoiseLevelProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+seas:noiseLevel a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "noise level"@en ;
+  rdfs:comment """The noise level of some environnement."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:FeatureOfIneterest ;
   rdfs:range seas:TemperatureProperty ;
@@ -105,7 +136,7 @@ seas:temperature a owl:ObjectProperty , owl:FunctionalProperty ;
 seas:SpeedProperty a owl:Class ;
   rdfs:label "Speed Property"@en ;
   rdfs:comment """the speed of an object is the magnitude of its velocity (the rate of change of its position); 
-                  it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance t
+                  it is thus a scalar quantity. The average speed of an object in an interval of time is the distance t
                   ravelled by the object divided by the duration of the interval;.(source:wikipedia)"""@en ;
   rdfs:subClassOf seas:Property ;
   vs:term_status "testing" ;
@@ -161,6 +192,29 @@ seas:length a owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
 
+
+seas:height a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "height"@en ;
+  rdfs:comment """Height is the measure of vertical distance, either how "tall" something is, 
+                or how "high up" it is. For example "The height of the building is 50 m" or 
+                "The height of the airplane is 10,000 m". Height is measured along the vertical (y) axis 
+                between a specified point and another. (source: wikipedia)"""@en ;
+  rdfs:subPropertyOf seas:length ;
+  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:range seas:LengthProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology . 
+
+seas:width a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "width"@en ;
+  rdfs:comment """Width is the measure of horizontal distance, either how "large" something is.
+                For example "The width of the building is 250 m". Width is measured along the 
+                horizontal (x) axis between a specified point and another. (source: wikipedia)"""@en ;
+  rdfs:subPropertyOf seas:length ;
+  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:range seas:LengthProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology . 
 #######################################
 #Direction
 #######################################
@@ -238,7 +292,7 @@ seas:direction a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:isDefinedBy seas:GenericPropertyOntology.
 
 #######################################
-# Wind Speed Direction
+# Diameter
 #######################################
  seas:DiameterProperty a owl:Class ;
   rdfs:label "Wind Speed Property"@en ;
@@ -261,6 +315,15 @@ seas:direction a owl:ObjectProperty , owl:FunctionalProperty ;
   owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:DiameterProperty ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+seas:diameter a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "diameter"@en ;
+  rdfs:comment """The diameter of some circular or speherical physical entity."""@en ;
+  rdfs:subPropertyOf seas:length ;
+  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:range seas:DiameterProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
 
 #######################################
 # Shape property
@@ -295,12 +358,14 @@ seas:shape a owl:ObjectProperty , owl:FunctionalProperty ;
 #######################################
 # Air Quality property
 #######################################
-  seas:AirQualityProperty a owl:Class ;
+seas:AirQualityProperty a owl:Class ;
   rdfs:label "Air Quality Property"@en ;
   rdfs:comment """Air Quality is the properties inherent in the Air to measure its quality"""@en ;
   rdfs:subClassOf seas:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+
 
 seas:AirQualityEvaluation a owl:Class ;
   rdfs:label "Air Quality Evaluation"@en ;
@@ -312,8 +377,171 @@ seas:AirQualityEvaluation a owl:Class ;
   rdfs:isDefinedBy seas:GenericPropertyOntology.
 
 seas:airQuality a owl:ObjectProperty , owl:FunctionalProperty ;
-  rdfs:label "shape"@en ;
-  rdfs:comment """The shape of some physical entity."""@en ;
+  rdfs:label "air Quality"@en ;
+  rdfs:comment """links the air to its qualities."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+  seas:AirCO2LevelProperty a owl:Class ;
+  rdfs:label "Air CO2 level Property"@en ;
+  skos:prefLabel "Air Carbon dioxide level Property"@en;
+  rdfs:comment """Air CO2 (Carbon dioxide) level properties is an Air Quality Property which measure the level of CO2 gas in the  the Air."""@en ;
+  rdfs:subClassOf seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:AirCO2LevelEvaluation a owl:Class ;
+  rdfs:label "Air CO2 level Evaluation"@en ;
+  skos:prefLabel "Air Carbon dioxide level Evaluation"@en;
+  rdfs:comment """The class of air CO2 (Carbon dioxide) level evaluation for air co2 level properties"""@en ;
+  rdfs:subClassOf seas:AirQualityEvaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirCO2LevelProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirCO2LevelProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+
+seas:airCO2Level a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "air Co2 Level"@en ;
+  rdfs:comment """Links the air to its co2 level property."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+
+seas:AirSO2LevelProperty a owl:Class ;
+  rdfs:label "Air SO2 level Property"@en ;
+  skos:prefLabel "Air Sulfur dioxide level Property"@en;
+  rdfs:comment """Air SO2 (Sulfur dioxide) level properties is an Air Quality Property which measure the level of CO2 gas in the  the Air."""@en ;
+  rdfs:subClassOf seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:AirSO2LevelEvaluation a owl:Class ;
+  rdfs:label "Air SO2 level Evaluation"@en ;
+  skos:prefLabel "Air Sulfur dioxide level Evaluation"@en;
+  rdfs:comment """The class of air SO2 (Sulfur dioxide) level evaluation for air SO2 level properties"""@en ;
+  rdfs:subClassOf seas:AirQualityEvaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirSO2LevelProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirSO2LevelProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+
+seas:airSO2Level a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "air SO2 Level"@en ;
+  rdfs:comment """Links the air to its SO2 (Sulfur dioxide) level property."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+#######################################################
+
+seas:AirO3LevelProperty a owl:Class ;
+  rdfs:label "Air O3 level Property"@en ;
+  skos:prefLabel "Air trioxygen level Property"@en;
+  rdfs:comment """Air O3 (trioxygen) level properties is an Air Quality Property which measure the level of CO2 gas in the  the Air."""@en ;
+  rdfs:subClassOf seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:AirO3LevelEvaluation a owl:Class ;
+  rdfs:label "Air O3 level Evaluation"@en ;
+  skos:prefLabel "Air trioxygen level Evaluation"@en;
+  rdfs:comment """The class of air O3 (trioxygen) level evaluation for air O3 level properties"""@en ;
+  rdfs:subClassOf seas:AirQualityEvaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirO3LevelProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirO3LevelProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+
+seas:airO3Level a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "air O3 Level"@en ;
+  rdfs:comment """Links the air to its O3 (trioxygen) level property."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+
+seas:AirNO3LevelProperty a owl:Class ;
+  rdfs:label "Air NO3 level Property"@en ;
+  skos:prefLabel "Air Nitrate level Property"@en;
+  rdfs:comment """Air NO3 (Nitrate) level properties is an Air Quality Property which measure the level of CO2 gas in the  the Air."""@en ;
+  rdfs:subClassOf seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:AirNO3LevelEvaluation a owl:Class ;
+  rdfs:label "Air NO3 level Evaluation"@en ;
+  skos:prefLabel "Air Nitrate level Evaluation"@en;
+  rdfs:comment """The class of air NO3 (Nitrate) level evaluation for air NO3 level properties"""@en ;
+  rdfs:subClassOf seas:AirQualityEvaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirNO3LevelProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirNO3LevelProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+
+seas:airNO3Level a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "air NO3 Level"@en ;
+  rdfs:comment """Links the air to its NO3 (Nitrate) level property."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:AirPM10LevelProperty a owl:Class ;
+  rdfs:label "Air PM10 level Property"@en ;
+  skos:prefLabel "Air Particulate Matter level Property"@en;
+  rdfs:comment """Air PM10 (Particulate Matter) level properties is an Air Quality Property which measure the level of CO2 gas in the  the Air."""@en ;
+  rdfs:subClassOf seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:AirPM10LevelEvaluation a owl:Class ;
+  rdfs:label "Air PM10 level Evaluation"@en ;
+  rdfs:comment """The class of air PM10 (Particulate Matter) level evaluation for air PM10 level properties"""@en ;
+  skos:prefLabel "Air Particulate Matter level Evaluation"@en;
+  rdfs:subClassOf seas:AirQualityEvaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirPM10LevelProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirPM10LevelProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+seas:airPM10Level a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "air PM10 Level"@en ;
+  rdfs:comment """Links the air to its PM10 (Particulate Matter) level property."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:range seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+
+seas:AirCOLevelProperty a owl:Class ;
+  rdfs:label "Air CO level Property"@en ;
+  rdfs:comment """Air CO level properties is an Air Quality Property which measure the level of CO2 gas in the  the Air."""@en ;
+  rdfs:subClassOf seas:AirQualityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:AirCOLevelEvaluation a owl:Class ;
+  rdfs:label "Air CO level Evaluation"@en ;
+  rdfs:comment """The class of air CO level evaluation for air CO level properties"""@en ;
+  rdfs:subClassOf seas:AirQualityEvaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirCO2LevelProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirCO2LevelProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+seas:airCOLevel a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "air CO Level"@en ;
+  rdfs:comment """Links the air to its CO level property."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:range seas:AirQualityProperty ;
   vs:term_status "testing" ;
