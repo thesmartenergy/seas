@@ -89,7 +89,7 @@ seas:TemperatureEvaluation a owl:Class ;
   rdfs:isDefinedBy seas:GenericPropertyOntology.
 
 seas:temperature a owl:ObjectProperty , owl:FunctionalProperty ;
-  rdfs:label "price"@en ;
+  rdfs:label "temperature"@en ;
   rdfs:comment """The temperature of some physical entity."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:FeatureOfIneterest ;
@@ -103,9 +103,7 @@ seas:temperature a owl:ObjectProperty , owl:FunctionalProperty ;
 #######################################
 seas:NoiseLevelProperty a owl:Class ;
   rdfs:label "Noise Level Property"@en ;
-  rdfs:comment """A temperature is an objective comparative measurement of hot or cold. It is measured by a thermometer. 
-                  Several scales and units exist for measuring temperature, the most common being Celsius (denoted °C; formerly called centigrade), 
-                  Fahrenheit (denoted °F), and, especially in science, Kelvin (denoted K).(source:wikipedia)"""@en ;
+  rdfs:comment """.(source:wikipedia)"""@en ;
   rdfs:subClassOf seas:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
