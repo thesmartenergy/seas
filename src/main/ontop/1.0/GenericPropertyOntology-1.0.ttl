@@ -103,7 +103,7 @@ seas:temperature a owl:ObjectProperty , owl:FunctionalProperty ;
 #######################################
 seas:NoiseLevelProperty a owl:Class ;
   rdfs:label "Noise Level Property"@en ;
-  rdfs:comment """.(source:wikipedia)"""@en ;
+  rdfs:comment """The level of noise Property is a property which is inherent in noise."""@en ;
   rdfs:subClassOf seas:Property ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
