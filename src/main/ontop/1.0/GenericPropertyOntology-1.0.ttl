@@ -101,6 +101,7 @@ seas:temperature a owl:ObjectProperty , owl:FunctionalProperty ;
 #######################################
 #Noise Level
 #######################################
+
 seas:NoiseLevelProperty a owl:Class ;
   rdfs:label "Noise Level Property"@en ;
   rdfs:comment """The level of noise Property is a property which is inherent in noise."""@en ;
@@ -116,7 +117,7 @@ seas:NoiseLevelEvaluation a owl:Class ;
   owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:NoiseLevelProperty ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology.
-
+  
 seas:noiseLevel a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "noise level"@en ;
   rdfs:comment """The noise level of some environnement."""@en ;
@@ -402,8 +403,8 @@ seas:AirCO2LevelEvaluation a owl:Class ;
 
 
 seas:airCO2Level a owl:ObjectProperty , owl:FunctionalProperty ;
-  rdfs:label "air Co2 Level"@en ;
-  rdfs:comment """Links the air to its co2 level property."""@en ;
+  rdfs:label "air CO2 Level"@en ;
+  rdfs:comment """Links the air to its CO2 level property."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:range seas:AirQualityProperty ;
   vs:term_status "testing" ;
