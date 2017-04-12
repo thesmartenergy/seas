@@ -21,7 +21,6 @@
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
-@prefix cc: <http://creativecommons.org/ns#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix pep: <https://w3id.org/pep/> .
 
@@ -35,7 +34,7 @@ dcterms:issued a owl:AnnotationProperty .
 dcterms:modified a owl:AnnotationProperty .
 dcterms:creator a owl:AnnotationProperty .
 dcterms:contributor a owl:AnnotationProperty .
-cc:license a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
@@ -63,7 +62,7 @@ using a market license;
   dcterms:contributor [a foaf:Person ; foaf:name "Antoine Zimmermann" ] ;
   dcterms:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
   dcterms:contributor [a foaf:Person ; foaf:name "Gabriel Santos" ] ;
-  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
   owl:imports pep: , seas:PlayerOntology , seas:ElectricPowerSystemOntology , seas:OfferingOntology ;

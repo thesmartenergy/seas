@@ -20,7 +20,6 @@
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-@prefix cc: <http://creativecommons.org/ns#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix ifc: <http://www.buildingsmart-tech.org/ifcOWL/IFC2X3_TC1#>. #IFC owl ontology
 @prefix fiemser:<http://sites.google.com/site/smartappliancesproject/ontologies/fiemser#>. #Fiemser building ontology
@@ -37,7 +36,7 @@ dcterms:issued a owl:AnnotationProperty .
 dcterms:modified a owl:AnnotationProperty .
 dcterms:creator a owl:AnnotationProperty .
 dcterms:contributor a owl:AnnotationProperty .
-cc:license a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
@@ -57,7 +56,7 @@ Given a property and an agent, one may characterize that some evaluation of the 
   dcterms:modified "2016-09-23"^^xsd:date ;
   dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
   dcterms:contributor <http://www.vtt.fi/JarmoKalaoja> ;
-  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
   owl:imports seas:EvaluationOntology ;

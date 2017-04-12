@@ -20,7 +20,6 @@
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-@prefix cc: <http://creativecommons.org/ns#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 
 @prefix seas: <https://w3id.org/seas/>.
@@ -33,7 +32,7 @@ dcterms:issued a owl:AnnotationProperty .
 dcterms:modified a owl:AnnotationProperty .
 dcterms:creator a owl:AnnotationProperty .
 dcterms:contributor a owl:AnnotationProperty .
-cc:license a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
@@ -51,7 +50,7 @@ See deliverable SEAS D1.3."""@en ;
   dcterms:modified "2016-09-26"^^xsd:date ;
   dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
   dcterms:contributor [a foaf:Person ; foaf:name "Guillaume Habault" ] ;
-  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
   owl:priorVersion <https://w3id.org/seas/ArchitectureOntology-0.9> ;

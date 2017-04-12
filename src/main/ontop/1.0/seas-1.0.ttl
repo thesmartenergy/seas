@@ -16,13 +16,11 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix cc: <http://creativecommons.org/ns#>.
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix void: <https://www.w3.org/TR/void/>.
-@prefix cc: <http://creativecommons.org/ns#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix rdfp: <https://w3id.org/rdfp/>.
 @prefix pep: <https://w3id.org/pep/>.
@@ -37,7 +35,7 @@ dcterms:issued a owl:AnnotationProperty .
 dcterms:modified a owl:AnnotationProperty .
 dcterms:creator a owl:AnnotationProperty .
 dcterms:contributor a owl:AnnotationProperty .
-cc:license a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
@@ -86,7 +84,7 @@ We furthermore encourage the use of the following external ontologies:
   dcterms:contributor [a foaf:Person ; foaf:name "Brigida Teixeira" ] ;
   dcterms:contributor [a foaf:Person ; foaf:name "Hannu Järvinen" ] ;
   dcterms:issued "2016-05-25"^^xsd:date ;
-  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
   owl:versionIRI <https://w3id.org/seas/seas-1.0> ;
@@ -110,6 +108,7 @@ We furthermore encourage the use of the following external ontologies:
               <https://w3id.org/seas/FlexibilityOntology-1.0> ,
               <https://w3id.org/seas/ForecastingOntology-1.0> ,
               <https://w3id.org/seas/GreenKPIOntology-1.0> ,
+              <https://w3id.org/seas/GenericPropertyOntology-1.0> ,
               <https://w3id.org/seas/OfferingOntology-1.0> ,
               <https://w3id.org/seas/OperatingOntology-1.0> ,
               <https://w3id.org/seas/OptimizationOntology-1.0> ,

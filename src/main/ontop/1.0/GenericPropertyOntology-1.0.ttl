@@ -21,7 +21,6 @@
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix saref: <https://w3id.org/saref#>.
-@prefix cc: <http://creativecommons.org/ns#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix pep: <https://w3id.org/pep/> .
 @prefix gr: <http://purl.org/goodrelations/v1#>.
@@ -38,7 +37,7 @@ dcterms:issued a owl:AnnotationProperty .
 dcterms:modified a owl:AnnotationProperty .
 dcterms:creator a owl:AnnotationProperty .
 dcterms:contributor a owl:AnnotationProperty .
-cc:license a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
@@ -57,7 +56,7 @@ some entity and that cannot exist without this entity.
   dcterms:modified "2017-03-20"^^xsd:date ;
   dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
   dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
-  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
   owl:imports  seas:FeatureOfInterestOntology, seas:EvaluationOntology ;
