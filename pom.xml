@@ -123,6 +123,7 @@
         <repository.name>seas</repository.name>
         
         <ontop.version>1.2-SNAPSHOT</ontop.version>
+        <rdfp.version>1.2.3-SNAPSHOT</rdfp.version>
     </properties>
     
     <dependencyManagement>
@@ -191,8 +192,8 @@
         
         <dependency>
             <groupId>com.github.thesmartenergy</groupId>
-            <artifactId>ontop-jersey</artifactId>
-            <version>${ontop.version}</version>
+            <artifactId>rdfp-jersey-server</artifactId>
+            <version>${rdfp.version}</version>
         </dependency>
 
         <dependency>
