@@ -294,7 +294,7 @@ seas:direction a owl:ObjectProperty , owl:FunctionalProperty ;
 # Diameter
 #######################################
  seas:DiameterProperty a owl:Class ;
-  rdfs:label "Wind Speed Property"@en ;
+  rdfs:label "Diameter Property"@en ;
   rdfs:comment """In geometry, a diameter of a circle is any straight line segment that passes through 
                   the center of the circle and whose endpoints lie on the circle. 
                   It can also be defined as the longest chord of the circle. 
