@@ -386,7 +386,7 @@ seas:airQuality a owl:ObjectProperty , owl:FunctionalProperty ;
   seas:AirCO2LevelProperty a owl:Class ;
   rdfs:label "Air CO2 level Property"@en ;
   skos:prefLabel "Air Carbon dioxide level Property"@en;
-  rdfs:comment """Air CO2 (Carbon dioxide) level properties is an Air Quality Property which measure the level of CO2 gas in the Air."""@en ;
+  rdfs:comment """Air CO2 (Carbon dioxide) level property is an Air Quality Property which measures the level of CO2 gas in the Air."""@en ;
   rdfs:subClassOf seas:AirQualityProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
@@ -394,7 +394,7 @@ seas:airQuality a owl:ObjectProperty , owl:FunctionalProperty ;
 seas:AirCO2LevelEvaluation a owl:Class ;
   rdfs:label "Air CO2 level Evaluation"@en ;
   skos:prefLabel "Air Carbon dioxide level Evaluation"@en;
-  rdfs:comment """The class of air CO2 (Carbon dioxide) level evaluation for air co2 level properties"""@en ;
+  rdfs:comment """The class of air CO2 (Carbon dioxide) level evaluation for air CO2 level properties"""@en ;
   rdfs:subClassOf seas:AirQualityEvaluation ;
   rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirCO2LevelProperty ] ;
   owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:AirCO2LevelProperty ] ;
@@ -414,7 +414,7 @@ seas:airCO2Level a owl:ObjectProperty , owl:FunctionalProperty ;
 seas:AirSO2LevelProperty a owl:Class ;
   rdfs:label "Air SO2 level Property"@en ;
   skos:prefLabel "Air Sulfur dioxide level Property"@en;
-  rdfs:comment """Air SO2 (Sulfur dioxide) level properties is an Air Quality Property which measure the level of SO2 gas in the Air."""@en ;
+  rdfs:comment """Air SO2 (Sulfur dioxide) level property is an Air Quality Property which measures the level of SO2 gas in the Air."""@en ;
   rdfs:subClassOf seas:AirQualityProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
@@ -443,7 +443,7 @@ seas:airSO2Level a owl:ObjectProperty , owl:FunctionalProperty ;
 seas:AirO3LevelProperty a owl:Class ;
   rdfs:label "Air O3 level Property"@en ;
   skos:prefLabel "Air trioxygen level Property"@en;
-  rdfs:comment """Air O3 (trioxygen) level properties is an Air Quality Property which measure the level of CO2 gas in the Air."""@en ;
+  rdfs:comment """Air O3 (trioxygen) level property is an Air Quality Property which measures the level of O3 gas in the Air."""@en ;
   rdfs:subClassOf seas:AirQualityProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
@@ -471,7 +471,7 @@ seas:airO3Level a owl:ObjectProperty , owl:FunctionalProperty ;
 seas:AirNO3LevelProperty a owl:Class ;
   rdfs:label "Air NO3 level Property"@en ;
   skos:prefLabel "Air Nitrate level Property"@en;
-  rdfs:comment """Air NO3 (Nitrate) level properties is an Air Quality Property which measure the level of NO3 gas in the Air."""@en ;
+  rdfs:comment """Air NO3 (Nitrate) level property is an Air Quality Property which measures the level of NO3 gas in the Air."""@en ;
   rdfs:subClassOf seas:AirQualityProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
@@ -498,7 +498,7 @@ seas:airNO3Level a owl:ObjectProperty , owl:FunctionalProperty ;
 seas:AirPM10LevelProperty a owl:Class ;
   rdfs:label "Air PM10 level Property"@en ;
   skos:prefLabel "Air Particulate Matter level Property"@en;
-  rdfs:comment """Air PM10 (Particulate Matter) level properties is an Air Quality Property which measure the level of PM10 gas in the Air."""@en ;
+  rdfs:comment """Air PM10 (Particulate Matter) level property is an Air Quality Property which measures the level of PM10 gas in the Air."""@en ;
   rdfs:subClassOf seas:AirQualityProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
@@ -524,7 +524,7 @@ seas:airPM10Level a owl:ObjectProperty , owl:FunctionalProperty ;
 
 seas:AirCOLevelProperty a owl:Class ;
   rdfs:label "Air CO level Property"@en ;
-  rdfs:comment """Air CO level properties is an Air Quality Property which measure the level of CO gas in the Air."""@en ;
+  rdfs:comment """Air CO level property is an Air Quality Property which measures the level of CO gas in the Air."""@en ;
   rdfs:subClassOf seas:AirQualityProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
