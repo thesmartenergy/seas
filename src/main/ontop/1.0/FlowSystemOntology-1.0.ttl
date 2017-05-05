@@ -1,0 +1,448 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix saref: <http://ontology.tno.nl/saref#> . #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix bot: <https://w3id.org/bot/> . #Building Topology Ontology
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sdmx: <http://purl.org/linked-data/sdmx#> .
+
+@prefix seas: <https://w3id.org/seas/> .
+@base <https://w3id.org/seas/> .
+
+voaf:Vocabulary a owl:Class .
+dc:title a owl:AnnotationProperty .
+dc:description a owl:AnnotationProperty .
+dc:issued a owl:AnnotationProperty .
+dc:modified a owl:AnnotationProperty .
+dc:creator a owl:AnnotationProperty .
+dc:contributor a owl:AnnotationProperty .
+cc:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+seas:FlowSystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dc:title "The SEAS Heat and Mass Flow System ontology"@en ;
+  dc:description """The SEAS Heat and Mass Flow System Vocabulary defines:
+
+1. Heat and mass flow systems that consume, produce, store or distribute energy and fluid,
+2. port connections between flow systems, where energy and mass flow is exchanged, and
+3. ports of flow systems, through which energy and mass flows in/out the flow systems."""@en ;
+  dc:issued "2017-02-28"^^xsd:date ;
+  dc:modified "2017-02-28"^^xsd:date ;
+  dc:creator "Mads Holten Rasmussen" ;
+  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:SystemOntology , seas:EvaluationOntology ;
+  owl:versionIRI <https://w3id.org/seas/FlowSystemOntology-0.1> ;
+  owl:versionInfo "v1.0" .
+
+## heat and mass flow system
+
+seas:FlowSystem a owl:Class ;
+  rdfs:label "Heat and Mass Flow System"@en , "Varme- og stoffordelingssystem"@da ;
+  rdfs:comment """ """ ;
+  rdfs:subClassOf seas:System, bot:Element ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:exchangesFluidWith a owl:ObjectProperty , owl:SymmetricProperty ;
+  rdfs:label "Exchanges fluid with"@en , "Udveksler fluid med"@da ;
+  rdfs:comment """Links a flow system with another flow system to which it transfers or recieves a mass and heat flow.
+  
+  This property can be qualified using class seas:FlowConnection, which connects (at least) the two flow systems.
+  For example, for the fluid to flow between two pipes, then they must share a flow connection:
+
+```
+  <pipeA> a seas:FlowSystem .
+  <pipeB> a seas:FlowSystem .
+  <pipeA> seas:exchangesFluidWith <pipeB> .
+```
+
+  If there is a flow connection between several flow systems, then one may infer these flow systems can exchange fluid."""@en ;
+  rdfs:subPropertyOf seas:connectedTo ;
+  rdfs:domain seas:FlowSystem ;
+  rdfs:range seas:FlowSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:subFlowSystemOf a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "Sub flow system of"@en , "Underanlæg af"@da ;
+  rdfs:comment """Links a flow system to its super flow systems. For example,
+
+- The consumed energy of an energy consuming flow system (ie. a heating system) contributes to the consumed energy of its super flow system;
+- The consumed fluid of a fluid consuming flow system (ie. a ventilation system or a domestic water system) contributes to the consumed fluid of its super flow system;
+- The gained energy of an energy producing flow system (ie. a cooling system) contributes to the produced energy of its super flow system;"""@en ;
+  rdfs:subPropertyOf seas:subSystemOf ;
+  rdfs:domain seas:FlowSystem ;
+  rdfs:range seas:FlowSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+## flow connection
+
+seas:FlowConnection a owl:Class ;
+  rdfs:label "Flow Connection"@en , "Strømningsforbindelse"@da ;
+  rdfs:comment """The class of flow connections between flow systems.
+  a flow connection describes potential heat and mass flows between the flow systems it connects.
+  For example, the following RDF graph states that a tee fitting connects three pipes:
+
+```
+  <tee> a seas:FlowConnection ;
+    seas:connectsSystem <pipeA> , <pipeB> , <pipeC> .
+```
+
+  Only flow systems and flow connection points are connected through a flow connection.
+  A connection between flow systems is not necessarily a flow connection.
+
+  Any flow system that exchanges fluid through a flow connection is connected at least through one of its flow connection points to the flow connection:
+  if:
+
+```
+  <heating_system> a seas:FlowSystem .
+  <flow_connection> a seas:FlowConnection .
+  <heating_system> seas:connectedThrough <flow_connection> .
+```
+
+  then there exists `_:flowPort` such that:
+
+```
+  _:flowPort a seas:FlowPort ;
+    seas:connectionPointOf <heating_system> ;
+    seas:connectsSystemThrough <flow_connection> .
+```"""@en ;
+  rdfs:subClassOf seas:Connection ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom  seas:FlowSystem ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom  seas:FlowPort ] ;
+  rdfs:subClassOf [ owl:onProperty seas:fluidVolumeFlow ; owl:someValuesFrom  seas:Property ] ;
+  rdfs:subClassOf [ owl:onProperty seas:heatFlux ; owl:someValuesFrom  seas:Property ] ;
+  owl:disjointWith seas:FlowSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+## flow port
+
+seas:FlowPort a owl:Class ;
+  rdfs:label "Flow Port"@en , "Strømingsport"@da ;
+  rdfs:comment """The class of flow ports of flow systems, at which they may be connected to other flow systems.
+  For example, a heat exchanger has four flow ports: heat flow and return on its primary and secondary side:
+
+```
+  <heat_exchanger> a seas:FlowSystem ;
+    seas:connectsAt <primary_flow> , <primary_return> , <secondary_flow> , <secondary_return> .
+  <primary_flow> a seas:FlowPort .
+  <primary_return> a seas:FlowPort .
+  <secondary_flow> a seas:FlowPort .
+  <secondary_return> a seas:FlowPort .
+```
+
+  Any system connected through a flow connection is connected at one of its flow ports to the flow connection:
+  if:
+
+```
+  <system> a seas:System .
+  <system> seas:connectedThrough <connection> .
+  <connection> a seas:FlowConnection .
+```
+
+  then there exists `_:connectionPoint` such that:
+
+```
+  _:connectionPoint a seas:FlowPort ;
+    seas:connectionPointOf <system> ;
+    seas:connectsSystemAt <connection> .
+```
+
+  A flow port describes the temperature, ???velocity, ???pressure and the heat and mass that enters/leaves the flow system.
+  A flow connection point only belongs to a flow system, and connects it through flow connections.
+  A connection point of a flow system is not necessarily a flow connection."""@en ;
+  rdfs:subClassOf seas:ConnectionPoint ;
+  rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:FlowSystem ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:FlowConnection ] ;
+  rdfs:subClassOf [ owl:onProperty seas:fluidVolumeFlow ; owl:someValuesFrom  seas:Property ] ;
+  rdfs:subClassOf [ owl:onProperty seas:heatFlux ; owl:someValuesFrom  seas:Property ] ;
+  owl:disjointWith seas:FlowSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+# specific subtypes
+
+## heating system
+
+seas:HeatingSystem a owl:Class ;
+  rdfs:label "Heating System"@en , "Varmeanlæg"@da ;
+  rdfs:comment """A heating system consists of a heat supply, a distribution system and one or more heat consumers. A heating system can be a seas:subFlowSystemOf of another heating system."""@en ;
+  rdfs:subClassOf seas:FlowSystem ;
+  rdfs:subClassOf [ owl:onProperty seas:fluidSupplyTemperature ; owl:someValuesFrom seas:Property ] ;
+  rdfs:subClassOf [ owl:onProperty seas:fluidReturnTemperature ; owl:someValuesFrom seas:Property ] ;
+  rdfs:subClassOf [ owl:onProperty seas:fluidType ; owl:someValuesFrom seas:Property ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+## heat consumer
+
+seas:HeatConsumer a owl:Class ;
+  rdfs:label "Heat Consumer"@en , "Varmeforbruger"@da ;
+  rdfs:comment """A heat consumer is a flow system that is capable of consuming heat. A heat consumer is part of a closed circuit system. A space heater is an example of a heat consumer."""@en ;
+  rdfs:subClassOf seas:FlowSystem ;
+  rdfs:subClassOf [ owl:onProperty seas:consumerHeatOutput ; owl:someValuesFrom seas:Property ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:HeatSource a owl:Class ;
+  rdfs:label "Heat Source"@en , "Varmekilde"@da ;
+  rdfs:comment """A heat source supplies a flow system with heat. A heat source is part of a closed circuit system. A district heating plug to the public grid is an example of a heat source."""@en ;
+  rdfs:subClassOf seas:FlowSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+## fluid consumer/source
+
+seas:FluidConsumer a owl:Class ;
+  rdfs:label "Fluid Consumer"@en , "Væskeforbruger"@da ;
+  rdfs:comment """A fluid consumer is a flow system that is capable of consuming fluid. A fluid consumer is part of an open circuit system. A water tap is an example of a fluid consumer."""@en ;
+  rdfs:subClassOf seas:FlowSystem ;
+  rdfs:subClassOf [ owl:onProperty seas:consumerFlowDemand ; owl:someValuesFrom seas:Property ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:FluidSource a owl:Class ;
+  rdfs:label "Fluid Source"@en , "Væskekilde"@da ;
+  rdfs:comment """A fluid source supplies a flow system with fluid. A fluid source is part of an open circuit system. A water plug to the public grid is an example of a fluid source."""@en ;
+  rdfs:subClassOf seas:FlowSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+## fluid 
+
+## fluid distribution system
+
+seas:FlowDistributionSystem a owl:Class ;
+  rdfs:label "Flow Distribution System"@en , "Strømningsfordelingssystem"@da ;
+  rdfs:comment """A flow distribution system is a system capable of transporting a fluid from one point to another."""@en ;
+  rdfs:subClassOf seas:FlowSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:Pipe a owl:Class ;
+  rdfs:label "Pipe"@en , "Rør"@da ;
+  rdfs:comment """A pipe is a flow distribution system with two flow ports, capable of transporting a fluid a distance given by the length of the pipe."""@en ;
+  rdfs:subClassOf seas:FlowDistributionSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:FlowHub a owl:Class ;
+  rdfs:label "Pipe Hub"@en , "Rørsamling"@da ;
+  rdfs:comment """A flow hub is a flow distribution system designed for joining two or more pipes."""@en ;
+  rdfs:subClassOf seas:FlowDistributionSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:Bend a owl:Class ;
+  rdfs:label "Bend"@en , "Bøjning"@da ;
+  rdfs:comment """A bend is a flow distribution system designed for changing the course of a pipe run."""@en ;
+  rdfs:subClassOf seas:FlowHub ;
+  rdfs:subClassOf [ owl:onProperty seas:bendingAngle ; owl:someValuesFrom seas:Property ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:Tee a owl:Class ;
+  rdfs:label "Tee"@en , "T-stykke"@da ;
+  rdfs:comment """A tee is a flow distribution system designed for dividing the flow in three."""@en ;
+  rdfs:subClassOf seas:FlowHub ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:Manifold a owl:Class ;
+  rdfs:label "Manifold"@en , "Manifold"@da ;
+  rdfs:comment """A manifold is a flow distribution system designed for dividing the flow in several streams."""@en ;
+  rdfs:subClassOf seas:PipeHub ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+# properties
+
+## fluid volume flow
+
+seas:FluidVolumeFlowProperty a owl:Class ;
+  rdfs:label "Fluid Volume Flow Property"@en , "Fluidvolumenstrømsegenskab"@da ;
+  rdfs:comment "The class of properties that are quantifiable and use a quantity dimension of fluid volume flow."@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:fluidVolumeFlow a owl:ObjectProperty ;
+  rdfs:label "Fluid Volume Flow"@en , "Væske-volumenstrøm"@da ;
+  rdfs:comment """Links a flow connection point to its fluid volume flow property. By convention, the value is positive if it enters the system.
+
+  Please contact us in case this convention is incorrect."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FlowPort ;
+  rdfs:range seas:FluidVolumeFlowProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+## fluid temperature
+
+seas:FluidTemperatureProperty a owl:Class ;
+  rdfs:label "Fluid Temperature Property"@en , "Medietemperaturegenskab"@da ;
+  rdfs:comment " "@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:fluidTemperature a owl:ObjectProperty ;
+  rdfs:label "Fluid Temperature"@en , "Medietemperatur"@da ;
+  rdfs:comment """ """@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FlowSystem ;
+  rdfs:range seas:FluidTemperatureProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:fluidSupplyTemperature a owl:ObjectProperty ;
+  rdfs:label "Fluid Supply Temperature"@en , "Mediefremløbstemperatur"@da ;
+  rdfs:comment """ """@en ;
+  rdfs:subPropertyOf seas:fluidTemperature ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:fluidReturnTemperature a owl:ObjectProperty ;
+  rdfs:label "Fluid Return Temperature"@en , "Mediereturløbstemperatur"@da ;
+  rdfs:comment """ """@en ;
+  rdfs:subPropertyOf seas:fluidTemperature ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+## power demand
+
+seas:HeatFluxProperty a owl:ObjectProperty ;
+  rdfs:label "Heat Flux Property"@en , "Varmestrømsegenskab"@da ;
+  rdfs:comment " "@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:consumerHeatOutput a owl:ObjectProperty ;
+  rdfs:label "Consumer Heat Output"@en , "Forbrugervarmeeffekt"@da ;
+  rdfs:comment """ """@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:HeatConsumer ;
+  rdfs:range seas:HeatFluxProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+## flow demand
+
+seas:VolumeFlowProperty a owl:ObjectProperty ;
+  rdfs:label "Volume Flow Property"@en , "Volumenstrømsegenskab"@da ;
+  rdfs:comment " "@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:consumerFlowDemand a owl:ObjectProperty ;
+  rdfs:label "Consumer Flow Demand"@en , "Forbrugervæskebehov"@da ;
+  rdfs:comment """ """@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:HeatConsumer ;
+  rdfs:range seas:VolumeFlowProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:distributionVolumeFlow a owl:ObjectProperty ;
+  rdfs:label "Distribution Volume Flow"@en , "Fordelingsvolumenstrøm"@da ;
+  rdfs:comment """ """@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FlowDistributionSystem ;
+  rdfs:range seas:VolumeFlowProperty ;
+  #owl:propertyChainAxiom ( seas:exchangesFluidWith seas:consumerFlowDemand ) ;
+  owl:propertyChainAxiom ( seas:exchangesFluidWith seas:testFlowDemand ) ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+## flow direction
+
+#NB! should be an enumerated value of either of ["In", "Out"]
+seas:FlowDirectionProperty a owl:ObjectProperty ;
+  rdfs:label "Flow Direction Property"@en , "Strømningsretningsegenskab"@da ;
+  rdfs:comment "The direction in which the fluid flows to/from the port. Should have a value of either 'In' or 'Out'."@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:flowDirection a owl:ObjectProperty ;
+  rdfs:label "Flow direction"@en , "Strømningsretning"@da ;
+  rdfs:comment """ """@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FlowPort ;
+  rdfs:range seas:FlowDirectionProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+## fluid type
+
+#NB! should be an enumerated value of either of ["Air", "Water", "Water/Glycol"]
+seas:FluidTypeProperty a owl:ObjectProperty ;
+  rdfs:label "Fluid Type Property"@en , "Medietypeegenskab"@da ;
+  rdfs:comment " "@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+#Implement advanced fluid types like water/glycol 20% at a later stage
+
+seas:fluidType a owl:ObjectProperty ;
+  rdfs:label "Fluid type"@en , "Medietype"@da ;
+  rdfs:comment """ """@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FlowSystem ;
+  rdfs:range seas:FluidTypeProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+## angle
+
+seas:AngleProperty a owl:ObjectProperty ;
+  rdfs:label "Angle Property"@en , "Vinkelegenskab"@da ;
+  rdfs:comment " "@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
+
+seas:bendingAngle a owl:ObjectProperty ;
+  rdfs:label "Bending angle"@en , "Bøjningsradius"@da ;
+  rdfs:comment """ """@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:Bend ;
+  rdfs:range seas:AngleProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:FlowSystemOntology .
