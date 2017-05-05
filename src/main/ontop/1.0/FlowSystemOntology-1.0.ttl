@@ -16,31 +16,25 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-@prefix cc: <http://creativecommons.org/ns#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix saref: <http://ontology.tno.nl/saref#> . #SAREF smart building appliances ontology
-@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
-@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix bot: <https://w3id.org/bot/> . #Building Topology Ontology
-@prefix ssn: <http://www.w3.org/ns/ssn/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix sdmx: <http://purl.org/linked-data/sdmx#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 
-@prefix seas: <https://w3id.org/seas/> .
-@base <https://w3id.org/seas/> .
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
-cc:license a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
@@ -49,16 +43,17 @@ foaf:name a owl:DatatypeProperty .
 
 
 seas:FlowSystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "The SEAS Heat and Mass Flow System ontology"@en ;
-  dc:description """The SEAS Heat and Mass Flow System Vocabulary defines:
+  dcterms:title "The SEAS Heat and Mass Flow System ontology"@en ;
+  dcterms:description """The SEAS Heat and Mass Flow System Vocabulary defines:
 
 1. Heat and mass flow systems that consume, produce, store or distribute energy and fluid,
 2. port connections between flow systems, where energy and mass flow is exchanged, and
 3. ports of flow systems, through which energy and mass flows in/out the flow systems."""@en ;
-  dc:issued "2017-02-28"^^xsd:date ;
-  dc:modified "2017-02-28"^^xsd:date ;
-  dc:creator "Mads Holten Rasmussen" ;
-  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  dcterms:issued "2017-02-28"^^xsd:date ;
+  dcterms:modified "2017-02-28"^^xsd:date ;
+  dcterms:creator [  a foaf:Person; foaf:name "Mads Holten Rasmussen"] ;
+  dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
   owl:imports seas:SystemOntology , seas:EvaluationOntology ;

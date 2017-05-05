@@ -106,6 +106,7 @@ We furthermore encourage the use of the following external ontologies:
               <https://w3id.org/seas/FailableSystemOntology-1.0> ,
               <https://w3id.org/seas/FeatureOfInterestOntology-1.0> ,
               <https://w3id.org/seas/FlexibilityOntology-1.0> ,
+              <https://w3id.org/seas/FlowSystemOntology-1.0> ,
               <https://w3id.org/seas/ForecastingOntology-1.0> ,
               <https://w3id.org/seas/GreenKPIOntology-1.0> ,
               <https://w3id.org/seas/GenericPropertyOntology-1.0> ,
