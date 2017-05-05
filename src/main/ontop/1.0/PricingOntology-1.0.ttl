@@ -16,12 +16,11 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix saref: <https://w3id.org/saref#>.
-@prefix cc: <http://creativecommons.org/ns#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix pep: <https://w3id.org/pep/> .
 @prefix gr: <http://purl.org/goodrelations/v1#>.
@@ -32,13 +31,13 @@
 @base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
-cc:license a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
@@ -48,14 +47,14 @@ foaf:name a owl:DatatypeProperty .
 
 
 seas:PricingOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "The SEAS Pricing ontology"@en ;
-  dc:description """The SEAS Pricing ontology defines the different categories of princing we can meet in the market vacabulary
+  dcterms:title "The SEAS Pricing ontology"@en ;
+  dcterms:description """The SEAS Pricing ontology defines the different categories of princing we can meet in the market vacabulary
 """@en ;
-  dc:issued "2017-01-05"^^xsd:date ;
-  dc:modified "2017-01-05"^^xsd:date ;
-  dc:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
-  dc:contributor <http://www.maxime-lefrancois.info/me#> ;
-  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  dcterms:issued "2017-01-05"^^xsd:date ;
+  dcterms:modified "2017-01-05"^^xsd:date ;
+  dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
+  dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
   owl:imports seas:EvaluationOntology ;
@@ -223,6 +222,27 @@ seas:PenetrationPriceEvaluation a owl:Class ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:PricingOntology .
 
+seas:FixedPriceProperty   a owl:Class ;
+    rdfs:label "Fixed Price Property"@en ;
+    rdfs:comment """A fixed price is a non-negotiable sum charged for a product, service or piece of work.
+                    The most common reason for a fixed price for a product is control or mandate by 
+                    some external entity. A regulatory organization might set a fixed price for some 
+                    commodity, for example. Fixed price contracts and services are an alternative 
+                    to other models."""@en ;
+    rdfs:subClassOf seas:PriceProperty ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+seas:FixedPriceEvaluation a owl:Class ;
+    rdfs:label "Fixed Price Evaluation"@en ;
+    rdfs:comment """The class of evaluation for fixed price properties"""@en ;
+    rdfs:subClassOf seas:PriceEvaluation ;
+    rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FixedPriceProperty ] ;
+    owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:FixedPriceProperty ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:PricingOntology .
+
+
 
 ##############################################
 #######Object Properties
@@ -300,3 +320,12 @@ seas:penetrationPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:range seas:PenetrationtPriceProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:PricingOntology.    
+
+seas:fixedPrice  a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "fixed price"@en ;
+  rdfs:comment """Links an offer of a goods or a service to its fixed price."""@en ;
+  rdfs:subPropertyOf seas:price ;
+  rdfs:range seas:FixedPriceProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:PricingOntology.    
+

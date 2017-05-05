@@ -13,7 +13,7 @@
 # limitations under the License.
 
 @prefix : <https://w3id.org/seas/> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -30,12 +30,12 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
 cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
@@ -46,11 +46,11 @@ foaf:name a owl:DatatypeProperty .
 
 
 <https://w3id.org/seas/PhotovoltaicOntology> rdf:type owl:Ontology  , voaf:Vocabulary ;
-  dc:title "SEAS-PhotovoltaicOntology ontology"@en ;
-  dc:description "The Seas PhotovoltaicOntology Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
-  dc:issued "2016-01-01"^^xsd:date ;
-  dc:modified "2016-05-26"^^xsd:date ;
-  dc:creator [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
+  dcterms:title "SEAS-PhotovoltaicOntology ontology"@en ;
+  dcterms:description "The Seas PhotovoltaicOntology Ontology for the ITEA SEAS (Smart Energy Aware Systems) project."@en ;
+  dcterms:issued "2016-01-01"^^xsd:date ;
+  dcterms:modified "2016-05-26"^^xsd:date ;
+  dcterms:creator [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
@@ -67,7 +67,7 @@ foaf:name a owl:DatatypeProperty .
 
 ###  http://purl.org/dc/elements/1.1/description
 
-dc:description rdf:type owl:AnnotationProperty .
+dcterms:description rdf:type owl:AnnotationProperty .
 
 
 
@@ -314,7 +314,7 @@ dc:description rdf:type owl:AnnotationProperty .
          
          rdfs:subClassOf :PhotovoltaicComponent ;
          
-         dc:description "Batteries used for grid-storage also stabilize the electrical grid by leveling out peak loads," ;rdfs:isDefinedBy <https://w3id.org/seas/PhotovoltaicOntology> .
+         dcterms:description "Batteries used for grid-storage also stabilize the electrical grid by leveling out peak loads," ;rdfs:isDefinedBy <https://w3id.org/seas/PhotovoltaicOntology> .
 
 
 
@@ -326,7 +326,7 @@ dc:description rdf:type owl:AnnotationProperty .
           
           rdfs:subClassOf :PhotovoltaicComponent ;
           
-          dc:description "Converts the direct current (DC) from the solar modules to alternating current (AC)" ;rdfs:isDefinedBy <https://w3id.org/seas/PhotovoltaicOntology> .
+          dcterms:description "Converts the direct current (DC) from the solar modules to alternating current (AC)" ;rdfs:isDefinedBy <https://w3id.org/seas/PhotovoltaicOntology> .
 
 
 
@@ -396,7 +396,7 @@ dc:description rdf:type owl:AnnotationProperty .
          
          rdfs:subClassOf :PhotovoltaicComponent ;
          
-         dc:description "A solar tracking system tilts a solar panel throughout the day" ;rdfs:isDefinedBy <https://w3id.org/seas/PhotovoltaicOntology> .
+         dcterms:description "A solar tracking system tilts a solar panel throughout the day" ;rdfs:isDefinedBy <https://w3id.org/seas/PhotovoltaicOntology> .
 
 
 

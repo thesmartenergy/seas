@@ -17,7 +17,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix cc: <http://creativecommons.org/ns#>.
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
@@ -28,12 +28,12 @@
 @prefix seas: <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
 cc:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
@@ -45,15 +45,15 @@ foaf:name a owl:DatatypeProperty .
 
 
 <https://w3id.org/seas/> rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "SEAS Ontology"@en ;
-  dc:description "The SEAS ontology, that glues together all of the SEAS modules"@en ;
-  dc:creator <http://maxime-lefrancois.info/me#> ;
-  dc:contributor <http://www.vtt.fi/JarmoKalaoja> ;
-  dc:contributor [a foaf:Person ; foaf:name "Antoine Zimmermann" ] ;
-  dc:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
-  dc:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
-  dc:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
-  dc:issued "2016-05-25"^^xsd:date ;
+  dcterms:title "SEAS Ontology"@en ;
+  dcterms:description "The SEAS ontology, that glues together all of the SEAS modules"@en ;
+  dcterms:creator <http://maxime-lefrancois.info/me#> ;
+  dcterms:contributor <http://www.vtt.fi/JarmoKalaoja> ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Antoine Zimmermann" ] ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Erkki Siira" ] ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Takoua Ghariani" ] ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Marc Girod-Genet" ] ;
+  dcterms:issued "2016-05-25"^^xsd:date ;
   cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;

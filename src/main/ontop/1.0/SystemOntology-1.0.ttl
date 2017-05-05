@@ -16,11 +16,10 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-@prefix cc: <http://creativecommons.org/ns#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
 @prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
@@ -32,13 +31,13 @@
 @base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
-cc:license a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
@@ -48,8 +47,8 @@ foaf:name a owl:DatatypeProperty .
 
 
 seas:SystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "The SEAS System ontology"@en ;
-  dc:description """The System Ontology defines Systems, Connections between systems, and Connection Points at which systems may be connected. This ontology is then specialized for multiple domains. For example:
+  dcterms:title "The SEAS System ontology"@en ;
+  dcterms:description """The System Ontology defines Systems, Connections between systems, and Connection Points at which systems may be connected. This ontology is then specialized for multiple domains. For example:
 
 - In electric energy: 
     - power systems consume, produce, store, and exchange electricity;
@@ -65,10 +64,10 @@ Figure below provides an overwiew of the concepts in this ontology:
 [![Overview of the System ontology](https://w3id.org/seas/system.png)](https://w3id.org/seas/system.png)
 
 """@en ;
-  dc:issued "2016-06-06"^^xsd:date ;
-  dc:modified "2016-09-21"^^xsd:date ;
-  dc:creator <http://www.maxime-lefrancois.info/me#> ;
-  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  dcterms:issued "2016-06-06"^^xsd:date ;
+  dcterms:modified "2016-09-21"^^xsd:date ;
+  dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ; 
   owl:imports seas:FeatureOfInterestOntology , seas:EvaluationOntology , pep: ;
@@ -92,6 +91,11 @@ seas:System a owl:Class ;
 ```
 <battery> seas:subSystemOf <electric_vehicle> .
 ```
+
+Figure below illustrates systems and their connections:
+
+[![Systems and their connections](https://w3id.org/seas/system1.png)](https://w3id.org/seas/system1.png)
+
 """@en ;
   rdfs:subClassOf seas:FeatureOfInterest ;
   vs:term_status "stable" ;
@@ -151,6 +155,16 @@ Due to the open world assumption of RDF, it is not possible to model the closed 
 """@en ;
   rdfs:domain seas:System ;
   rdfs:range seas:System ;
+  owl:inverseOf seas:hasSubSystem ;
+  vs:term_status "stable" ;
+  rdfs:isDefinedBy seas:SystemOntology .
+
+seas:hasSubSystem a owl:ObjectProperty , owl:InverseFunctionalProperty ;
+  rdfs:label "has sub system"@en ;
+  rdfs:comment """Links a system to one of its sub systems."""@en ;
+  rdfs:domain seas:System ;
+  rdfs:range seas:System ;
+  owl:inverseOf seas:subSystemOf ;
   vs:term_status "stable" ;
   rdfs:isDefinedBy seas:SystemOntology .
 
@@ -186,7 +200,14 @@ then there exists `_:connection` such that:
 _:connection seas:connectsSystem <system1> , <system2> .
 ```
 
-A connection can connect more than two systems at the same time."""@en ;
+A connection can connect more than two systems at the same time.
+
+
+Figure below illustrates connections of systems:
+
+[![Connections of systems](https://w3id.org/seas/system2.png)](https://w3id.org/seas/system2.png)
+
+"""@en ;
   rdfs:subClassOf seas:FeatureOfInterest ;
   rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:someValuesFrom  seas:System ] ;
   rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:someValuesFrom  seas:ConnectionPoint ] ;
@@ -266,6 +287,11 @@ then it is true that:
 ```
 <connectionPoint> seas:connectionPointOf <system> .
 ```
+
+Figure below illustrates connection points of systems:
+
+[![Connection points of systems](https://w3id.org/seas/system3.png)](https://w3id.org/seas/system3.png)
+
 """@en ;
   rdfs:subClassOf seas:FeatureOfInterest ;
   rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:cardinality 1 ] ;
@@ -288,7 +314,7 @@ seas:connectsAt a owl:ObjectProperty, owl:InverseFunctionalProperty ;
 
 seas:connectionPointOf a owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "connection point to"@en ;
-  rdfs:comment "Links a connection point to the one and only system it belongs to."@en ;
+  rdfs:comment "Links a connection point to the one and only one system it belongs to."@en ;
   rdfs:domain seas:ConnectionPoint ;
   rdfs:range seas:System ;
   owl:inverseOf seas:connectsAt ;

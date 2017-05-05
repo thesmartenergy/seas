@@ -16,11 +16,10 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-@prefix cc: <http://creativecommons.org/ns#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
 @prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
@@ -33,13 +32,13 @@
 @base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
-cc:license a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
@@ -49,16 +48,17 @@ foaf:name a owl:DatatypeProperty .
 
 
 seas:FlexibilityOntology rdf:type voaf:Vocabulary , owl:Ontology ;
-  dc:title "The SEAS Flexibility ontology"@en ;
-  dc:description """The SEAS Flexibility ontology defines evaluation sub types to interpret evaluations of controllable properties.
+  dcterms:title "The SEAS Flexibility ontology"@en ;
+  dcterms:description """The SEAS Flexibility ontology defines evaluation sub types to interpret evaluations of controllable properties.
 
 A controllable property is controlled by some `seas:Player`. 
 
 Evaluations of controllable properties may describe its flexibility in terms of reduction, augmentation, cut, or move."""@en ;
-  dc:issued "2016-07-24"^^xsd:date ;
-  dc:modified "2016-09-30"^^xsd:date ;
-  dc:creator <http://www.maxime-lefrancois.info/me#> ;
-  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  dcterms:issued "2016-07-24"^^xsd:date ;
+  dcterms:modified "2016-09-30"^^xsd:date ;
+  dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
   owl:imports seas:EvaluationOntology , seas:PlayerOntology ;
@@ -88,7 +88,7 @@ seas:ControllableProperty a owl:Class ;
     rdfs:subClassOf seas:Evaluation ;
     rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:allValuesFrom seas:ControllableProperty ] ;
     vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:ElectricityPlayerVocabulary . 
+    rdfs:isDefinedBy seas:FlexibilityOntology . 
 
   seas:ReductionFlexibilityEvaluation a owl:Class ;
     rdfs:label "Reduction Flexibility Evaluation"@en ;

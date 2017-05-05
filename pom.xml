@@ -34,6 +34,31 @@
             <organization>Ecole des mines de Saint-Etienne</organization>
             <organizationUrl>http://www.mines-stetienne.fr/</organizationUrl>
             <timezone>UTC+01:00</timezone>
+            <properties>
+                <picUrl>https://w3id.org/seas/AntoineZimmermann.jpg</picUrl>
+            </properties>      
+        </contributor>
+        <contributor>
+            <name>Lynda Temal</name>            
+            <email>lynda.temal@engie.com</email>
+            <url>https://fr.linkedin.com/in/lynda-temal-32a206a/fr</url>
+            <organization>Engie</organization>
+            <organizationUrl>http://www.engie.com/</organizationUrl>
+            <timezone>UTC+01:00</timezone>
+            <properties>
+                <picUrl>https://w3id.org/seas/LyndaTemal.png</picUrl>
+            </properties>      
+        </contributor>
+        <contributor>
+            <name>Hilal Ceyhan Akçomak</name>            
+            <email>hakcomak@innova.com.tr</email>
+            <url>https://nl.linkedin.com/in/hilal-ceyhan-akçomak-10757b62/fr</url>
+            <organization>İnnova Bilişim</organization>
+            <organizationUrl>http://www.innova.com.tr/</organizationUrl>
+            <timezone>UTC+01:00</timezone>
+            <properties>
+                <picUrl>https://w3id.org/seas/HilalCeyhanAkçomak.jpg</picUrl>
+            </properties>      
         </contributor>
         <contributor>
             <name>Jarmo Kalaoja</name>            
@@ -43,8 +68,19 @@
             <organizationUrl>http://www.vtt.fi/</organizationUrl>
             <timezone>UTC+02:00</timezone>
             <properties>
-                <picUrl>http://gravatar.com/userimage/xxx</picUrl>
-            </properties>        
+                <picUrl>https://w3id.org/seas/JarmoKalaoja.jpg</picUrl>
+            </properties>      
+        </contributor>
+        <contributor>
+            <name>Hannu Järvinen</name>            
+            <email>hannu@asema.com</email>
+            <url>https://fi.linkedin.com/in/hannu-j%C3%A4rvinen-532b563</url>
+            <organization>Asema Electronics</organization>
+            <organizationUrl>seas.asema.com</organizationUrl>
+            <timezone>UTC+02:00</timezone>
+            <properties>
+                <picUrl>https://w3id.org/seas/HannuJarvinen.jpg</picUrl>
+            </properties>      
         </contributor>
     </contributors>
 
@@ -87,6 +123,7 @@
         <repository.name>seas</repository.name>
         
         <ontop.version>1.2-SNAPSHOT</ontop.version>
+        <rdfp.version>1.2.3-SNAPSHOT</rdfp.version>
     </properties>
     
     <dependencyManagement>
@@ -155,8 +192,8 @@
         
         <dependency>
             <groupId>com.github.thesmartenergy</groupId>
-            <artifactId>ontop-jersey</artifactId>
-            <version>${ontop.version}</version>
+            <artifactId>rdfp-jersey-server</artifactId>
+            <version>${rdfp.version}</version>
         </dependency>
 
         <dependency>
@@ -194,8 +231,9 @@
                             <exclude>**/src/main/webapp/**/*.*</exclude>
                             <exclude>**/src/main/resources/**/*.json</exclude>
                             <exclude>**/beans.xml</exclude>
-                            <exclude>**/src**/*.js</exclude>
-                            <exclude>**/src**/*.rqg</exclude>
+                            <exclude>**/src/**/*.md</exclude>
+                            <exclude>**/src/**/*.js</exclude>
+                            <exclude>**/src/**/*.rqg</exclude>
                             <exclude>**/src/**/*.json</exclude>
                             <exclude>**/src/main/**/*.html</exclude>
                             <exclude>**/src/test/**/*.*</exclude>

@@ -16,14 +16,12 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .  
+@prefix dcterms: <http://purl.org/dc/terms/> .  
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
-@prefix cc: <http://creativecommons.org/ns#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix ssn: <https://www.w3.org/ns/ssn/>.
-@prefix cc: <http://creativecommons.org/ns#>.
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>.
 @prefix liner: <https://w3id.org/liner/>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
@@ -34,13 +32,13 @@
 @base <https://w3id.org/seas/>.
 
 voaf:Vocabulary a owl:Class .
-dc:title a owl:AnnotationProperty .
-dc:description a owl:AnnotationProperty .
-dc:issued a owl:AnnotationProperty .
-dc:modified a owl:AnnotationProperty .
-dc:creator a owl:AnnotationProperty .
-dc:contributor a owl:AnnotationProperty .
-cc:license a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
@@ -50,16 +48,16 @@ foaf:name a owl:DatatypeProperty .
 
 
 seas:ZoneLightingOntology a owl:Ontology , voaf:Vocabulary ;
-  dc:title "The SEAS Zone Lighting ontology."@en ;
-  dc:description """The SEAS Zone Lighting ontology describes light sources and illuminable zones. 
+  dcterms:title "The SEAS Zone Lighting ontology."@en ;
+  dcterms:description """The SEAS Zone Lighting ontology describes light sources and illuminable zones. 
 
 Light sources and light source devices (subclass of `seas:Device`) may `seas:illuminates` illuminable zones (subclass of `seas:Zones`), while illuminable systems may transmit light to other illuminable zones (property `seas:transmitsLightTo`)
 
 Main source is http://www.compuphase.com/electronics/candela_lumen.htm"""@en ;
-  dc:issued "2016-07-19"^^xsd:date ;
-  dc:modified "2016-09-26"^^xsd:date ;
-  dc:creator <http://www.maxime-lefrancois.info/me#> ;
-  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  dcterms:issued "2016-07-19"^^xsd:date ;
+  dcterms:modified "2016-09-26"^^xsd:date ;
+  dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
   owl:imports seas:ZoneOntology , seas:DeviceOntology ;
@@ -75,7 +73,7 @@ Illuminable zones include the exterior, rooms, skylight systems.
 There is no particular assumption about how the light is transmitted in an illuminable zone. Meaning: the luminosity may be non homogeneous in an illuminable zone."""@en ;
   rdfs:subClassOf seas:Zone ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:LightSystemOntology .
+  rdfs:isDefinedBy seas:ZoneLightingOntology .
 
   seas:transmitsLightTo a owl:ObjectProperty , owl:SymmetricProperty ;
     rdfs:label "transmits light to"@en ;
@@ -88,7 +86,7 @@ To account for one-way mirrors, this property is not symmetric."""@en ;
     rdfs:domain seas:IlluminableZone ;
     rdfs:range seas:IlluminableZone ;
     vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:LightSystemOntology .
+    rdfs:isDefinedBy seas:ZoneLightingOntology .
 
   seas:refractiveIndice a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "refractive indice"@en;
@@ -97,7 +95,7 @@ To account for one-way mirrors, this property is not symmetric."""@en ;
     rdfs:domain seas:IlluminableZone ;
     rdfs:range seas:Property ;
     vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:LightSystemOntology.
+    rdfs:isDefinedBy seas:ZoneLightingOntology.
 
 
 seas:LightTransmissionSystemConnection a owl:Class ;
@@ -109,7 +107,7 @@ Examples of light transmission system connections include glasses, tinted glasse
   rdfs:subClassOf [ owl:onProperty seas:connectsSystem ; owl:allValuesFrom seas:IlluminableZone ] ;
   rdfs:subClassOf [ owl:onProperty seas:connectsSystemAt ; owl:allValuesFrom seas:IlluminableZoneFrontier ] ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:LightSystemOntology .
+  rdfs:isDefinedBy seas:ZoneLightingOntology .
 
 
 seas:IlluminableZoneFrontier a owl:Class ;
@@ -123,7 +121,7 @@ Light may be reflected, absorbed, and transmitted by illuminable zone frontiers.
   rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom  seas:IlluminableZone ] ;
   rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:LightTransmissionSystemConnection ] ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:LightSystemOntology .
+  rdfs:isDefinedBy seas:ZoneLightingOntology .
 
   seas:lightTransmission a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "light transmission"@en;
@@ -132,7 +130,7 @@ Light may be reflected, absorbed, and transmitted by illuminable zone frontiers.
     rdfs:domain seas:IlluminableZoneFrontier ;
     rdfs:range seas:Property ;
     vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:LightSystemOntology.
+    rdfs:isDefinedBy seas:ZoneLightingOntology.
 
   seas:lightReflection a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "light reflection" ;
@@ -141,7 +139,7 @@ Light may be reflected, absorbed, and transmitted by illuminable zone frontiers.
     rdfs:domain seas:IlluminableZoneFrontier ;
     rdfs:range seas:Property ;
     vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:LightSystemOntology .
+    rdfs:isDefinedBy seas:ZoneLightingOntology .
 
 
 seas:LightSource a owl:Class ;
@@ -149,7 +147,7 @@ seas:LightSource a owl:Class ;
   rdfs:comment """The class of systems that are capable of producing light."""@en ;
   rdfs:subClassOf seas:System ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:LightSystemOntology .
+  rdfs:isDefinedBy seas:ZoneLightingOntology .
 
   seas:LightActuator a owl:Class ;
     rdfs:label "Light Actuator" ;
@@ -158,7 +156,7 @@ seas:LightSource a owl:Class ;
     rdfs:subClassOf seas:Actuator ;
     owl:equivalentClass [ owl:intersectionOf (seas:LightSource seas:Actuator ) ] ;
     vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:LightSystemOntology .
+    rdfs:isDefinedBy seas:ZoneLightingOntology .
 
   seas:subLightSourceOf a owl:ObjectProperty ;
     rdfs:label "sub light source of"@en ;
@@ -167,7 +165,7 @@ seas:LightSource a owl:Class ;
     rdfs:domain seas:LightSource ;
     rdfs:range seas:LightSource ;
     vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:LightSystemOntology .
+    rdfs:isDefinedBy seas:ZoneLightingOntology .
 
   seas:illuminates a owl:ObjectProperty ;
     rdfs:label "illuminates"@en ;
@@ -176,7 +174,7 @@ seas:LightSource a owl:Class ;
     rdfs:domain seas:LightSource ;
     rdfs:range seas:IlluminableZone ;
     vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:LightSystemOntology .
+    rdfs:isDefinedBy seas:ZoneLightingOntology .
 
 
   seas:luminosity a owl:ObjectProperty , owl:FunctionalProperty ;
@@ -186,7 +184,7 @@ seas:LightSource a owl:Class ;
     rdfs:domain seas:IlluminableZoneFrontier ;
     rdfs:range seas:Property ;
     vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:LightSystemOntology .
+    rdfs:isDefinedBy seas:ZoneLightingOntology .
 
   seas:colour a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:label "colour" ;
@@ -195,11 +193,11 @@ seas:LightSource a owl:Class ;
     rdfs:domain seas:LightSource ;
     rdfs:range seas:Property ;
     vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:LightSystemOntology .
+    rdfs:isDefinedBy seas:ZoneLightingOntology .
 
 seas:LightSensor a owl:Class ;
   rdfs:label "Light Sensor" ;
   rdfs:comment """The class of devices that are capable of generating evaluations of the luminosity in a zone."""@en ;
   rdfs:subClassOf seas:Sensor ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:LightSystemOntology .
+  rdfs:isDefinedBy seas:ZoneLightingOntology .
