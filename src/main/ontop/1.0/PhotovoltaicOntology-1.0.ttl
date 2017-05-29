@@ -133,7 +133,7 @@ seas:PVEnergyGenerationForecasting a owl:Class ;
 [ owl:intersectionOf (
     seas:Forecasting 
     [ owl:onProperty seas:forecasts ; owl:someValuesFrom [ owl:unionOf ( seas:SolarArray seas:SolarPanel seas:SolarModule seas:SolarCell ) ] ]
-    [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom [ owl:unionOf ( seas:outgoingElectricPower seas:outgoingElectricEnergy ) ] ]
+    [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom [ owl:unionOf ( seas:ElectricPowerProperty seas:ElectricEnergyProperty ) ] ]
   ) ] rdfs:subClassOf seas:PVEnergyGenerationForecasting .
 
 seas:PVEnergyGenerationForecaster a owl:Class ;
@@ -148,7 +148,7 @@ seas:PVEnergyGenerationForecaster a owl:Class ;
 [ owl:intersectionOf (
     seas:Forecaster 
     [ owl:onProperty seas:forecasts ; owl:someValuesFrom [ owl:unionOf ( seas:SolarArray seas:SolarPanel seas:SolarModule seas:SolarCell ) ] ]
-    [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom [ owl:unionOf ( seas:outgoingElectricPower seas:outgoingElectricEnergy ) ] ]
+    [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom [ owl:unionOf ( seas:ElectricPowerProperty seas:ElectricEnergyProperty ) ] ]
   ) ] rdfs:subClassOf seas:PVEnergyGenerationForecaster .
 
 seas:PVEnergyGenerationForecast a owl:Class ;
@@ -157,7 +157,7 @@ seas:PVEnergyGenerationForecast a owl:Class ;
   rdfs:subClassOf seas:Forecast ;
   rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:PVEnergyGenerationForecaster ] ;
   rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:PVEnergyGenerationForecasting ] ;
-  rdfs:subClassOf [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom seas:outgoingElectricPower ] ;
+  rdfs:subClassOf [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom seas:ElectricPowerProperty ] ;
   owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:PVEnergyGenerationForecasting ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:OptimizationOntology .
@@ -165,6 +165,6 @@ seas:PVEnergyGenerationForecast a owl:Class ;
 [ owl:intersectionOf (
     seas:Forecast 
     [ owl:onProperty seas:forecasts ; owl:someValuesFrom [ owl:unionOf ( seas:SolarArray seas:SolarPanel seas:SolarModule seas:SolarCell ) ] ]
-    [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom [ owl:unionOf ( seas:outgoingElectricPower seas:outgoingElectricEnergy ) ] ]
+    [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom [ owl:unionOf ( seas:ElectricPowerProperty seas:ElectricEnergyProperty ) ] ]
   ) ] rdfs:subClassOf seas:PVEnergyGenerationForecast .
 

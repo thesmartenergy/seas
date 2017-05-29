@@ -91,7 +91,7 @@ seas:temperature a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "temperature"@en ;
   rdfs:comment """The temperature of some physical entity."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:TemperatureProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
@@ -121,7 +121,7 @@ seas:noiseLevel a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "noise level"@en ;
   rdfs:comment """The noise level of some environnement."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:TemperatureProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
@@ -153,7 +153,7 @@ seas:speed a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "speed"@en ;
   rdfs:comment """The speed of some physical entity."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:SpeedProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
@@ -185,7 +185,7 @@ seas:length a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "length"@en ;
   rdfs:comment """The length of some physical entity."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:LengthProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
@@ -198,7 +198,7 @@ seas:height a owl:ObjectProperty , owl:FunctionalProperty ;
                 "The height of the airplane is 10,000 m". Height is measured along the vertical (y) axis 
                 between a specified point and another. (source: wikipedia)"""@en ;
   rdfs:subPropertyOf seas:length ;
-  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:LengthProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology . 
@@ -209,7 +209,7 @@ seas:width a owl:ObjectProperty , owl:FunctionalProperty ;
                 For example "The width of the building is 250 m". Width is measured along the 
                 horizontal (x) axis between a specified point and another. (source: wikipedia)"""@en ;
   rdfs:subPropertyOf seas:length ;
-  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:LengthProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology . 
@@ -240,7 +240,7 @@ seas:direction a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "length"@en ;
   rdfs:comment """The direction of some physical entity."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:DirectionProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
@@ -318,7 +318,7 @@ seas:diameter a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "diameter"@en ;
   rdfs:comment """The diameter of some circular or speherical physical entity."""@en ;
   rdfs:subPropertyOf seas:length ;
-  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:DiameterProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
@@ -348,7 +348,7 @@ seas:shape a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "shape"@en ;
   rdfs:comment """The shape of some physical entity."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:FeatureOfIneterest ;
+  rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:ShapeProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .

@@ -40,7 +40,7 @@ dcterms:issued a owl:AnnotationProperty .
 dcterms:modified a owl:AnnotationProperty .
 dcterms:creator a owl:AnnotationProperty .
 dcterms:contributor a owl:AnnotationProperty .
-cc:license a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
 vann:preferredNamespacePrefix a owl:AnnotationProperty .
 vann:preferredNamespaceUri a owl:AnnotationProperty .
 vs:term_status a owl:AnnotationProperty .
@@ -55,7 +55,7 @@ seas:UpperOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dcterms:issued "2015-10-10"^^xsd:date ;
   dcterms:modified "2016-05-26"^^xsd:date ;
   dcterms:creator <http://www.vtt.fi/JarmoKalaoja> ;
-  cc:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
   owl:versionIRI <https://w3id.org/seas/UpperOntology/0.9> ;

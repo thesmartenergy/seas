@@ -26,10 +26,18 @@ See the License for the specific language governing permissions and
       <![CDATA[
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href='style.css' rel='stylesheet' type='text/css'/>]]>
+      <link rel="stylesheet" type="text/css" href="css/base.css">
+      <link rel="stylesheet" type="text/css" href="css/small.css" media="only all and (max-width: 649px)">]]>
         </head>
         <menu name="Overview">
             <item name="Introduction" href="index.html"/>
+        </menu>
+
+        <menu name="Core Patterns">
+            <item name="Features and Properties" href="FeatureOfInterestOntology"/>
+            <item name="Property evaluation" href="EvaluationOntology"/>
+            <item name="Systems and their connections" href="SystemOntology"/>
+            <item name="Procedure executions" href="/pep/"/>
         </menu>
 
         <menu ref="reports" inherit="top"/>

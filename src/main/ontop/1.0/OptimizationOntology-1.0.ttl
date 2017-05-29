@@ -65,7 +65,7 @@ Figure below provides an overview of the concepts in this ontology:
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
-  owl:imports pep: ;
+  owl:imports <https://w3id.org/pep/pep-1.0> ;
   owl:versionIRI <https://w3id.org/seas/OptimizationOntology-1.0> ;
   owl:versionInfo "v1.0" .
 

@@ -192,8 +192,8 @@
         
         <dependency>
             <groupId>com.github.thesmartenergy</groupId>
-            <artifactId>rdfp-jersey-server</artifactId>
-            <version>${rdfp.version}</version>
+            <artifactId>ontop-jersey</artifactId>
+            <version>${ontop.version}</version>
         </dependency>
 
         <dependency>

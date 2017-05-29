@@ -61,7 +61,7 @@ A Player can offer services, and execute these services resulting in payment."""
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
-  owl:imports pep: , seas:SystemOntology ;
+  owl:imports <https://w3id.org/pep/pep-1.0> , seas:SystemOntology ;
   owl:versionIRI <https://w3id.org/seas/PlayerOntology-1.0> ;
   owl:versionInfo "v1.0" .
 
