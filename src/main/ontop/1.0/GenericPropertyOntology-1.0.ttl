@@ -237,7 +237,7 @@ seas:DirectionEvaluation a owl:Class ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
 
 seas:direction a owl:ObjectProperty , owl:FunctionalProperty ;
-  rdfs:label "length"@en ;
+  rdfs:label "direction"@en ;
   rdfs:comment """The direction of some physical entity."""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:FeatureOfInterest ;
