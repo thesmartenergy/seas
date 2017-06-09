@@ -213,6 +213,42 @@ seas:width a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:range seas:LengthProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology . 
+
+
+ 
+#######################################
+#Weight
+#######################################
+
+seas:WeightProperty a owl:Class ;
+  rdfs:label "Weight Property"@en ;
+  rdfs:comment """In daily life weight is always confused with mass. This property, in reality stands for  the masse of a physical object.
+                    The mass is a property of a physical body. It is the measure of an object's resistance to acceleration (a change in its state of motion) 
+                    when a net force is applied.[1] It also determines the strength of its mutual gravitational attraction to other bodies. 
+                    The basic SI unit of mass is the kilogram (kg).(source:wikipedia)"""@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:WeightEvaluation a owl:Class ;
+  rdfs:label "Weight Evaluation"@en ;
+  rdfs:comment """The class of evaluation for direction properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WeightProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WeightProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:weight a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "weight"@en ;
+  rdfs:comment """The weight of some physical entity."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:WeightProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+
 #######################################
 #Direction
 #######################################
