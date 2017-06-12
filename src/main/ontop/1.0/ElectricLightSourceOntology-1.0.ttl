@@ -431,7 +431,7 @@ seas:luminousFlux a owl:ObjectProperty , owl:FunctionalProperty ;
 #Luminouce Energy
 #######################################
 seas:LuminousEnergyProperty a owl:Class ;
-  rdfs:label "Luminous energy Property"@en ;
+  rdfs:label "Luminous Energy Property"@en ;
   rdfs:comment """In photometry, luminous energy is the perceived energy of light. This is sometimes called the quantity of light.(source:wikipedia)"""@en;
   rdfs:subClassOf seas:Property ;
   vs:term_status "testing" ;
