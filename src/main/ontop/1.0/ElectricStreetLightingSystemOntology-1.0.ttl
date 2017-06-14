@@ -63,7 +63,7 @@ seas:ElectricLightingSystemOntology a owl:Ontology , voaf:Vocabulary ;
   owl:imports seas:ZoneLightingOntology , 
               seas:ElectricPowerSystemOntology, 
               seas:ElectricLightSourceOntology , 
-              seas:GenericPropertyOntology, 
+              seas:ElectricStreetLightingSystemOntology, 
               seas:BuildingOntology,
               seas:BooleanPropertyOntology, 
               seas:BatteryOntology,
@@ -291,7 +291,7 @@ seas:TopFixationStreetLight a owl:Class;
                   is fixed on the top of the support through Top fixation"""@en ;
   rdfs:subClassOf seas:StreetLight ;
   owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:fixedInTopTo ; owl:someValuesFrom seas:StreetLightSupport ] )];
-  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:connectsSystem ; owl:someValuesFrom seas:TopFixation ])] ;
+  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:connectedThrough ; owl:someValuesFrom seas:TopFixation ])] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricStreetLightingSystemOntology .
 
@@ -301,7 +301,7 @@ seas:FacadeFixationStreetLight a owl:Class;
                   is fixed on the facade support through Facade fixation"""@en ;
   rdfs:subClassOf seas:StreetLight ;
   owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:fixedInFacadeTo ; owl:someValuesFrom seas:StreetLightSupport ] )];
-  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:connectsSystem ; owl:someValuesFrom seas:FacadeFixation ] )];
+  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:connectedThrough ; owl:someValuesFrom seas:FacadeFixation ] )];
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricStreetLightingSystemOntology .
 
@@ -311,7 +311,7 @@ seas:ArmFixationStreetLight a owl:Class;
                   is fixed via an arm of the support through Arm fixation"""@en ;
   rdfs:subClassOf seas:StreetLight ;
   owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:fixedViaAnArmTo ; owl:someValuesFrom seas:StreetLightSupport ])] ;
-  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:connectsSystem ; owl:someValuesFrom seas:ArmFixation ] )];
+  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:connectedThrough ; owl:someValuesFrom seas:ArmFixation ] )];
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricStreetLightingSystemOntology .
 
@@ -339,7 +339,8 @@ seas:ElectricPublicLightingSystemGroup   a owl:Class;
   owl:members ( 
     seas:ArmFixationStreetLight 
     seas:FacadeFixationStreetLight  
-    seas:TopFixationStreetLight ) .
+    seas:TopFixationStreetLight
+    seas:RecessedFloorStreetLight ) .
 
 [] a owl:AllDisjointClasses ; 
   owl:members ( 
@@ -348,7 +349,9 @@ seas:ElectricPublicLightingSystemGroup   a owl:Class;
     seas:StreetLightFixation
     seas:StreetLightFixationPoint
     seas:PowerBox
-    seas:ElectricLightSource ) .
+    seas:ElectricPublicLightingSystemGroup
+    seas:ElectricLightSource 
+    seas:ElectricPowerDistributionNetwork) .
 
 seas:StreetLightSupport a owl:Class ;
   rdfs:label "Lighting Support"@en ;
@@ -415,7 +418,7 @@ seas:StreetLightFixation a owl:Class;
   rdfs:isDefinedBy seas:ElectricStreetLightingSystemOntology .
 
   
-  seas:StreetLightFixationPoint a owl:Class;
+seas:StreetLightFixationPoint a owl:Class;
       rdfs:label "Street Light Fixation Point"@en;
       rdfs:comment """A Street Light Fixation Point is a connection Point which allowss to fixe a streetlight to the support."""@en ;
       rdfs:subClassOf seas:ConnectionPoint ;
@@ -503,7 +506,7 @@ seas:SupportFacadeFixationPoint a owl:Class;
   rdfs:comment """A Support Facade Fixation Point is a Street Light Fixation point which allows the point fixation between the support and the FacadeFixation."""@en ;
   rdfs:subClassOf seas:StreetLightFixationPoint ;
   rdfs:subClassOf [ owl:onProperty seas:connectionPointOf ; owl:allValuesFrom   seas:StreetLightSupport] ;
-  rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:TopFixation ] ;
+  rdfs:subClassOf [ owl:onProperty seas:connectsSystemThrough ; owl:allValuesFrom  seas:FacadeFixation ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricStreetLightingSystemOntology .
 
@@ -860,15 +863,6 @@ seas:WearStateEvaluation a owl:Class;
       rdfs:isDefinedBy seas:ElectricStreetLightingSystemOntology .
 
 
-seas:wearState a owl:ObjectProperty , owl:FunctionalProperty ;
-  rdfs:label "wear State"@en ;
-  rdfs:comment """The color temperature of some light source."""@en ;
-  rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:FeatureOfInterest ;
-  rdfs:range seas:WearStateProperty ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
-
 seas:GoodStateEvaluation a owl:Class;
       rdfs:label "good State Evaluation"@en ;
       rdfs:comment """A good State evalaution is a WearStateEvaluation which is an evaluation of the Property Wears State."""@en ;
@@ -902,6 +896,16 @@ seas:AverageStateEvaluation a owl:Class;
       rdfs:isDefinedBy seas:ElectricStreetLightingSystemOntology . 
 
 
+seas:illuminance a owl:ObjectProperty, owl:FunctionalProperty;
+      rdfs:label "illuminance"@en ;
+      rdfs:comment """The illuminance is a property of  some physical entity."""@en ;
+      rdfs:subPropertyOf seas:hasProperty ;
+      rdfs:domain seas:FeatureOfInterest ;
+      rdfs:range seas:LightActuator ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricStreetLightingSystemOntology .
+
+
 seas:wearState a owl:ObjectProperty, owl:FunctionalProperty;
       rdfs:label "wearState"@en ;
       rdfs:comment """The wearState of some physical entity."""@en ;
@@ -909,7 +913,7 @@ seas:wearState a owl:ObjectProperty, owl:FunctionalProperty;
       rdfs:domain seas:FeatureOfInterest ;
       rdfs:range seas:WearStateProperty ;
       vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:GenericPropertyOntology .
+      rdfs:isDefinedBy seas:ElectricStreetLightingSystemOntology .
 
 seas:fixedViaAnArmTo       a owl:ObjectProperty ;
       rdfs:label "fixed with arm to"@en ;
@@ -1044,3 +1048,8 @@ seas:isMemberOf  a owl:ObjectProperty , owl:FunctionalProperty;
       owl:inverseOf seas:member;
       vs:term_status "testing" ;
       rdfs:isDefinedBy seas:ElectricStreetLightingSystemOntology .      
+
+
+
+
+     
