@@ -54,13 +54,15 @@ seas:SmartMeterOntology a voaf:Vocabulary , owl:Ontology ;
   (`seas:subsystemOf`) of a traditional meter and a connector module which is connected to the meter. 
   The two systems form the smartMeter.
   In this ontology you will find concepts about 
-    - Meters (`seas:WaterMeter`, `seas:GasMeter`, `seas:ElectricityMeter`) and their metering mechanism (`seas:Pulse`, `seas:Optic`, `seas:Disc`..). 
+    - Meters (`seas:WaterMeter`, `seas:GasMeter`, `seas:ElectricityMeter`) and their metering mechanism (`seas:PulseMetering`, `seas:OpticMetering`, `seas:DiscMetering`..). 
     - Connectors module, these connectors can communicate thanks to  a 
-    - `seas:CommunicationProtocol` such as `seas:LoraProtocol` and `seas:SigFoxProtocol`. These protocols communicate through `seas:RadioWave` Technologies.  
+    - `seas:CommunicationDevice` such as `seas:LoraCommunicationDevice` and `seas:SigFoxCommunicationDevice`. 
+Figure below shows the taxonomy of Meter.
+[![SmartMeterTaxonomy](http://upl50069793:8080/seas/smartMeterTaxonomy-1.0-1.png)](https://w3id.org/seas/smartMeterTaxonomy-1.0-1.png) 
 """@en ;
   dcterms:issued "2016-05-10"^^xsd:date ;
   dcterms:modified "2016-11-24"^^xsd:date ;
-  dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
+  dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMALLLLL"] ;
   dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
@@ -168,7 +170,7 @@ seas:Metering a owl:Class;
 
   seas:ElectricityMetering a owl:Class;
     rdfs:label "Electricity Metering"@en;
-    rdfs:comment """The Measure of the electricity which flow through  the meter device.      It Could be a metering about a consumption or a production of  the electricity"""@en;
+    rdfs:comment """The Measure of the electricity which flow through  the meter device. It Could be a metering about a consumption or a production of  the electricity"""@en;
     rdfs:subClassOf seas:Metering;
     vs:term_status "unstable"   ;
     rdfs:isDefinedBy seas:SmartMeterOntology . 
@@ -193,7 +195,9 @@ seas:Meter a owl:Class;
   rdfs:subClassOf seas:Device;
   rdfs:label "Meter"@en;
   skos:altLabel "Measuring instrument"@en;
-  rdfs:comment "A Meter is a device that is designed to allow to carry out a metering process"@en;
+  rdfs:comment """A Meter is a device that is designed to allow to carry out a metering process.
+
+                  """@en;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
   owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
   vs:term_status "testing" ;

@@ -49,7 +49,9 @@ foaf:name a owl:DatatypeProperty .
 
 seas:ElectricLightSourceOntology a owl:Ontology , voaf:Vocabulary ;
   dcterms:title "The SEAS Electric Light Source Ontology."@en ;
-  dcterms:description """The SEAS Electric Light source ontology describes Electric light sources."""@en ;
+  dcterms:description """The SEAS Electric Light source ontology describes Electric light sources.
+  The figure below shows an overview of the electric light source taxonomy.
+   [![LightsourceTaxonomy](http://upl50069793:8080/seas/ElectricLightSourceTaxonomy-1.png)](https://w3id.org/seas/ElectricLightSourceTaxonomy-1.png)"""@en ;
   dcterms:issued "2017-02-22"^^xsd:date ;
   dcterms:modified "2017-02-23"^^xsd:date ;
   dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
@@ -69,7 +71,8 @@ seas:ElectricLightSource a owl:Class ;
   to modern society, providing interior lighting for buildings and 
   exterior light for evening and nighttime activities. 
   In technical usage, a replaceable component that produces light from 
-  electricity is called a lamp. (source: Wikipedia)"""@en ;
+  electricity is called a lamp. (source: Wikipedia). 
+  """@en ;
   rdfs:subClassOf seas:ElectricPowerSystem, seas:LightSource, seas:Device ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricLightSourceOntology .
