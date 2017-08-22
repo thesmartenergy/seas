@@ -339,7 +339,14 @@ seas:connectsSystemThrough a owl:ObjectProperty ;
   vs:term_status "stable" ;
   rdfs:isDefinedBy seas:SystemOntology .
 
-
+###  https://w3id.org/seas/SystemOntology#hasIdentifier
+:hasIdentifier rdf:type owl:DatatypeProperty ;
+               rdfs:domain seas:ConnectionPoint ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Dataproperty to link identifier to connection point. Identifier may be an arbitrary concatenation of characters."@en ;
+               rdfs:label "Links connection point to identifier."@en ;
+               rdfs:seeAlso "http://purl.org/dc/terms/identifier" .
+  
 
 # specific evaluations
 
