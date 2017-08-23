@@ -37,7 +37,7 @@ See the License for the specific language governing permissions and
             <item name="Features and Properties" href="FeatureOfInterestOntology"/>
             <item name="Property evaluation" href="EvaluationOntology"/>
             <item name="Systems and their connections" href="SystemOntology"/>
-            <item name="Procedure executions" href="/pep/"/>
+            <item name="Procedure executions" href="https://w3id.org/pep/"/>
         </menu>
 
         <menu ref="reports" inherit="top"/>
