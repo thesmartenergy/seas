@@ -51,6 +51,7 @@ foaf:name a owl:DatatypeProperty .
 
 **To cite the SEAS ontologies:**
 
+> Maxime Lefrançois, Planned ETSI SAREF Extensions based on the W3C&OGC SOSA/SSN-compatible SEAS Ontology Patterns. In Proceedings of Workshop on Semantic Interoperability and Standardization in the IoT, SIS-IoT, Amsterdam, Netherlands, July 2017 ([PDF](http://www.maxime-lefrancois.info/docs/Lefrancois-SIS-IoT2017-Planned.pdf) - [BibTex](SEAS-SIS-IoT-2017.bib))
 > Maxime Lefrançois, Jarmo Kalaoja, Takoua Ghariani, Antoine Zimmermann, The SEAS Knowledge Model, ITEA2 12004 Smart Energy Aware Systems Deliverable 2.2, Jan 2017 ([PDF](http://www.maxime-lefrancois.info/docs/SEAS-D2_2-SEAS-Knowledge-Model.pdf) - [BibTex](SEAS-D2_2-SEAS-Knowledge-Model.bib))
 
 SEAS ontology modules are organized on top of a core of three main modules:
