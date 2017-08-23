@@ -51,8 +51,9 @@ seas:BooleanPropertyOntology a owl:Ontology , voaf:Vocabulary ;
   dcterms:description """This ontology applies the design patterns defined in the Feature of Interest ontology and the Evaluation ontology for boolean-valued properties. 
 """@en ;
   dcterms:issued "2016-10-30"^^xsd:date ;
-  dcterms:modified "2016-10-30"^^xsd:date ;
+  dcterms:modified "2017-08-04"^^xsd:date ;
   dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:contributor [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
@@ -68,7 +69,7 @@ seas:EnumeratedProperty a owl:Class ;
   rdfs:isDefinedBy seas:BooleanPropertyOntology.
 
 seas:BooleanProperty a owl:Class ;
-  rdfs:label "Boolean Propety"@en ;
+  rdfs:label "Boolean Property"@en ;
   rdfs:comment "A property that can be true of false. May be used to model commands like on/off."@en ;
   rdfs:subClassOf seas:EnumeratedProperty ;
   rdfs:subClassOf [ 
@@ -93,6 +94,72 @@ If the property is true, then the feature of interest is on. Else, it is off."""
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:BooleanPropertyOntology.
 
+seas:onServiceStatus a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:label "on service status"@en ;
+  rdfs:label """links a feature of interest to its on service status, which is a boolean property.
+
+If the property is true, then the feature of interest is on service. Else, it is out of service."""@en ;
+  rdfs:subPropertyOf seas:onStatus ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:Property , seas:BooleanProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BooleanPropertyOntology.
+
+seas:connectedStatus a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:label "connected status"@en ;
+  rdfs:label """links a feature of interest to its connected status, which is a boolean property.
+
+If the property is true, then the feature of interest is connected. Else, it is disconnected."""@en ;
+  rdfs:subPropertyOf seas:onStatus ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:Property , seas:BooleanProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BooleanPropertyOntology.
+
+seas:refreshedStatus a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:label "refreshed status"@en ;
+  rdfs:label """links a feature of interest to its refreshed status, which is a boolean property.
+
+If the property is true, then the feature of interest is refreshed. Else, it is unrefreshed."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:Property , seas:BooleanProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BooleanPropertyOntology.
+
+seas:installedStatus a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:label "installed status"@en ;
+  rdfs:label """links a feature of interest to its installed status, which is a boolean property.
+
+If the property is true, then the feature of interest is installed. Else, it is not installed."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:Property , seas:BooleanProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BooleanPropertyOntology.
+
+seas:supportedByAPIStatus a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:label "supported by API status"@en ;
+  rdfs:label """links a feature of interest to its supported by API status, which is a boolean property.
+
+If the property is true, then the feature of interest is supported by the API. Else, it is not supported by the API."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:Property , seas:BooleanProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BooleanPropertyOntology.
+
+seas:recognizedByGatewayStatus a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:label "recognized  by gateway status"@en ;
+  rdfs:label """links a feature of interest to its recognized by the gateway status, which is a boolean property.
+
+If the property is true, then the feature of interest is recognized by the gateway. Else, it is not recognized by the Gateway."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:Property , seas:BooleanProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:BooleanPropertyOntology.
+
 seas:openStatus a owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "open status"@en ;
   rdfs:label """links a feature of interest to its open status, which is a boolean property.
@@ -103,6 +170,8 @@ If the property is true, then the feature of interest is open. Else, it is close
   rdfs:range seas:Property , seas:BooleanProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:BooleanPropertyOntology.
+
+
 
 seas:BooleanActuating a owl:Class ;
   rdfs:label "Boolean Actuating"@en ;
