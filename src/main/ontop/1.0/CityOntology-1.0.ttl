@@ -1,0 +1,277 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .  
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
+@prefix pep: <https://w3id.org/pep/> .
+@prefix schema: <https://schema.org/>.
+@prefix gr: <http://purl.org/goodrelations/v1#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:CityOntology a owl:Ontology , voaf:Vocabulary ;
+  dcterms:title "The SEAS City Ontology."@en ;
+  dcterms:description """The SEAS City ontology contains subclasses of zones usefull to describe cities"""@en ;
+  dcterms:issued "2017-08-23"^^xsd:date ;
+  dcterms:modified "2017-08-23"^^xsd:date ;
+  dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
+  dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:ZoneLightingOntology ;
+  owl:versionIRI <https://w3id.org/seas/CityOntology-1.0> ;
+  owl:versionInfo "v1.0" .
+
+
+
+## concepts to add knowledge about the kind of location the streetilght is.
+
+seas:City a owl:Class;
+      rdfs:label "City"@en ;
+      rdfs:comment """A City is a Zone which is a relatively large and permanent human settlement (source:wikipedia)"""@en ;
+      rdfs:subClassOf seas:Zone;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .
+
+seas:CityCenter a owl:Class;
+      rdfs:label "City  Center"@en ;
+      rdfs:comment """A City center is the commercial, cultural and often the historical, 
+                      political and geographic heart of a city. The term "city center" is not usually used in American English;
+                       rather, in North America, the term Downtown is used.(source:wikipedia)"""@en ;
+      rdfs:subClassOf seas:Zone;
+      rdfs:subClassOf  [ owl:onProperty seas:subSystemOf; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass seas:City ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .
+
+seas:OldCityCenter a owl:Class;
+      rdfs:label "Old City Center"@en ;
+      rdfs:comment """An Old City center is a city center  which was constructed a long time ago."""@en ;
+      rdfs:subClassOf seas:Zone;
+      rdfs:subClassOf  [ owl:onProperty seas:subSystemOf; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass seas:City ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .
+
+seas:ShoppingCityCenter a owl:Class;
+      rdfs:label "Shopping City Center"@en ;
+      rdfs:comment """A Shopping City center is a city center which where there are a lot of shops."""@en ;
+      rdfs:subClassOf seas:Zone;
+      rdfs:subClassOf  [ owl:onProperty seas:subSystemOf; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass seas:City ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .      
+
+
+
+seas:Stadium a owl:Class;
+      rdfs:label "Stadium"@en ;
+      rdfs:comment """A stadium is a place or venue for (mostly) outdoor sports, concerts, or other events and consists of a field or stage either partly or completely 
+                      surrounded by a tiered structure designed to allow spectators to stand or sit and view the event.(source:wikipedia)"""@en ;
+      rdfs:subClassOf seas:Zone;
+      rdfs:subClassOf seas:CivilEngineeringWork;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .  
+
+seas:CarPark a owl:Class;
+      rdfs:label "CarPark"@en ;
+      rdfs:comment """A parking lot (American English) or car park (British English), also known as a car lot, is a cleared area that is intended for parking vehicles.(source:wikipedia)"""@en ;
+      rdfs:subClassOf seas:Zone;
+      rdfs:subClassOf seas:CivilEngineeringWork;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .  
+    
+seas:Bridge a owl:Class;
+      rdfs:label "Bridge"@en ;
+      rdfs:comment """A bridge is a structure built to span physical obstacles without closing the way underneath such as a body of water, valley, or road, 
+                      for the purpose of providing passage over the obstacle.(source:wikipedia)"""@en ;
+      rdfs:subClassOf seas:Zone;
+      rdfs:subClassOf seas:CivilEngineeringWork;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .
+
+seas:Park a owl:Class;
+      rdfs:label "Park"@en ;
+      rdfs:comment """A park is an area of natural, semi-natural or planted space set aside for human enjoyment and recreation or for the protection of wildlife or natural habitats.(source:wikipedia)"""@en ;
+      rdfs:subClassOf seas:Zone;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .  
+
+seas:Garden a owl:Class;
+      rdfs:label "Garden";
+      rdfs:comment """A garden is a planned space, usually outdoors, set aside for the display, cultivation, and enjoyment of plants and other forms of nature. 
+                      The garden can incorporate both natural and man-made materials. (source:wikipedia)"""@en ;
+      rdfs:subClassOf seas:Zone;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .        
+
+
+seas:Thoroughfare a owl:Class ;
+  rdfs:label "Thoroughfare"@en ;     
+  rdfs:comment """A thoroughfare is a transportation route connecting one location to another. On land a thoroughfare may refer to anything from a multi-lane 
+                highway with grade separated junctions, to a rough trail.[citation needed] Thoroughfares used by a variety of traffic, such as cars on roads and 
+                highways. On water a thoroughfare may refer to a strait, channel or waterway. The term may also refer to access to a route, distinct from the route 
+                itself. In other words thoroughfare may refer to the legal right to use a particular way. (source:Wikipedia)"""@en ;
+  rdfs:subClassOf seas:CivilEngineeringWork ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:CityOntology . 
+
+    seas:ThoroughfareSection  a owl:Class;
+      rdfs:label "Thoroughfare Section"@en ;
+      rdfs:comment """A Thoroughfare Section is a part of the thoroughfare. (source: wikipedia)"""@en ;
+      rdfs:subClassOf seas:CivilEngineeringWork ;
+      rdfs:subClassOf  [ owl:onProperty seas:subSystemOf; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass seas:Thoroughfare ] ;
+      rdfs:isDefinedBy seas:CityOntology .  
+
+
+    seas:Tunnel a owl:Class ;
+      rdfs:label "Tunnel"@en ;
+      rdfs:comment """A tunnel is an underground passageway, dug through the surrounding soil/earth/rock and enclosed except for entrance and exit, commonly at each end. 
+                      A pipeline is not a tunnel, though some recent tunnels have used immersed tube construction techniques rather than traditional tunnel boring methods. (source: wikipedia)"""@en ;
+      rdfs:subClassOf seas:Thoroughfare ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology . 
+
+    seas:Bikeway a owl:Class ;
+      rdfs:label "Bike way"@en ;
+      rdfs:comment "A bike way is a lane, route, way or path which in some manner is specifically designed and /or designated for bicycle travel"@en ;
+      rdfs:subClassOf seas:Thoroughfare ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology . 
+
+    seas:Pedestrian_way a owl:Class ;
+      rdfs:label "Pedestrian-way"@en ;
+      rdfs:subClassOf seas:Thoroughfare ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology . 
+
+    seas:Road a owl:Class ;
+      rdfs:label "Road"@en ;
+      rdfs:comment """A road is a thoroughfare, route, or way on land between two places that has been paved or otherwise improved to allow travel by foot or some form of 
+                      onveyance, including a motor vehicle, cart, bicycle, or horse."""@en ;
+      rdfs:subClassOf seas:Thoroughfare ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology . 
+
+        seas:Avenue a owl:Class ;
+          rdfs:label "Avenue"@en ;
+          rdfs:comment """an landscaping, an avenue or allée is traditionally a straight path or road with a line of trees or large shrubs running along each side, 
+                        which is used, as its French source venir (\"to come\") indicates, to emphasize the \"coming to,\" or arrival at a landscape or architectural feature. 
+                        In most cases, the trees planted in an avenue will be all of the same species or cultivar, so as to give uniform appearance along the full length of the 
+                        avenue. (source : wikipedia)"""@en ;
+          rdfs:subClassOf seas:Road ;
+          vs:term_status "testing" ;
+          rdfs:isDefinedBy seas:CityOntology . 
+
+        seas:Backroad a owl:Class ;
+          rdfs:label "Back road"@en ;
+          rdfs:comment "A back road is a secondary type of road, usually found in rural areas. (source : wikipedia)"@en ;
+          rdfs:subClassOf seas:Road ;
+          vs:term_status "testing" ;
+          rdfs:isDefinedBy seas:CityOntology . 
+
+        seas:Boulevard a owl:Class ;
+          rdfs:label "Boulevard"@en ;
+          rdfs:comment """A boulevard (French, from Dutch: Bolwerk – bulwark, meaning bastion), often abbreviated Blvd, is a type of large road, usually running through a city.
+        In modern American usage it often means a wide, multi-lane arterial thoroughfare, divided with a median down the center, and perhaps with roadways along each side designed as slow travel and parking lanes and for bicycle and pedestrian usage, often with an above-average quality of landscaping and scenery. (source:Wikipedia)"""@en ;
+          rdfs:subClassOf seas:Road ;
+          vs:term_status "testing" ;
+          rdfs:isDefinedBy seas:CityOntology . 
+
+         seas:Dead_end a owl:Class ;
+          rdfs:label "Dead end"@en ;
+          rdfs:comment "A dead end, also known as a cul-de-sac, is a street with only one inlet/outlet.  (source: wikipedia)"@en ;
+          rdfs:subClassOf seas:Road ;
+          vs:term_status "testing" ;
+          rdfs:isDefinedBy seas:CityOntology . 
+
+        seas:Street a owl:Class ;
+          rdfs:label "Street"@en ;
+          rdfs:comment """A street is a public thoroughfare (usually paved) in a built environment. 
+                          It is a public parcel of land adjoining buildings in an urban context, on which people may freely assemble, interact, and move about.(source: wikipedia) """@en;
+          rdfs:subClassOf seas:Road ;
+          vs:term_status "testing" ;
+          rdfs:isDefinedBy seas:CityOntology . 
+
+
+        seas:Highway a owl:Class;
+          rdfs:label "Highway"@en ;
+          rdfs:comment """A highway is any public road or other public way on land. It is used for major roads, but also includes other public roads and public tracks: 
+                        It is not an equivalent term to controlled-access highway, or a translation for autobahn, auto-route, etc. (source: wikipedia)"""@en ;
+          rdfs:subClassOf seas:Road ;
+          rdfs:isDefinedBy seas:CityOntology . 
+
+        seas:Bypass a owl:Class;
+          rdfs:label "Bypass"@en ;
+          rdfs:comment """A bypass is a road  that avoids or "bypasses" a built-up area, town, or village, to let through traffic flow without interference from local traffic, 
+                            to reduce congestion in the built-up area, and to improve road safety. A bypass specifically designated for trucks may be called a truck route. (source: wikipedia)"""@en ;
+          rdfs:subClassOf seas:Road ;
+          rdfs:isDefinedBy seas:CityOntology .
+
+
+    seas:PrimaryPathway a owl:Class ;
+      rdfs:label "Primary pathway"@en ;
+      rdfs:comment """A Primary pathway is a thoroughfare, which is primary."""@en ;
+      rdfs:subClassOf seas:Thoroughfare ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .
+
+    seas:SecondaryPathway a owl:Class ;
+      rdfs:label "Secondary pathway"@en ;
+      rdfs:comment """A Secondary pathway is a thoroughfare, which is secondary."""@en ;
+      rdfs:subClassOf seas:Thoroughfare ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .
+
+    seas:TertiaryPathway a owl:Class ;
+      rdfs:label "Tertiary pathway"@en ;
+      rdfs:comment """A Tertiary pathway is a thoroughfare, which is tertiary."""@en ;
+      rdfs:subClassOf seas:Thoroughfare ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology .
+
+    seas:Passageway a owl:Class ;
+      rdfs:label "Passageway"@en ;
+      rdfs:comment "Passageway is a long, narrow way, typically having walls either side, that allows access between buildings or to different rooms within a building."@en;
+      rdfs:subClassOf seas:Thoroughfare ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:CityOntology . 

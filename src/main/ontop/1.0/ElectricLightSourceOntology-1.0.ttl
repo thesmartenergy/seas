@@ -51,7 +51,7 @@ seas:ElectricLightSourceOntology a owl:Ontology , voaf:Vocabulary ;
   dcterms:title "The SEAS Electric Light Source Ontology."@en ;
   dcterms:description """The SEAS Electric Light source ontology describes Electric light sources.
   The figure below shows an overview of the electric light source taxonomy.
-   [![LightsourceTaxonomy](http://upl50069793:8080/seas/ElectricLightSourceTaxonomy-1.png)](https://w3id.org/seas/ElectricLightSourceTaxonomy-1.png)"""@en ;
+   [![LightsourceTaxonomy](https://w3id.org/seas/ElectricLightSourceTaxonomy-1.png)](https://w3id.org/seas/ElectricLightSourceTaxonomy-1.png)"""@en ;
   dcterms:issued "2017-02-22"^^xsd:date ;
   dcterms:modified "2017-02-23"^^xsd:date ;
   dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
@@ -520,31 +520,16 @@ seas:luminousEfficacy a owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
-  
 #######################################
-# Working Life
+# illuminance
 #######################################
-seas:WorkingLifeProperty a owl:Class ;
-  rdfs:label "Working Life Property"@en ;
-  rdfs:comment """ The estimated number of hours working (the lamp) without failure."""@en;
-  rdfs:subClassOf seas:Property ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
-seas:WorkingLifeEvaluation a owl:Class ;
-  rdfs:label "WorkingLife Evaluation"@en ;
-  rdfs:comment """The class of evaluation for working Life properties"""@en ;
-  rdfs:subClassOf seas:Evaluation ;
-  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LuminousIntensityProperty ] ;
-  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LuminousIntensityProperty ] ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:ElectricLightSourceOntology.
+seas:illuminance a owl:ObjectProperty, owl:FunctionalProperty;
+      rdfs:label "illuminance"@en ;
+      rdfs:comment """The illuminance is a property of some physical entity."""@en ;
+      rdfs:subPropertyOf seas:hasProperty ;
+      rdfs:domain seas:FeatureOfInterest ;
+      rdfs:range seas:LightActuator ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .
 
-seas:workingLife a owl:ObjectProperty , owl:FunctionalProperty ;
-  rdfs:label "working life"@en ;
-  rdfs:comment """The working life of some light source."""@en ;
-  rdfs:subPropertyOf seas:hasProperty ;
-  rdfs:domain seas:LightSource ;
-  rdfs:range seas:WorkingLifeProperty ;
-  vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
