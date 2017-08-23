@@ -62,7 +62,7 @@ Figure below shows the taxonomy of Meter.
 """@en ;
   dcterms:issued "2016-05-10"^^xsd:date ;
   dcterms:modified "2016-11-24"^^xsd:date ;
-  dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMALLLLL"] ;
+  dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
   dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
@@ -170,7 +170,7 @@ seas:Metering a owl:Class;
 
   seas:ElectricityMetering a owl:Class;
     rdfs:label "Electricity Metering"@en;
-    rdfs:comment """The Measure of the electricity which flow through  the meter device. It Could be a metering about a consumption or a production of  the electricity"""@en;
+    rdfs:comment """The Measure of the electricity which flow through the meter device. It Could be a metering about a consumption or a production of  the electricity"""@en;
     rdfs:subClassOf seas:Metering;
     vs:term_status "unstable"   ;
     rdfs:isDefinedBy seas:SmartMeterOntology . 
@@ -195,9 +195,7 @@ seas:Meter a owl:Class;
   rdfs:subClassOf seas:Device;
   rdfs:label "Meter"@en;
   skos:altLabel "Measuring instrument"@en;
-  rdfs:comment """A Meter is a device that is designed to allow to carry out a metering process.
-
-                  """@en;
+  rdfs:comment """A Meter is a device that is designed to allow to carry out a metering process."""@en;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
   owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
   vs:term_status "testing" ;

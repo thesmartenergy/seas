@@ -580,3 +580,97 @@ seas:airCOLevel a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:range seas:AirQualityProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+
+#######################################
+# Working Life
+#######################################
+seas:WorkingLifeProperty a owl:Class ;
+  rdfs:label "Working Life Property"@en ;
+  rdfs:comment """ The estimated number of hours working without failure."""@en;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+seas:WorkingLifeEvaluation a owl:Class ;
+  rdfs:label "Working Life Evaluation"@en ;
+  rdfs:comment """The class of evaluation for working Life properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WorkingLifeProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:WorkingLifeProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology.
+
+seas:workingLife a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "working life"@en ;
+  rdfs:comment """The working life of some feature of interest."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:FeatureOfInterest ;
+  rdfs:range seas:WorkingLifeProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:GenericPropertyOntology .
+
+
+
+
+#######################################
+# Condition
+#######################################
+seas:ConditionProperty  a owl:Class ; 
+      rdfs:label "Condition Property"@en ;
+      rdfs:comment """A Condition Property is a property that describes the state that the feature of interest is in, especially how good or bad its physical state is."""@en ;
+      rdfs:subClassOf seas:Property;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:ConditionEvaluation a owl:Class;
+      rdfs:label "Condition Evaluation"@en ;
+      rdfs:comment """A Condition evaluation is an evaluation which is an evaluation of the Property Condition. """@en ;
+      rdfs:subClassOf seas:Evaluation;
+      rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ConditionProperty ] ;
+      owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ConditionProperty ] ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:condition a owl:ObjectProperty, owl:FunctionalProperty;
+      rdfs:label "condition"@en ;
+      rdfs:comment """The condition of some physical entity."""@en ;
+      rdfs:subPropertyOf seas:hasProperty ;
+      rdfs:domain seas:FeatureOfInterest ;
+      rdfs:range seas:ConditionProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+    seas:GoodConditionEvaluation a owl:Class;
+          rdfs:label "Good Condition Evaluation"@en ;
+          rdfs:comment """A good Condition Evaluation is a ConditionEvaluation which is an evaluation of the Property Condition."""@en ;
+          rdfs:subClassOf seas:ConditionEvaluation;
+          owl:equivalentClass [ owl:onProperty seas:evaluatedSimpleValue ; owl:hasValue "Good"^^xsd:string ] ;
+          vs:term_status "testing" ;
+          rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+    seas:DilapidatedConditionEvaluation a owl:Class;
+          rdfs:label "Dilapidated Condition Evaluation"@en ;
+          rdfs:comment """A Dilapidated Condition Evaluation is a ConditionEvaluation which is an evaluation of the Property Condition."""@en ;
+          rdfs:subClassOf seas:ConditionEvaluation;
+          owl:equivalentClass [ owl:onProperty seas:evaluatedSimpleValue ; owl:hasValue "Dilapidated"^^xsd:string ] ;
+          vs:term_status "testing" ;
+          rdfs:isDefinedBy seas:StreetLightSystemOntology .  
+
+    seas:ObsoleteConditionEvaluation a owl:Class;
+          rdfs:label "Obsolete Condition Evaluation"@en ;
+          rdfs:comment """A Obsolete Condition Evaluation is a ConditionEvaluation which is an evaluation of the Property Condition."""@en ;
+          rdfs:subClassOf seas:ConditionEvaluation;
+          owl:equivalentClass [ owl:onProperty seas:evaluatedSimpleValue ; owl:hasValue "Obsolete"^^xsd:string ] ;
+          vs:term_status "testing" ;
+          rdfs:isDefinedBy seas:StreetLightSystemOntology . 
+
+    seas:FairConditionEvaluation a owl:Class;
+          rdfs:label "Fair Condition Evaluation"@en ;
+          rdfs:comment """A Fair Condition Evaluation is a ConditionEvaluation which is an evaluation of the Property Condition."""@en ;
+          rdfs:subClassOf seas:ConditionEvaluation;
+          owl:equivalentClass [ owl:onProperty seas:evaluatedSimpleValue ; owl:hasValue "Average"^^xsd:string ] ;
+          vs:term_status "testing" ;
+          rdfs:isDefinedBy seas:StreetLightSystemOntology . 
+

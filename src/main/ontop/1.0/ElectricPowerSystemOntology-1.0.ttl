@@ -104,6 +104,26 @@ seas:exchangesElectricityWith a owl:ObjectProperty , owl:SymmetricProperty ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
+    seas:isPoweredBy  a owl:ObjectProperty ;
+          rdfs:label "is powered by"@en ;
+          rdfs:comment "links a System to it powered system."@en ;
+          rdfs:subPropertyOf seas:exchangesElectricityWith ;
+          rdfs:domain seas:ElectricPowerSystem ;
+          rdfs:range seas:ElectricPowerSystem ;
+          owl:inverseOf seas:powers;
+          vs:term_status "testing" ;
+          rdfs:isDefinedBy seas:ElectricPowerSystemOntology .    
+
+    seas:powers  a owl:ObjectProperty ;
+          rdfs:label "powers"@en ;
+          rdfs:comment "links a system to the systems its powers."@en ;
+          rdfs:subPropertyOf seas:exchangesElectricityWith ;
+          rdfs:domain seas:ElectricPowerSystem ;
+          rdfs:range seas:ElectricPowerSystem ;
+          owl:inverseOf seas:isPoweredBy;
+          vs:term_status "testing" ;
+          rdfs:isDefinedBy seas:ElectricPowerSystemOntology .    
+
 seas:subElectricPowerSystemOf a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:label "sub electric power system of"@en ;
   rdfs:comment """Links an electric power system to its super electric power systems.
@@ -1921,4 +1941,39 @@ seas:ChargingEfficiencyEvaluation a owl:Class ;
   owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ChargingEfficiencyProperty ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+
+
+
+seas:ElectricPowerDistributionNetwork   a owl:Class;
+      rdfs:label "Electric Power Distribution Network."@en ;
+      rdfs:comment """ Electric Power Distribution Network is a network used to distribute the electric power. 
+                      Figure below shows the taxonomy of Electric Power Distribution Network according to the installation mode of Electric Line or cable.
+                       [![ElectricPowerDistributionNetworkTaxonomy](https://w3id.org/seas/ElectricPowerDistributionNetwork-1.png)](https://w3id.org/seas/ElectricPowerDistributionNetwork-1.png)
+                      """@en ;
+      rdfs:subClassOf seas:ElectricPowerSystem ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+## reseau sous terrain
+seas:UndergroundElectricPowerDistributionNetwork   a owl:Class;
+      rdfs:label "Underground Electric Power Distribution Network"@en ;
+      rdfs:comment """An Underground Electric Power Distribution Network is an ElectricPowerDistributionNetwork which is buried underground."""@en ;
+      rdfs:subClassOf seas:ElectricPowerDistributionNetwork ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+## reseau aerien
+seas:OverheadElectricPowerDistributionNetwork   a owl:Class;
+      rdfs:label "Overhead Electric Power Distribution Network"@en ;
+      rdfs:comment """An Overhead Electric Power DistributionNetwork is an ElectricPowerDistributionNetwork which is suspended in the air. """@en ;
+      rdfs:subClassOf seas:ElectricPowerDistributionNetwork ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+## reseau connal
+seas:FacadeElectricPowerDistributionNetwork   a owl:Class;
+      rdfs:label "Facade Electric Power Distribution Network"@en ;
+      rdfs:comment """A Facade Electric Power DistributionNetwork is an ElectricPowerDistributionNetwork which is hanging along a facade."""@en ;
+      rdfs:subClassOf seas:ElectricPowerDistributionNetwork;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 

@@ -94,6 +94,7 @@ We furthermore encourage the use of the following external ontologies:
               <https://w3id.org/seas/BatteryOntology-1.0> ,
               <https://w3id.org/seas/BooleanPropertyOntology-1.0> ,
               <https://w3id.org/seas/BuildingOntology-1.0> ,
+              <https://w3id.org/seas/CityOntology-1.0> ,
               <https://w3id.org/seas/ComfortOntology-1.0> ,
               <https://w3id.org/seas/ComplexOntology-1.0> ,
               <https://w3id.org/seas/CommunicationOntology-1.0> ,
