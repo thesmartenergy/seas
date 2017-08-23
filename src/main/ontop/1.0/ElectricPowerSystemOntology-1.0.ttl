@@ -1977,3 +1977,54 @@ seas:FacadeElectricPowerDistributionNetwork   a owl:Class;
       vs:term_status "testing" ;
       rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
+
+
+
+
+seas:PowerBox a owl:Class;
+      rdfs:label "Power box"@en ;
+      rdfs:comment """A power box (USA) or feeder pillar (UK) is a cabinet for electrical equipment, 
+                      mounted in the street and controlling the electrical supply to a number of houses in a neighborhood. (source:wikipedia)"""@en ;
+      rdfs:subClassOf seas:ElectricPowerSystem ;
+      rdfs:subClassOf [ owl:onProperty seas:connectedTo ; owl:someValuesFrom seas:ElectricPowerSystem ];
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+
+seas:ElectricalBallast a owl:Class;
+      rdfs:label "Electrical Ballast"@en ;
+      rdfs:comment """An electrical ballast is a device placed in line with the load to limit the amount of current in an electrical circuit. 
+                      It may be a fixed or variable resistor.
+                      A familiar and widely used example is the inductive ballast used in fluorescent lamps to limit the current through the tube, 
+                      which would otherwise rise to a destructive level due to the negative differential resistance artifact in the tube's voltage-current 
+                      characteristic. Ballasts vary greatly in complexity. They may be as simple as a resistor, inductor or capacitor (or a combination of these) 
+                      wired in series with the lamp; or as complex as the electronic ballasts used in compact fluorescent lamps and high-intensity discharge lamps. 
+                      (source:wikipedia)"""@en ;
+      rdfs:subClassOf seas:ElectricPowerSystem ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemOntology .      
+
+seas:ElectronicBallast a owl:Class;
+      rdfs:label "Electronic ballast"@en ;
+      rdfs:comment """An electronic ballast uses solid state electronic circuitry to provide the proper starting and operating electrical conditions to power discharge lamps.
+                      An electronic ballast can be smaller and lighter than a comparably-rated magnetic one. An electronic ballast is usually quieter than a magnetic one,
+                      which produces a line-frequency hum by vibration of the transformer laminations. 
+                      (source:wikipedia)"""@en ;
+      rdfs:subClassOf seas:ElectricalBallast ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemOntology . 
+
+seas:MagneticBallast   a owl:Class;
+      rdfs:label "Magnetic ballast"@en ;
+      rdfs:comment """A Magnetic ballast is a Ballast which is Magnetic"""@en ;
+      rdfs:subClassOf seas:ElectricalBallast ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+seas:DigitalBallast   a owl:Class;
+      rdfs:label "Digital ballast "@en ;
+      rdfs:comment """A Digital ballast is a Ballast which is Digital"""@en ;
+      rdfs:subClassOf seas:ElectricalBallast ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+

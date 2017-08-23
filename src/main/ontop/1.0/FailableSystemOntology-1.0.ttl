@@ -97,3 +97,22 @@ seas:unavailability a owl:ObjectProperty , owl:FunctionalProperty ;
   vs:term_status "test" ;
   rdfs:isDefinedBy seas:FailableSystemOntology . 
 
+
+seas:wasReplacedBy a owl:ObjectProperty ;
+      rdfs:label "was replaced by"@en ;
+      rdfs:comment "links a feature of interest to its replaced feature of interest."@en ;
+      rdfs:domain seas:FeatureOfInterest ;
+      rdfs:range seas:FeatureOfInterest ;
+      owl:inverseOf seas:hasReplaced;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:FailableSystemOntology . 
+
+seas:hasReplaced a owl:ObjectProperty ;
+      rdfs:label "has replaced"@en ;
+      rdfs:comment "the feature of interesr it replaces."@en ;
+      rdfs:domain seas:FeatureOfInterest ;
+      rdfs:range seas:FeatureOfInterest ;
+      owl:inverseOf seas:isReplacedBy;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:FailableSystemOntology . 
+

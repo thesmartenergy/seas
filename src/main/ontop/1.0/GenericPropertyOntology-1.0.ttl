@@ -674,3 +674,10 @@ seas:condition a owl:ObjectProperty, owl:FunctionalProperty;
           vs:term_status "testing" ;
           rdfs:isDefinedBy seas:StreetLightSystemOntology . 
 
+
+seas:migrationCost a owl:ObjectProperty , owl:FunctionalProperty;
+      rdfs:label "migration cost"@en ;
+      rdfs:comment ""@en ;
+      rdfs:range seas:PriceProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .       

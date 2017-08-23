@@ -223,12 +223,13 @@ seas:SolarStreetLight a owl:Class ;
                 pole itself. The photovoltaic panels charge a rechargeable battery, which powers a fluorescent or LED lamp during the night. (source: Wikipedia)"""@en ;
   rdfs:subClassOf seas:StreetLight ;
   rdfs:subClassOf [ owl:onProperty seas:isPoweredBy ; owl:someValuesFrom seas:Battery ] ; 
-  owl:equivalentClass [owl:intersectionOf (seas:StreetLight [owl:onProperty seas:isPoweredBy ;
-                                        owl:someValuesFrom [ owl:intersectionOf ( seas:Battery [ owl:onProperty seas:isPoweredBy ; owl:someValuesFrom seas:SolarPanel
-                                                                                  ]
-                                                                                ) ;
-                                                             rdf:type owl:Class
-                                                           ]])] ;
+  owl:equivalentClass [owl:intersectionOf (
+                            seas:StreetLight 
+                            [ owl:onProperty seas:isPoweredBy ;
+                              owl:someValuesFrom [ owl:intersectionOf ( 
+                                seas:Battery
+                                [ owl:onProperty seas:isPoweredBy ;
+                                  owl:someValuesFrom seas:SolarPanel ] ) ] ] ) ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .  
 
@@ -236,31 +237,12 @@ seas:EquipableStreetLight a owl:Class;
   rdfs:label "Equipable Street Light"@en ;
   rdfs:comment """An Equipable Street light, is a Street light which can be equipable"""@en ;
   rdfs:subClassOf seas:StreetLight ;
-  rdfs:subClassOf   [ owl:intersectionOf ( [ owl:onProperty seas:isEquipable ;
-                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                   owl:onClass seas:BooleanProperty
-                                                                 ]
-                                                                 [ rdf:type owl:Restriction ;
-                                                                   owl:onProperty seas:simpleValue ;
-                                                                   owl:hasValue "true"^^xsd:boolean
-                                                                 ]
-                                                               ) ;
-                                          ] ; 
-  owl:equivalentClass [ owl:intersectionOf ( seas:StreetLight
-                                                                     [ owl:intersectionOf ( [ owl:onProperty seas:isEquipable ;
-                                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                              owl:onClass seas:BooleanProperty
-                                                                                            ]
-                                                                                            [ rdf:type owl:Restriction ;
-                                                                                              owl:onProperty seas:simpleValue ;
-                                                                                              owl:hasValue "true"^^xsd:boolean
-                                                                                            ]
-                                                                                          ) ;
-                                                                     ]
-                                                                   ) ;
-                                                rdf:type owl:Class
-                                              ] ;
-                         
+  rdfs:subClassOf   [ rdf:type owl:Restriction ;
+                      owl:onProperty seas:isEquipable ;
+                      owl:allValuesFrom [
+                        rdf:type owl:Restriction ;
+                        owl:onProperty seas:simpleValue ;
+                        owl:hasValue "true"^^xsd:boolean ] ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
 
@@ -269,25 +251,12 @@ seas:NotEquipableStreetLight a owl:Class;
   rdfs:label "Not Equipable Street Light"@en ;
   rdfs:comment """A Not Equipable Street light, is a Street light which is not equipable."""@en ;
   rdfs:subClassOf seas:StreetLight ;
-  rdfs:subClassOf   [ owl:intersectionOf ( [ owl:onProperty seas:isEquipable ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass seas:BooleanProperty]
-                                                                 [ rdf:type owl:Restriction ; owl:onProperty seas:simpleValue ; owl:hasValue "false"^^xsd:boolean]
-                                                               ) ;
-                                          ] ; 
-  owl:equivalentClass [ owl:intersectionOf ( seas:StreetLight
-                                                                     [ owl:intersectionOf ( [ owl:onProperty seas:isEquipable ;
-                                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                              owl:onClass seas:BooleanProperty
-                                                                                            ]
-                                                                                            [ rdf:type owl:Restriction ;
-                                                                                              owl:onProperty seas:simpleValue ;
-                                                                                              owl:hasValue "false"^^xsd:boolean
-                                                                                            ]
-                                                                                          ) ;
-                                                                     ]
-                                                                   ) ;
-                                                rdf:type owl:Class
-                                              ] ;
-  
+  rdfs:subClassOf   [ rdf:type owl:Restriction ;
+                      owl:onProperty seas:isEquipable ;
+                      owl:allValuesFrom [
+                        rdf:type owl:Restriction ;
+                        owl:onProperty seas:simpleValue ;
+                        owl:hasValue "false"^^xsd:boolean ] ] ;
   owl:disjointWith seas:EquipableStreetLight;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
@@ -412,19 +381,12 @@ seas:StreetLightFixing a owl:Class;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
 
-  
-
-
-  seas:ArmFixing a owl:Class;
+seas:ArmFixing a owl:Class;
   rdfs:label "Arm Fixing"@en ;
   rdfs:comment """An Arm Fixing is a Street Light Fixing which allows to arm-fix a street light to the support."""@en ;
   rdfs:subClassOf seas:StreetLightFixing ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
-
-
-
-
 
 seas:TopFixing a owl:Class;
   rdfs:label "Top Fixing"@en ;
@@ -433,19 +395,12 @@ seas:TopFixing a owl:Class;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
 
-
-
-
-
-  seas:FacadeFixing a owl:Class;
+seas:FacadeFixing a owl:Class;
   rdfs:label "Facade Fixing"@en ;
   rdfs:comment """A Facade fixing is a Street Light Fixing which allows a street light to be fixed to a facade support."""@en ;
   rdfs:subClassOf seas:StreetLightFixing ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
-
-
-
 
 seas:RecessedFloorFixing a owl:Class;
   rdfs:label "Recessed Floor Fixing"@en ;
@@ -453,58 +408,6 @@ seas:RecessedFloorFixing a owl:Class;
   rdfs:subClassOf seas:StreetLightFixing ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
-
-
-seas:PowerBox a owl:Class;
-      rdfs:label "Power box"@en ;
-      rdfs:comment """A power box (USA) or feeder pillar (UK) is a cabinet for electrical equipment, 
-                      mounted in the street and controlling the electrical supply to a number of houses in a neighborhood. (source:wikipedia)"""@en ;
-      rdfs:subClassOf seas:ElectricPowerSystem ;
-      rdfs:subClassOf [ owl:onProperty seas:connectedTo ; owl:someValuesFrom seas:ElectricPublicLightingSystem];
-      vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:StreetLightSystemOntology .
-
-
-seas:ElectricalBallast a owl:Class;
-      rdfs:label "Electrical Ballast"@en ;
-      rdfs:comment """An electrical ballast is a device placed in line with the load to limit the amount of current in an electrical circuit. 
-                      It may be a fixed or variable resistor.
-                      A familiar and widely used example is the inductive ballast used in fluorescent lamps to limit the current through the tube, 
-                      which would otherwise rise to a destructive level due to the negative differential resistance artifact in the tube's voltage-current 
-                      characteristic. Ballasts vary greatly in complexity. They may be as simple as a resistor, inductor or capacitor (or a combination of these) 
-                      wired in series with the lamp; or as complex as the electronic ballasts used in compact fluorescent lamps and high-intensity discharge lamps. 
-                      (source:wikipedia)"""@en ;
-      rdfs:subClassOf seas:ElectricPowerSystem ;
-      vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:StreetLightSystemOntology .      
-
-seas:ElectronicBallast a owl:Class;
-      rdfs:label "Electronic ballast"@en ;
-      rdfs:comment """An electronic ballast uses solid state electronic circuitry to provide the proper starting and operating electrical conditions to power discharge lamps.
-                      An electronic ballast can be smaller and lighter than a comparably-rated magnetic one. An electronic ballast is usually quieter than a magnetic one,
-                      which produces a line-frequency hum by vibration of the transformer laminations. 
-                      (source:wikipedia)"""@en ;
-      rdfs:subClassOf seas:ElectricalBallast ;
-      vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:StreetLightSystemOntology . 
-
-seas:MagneticBallast   a owl:Class;
-      rdfs:label "Magnetic ballast"@en ;
-      rdfs:comment """A Magnetic ballast is a Ballast which is Magnetic"""@en ;
-      rdfs:subClassOf seas:ElectricalBallast ;
-      vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:StreetLightSystemOntology .
-
-seas:DigitalBallast   a owl:Class;
-      rdfs:label "Digital ballast "@en ;
-      rdfs:comment """A Digital ballast is a Ballast which is Digital"""@en ;
-      rdfs:subClassOf seas:ElectricalBallast ;
-      vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:StreetLightSystemOntology .
-
-
-
-
 
 seas:IlluminanceProperty a owl:Class ; 
       rdfs:label "Illuminance Property"@en ;
@@ -561,32 +464,6 @@ seas:isEquipable a owl:ObjectProperty;
       rdfs:range seas:BooleanProperty ;
       vs:term_status "testing" ;
       rdfs:isDefinedBy seas:StreetLightSystemOntology .  
-
-seas:wasReplacedBy a owl:ObjectProperty ;
-      rdfs:label "was replaced by"@en ;
-      rdfs:comment "links a System to its replaced system."@en ;
-      rdfs:domain seas:System ;
-      rdfs:range seas:System ;
-      owl:inverseOf seas:hasReplaced;
-      vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:StreetLightSystemOntology . 
-
-seas:hasReplaced a owl:ObjectProperty ;
-      rdfs:label "has Replaced"@en ;
-      rdfs:comment "the System  it replaces."@en ;
-      rdfs:domain seas:System ;
-      rdfs:range seas:System ;
-      owl:inverseOf seas:isReplacedBy;
-      vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:StreetLightSystemOntology . 
-
-seas:migrationCost a owl:ObjectProperty , owl:FunctionalProperty;
-      rdfs:label "migration cost"@en ;
-      rdfs:comment ""@en ;
-      rdfs:range seas:PriceProperty ;
-      vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:StreetLightSystemOntology .       
-
 
 seas:member  a owl:ObjectProperty , owl:FunctionalProperty;
       rdfs:label "member"@en ;
