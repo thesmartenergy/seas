@@ -483,12 +483,12 @@ seas:FrequencyProperty a owl:Class;
     vs:term_status "unstable" ;
     rdfs:isDefinedBy seas:SmartMeterOntology.
 
-  seas:trameSendingFrequency a owl:ObjectProperty , owl:FunctionalProperty;
+  seas:frameSendingFrequency a owl:ObjectProperty , owl:FunctionalProperty;
     rdfs:subPropertyOf seas:frequency;
-    rdfs:label "trame Sending Frequency"@en;
+    rdfs:label "frame Sending Frequency"@en;
     rdfs:domain seas:SmartMeter ;
     rdfs:range seas:FrequencyProperty;
-    rdfs:comment "A trame sending frequency relationship connects an entity to the frequency between two successive sending of trames by the entity"@en;
+    rdfs:comment "A frame sending frequency relationship connects an entity to the frequency between two successive sending of frames by the entity"@en;
     vs:term_status "unstable" ;
     rdfs:isDefinedBy seas:SmartMeterOntology . 
 
@@ -501,10 +501,10 @@ seas:FrequencyProperty a owl:Class;
     vs:term_status "unstable"   ;
     rdfs:isDefinedBy seas:SmartMeterOntology .
 
-  seas:measuringFrequency a owl:ObjectProperty , owl:FunctionalProperty;
+  seas:samplingMeasuringFrequency a owl:ObjectProperty , owl:FunctionalProperty;
     rdfs:subPropertyOf seas:frequency;
-    rdfs:label "measuring frequency"@en;
-    rdfs:comment "A measuring frequency relationship connects an entity to the frequency between two successives measuring made by the entity"@en;
+    rdfs:label "sampling measuring frequency"@en;
+    rdfs:comment "A sampling measuring frequency relationship connects an entity to the frequency between two successives sampling measuring made by the entity"@en;
     rdfs:domain seas:Meter;
     rdfs:range seas:FrequencyProperty;
     vs:term_status "unstable"   ;
