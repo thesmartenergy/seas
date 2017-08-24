@@ -51,7 +51,7 @@ seas:FailableSystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dcterms:title "The SEAS Failable System ontology"@en ;
   dcterms:description """The SEAS Failable System ontology defines properties to qualify features of interest, their failures and repairs."""@en ;
   dcterms:issued "2016-07-24"^^xsd:date ;
-  dcterms:modified "2016-11-01"^^xsd:date ;
+  dcterms:modified "2017-08-23"^^xsd:date ;
   dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
@@ -96,4 +96,23 @@ seas:unavailability a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:subPropertyOf seas:hasProperty ;
   vs:term_status "test" ;
   rdfs:isDefinedBy seas:FailableSystemOntology . 
+
+
+seas:wasReplacedBy a owl:ObjectProperty ;
+      rdfs:label "was replaced by"@en ;
+      rdfs:comment "links a feature of interest to its replaced feature of interest."@en ;
+      rdfs:domain seas:FeatureOfInterest ;
+      rdfs:range seas:FeatureOfInterest ;
+      owl:inverseOf seas:hasReplaced;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:FailableSystemOntology . 
+
+seas:hasReplaced a owl:ObjectProperty ;
+      rdfs:label "has replaced"@en ;
+      rdfs:comment "the feature of interesr it replaces."@en ;
+      rdfs:domain seas:FeatureOfInterest ;
+      rdfs:range seas:FeatureOfInterest ;
+      owl:inverseOf seas:isReplacedBy;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:FailableSystemOntology . 
 

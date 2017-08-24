@@ -1,0 +1,498 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#      http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .  
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ssn: <https://www.w3.org/ns/ssn/>.
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>.
+@prefix liner: <https://w3id.org/liner/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
+@prefix pep: <https://w3id.org/pep/> .
+@prefix schema: <https://schema.org/>.
+@prefix gr: <http://purl.org/goodrelations/v1#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:StreetLightSystemOntology a owl:Ontology , voaf:Vocabulary ;
+  dcterms:title "The SEAS Electric Street Light System Ontology."@en ;
+  dcterms:description """The SEAS Electric Street Light System ontology describes Electric Street Light Systems.
+                        Figure below shows an overview on the street light taxonomy. 
+                        [![StreetlightTaxonomy](https://w3id.org/seas/lighting-taxonomy-1.png)](https://w3id.org/seas/lighting-taxonomy-1.png)
+                        """@en ;
+  dcterms:issued "2017-05-30"^^xsd:date ;
+  dcterms:modified "2017-05-30"^^xsd:date ;
+  dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
+  dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
+  owl:imports seas:ZoneLightingOntology , 
+              seas:CityOntology, 
+              seas:ElectricPowerSystemOntology, 
+              seas:ElectricLightSourceOntology , 
+              seas:BuildingOntology,
+              seas:BooleanPropertyOntology, 
+              seas:BatteryOntology,
+              seas:DeviceOntology,
+              seas:PhotovoltaicOntology,
+              seas:EvaluationOntology,
+              seas:BooleanPropertyOntology;
+  owl:versionIRI <https://w3id.org/seas/StreetLightSystemOntology-1.0> ;
+  owl:versionInfo "v1.0" .
+
+
+
+################################################################
+#    Classes
+#################################################################
+
+## Lighting, LightingActuator, LightingExecution
+## le but de cette modélisation est de pouvoir explicité  l'action d'eclairer pour pouvoir par la suite  les identifier dans le temps distinctement. 
+## Au lieu de garder des informations sur la dernière manipumlation dateLastSwitchingOff et dateLastSwitchingOn dateLastChange
+
+seas:Lighting a owl:Class;
+  rdfs:label "Lighting"@en ;
+  rdfs:comment """A lighting is the process that allows to illuminate some zone."""@en ;
+  rdfs:subClassOf seas:Actuating ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+# les luminaire peuvent avoir plusieurs fonctions parmi elle : l'eclairage public, la mise en valeur, la gestion du traffic. 
+# une autre façon serait d'ajouter  un concept Function et d'jouter les differentes functions ou de de distingué  des sous classes de LightActuating 
+
+seas:PublicLighting a owl:Class; # Eclairage public
+  rdfs:label "Public Lighting"@en ;
+  rdfs:comment """A public lighting is the process that allows to illuminate some public zone."""@en ;
+  rdfs:subClassOf seas:Lighting ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+## mise en valeur 
+seas:Highlighting a owl:Class;
+  rdfs:label "Highlighting"@en ;
+  rdfs:comment """The Highlighting is the process that allows to highlight some public zone (places, buildings,...)."""@en ;
+  rdfs:subClassOf seas:Lighting ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+## Feux de circulation
+seas:TrafficSignalsLighting a owl:Class;
+  rdfs:label "Traffic Signals Lighting"@en ;
+  rdfs:comment """The traffic signals Lighting is the process that give lighting signals to control the traffic flow."""@en ;
+  rdfs:subClassOf seas:Lighting ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+## LightActuation est une action qui se déroule dans le temps. Elle s'étend du moment ou le luminaire est mise en marche (On Commande),
+## Jusqu'au moment ou il est éteind (off commande). 
+seas:LightActuation a owl:Class;
+    rdfs:label "Light Actuation"@en;
+    rdfs:comment """A Light Actuation is the execution of the action of lighting or light Actuating.
+    The figure below shows how the Streetlight are modeled like the Process executor execution Pattern.
+    [![lightgActuator](https://w3id.org/seas/lighting-0.1-1.png)](https://w3id.org/seas/lighting-0.1-1.png)
+                     """@en ;
+    rdfs:subClassOf seas:Actuation ;
+    rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:LightActuator ] ;
+    rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Lighting ] ;
+    rdfs:subClassOf [ owl:onProperty seas:illuminates ; owl:someValuesFrom seas:IlluminableZone ] ;
+    owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Lighting ] ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+
+
+# Sub class of LightActuator 
+
+seas:ElectricLightFixtureSystem a owl:Class ;
+  rdfs:label "Electric Light Fixture System"@en ;
+  rdfs:comment """An Electric Light Fixture System, light fixture (US English), light fitting (UK English), or luminaire is an electrical device used to create 
+  artificial light by use of an electric lamp. All light fixtures have a fixture body and a light socket to hold the lamp and allow for its replacement.
+  Fixtures may also have a switch to control the light, either attached to the lamp body or attached to the power cable. (source: Wikipedia)"""@en;
+  skos:prefLabel "Luminaire"@en;               
+  rdfs:subClassOf seas:LightActuator ;
+  rdfs:subClassOf [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Lighting ] ;
+  rdfs:subClassOf [ owl:onProperty seas:illuminates ; owl:someValuesFrom seas:IlluminableZone ] ;
+  owl:equivalentClass [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Lighting ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+## Luminaire extérieurs
+seas:ElectricOutdoorLightingSystem a owl:Class ;
+  rdfs:label "Electric Outdoor Lighting System"@en ;
+  rdfs:comment """An Electric Outdoor Lighting System, is an Electric Light Fixture System which is used to light exterior areas."""@en ;
+  rdfs:subClassOf seas:ElectricLightFixtureSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+## luminaire public extérieurs
+seas:ElectricPublicLightingSystem a owl:Class ;
+  rdfs:label " Electric Public Lighting System"@en ;
+  rdfs:comment """A Public Electric Lighting System is an Electric Outdoor Lighting System that is used to light a public area like a road, street, public place, garden etc.
+  The figure below shows some relevant connections for the Electric Public Lighting System: 
+  [![lightgActuator](https://w3id.org/seas/StreetLightConnections-1.png)](https://w3id.org/seas/StreetLightConnections-1.png)"""@en ;
+  rdfs:subClassOf seas:ElectricOutdoorLightingSystem ;
+  rdfs:subClassOf [ owl:onProperty seas:connectedTo ; owl:someValuesFrom seas:StreetLightSupport];
+  rdfs:subClassOf [ owl:onProperty seas:connectedTo ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass seas:PowerBox];
+  rdfs:subClassOf [ rdf:type owl:Restriction ; owl:onProperty seas:hasSubSystem ; owl:someValuesFrom seas:ElectricLightSource] ;
+  rdfs:subClassOf [ owl:onProperty seas:condition ; owl:someValuesFrom seas:ConditionProperty];  
+  rdfs:subClassOf [ owl:onProperty seas:height ; owl:someValuesFrom seas:LengthProperty]; 
+  rdfs:subClassOf [ owl:onProperty seas:onState ; owl:someValuesFrom seas:BooleanProperty];       
+  rdfs:subClassOf [ owl:onProperty seas:location ; owl:someValuesFrom seas:Zone];                              
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+## les feux de signalisation (pourrait s'étendre par la suite.)
+seas:TrafficControlSignal a owl:Class;
+  rdfs:label "Traffic Control Signal"@en;
+  rdfs:comment """Traffic lights, also known as traffic signals, traffic lamps, traffic semaphore, signal lights, stop lights, robots (in South Africa), 
+  and traffic control signals (in technical parlance), are signaling devices positioned at road intersections, pedestrian crossings, and other 
+  locations to control flows of traffic. (source: Wikipedia)"""@fr ;
+  rdfs:subClassOf seas:ElectricPublicLightingSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+seas:StreetLight a owl:Class ;
+  rdfs:label "Street Light"@en ;
+  rdfs:comment """A Street light, light pole, lamppost, street lamp, light standard, or lamp standard is an Public Electric Lighting System which   
+  is a raised source of light on the edge of a road or path.(source: Wikipedia)"""@en,
+  """A Street Light is a lighting fixture used to distribute, filter or transform light from lamps. Also called lanterns, their function is to emit, 
+  distribute and control light emitted by a light source. Usually used for light tracking, they consist of an optics, electrical devices that 
+  allow the connection of the lamp (s), a body on which these different elements are based, and makes it possible to be fixed to a support. """@en,
+  """Un luminaire est un appareil d'éclairage servant à répartir, filtrer ou transformer la lumière des lampes. Egalement appelés lanternes, 
+  leur fonction est d'émettre, de distribuer et de contrôler la lumière émise par une source lumineuse. Généralement utilisés pour l'éclairage des 
+  voies, ils se composent d'une optique, d'appareils électriques qui permettent le branchement de la (les) lampe(s), d'un corps sur lequel 
+  s'appuient ces différents éléments, et qui permet d'être fixé à un support."""@fr ;
+  rdfs:subClassOf seas:ElectricPublicLightingSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+## projecteurs
+seas:Spotlight a owl:Class ;
+  rdfs:label "Spotlight"@en ;
+  rdfs:comment """A spotlight  (or searchlight) is a Street light that combines an extremely luminous source (traditionally a carbon arc lamp) with a mirrored
+                   parabolic reflector to project a powerful beam of light of approximately parallel rays in a particular direction, usually constructed so that 
+                   it can be swiveled about. (source: Wikipedia)"""@en ;
+  rdfs:subClassOf seas:StreetLight ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:SolarStreetLight a owl:Class ;
+  rdfs:label "Solar Street Light"@en ;
+  rdfs:comment """Solar street lights are raised light sources which are powered by photovoltaic panels generally mounted on the lighting structure or integrated in the 
+                pole itself. The photovoltaic panels charge a rechargeable battery, which powers a fluorescent or LED lamp during the night. (source: Wikipedia)"""@en ;
+  rdfs:subClassOf seas:StreetLight ;
+  rdfs:subClassOf [ owl:onProperty seas:isPoweredBy ; owl:someValuesFrom seas:Battery ] ; 
+  owl:equivalentClass [owl:intersectionOf (
+                            seas:StreetLight 
+                            [ owl:onProperty seas:isPoweredBy ;
+                              owl:someValuesFrom [ owl:intersectionOf ( 
+                                seas:Battery
+                                [ owl:onProperty seas:isPoweredBy ;
+                                  owl:someValuesFrom seas:SolarPanel ] ) ] ] ) ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .  
+
+seas:EquipableStreetLight a owl:Class;
+  rdfs:label "Equipable Street Light"@en ;
+  rdfs:comment """An Equipable Street light, is a Street light which can be equipable"""@en ;
+  rdfs:subClassOf seas:StreetLight ;
+  rdfs:subClassOf   [ rdf:type owl:Restriction ;
+                      owl:onProperty seas:isEquipable ;
+                      owl:allValuesFrom [
+                        rdf:type owl:Restriction ;
+                        owl:onProperty seas:simpleValue ;
+                        owl:hasValue "true"^^xsd:boolean ] ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+seas:NotEquipableStreetLight a owl:Class;
+  rdfs:label "Not Equipable Street Light"@en ;
+  rdfs:comment """A Not Equipable Street light, is a Street light which is not equipable."""@en ;
+  rdfs:subClassOf seas:StreetLight ;
+  rdfs:subClassOf   [ rdf:type owl:Restriction ;
+                      owl:onProperty seas:isEquipable ;
+                      owl:allValuesFrom [
+                        rdf:type owl:Restriction ;
+                        owl:onProperty seas:simpleValue ;
+                        owl:hasValue "false"^^xsd:boolean ] ] ;
+  owl:disjointWith seas:EquipableStreetLight;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+##J'ai utilisé le modèle System, Connection et ConnectionPoint pour modéliser comment le luminaire est fixé sur son support de fixing.
+## Il dans les données que j'ai eu. ils définissent trois façons de fixer le luminaire ==> top sur le support, via une cross et sur la façade ainsi que encastré
+
+seas:TopFixingStreetLight a owl:Class;
+  rdfs:label "Top Fixing Street Light"@en ;
+  rdfs:comment """A Top fixing Street light,  is a Street light which is fixed to the top of the support through Top fixing.
+  The figure below shows fixing modes of the Street light on the support. This figures is about the case where the Street light is in top of the support.
+  [![topFixingStreetLight](https://w3id.org/seas/StreetLightAccordingToFixingType-1.png)](https://w3id.org/seas/StreetLightAccordingToFixingType-1.png)
+                  """@en ;
+  rdfs:subClassOf seas:StreetLight ;
+  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:topFixedTo ; owl:someValuesFrom seas:StreetLightSupport ] )];
+  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:connectedThrough ; owl:someValuesFrom seas:TopFixing ])] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:FacadeFixingStreetLight a owl:Class;
+  rdfs:label "Facade Fixing Street Light"@en ;
+  rdfs:comment """A Facade fixing Street light is a Street light which is fixed to the facade support through facade fixing"""@en ;
+  rdfs:subClassOf seas:StreetLight ;
+  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:facadeFixedTo ; owl:someValuesFrom seas:StreetLightSupport ] )];
+  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:connectedThrough ; owl:someValuesFrom seas:FacadeFixing ] )];
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:ArmFixingStreetLight a owl:Class;
+  rdfs:label "Arm Fixing Street Light"@en ;
+  rdfs:comment """An Arm fixing Street light is a Street light which is fixed via an arm of the support through Arm fixing"""@en ;
+  rdfs:subClassOf seas:StreetLight ;
+  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:armFixedTo ; owl:someValuesFrom seas:StreetLightSupport ])] ;
+  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight[ owl:onProperty seas:connectedThrough ; owl:someValuesFrom seas:ArmFixing ] )];
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:RecessedFloorStreetLight a owl:Class;
+  rdfs:label "Recessed Floor Street Light"@en ;
+  rdfs:comment """A Recessed Floor Street Light is a StreetLight which is recessed in the floor."""@en ;
+  rdfs:subClassOf seas:StreetLight ;
+  rdfs:subClassOf [ owl:onProperty seas:connectedTo ; owl:someValuesFrom seas:RecessedFloorLightSupport];
+  owl:equivalentClass [ owl:intersectionOf (seas:StreetLight [owl:onProperty seas:connectedTo ; owl:someValuesFrom seas:RecessedFloorLightSupport])];
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+## permet de regrouper des luminaire selon certains critères
+seas:ElectricPublicLightingSystemGroup   a owl:Class;
+  rdfs:label "Electric Public Lighting System Group"@en ;
+  rdfs:comment """Electric Public Lighting System Group is a group system which has member only Electric Public Lighting Systems."""@en ;
+  rdfs:subClassOf seas:ElectricPowerSystem ;
+  rdfs:subClassOf [ owl:onProperty seas:member ; owl:allValuesFrom seas:ElectricPublicLightingSystem];
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+seas:StreetLightSupport a owl:Class ;
+  rdfs:label "Street Light Support"@en ;
+  rdfs:comment """A Street Light Support is a support on which one or more street light is fixed.
+                  Figure below shows the taxonomy of the street light support.
+                   [![StreetlightSupportTaxonomy](https://w3id.org/seas/LightSupportTaxonomy-1.png)](https://w3id.org/seas/LightSupportTaxonomy-1.png)
+              """@en ;
+  rdfs:subClassOf seas:System ;
+  rdfs:subClassOf [ owl:onProperty seas:condition ; owl:someValuesFrom seas:ConditionProperty];
+  rdfs:subClassOf [ owl:onProperty seas:height ; owl:someValuesFrom seas:LengthProperty];
+  rdfs:subClassOf [ owl:onProperty seas:location ; owl:someValuesFrom seas:Property];
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+seas:StreetLightPole a owl:Class ;
+  rdfs:label "Street Light Pole"@en ;
+  rdfs:comment """A Street Light Pole is a Lighting Support which is used to fix one or more street light to it."""@en ;
+  rdfs:subClassOf seas:StreetLightSupport ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+seas:StreetLightCandelabra a owl:Class ;
+  rdfs:label "Street Light Candelabra"@en ;
+  rdfs:comment """A Candelabra Street Light is a Lighting Support which is used to fix one or more street light to it. It is generally designed like a Candelabra ."""@en ;
+  rdfs:subClassOf seas:StreetLightSupport ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:StreetLightFacadeSupport a owl:Class ;
+  rdfs:label "Street Light Facade Support"@en ;
+  rdfs:comment """A Street Light Facade Support is a Lighting Support which is used to fix a facade fixing street light."""@en ;
+  rdfs:subClassOf seas:StreetLightSupport ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:RecessedFloorLightSupport a owl:Class ;
+      rdfs:label "Recessed Floor Light Support"@en ;
+      rdfs:comment """A Recessed Floor Light Support is a Lighting Support which is used to fix a recessed floor light."""@en ;
+      rdfs:subClassOf seas:StreetLightSupport ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+seas:StreetLightColumnSupport a owl:Class ;
+  rdfs:label "Street Light Column Support"@en ;
+  rdfs:comment """A Street Light Column Support is a column shaped Lighting Support which is used to fix the street light."""@en ;
+  rdfs:subClassOf seas:StreetLightSupport ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+seas:StreetLightBollardSupport a owl:Class ;
+  rdfs:label "Street Light Bollard Support"@en ;
+  rdfs:comment """A Street Light Bollard Support is a Lighting Support which is used to fix the street light."""@en ;
+  rdfs:subClassOf seas:StreetLightSupport ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+seas:StreetLightFixing a owl:Class;
+  rdfs:label "Street Light Fixing"@en ;
+  rdfs:comment """A Street Light Fixing is a connection which allows to fix a street light to the support."""@en ;
+  rdfs:subClassOf seas:Connection ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:ArmFixing a owl:Class;
+  rdfs:label "Arm Fixing"@en ;
+  rdfs:comment """An Arm Fixing is a Street Light Fixing which allows to arm-fix a street light to the support."""@en ;
+  rdfs:subClassOf seas:StreetLightFixing ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:TopFixing a owl:Class;
+  rdfs:label "Top Fixing"@en ;
+  rdfs:comment """A Top fixing is a Streetlight Fixing which allows to fix a street light to the support on the top."""@en ;
+  rdfs:subClassOf seas:StreetLightFixing ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:FacadeFixing a owl:Class;
+  rdfs:label "Facade Fixing"@en ;
+  rdfs:comment """A Facade fixing is a Street Light Fixing which allows a street light to be fixed to a facade support."""@en ;
+  rdfs:subClassOf seas:StreetLightFixing ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:RecessedFloorFixing a owl:Class;
+  rdfs:label "Recessed Floor Fixing"@en ;
+  rdfs:comment """A Recessed Floor Fixing is a Street Light Fixing which allows a street light to be recessed in the floor."""@en ;
+  rdfs:subClassOf seas:StreetLightFixing ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+
+seas:armFixedTo       a owl:ObjectProperty ;
+      rdfs:label "arm fixed to"@en ;
+      rdfs:comment "means that the street light is arm-fixed to the support."@en ;
+      rdfs:subPropertyOf seas:connectedTo ;
+      rdfs:domain seas:StreetLight ;
+      rdfs:range seas:StreetLightSupport ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .  
+
+seas:topFixedTo       a owl:ObjectProperty ;
+      rdfs:label "top fixed to"@en ;
+      rdfs:comment "means that the street light is top-fixed to the support."@en ;
+      rdfs:subPropertyOf seas:connectedTo ;
+      rdfs:domain seas:StreetLight ;
+      rdfs:range seas:StreetLightSupport ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .  
+
+seas:facadeFixedTo       a owl:ObjectProperty ;
+      rdfs:label "facade fixed to"@en ;
+      rdfs:comment "means that the street light is fixed to the facade support via a top fixing."@en ;
+      rdfs:subPropertyOf seas:connectedTo ;
+      rdfs:domain seas:StreetLight ;
+      rdfs:range seas:StreetLightSupport ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .          
+
+seas:isEquipable a owl:ObjectProperty;
+        rdfs:comment "is equipable to check if the system is equipable or not."@en ;
+      rdfs:domain seas:System ;
+      rdfs:range seas:BooleanProperty ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .  
+
+seas:member  a owl:ObjectProperty , owl:FunctionalProperty;
+      rdfs:label "member"@en ;
+      rdfs:comment "collection or group has member some FeatureOfInterest. "@en ;
+      rdfs:range seas:FeatureOfInterest ;
+      owl:inverseOf seas:isMemberOf;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .           
+
+seas:isMemberOf  a owl:ObjectProperty , owl:FunctionalProperty;
+      rdfs:label "isMemberOf"@en ;
+      rdfs:comment "is member of some collection or group"@en ;
+      rdfs:range seas:FeatureOfInterest ;
+      owl:inverseOf seas:member;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .      
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[] a owl:AllDisjointClasses ; 
+  owl:members ( 
+    seas:ArmFixingStreetLight 
+    seas:FacadeFixingStreetLight  
+    seas:TopFixingStreetLight
+    seas:RecessedFloorStreetLight ) .
+
+[] a owl:AllDisjointClasses ; 
+  owl:members ( 
+    seas:StreetLight 
+    seas:StreetLightSupport  
+    seas:StreetLightFixing
+    seas:PowerBox
+    seas:ElectricPublicLightingSystemGroup
+    seas:ElectricLightSource ) .
+
+[] a owl:AllDisjointClasses ; 
+  owl:members ( 
+    seas:StreetLightSupport
+    seas:StreetLightBollardSupport 
+    seas:StreetLightColumnSupport  
+    seas:StreetLightFacadeSupport
+    seas:StreetLightCandelabra
+    seas:RecessedFloorLightSupport ) .     

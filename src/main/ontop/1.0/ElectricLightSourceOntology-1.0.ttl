@@ -49,9 +49,11 @@ foaf:name a owl:DatatypeProperty .
 
 seas:ElectricLightSourceOntology a owl:Ontology , voaf:Vocabulary ;
   dcterms:title "The SEAS Electric Light Source Ontology."@en ;
-  dcterms:description """The SEAS Electric Light source ontology describes Electric light sources."""@en ;
+  dcterms:description """The SEAS Electric Light source ontology describes Electric light sources.
+  The figure below shows an overview of the electric light source taxonomy.
+   [![LightsourceTaxonomy](https://w3id.org/seas/ElectricLightSourceTaxonomy-1.png)](https://w3id.org/seas/ElectricLightSourceTaxonomy-1.png)"""@en ;
   dcterms:issued "2017-02-22"^^xsd:date ;
-  dcterms:modified "2017-02-23"^^xsd:date ;
+  dcterms:modified "2017-08-23"^^xsd:date ;
   dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
   dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
@@ -69,7 +71,8 @@ seas:ElectricLightSource a owl:Class ;
   to modern society, providing interior lighting for buildings and 
   exterior light for evening and nighttime activities. 
   In technical usage, a replaceable component that produces light from 
-  electricity is called a lamp. (source: Wikipedia)"""@en ;
+  electricity is called a lamp. (source: Wikipedia). 
+  """@en ;
   rdfs:subClassOf seas:ElectricPowerSystem, seas:LightSource, seas:Device ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricLightSourceOntology .
@@ -139,7 +142,6 @@ seas:LEDLamp a owl:Class ;
   """La lampe LED est un système complet conçu de manière à permettre le remplacement aisé des 
   technologies traditionnelles moins efficaces (retrofit). Ces lampes reprennent pour cela les formes
   et les culots normalisés des lampes traditionnelles. source: http://www.energieplus-lesite.be/index.php?id=17173"""@fr ;
-
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
@@ -330,3 +332,217 @@ seas:InductionLamp a owl:Class ;
   "Lampe à Induction"@fr ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+
+#######################################
+#Color Temperature
+#######################################
+seas:ColorTemperatureProperty a owl:Class ;
+  rdfs:label "Color Temperature Property"@en ;
+  rdfs:comment """The color temperature of a light source is the temperature of an ideal black-body radiator that radiates light of a color comparable 
+                  to that of the light source. Color temperature is a characteristic of visible light that has important applications in lighting, photography, 
+                  videography, publishing, manufacturing, astrophysics, horticulture, and other fields.(source:wikipedia)"""@en,
+                  "Correlated color temperature of the lamp"@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+seas:ColorTemperatureEvaluation a owl:Class ;
+  rdfs:label "Color Temperature Evaluation"@en ;
+  rdfs:comment """The class of evaluation for color temperature properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ColorTemperatureProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ColorTemperatureProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology.
+
+seas:colorTemperature a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "colorTemperature"@en ;
+  rdfs:comment """The color temperature of some light source."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:LightSource ;
+  rdfs:range seas:ColorTemperatureProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+
+#######################################
+#Color Rendering Index
+#######################################
+seas:ColorRenderingIndexProperty a owl:Class ;
+  rdfs:label "Color Rendering Index Property"@en ;
+  rdfs:comment """A color rendering index (CRI) is a quantitative measure of the ability of a light source to reveal the colors of various objects faithfully 
+                  in comparison with an ideal or natural light source. (source:wikipedia)"""@en ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+seas:ColorRenderingIndexEvaluation a owl:Class ;
+  rdfs:label "Color Rendering Index Evaluation"@en ;
+  rdfs:comment """The class of evaluation for color rendering index properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ColorRenderingIndexProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:ColorRenderingIndexProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology.
+
+seas:colorRenderingIndex a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "color rendering index"@en ;
+  rdfs:comment """The color rendering index of some light source."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:LightSource ;
+  rdfs:range seas:ColorRenderingIndexProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+
+#######################################
+#Luminouce Flux
+#######################################
+
+seas:LuminousFluxProperty a owl:Class ;
+  rdfs:label "Luminous Flux Property"@en ;
+  rdfs:comment """In photometry, luminous flux or luminous power is the measure of the perceived power of light.(source:wikipedia)"""@en,
+                "Maximum light output which can be provided by the lamp. source (http://fiware-datamodels.readthedocs.io/en/latest/StreetLighting/StreetlightModel/doc/spec/index.html)" ;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+seas:LuminousFluxEvaluation a owl:Class ;
+  rdfs:label "Luminous Flux Evaluation"@en ;
+  rdfs:comment """The class of evaluation for Luminous Flux properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LuminousFluxProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LuminousFluxProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology.
+
+seas:luminousFlux a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "luminous flux"@en ;
+  rdfs:comment """The luminous flux of some light source."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:LightSource ;
+  rdfs:range seas:LuminousFluxProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+
+
+#######################################
+#Luminouce Energy
+#######################################
+seas:LuminousEnergyProperty a owl:Class ;
+  rdfs:label "Luminous Energy Property"@en ;
+  rdfs:comment """In photometry, luminous energy is the perceived energy of light. This is sometimes called the quantity of light.(source:wikipedia)"""@en;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+seas:LuminousEnergyEvaluation a owl:Class ;
+  rdfs:label "Luminous Energy Evaluation"@en ;
+  rdfs:comment """The class of evaluation for Luminous Energy properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LuminousEnergyProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LuminousEnergyProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology.
+
+seas:luminousEnergy a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "luminous energy"@en ;
+  rdfs:comment """The luminous energy of some light."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:LightSource ;
+  rdfs:range seas:LuminousEnergyProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+
+
+#######################################
+#Luminouce Intensity
+#######################################
+seas:LuminousIntensityProperty a owl:Class ;
+  rdfs:label "Luminous Intensity Property"@en ;
+  rdfs:comment """In photometry, luminous intensity is a measure of the wavelength-weighted power emitted by a light source in a particular direction 
+  per unit solid angle, based on the luminosity function, a standardized model of the sensitivity of the human eye. The SI unit of luminous intensity 
+  is the candela (cd), an SI base unit.(source:wikipedia)"""@en;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+seas:LuminousIntensityEvaluation a owl:Class ;
+  rdfs:label "Luminous Flux Evaluation"@en ;
+  rdfs:comment """The class of evaluation for Luminous Intensity properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LuminousIntensityProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LuminousIntensityProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology.
+
+seas:luminousIntensity a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "luminous intensity"@en ;
+  rdfs:comment """The luminous intensity of some light."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:LightSource ;
+  rdfs:range seas:LuminousIntensityProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+#######################################
+#Luminouce Efficacy
+#######################################
+
+seas:LuminousEfficacyProperty a owl:Class ;
+  rdfs:label "Luminous Efficacy Property"@en ;
+  rdfs:comment """Luminous efficacy is a measure of how well a light source produces visible light. It is the ratio of luminous flux to power, 
+                  measured in lumens per watt in SI.(source:wikipedia)"""@en;
+  rdfs:subClassOf seas:Property ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+seas:LuminousEfficacyEvaluation a owl:Class ;
+  rdfs:label "Luminous Efficacy Evaluation"@en ;
+  rdfs:comment """The class of evaluation for Luminous Efficacy properties"""@en ;
+  rdfs:subClassOf seas:Evaluation ;
+  rdfs:subClassOf [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LuminousEfficacyProperty ] ;
+  owl:equivalentClass [ owl:onProperty seas:evaluationOf ; owl:someValuesFrom seas:LuminousEfficacyProperty ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology.
+
+seas:luminousEfficacy a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "luminous efficacy"@en ;
+  rdfs:comment """The luminous efficacy of some light source."""@en ;
+  rdfs:subPropertyOf seas:hasProperty ;
+  rdfs:domain seas:LightSource ;
+  rdfs:range seas:LuminousEfficacyProperty ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricLightSourceOntology .
+
+#######################################
+# illuminance
+#######################################
+seas:IlluminanceProperty a owl:Class ; 
+      rdfs:label "Illuminance Property"@en ;
+      rdfs:comment """Illuminance is the total luminous flux incident on a surface, per unit area. It is a measure of how much the incident light 
+      illuminates the surface, wavelength-weighted by the luminosity function to correlate with human brightness perception. 
+      An Illuminance Property is a property which is inherent in a lightsource."""@en ;
+      rdfs:subClassOf seas:Property;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:IlluminanceEvaluation  a owl:Class ; 
+      rdfs:label "Illuminance Evaluation"@en ;
+      rdfs:comment """A Illuminance Evaluation is an evaluation of Illuminance Property."""@en ;
+      rdfs:subClassOf seas:Evaluation;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:illuminance a owl:ObjectProperty, owl:FunctionalProperty;
+      rdfs:label "illuminance"@en ;
+      rdfs:comment """The illuminance is a property of some physical entity."""@en ;
+      rdfs:subPropertyOf seas:hasProperty ;
+      rdfs:domain seas:FeatureOfInterest ;
+      rdfs:range seas:LightActuator ;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
