@@ -337,7 +337,7 @@ seas:StreetLightPole a owl:Class ;
 
 
 seas:StreetLightCandelabra a owl:Class ;
-  rdfs:label "Candelabra Street Light"@en ;
+  rdfs:label "Street Light Candelabra"@en ;
   rdfs:comment """A Candelabra Street Light is a Lighting Support which is used to fix one or more street light to it. It is generally designed like a Candelabra ."""@en ;
   rdfs:subClassOf seas:StreetLightSupport ;
   vs:term_status "testing" ;
@@ -409,20 +409,6 @@ seas:RecessedFloorFixing a owl:Class;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
 
-seas:IlluminanceProperty a owl:Class ; 
-      rdfs:label "Illuminance Property"@en ;
-      rdfs:comment """Illuminance is the total luminous flux incident on a surface, per unit area. It is a measure of how much the incident light 
-      illuminates the surface, wavelength-weighted by the luminosity function to correlate with human brightness perception. An Illuminance Property is a property which is inherent in a lightsource."""@en ;
-      rdfs:subClassOf seas:Property;
-      vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:StreetLightSystemOntology .
-
-seas:IlluminanceEvaluation  a owl:Class ; 
-      rdfs:label "Illuminance Evaluation"@en ;
-      rdfs:comment """A Illuminance Evaluation is an evaluation of Illuminance Property."""@en ;
-      rdfs:subClassOf seas:Evaluation;
-      vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:StreetLightSystemOntology .
 
 
 
@@ -501,4 +487,12 @@ seas:isMemberOf  a owl:ObjectProperty , owl:FunctionalProperty;
     seas:PowerBox
     seas:ElectricPublicLightingSystemGroup
     seas:ElectricLightSource ) .
-     
+
+[] a owl:AllDisjointClasses ; 
+  owl:members ( 
+    seas:StreetLightSupport
+    seas:StreetLightBollardSupport 
+    seas:StreetLightColumnSupport  
+    seas:StreetLightFacadeSupport
+    seas:StreetLightCandelabra
+    seas:RecessedFloorLightSupport ) .     

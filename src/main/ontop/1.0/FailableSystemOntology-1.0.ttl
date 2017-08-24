@@ -51,7 +51,7 @@ seas:FailableSystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dcterms:title "The SEAS Failable System ontology"@en ;
   dcterms:description """The SEAS Failable System ontology defines properties to qualify features of interest, their failures and repairs."""@en ;
   dcterms:issued "2016-07-24"^^xsd:date ;
-  dcterms:modified "2016-11-01"^^xsd:date ;
+  dcterms:modified "2017-08-23"^^xsd:date ;
   dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;

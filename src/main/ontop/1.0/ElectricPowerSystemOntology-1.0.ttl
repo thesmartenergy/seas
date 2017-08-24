@@ -54,9 +54,10 @@ seas:ElectricPowerSystemOntology rdf:type voaf:Vocabulary , owl:Ontology ;
 2. electrical connections between electric power systems, where electricity is exchanged, and
 3. electrical connection Points of electric power systems, through which electricity flows in/out the power systems."""@en ;
   dcterms:issued "2016-06-06"^^xsd:date ;
-  dcterms:modified "2016-07-24"^^xsd:date ;
+  dcterms:modified "2017-08-24"^^xsd:date ;
   dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
   dcterms:contributor [a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dcterms:contributor [a foaf:Person ; foaf:name "Lynda TEMAL" ] ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  

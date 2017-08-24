@@ -53,7 +53,7 @@ seas:ElectricLightSourceOntology a owl:Ontology , voaf:Vocabulary ;
   The figure below shows an overview of the electric light source taxonomy.
    [![LightsourceTaxonomy](https://w3id.org/seas/ElectricLightSourceTaxonomy-1.png)](https://w3id.org/seas/ElectricLightSourceTaxonomy-1.png)"""@en ;
   dcterms:issued "2017-02-22"^^xsd:date ;
-  dcterms:modified "2017-02-23"^^xsd:date ;
+  dcterms:modified "2017-08-23"^^xsd:date ;
   dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
   dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
@@ -334,8 +334,6 @@ seas:InductionLamp a owl:Class ;
   rdfs:isDefinedBy seas:ElectricLightSourceOntology .
 
 
-
-
 #######################################
 #Color Temperature
 #######################################
@@ -523,6 +521,21 @@ seas:luminousEfficacy a owl:ObjectProperty , owl:FunctionalProperty ;
 #######################################
 # illuminance
 #######################################
+seas:IlluminanceProperty a owl:Class ; 
+      rdfs:label "Illuminance Property"@en ;
+      rdfs:comment """Illuminance is the total luminous flux incident on a surface, per unit area. It is a measure of how much the incident light 
+      illuminates the surface, wavelength-weighted by the luminosity function to correlate with human brightness perception. 
+      An Illuminance Property is a property which is inherent in a lightsource."""@en ;
+      rdfs:subClassOf seas:Property;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .
+
+seas:IlluminanceEvaluation  a owl:Class ; 
+      rdfs:label "Illuminance Evaluation"@en ;
+      rdfs:comment """A Illuminance Evaluation is an evaluation of Illuminance Property."""@en ;
+      rdfs:subClassOf seas:Evaluation;
+      vs:term_status "testing" ;
+      rdfs:isDefinedBy seas:StreetLightSystemOntology .
 
 seas:illuminance a owl:ObjectProperty, owl:FunctionalProperty;
       rdfs:label "illuminance"@en ;
