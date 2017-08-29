@@ -89,7 +89,7 @@ seas:StreetLightSystemOntology a owl:Ontology , voaf:Vocabulary ;
 
 seas:Lighting a owl:Class;
   rdfs:label "Lighting"@en ;
-  rdfs:comment """A lighting is the process that allows to illuminate some zone."""@en ;
+  rdfs:comment """A lighting is the procedure that allows to illuminate some zone."""@en ;
   rdfs:subClassOf seas:Actuating ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
@@ -99,7 +99,7 @@ seas:Lighting a owl:Class;
 
 seas:PublicLighting a owl:Class; # Eclairage public
   rdfs:label "Public Lighting"@en ;
-  rdfs:comment """A public lighting is the process that allows to illuminate some public zone."""@en ;
+  rdfs:comment """A public lighting is the procedure that allows to illuminate some public zone."""@en ;
   rdfs:subClassOf seas:Lighting ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
@@ -107,7 +107,7 @@ seas:PublicLighting a owl:Class; # Eclairage public
 ## mise en valeur 
 seas:Highlighting a owl:Class;
   rdfs:label "Highlighting"@en ;
-  rdfs:comment """The Highlighting is the process that allows to highlight some public zone (places, buildings,...)."""@en ;
+  rdfs:comment """The Highlighting is the procedure that allows to highlight some public zone (places, buildings,...)."""@en ;
   rdfs:subClassOf seas:Lighting ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
@@ -115,7 +115,7 @@ seas:Highlighting a owl:Class;
 ## Feux de circulation
 seas:TrafficSignalsLighting a owl:Class;
   rdfs:label "Traffic Signals Lighting"@en ;
-  rdfs:comment """The traffic signals Lighting is the process that give lighting signals to control the traffic flow."""@en ;
+  rdfs:comment """The traffic signals Lighting is the procedure that give lighting signals to control the traffic flow."""@en ;
   rdfs:subClassOf seas:Lighting ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:StreetLightSystemOntology .
@@ -126,14 +126,14 @@ seas:TrafficSignalsLighting a owl:Class;
 seas:LightActuation a owl:Class;
     rdfs:label "Light Actuation"@en;
     rdfs:comment """A Light Actuation is the execution of the action of lighting or light Actuating.
-    The figure below shows how the Streetlight are modeled like the Process executor execution Pattern.
+    The figure below shows how the Streetlight are modeled like the Procedure executor execution Pattern.
     [![lightgActuator](https://w3id.org/seas/lighting-0.1-1.png)](https://w3id.org/seas/lighting-0.1-1.png)
                      """@en ;
     rdfs:subClassOf seas:Actuation ;
-    rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:LightActuator ] ;
-    rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Lighting ] ;
+    rdfs:subClassOf [ owl:onProperty pep:madeBy ; owl:someValuesFrom seas:LightActuator ] ;
+    rdfs:subClassOf [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:Lighting ] ;
     rdfs:subClassOf [ owl:onProperty seas:illuminates ; owl:someValuesFrom seas:IlluminableZone ] ;
-    owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Lighting ] ;
+    owl:equivalentClass [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:Lighting ] ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:StreetLightSystemOntology .
 

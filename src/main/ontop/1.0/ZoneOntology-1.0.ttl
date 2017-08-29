@@ -221,13 +221,12 @@ seas:HumiditySensor a owl:Class ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ZoneOntology .
 
-seas:HumidityActuator a seas:Actuator ;
+seas:HumidityActuator a owl:Class ;
   rdfs:label "Humidity Actuator"@en ;
   rdfs:comment """An actuator that is capable of modifying the humidity in zones."""@en ;
   rdfs:subClassOf seas:Actuator ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ZoneOntology .
-
 
 seas:PresenceSensor a owl:Class ;
   rdfs:label "Presence Sensor" ;

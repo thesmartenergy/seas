@@ -1,0 +1,143 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix saref: <https://w3id.org/saref#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix pep: <https://w3id.org/pep/> .
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+
+seas:OptimizationOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dcterms:title "The SEAS OptimizationProcedure ontology"@en ;
+  dcterms:description """The SEAS OptimizationProcedure ontology extends the [Procedure Execution ontology (PEP)](https://w3id.org/pep/) and defines:
+
+- `seas:OptimizationExecutor` that implement `seas:OptimizationProcedure` procedures and do `seas:OptimizationExecution`s
+
+Sub types of `seas:OptimizationExecutor`, `seas:OptimizationProcedure`, and `seas:OptimizationExecution`, may constrain the type of the value of the property. For instance ontology `seas:BooleanOntology` may define `seas:BooleanOptimizationExecutor`,  `seas:BooleanOptimizationProcedure`, and  `seas:BooleanOptimizationExecution`, that constrain the optimized property to be a `seas:BooleanProperty`.
+
+
+
+Figure below provides an overview of the concepts in this ontology:
+
+[![Overview of the Optimization ontology](https://w3id.org/seas/optimization.png)](https://w3id.org/seas/optimization.png)
+
+
+"""@en ;
+  dcterms:issued "2017-08-29"^^xsd:date ;
+  dcterms:modified "2017-08-29"^^xsd:date ;
+  dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;
+  owl:imports pep: ;
+  owl:versionIRI <https://w3id.org/seas/OptimizationOntology-1.1> ;
+  owl:versionInfo "v1.1" ;
+  owl:priorVersion <https://w3id.org/seas/OptimizationOntology-1.0> .
+
+seas:OptimizationProcedure a owl:Class ;
+  rdfs:label "Optimization Procedure"@en ;
+  rdfs:comment """Optimization Procedure is the procedure of optimizing a property."""@en ;
+  rdfs:subClassOf pep:Procedure ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OptimizationOntology .
+
+seas:OptimizationExecutor a owl:Class ;
+  rdfs:label "Optimization Executor"@en ;
+  rdfs:comment """An Optimization Executor implements some Optimization procedure, and may generate Optimization execution."""@en ;
+  rdfs:subClassOf pep:ProcedureExecutor ;
+  rdfs:subClassOf [ owl:onProperty pep:implements ; owl:someValuesFrom seas:OptimizationProcedure ] ;
+  owl:equivalentClass [ owl:onProperty pep:implements ; owl:someValuesFrom seas:OptimizationProcedure ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OptimizationOntology .
+
+seas:OptimizationExecution a owl:Class ;
+  rdfs:label "Optimization Execution"@en ;
+  rdfs:comment """An Optimization execution is the execution of some Optimization procedure by some Optimization executor."""@en ;
+  rdfs:subClassOf pep:ProcedureExecution ;
+  rdfs:subClassOf [ owl:onProperty pep:madeBy ; owl:someValuesFrom seas:OptimizationExecutor ] ;
+  rdfs:subClassOf [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:OptimizationProcedure ] ;
+  rdfs:subClassOf [ owl:onProperty seas:optimizesProperty ; owl:someValuesFrom seas:Property ] ;
+  owl:equivalentClass [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:OptimizationProcedure ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OptimizationOntology .
+
+seas:optimizesProperty a owl:ObjectProperty ;
+  rdfs:label "optimizes property"@en ;
+  rdfs:comment """Links an OptimizationProcedure, OptimizationExecutor, or OptimizationExecution, to the property it optimizes.
+
+If an OptimizationProcedure optimizes a property, then any OptimizationExecutor that implements this OptimizationProcedure also optimizes this property, and any OptimizationExecution that used this OptimizationProcedure also optimizes this property. Furthermore, if an OptimizationExecutor optimizes a property, then any OptimizationExecution executed by this OptimizationExecutor also optimizes this property:
+
+```
+seas:optimizesProperty < pep:implements o seas:optimizesProperty .
+seas:optimizesProperty < pep:usedProcedure o seas:optimizesProperty .
+seas:optimizesProperty < pep:madeBy o seas:optimizesProperty .
+```"""@en ;
+  rdfs:domain [ owl:unionOf ( seas:OptimizationProcedure seas:OptimizationExecutor seas:OptimizationExecution ) ] ;
+  rdfs:range seas:Property ;
+  owl:propertyChainAxiom ( pep:implements seas:optimizesProperty ) ;
+  owl:propertyChainAxiom ( pep:usedProcedure seas:optimizesProperty ) ;
+  owl:propertyChainAxiom ( pep:madeBy seas:optimizesProperty ) ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OptimizationOntology .
+
+seas:optimizes a owl:ObjectProperty ;
+  rdfs:label "optimizes"@en ;
+  rdfs:comment """Links an OptimizationProcedure, OptimizationExecutor, or OptimizationExecution, to the feature of interest a property of which it optimizes.
+
+If `x` optimizes a property, then it also optimizes the feature of interest of this property:
+
+```
+seas:optimizesProperty < seas:optimizes o seas:isPropertyOf .
+```
+
+If an OptimizationProcedure optimizes a feature of interest, then any OptimizationExecutor that implements this OptimizationProcedure also optimizes this feature of interest, and any OptimizationExecution that used this OptimizationProcedure also optimizes this feature of interest. Furthermore, if an OptimizationExecutor optimizes a feature of interest, then any OptimizationExecution executed by this OptimizationExecutor also optimizes this feature of interest:
+
+```
+seas:optimizes < pep:usedProcedure o seas:optimizes .
+seas:optimizes < pep:usedProcedure o seas:optimizes .
+seas:optimizes < pep:madeBy o seas:optimizes .
+```
+"""@en ;
+  rdfs:domain [ owl:unionOf ( seas:OptimizationProcedure seas:OptimizationExecutor seas:OptimizationExecution ) ] ;
+  rdfs:range seas:FeatureOfInterest ;
+#  owl:propertyChainAxiom ( seas:optimizesProperty seas:isPropertyOf ) ; # not allowed in OWL 2 DL
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OptimizationOntology .
+
+

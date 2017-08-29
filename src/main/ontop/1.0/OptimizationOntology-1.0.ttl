@@ -45,7 +45,7 @@ foaf:name a owl:DatatypeProperty .
 
 seas:OptimizationOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dcterms:title "The SEAS OptimizationProcess ontology"@en ;
-  dcterms:description """The SEAS OptimizationProcess ontology extends the [Process Execution Platform (PEP) ontology](https://w3id.org/pep/) and defines:
+  dcterms:description """The SEAS OptimizationProcess ontology extends the [Process Execution ontology (PEP)](https://w3id.org/pep/) and defines:
 
 - `seas:OptimizationExecutor` that implement `seas:OptimizationProcess` processes and do `seas:OptimizationExecution`s
 

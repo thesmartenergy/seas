@@ -45,9 +45,9 @@ foaf:name a owl:DatatypeProperty .
 
 seas:ForecastingOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dcterms:title "The SEAS Forecasting ontology"@en ;
-  dcterms:description """The SEAS Forecasting ontology extends the [Process Execution ontology (PEP)](https://w3id.org/pep/) and defines:
+  dcterms:description """The SEAS Forecasting ontology extends the [Procedure Execution ontology (PEP)](https://w3id.org/pep/) and defines:
 
-- `seas:Forecaster` that implement `seas:Forecasting` processes and do `seas:Forecast`s
+- `seas:Forecaster` that implement `seas:Forecasting` procedures and do `seas:Forecast`s
 
 Sub types of `seas:Forecaster`, `seas:Forecasting`, and `seas:Forecast`, may constrain the type of the value of the property. For instance ontology `seas:BooleanOntology` may define `seas:BooleanForecaster`,  `seas:BooleanForecasting`, and  `seas:BooleanForecast`, that constrain the forecasted property to be a `seas:BooleanProperty`.
 
@@ -57,27 +57,28 @@ Figure below provides an overview of some concepts in this ontology:
 [![Overview of the Forecasting ontology](https://w3id.org/seas/forecasting.png)](https://w3id.org/seas/forecasting.png)
 
 """@en ;
-  dcterms:issued "2016-11-22"^^xsd:date ;
-  dcterms:modified "2016-11-22"^^xsd:date ;
+  dcterms:issued "2017-08-29"^^xsd:date ;
+  dcterms:modified "2017-08-29"^^xsd:date ;
   dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
   owl:imports <https://w3id.org/pep/pep-1.0> ;
-  owl:versionIRI <https://w3id.org/seas/ForecastingOntology-1.0> ;
-  owl:versionInfo "v1.0" .
+  owl:versionIRI <https://w3id.org/seas/ForecastingOntology-1.1> ;
+  owl:versionInfo "v1.1" ;
+  owl:priorVersion <https://w3id.org/seas/ForecastingOntology-1.0> .
 
 seas:Forecasting a owl:Class ;
   rdfs:label "Forecasting"@en ;
-  rdfs:comment """Forecasting is the process of forecasting the state of a property."""@en ;
-  rdfs:subClassOf pep:Process ;
+  rdfs:comment """Forecasting is the procedure of forecasting the state of a property."""@en ;
+  rdfs:subClassOf pep:Procedure ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ForecastingOntology .
 
 seas:Forecaster a owl:Class ;
   rdfs:label "Forecaster"@en ;
-  rdfs:comment """A Forecaster implements some Forecasting process, and may generate forecasts."""@en ;
-  rdfs:subClassOf pep:ProcessExecutor ;
+  rdfs:comment """A Forecaster implements some Forecasting procedure, and may generate forecasts."""@en ;
+  rdfs:subClassOf pep:ProcedureExecutor ;
   rdfs:subClassOf [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Forecasting ] ;
   owl:equivalentClass [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Forecasting ] ;
   vs:term_status "testing" ;
@@ -85,12 +86,12 @@ seas:Forecaster a owl:Class ;
 
 seas:Forecast a owl:Class ;
   rdfs:label "Forecast"@en ;
-  rdfs:comment """A Forecast is the execution of some Forecasting process by some Forecaster."""@en ;
-  rdfs:subClassOf pep:ProcessExecution ;
-  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Forecaster ] ;
-  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Forecasting ] ;
+  rdfs:comment """A Forecast is the execution of some Forecasting procedure by some Forecaster."""@en ;
+  rdfs:subClassOf pep:ProcedureExecution ;
+  rdfs:subClassOf [ owl:onProperty pep:madeBy ; owl:someValuesFrom seas:Forecaster ] ;
+  rdfs:subClassOf [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:Forecasting ] ;
   rdfs:subClassOf [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom seas:Property ] ;
-  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Forecasting ] ;
+  owl:equivalentClass [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:Forecasting ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ForecastingOntology .
 
@@ -102,14 +103,14 @@ If a forecasting forecasts a property, then any Forecaster that implements this 
 
 ```
 seas:forecastsProperty < pep:implements o seas:forecastsProperty .
-seas:forecastsProperty < pep:methodUsed o seas:forecastsProperty .
-seas:forecastsProperty < pep:executedBy o seas:forecastsProperty .
+seas:forecastsProperty < pep:usedProcedure o seas:forecastsProperty .
+seas:forecastsProperty < pep:madeBy o seas:forecastsProperty .
 ```"""@en ;
   rdfs:domain [ owl:unionOf ( seas:Forecasting seas:Forecaster seas:Forecast ) ] ;
   rdfs:range seas:Property ;
   owl:propertyChainAxiom ( pep:implements seas:forecastsProperty ) ;
-  owl:propertyChainAxiom ( pep:methodUsed seas:forecastsProperty ) ;
-  owl:propertyChainAxiom ( pep:executedBy seas:forecastsProperty ) ;
+  owl:propertyChainAxiom ( pep:usedProcedure seas:forecastsProperty ) ;
+  owl:propertyChainAxiom ( pep:madeBy seas:forecastsProperty ) ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ForecastingOntology .
 
@@ -126,9 +127,9 @@ seas:forecastsProperty < seas:forecasts o seas:isPropertyOf .
 If a forecasting forecasts a feature of interest, then any Forecaster that implements this forecasting also forecasts this feature of interest, and any Forecast that used this forecasting also forecasts this feature of interest. Furthermore, if a Forecaster forecasts a feature of interest, then any Forecast executed by this Forecaster also forecasts this feature of interest:
 
 ```
-seas:forecasts < pep:methodUsed o seas:forecasts .
-seas:forecasts < pep:methodUsed o seas:forecasts .
-seas:forecasts < pep:executedBy o seas:forecasts .
+seas:forecasts < pep:usedProcedure o seas:forecasts .
+seas:forecasts < pep:usedProcedure o seas:forecasts .
+seas:forecasts < pep:madeBy o seas:forecasts .
 ```
 """@en ;
   rdfs:domain [ owl:unionOf ( seas:Forecasting seas:Forecaster seas:Forecast ) ] ;

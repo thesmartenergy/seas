@@ -1,0 +1,188 @@
+# Copyright 2016 ITEA 12004 SEAS Project.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix saref: <http://ontology.tno.nl/saref#>. #SAREF smart building appliances ontology
+@prefix qudt: <http://data.qudt.org/qudt/owl/1.0.0/qudt.owl#> .
+@prefix qudt-unit: <http://data.qudt.org/qudt/owl/1.0.0/unit.owl#> . #QUDT units
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sdmx: <http://purl.org/linked-data/sdmx#>.
+@prefix pep: <https://w3id.org/pep/>.
+@prefix gr: <http://purl.org/goodrelations/v1#>.
+
+@prefix seas: <https://w3id.org/seas/>.
+@base <https://w3id.org/seas/>.
+
+voaf:Vocabulary a owl:Class .
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:issued a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:contributor a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+vs:term_status a owl:AnnotationProperty .
+foaf:Person a owl:Class .
+foaf:name a owl:DatatypeProperty .
+
+
+seas:OfferingOntology rdf:type voaf:Vocabulary , owl:Ontology ;
+  dcterms:title "The SEAS Offering ontology"@en ;
+  dcterms:description """The SEAS Offering ontology defines offerings and transactions between players.
+
+Players may offer or seek for some offering, that includes evaluation of properties, or procedure executions.
+
+Players may be the seller or buyer of some transaction, that includes evaluation of properties, or procedure executions."""@en ;
+  dcterms:issued "2016-07-24"^^xsd:date ;
+  dcterms:modified "2016-09-30"^^xsd:date ;
+  dcterms:creator <http://www.maxime-lefrancois.info/me#> ;
+  dcterms:contributor [ foaf:name "Hannu Järvinen" ];
+  dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+  vann:preferredNamespacePrefix "seas" ;
+  vann:preferredNamespaceUri <https://w3id.org/seas/> ;
+  owl:imports <https://w3id.org/pep/pep-1.1> , seas:PlayerOntology , <http://purl.org/goodrelations/v1> ;
+  owl:versionIRI <https://w3id.org/seas/OfferingOntology-1.1> ;
+  owl:versionInfo "v1.1" ;
+  owl:prioriVersion <https://w3id.org/seas/OfferingOntology-1.0> .
+
+seas:Offering a owl:Class ;
+  rdfs:label "Offering"@en ;
+  rdfs:comment """An offering is a procedure that is offered or sought for by a player.
+
+An offering may be linked through property `seas:includes` to the property evaluations that are included in the offering. For example, `<player1>` offers to pay 34 € to `<player2>` to receive 1 MWh.
+
+```
+<player1> seas:moneyConnectionPoint <connectionPoint1> ;
+  seas:electricalConnectionPoint <connectionPoint2> ;
+  seas:offers <offering> .
+
+<connectionPoint1> seas:moneyBalance <property1> .
+<connectionPoint2> seas:energyBalance <property2> .
+<property1> seas:evaluation <evaluation1> .
+<property2> seas:evaluation <evaluation2> .
+
+<offering> seas:outputIncludesEvaluation <evaluation1>, <evaluation2> .
+
+<evaluation1> seas:evaluatedValue "-34 €"^^cdt:currency .
+<evaluation2> seas:evaluatedValue "1 MWh"^^cdt:ucum .
+```
+
+
+Figure below provides an overview of the concepts in this ontology:
+
+[![Overview of the Offering ontology](https://w3id.org/seas/offering.png)](https://w3id.org/seas/offering.png)
+
+
+
+"""@en ;
+  rdfs:subClassOf pep:Procedure ;
+  owl:equivalentClass gr:Offering ;
+  rdfs:subClassOf [ owl:onProperty seas:includesEvaluation; owl:someValuesFrom pep:ProcedureExecution ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OfferingOntology .
+
+  seas:offers a owl:ObjectProperty ;
+    rdfs:label "offers"@en ;
+    rdfs:comment """Links an agent to a procedure it offers."""@en ;
+    rdfs:domain seas:Player ;
+    rdfs:range seas:Offering ;
+    owl:equivalentProperty gr:offers ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:OfferingOntology .
+
+  seas:seeks a owl:ObjectProperty;
+    rdfs:label "seeks"@en ;
+    rdfs:comment """Links an agent to a procedure it seeks."""@en ;
+    rdfs:domain seas:Player ;
+    rdfs:range seas:Offering ;
+    owl:equivalentProperty gr:seeks ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:OfferingOntology .
+
+seas:Contract a owl:Class ;
+  rdfs:label "Contract"@en ;
+  rdfs:comment """A contract is a container for transactions."""@en ;
+  rdfs:subClassOf pep:ProcedureExecutionContainer ;
+  rdfs:subClassOf [ owl:onProperty seas:includesEvaluation; owl:someValuesFrom pep:ProcedureExecution ] ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OfferingOntology .
+
+  seas:party a owl:ObjectProperty ;
+    rdfs:label "party"@en ;
+    rdfs:comment """Links a contract to one of the parties that agreeed on the contract."""@en ;
+    rdfs:domain seas:Contract ;
+    rdfs:range seas:Player ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:OfferingOntology .
+
+seas:Transaction a owl:Class ;
+  rdfs:label "Transaction"@en ;
+  rdfs:comment """A transaction is a contract execution. A transaction has a buyer, a seller, and may include zero or more evaluations.
+
+The transaction content is modeled by the included evaluations. In particular, the transaction price is modeled as the evaluation of a money flow between the buyer and the seller.
+"""@en ;
+  vs:term_status "testing" ;
+  rdfs:subClassOf [ owl:onProperty seas:includesEvaluation; owl:allValuesFrom pep:ProcedureExecution ] ;
+  rdfs:isDefinedBy seas:OfferingOntology .
+
+  seas:buyer a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "buyer"@en ;
+    rdfs:comment """Links a transaction to the buyer."""@en ;
+    rdfs:domain seas:Transaction ;
+    rdfs:range seas:Player ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:OfferingOntology .
+
+  seas:seller a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "seller"@en ;
+    rdfs:comment """Links a transaction to the seller."""@en ;
+    rdfs:domain seas:Transaction ;
+    rdfs:range seas:Player ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:OfferingOntology .
+
+
+seas:inputIncludesEvaluation a owl:ObjectProperty ;
+  rdfs:label "input includes evaluation"@en ;
+  rdfs:comment """Links a transaction, contract or offering to a property evaluations its input includes (preconditions). More general transactions, contracts, or offerings can be described using property `pep:hasInput`."""@en ;
+  rdfs:range seas:Evaluation ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OfferingOntology .
+
+
+seas:outputIncludesEvaluation a owl:ObjectProperty ;
+  rdfs:label "output includes evaluation"@en ;
+  rdfs:comment """Links a transaction, contract or offering to the property evaluations its output includes (postconditions). More general transactions, contracts, or offerings can be described using property `pep:hasOutput`."""@en ;
+  rdfs:range seas:Evaluation ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OfferingOntology .
+
+
+seas:SubscriptionPriceSpecification a owl:Class ;
+  rdfs:label "Subscription price specification"@en ;
+  rdfs:comment "Subscription based price specification. Price can be, e.g., monthly or yearly fee."@en ;
+  rdfs:subClassOf gr:PriceSpecification ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:OfferingOntology .

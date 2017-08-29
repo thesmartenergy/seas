@@ -60,24 +60,25 @@ seas:SmartMeterOntology a voaf:Vocabulary , owl:Ontology ;
 Figure below shows the taxonomy of Meter.
 [![SmartMeterTaxonomy](https://w3id.org/seas/smartMeterTaxonomy-1.0-1.png)](https://w3id.org/seas/smartMeterTaxonomy-1.0-1.png) 
 """@en ;
-  dcterms:issued "2016-05-10"^^xsd:date ;
-  dcterms:modified "2016-11-24"^^xsd:date ;
+  dcterms:issued "2017-08-29"^^xsd:date ;
+  dcterms:modified "2017-08-29"^^xsd:date ;
   dcterms:creator [  a foaf:Person; foaf:name "Lynda TEMAL"] ;
   dcterms:contributor <http://www.maxime-lefrancois.info/me#> ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
   owl:imports seas:DeviceOntology, seas:ElectricPowerSystemOntology , seas:CommunicationOntology ;
-  owl:versionIRI <https://w3id.org/seas/SmartMeterOntology-1.0> ;
-  owl:versionInfo "v1.0" .
+  owl:versionIRI <https://w3id.org/seas/SmartMeterOntology-1.1> ;
+  owl:versionInfo "v1.1" ;
+  owl:priorVersion <https://w3id.org/seas/SmartMeterOntology-1.0> .
 
 
 ## Metering, Meter, MeteringExecution
 
 seas:Metering a owl:Class;
   rdfs:label "Metering"@en ;
-  rdfs:comment """Metering is the process that allows to carry out some measuring on a property."""@en ;
-  rdfs:subClassOf pep:Process ;
+  rdfs:comment """Metering is the procedure that allows to carry out some measuring on a property."""@en ;
+  rdfs:subClassOf pep:Procedure ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:SmartMeterOntology .
 
@@ -90,15 +91,15 @@ seas:Metering a owl:Class;
 
   ```
   seas:measuresProperty < pep:implements o seas:measuresProperty .
-  seas:measuresProperty < pep:methodUsed o seas:measuresProperty .
-  seas:measuresProperty < pep:executedBy o seas:measuresProperty .
+  seas:measuresProperty < pep:usedProcedure o seas:measuresProperty .
+  seas:measuresProperty < pep:madeBy o seas:measuresProperty .
   ```
   """@en ;
     rdfs:domain [ owl:unionOf ( seas:Metering seas:Meter seas:MeteringExecution ) ] ;
     rdfs:range seas:Property ;
     owl:propertyChainAxiom ( pep:implements seas:measuresProperty ) ;
-    owl:propertyChainAxiom ( pep:methodUsed seas:measuresProperty ) ;
-    owl:propertyChainAxiom ( pep:executedBy seas:measuresProperty ) ;
+    owl:propertyChainAxiom ( pep:usedProcedure seas:measuresProperty ) ;
+    owl:propertyChainAxiom ( pep:madeBy seas:measuresProperty ) ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:SmartMeterOntology .
 
@@ -118,8 +119,8 @@ seas:Metering a owl:Class;
 
   ```
   seas:measures < pep:implements o seas:measures .
-  seas:measures < pep:methodUsed o seas:measures .
-  seas:measures < pep:executedBy o seas:measures .
+  seas:measures < pep:usedProcedure o seas:measures .
+  seas:measures < pep:madeBy o seas:measures .
   ```
     
   """@en ;
@@ -127,8 +128,8 @@ seas:Metering a owl:Class;
     rdfs:range seas:FeatureOfInterest ;
   #  owl:propertyChainAxiom ( seas:observesProperty seas:isPropertyOf ) ; # not allowed in OWL 2 DL
     owl:propertyChainAxiom ( pep:implements seas:measures ) ;
-    owl:propertyChainAxiom ( pep:methodUsed seas:measures ) ;
-    owl:propertyChainAxiom ( pep:executedBy seas:measures ) ;
+    owl:propertyChainAxiom ( pep:usedProcedure seas:measures ) ;
+    owl:propertyChainAxiom ( pep:madeBy seas:measures ) ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:SmartMeterOntology .
 
@@ -195,7 +196,7 @@ seas:Meter a owl:Class;
   rdfs:subClassOf seas:Device;
   rdfs:label "Meter"@en;
   skos:altLabel "Measuring instrument"@en;
-  rdfs:comment """A Meter is a device that is designed to allow to carry out a metering process."""@en;
+  rdfs:comment """A Meter is a device that is designed to allow to carry out a metering procedure."""@en;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
   owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:implements ; owl:someValuesFrom seas:Metering ] ;
   vs:term_status "testing" ;
@@ -307,7 +308,7 @@ seas:Meter a owl:Class;
 
     seas:UltrasonicFlowGasMeter  a owl:Class ;
       rdfs:label "Ultrasonic flow Gas Meter"@en ;
-      rdfs:comment """Ultrasonic flow gas meters are more complex than meters that are purely mechanical, as they require  significant signal processing and computation capabilities. Ultrasonic meters measure the speed of  gas movement by measuring the speed at which sound travels in the gaseous medium within the pipe. (Source: Wikipedia)"""@en;
+      rdfs:comment """Ultrasonic flow gas meters are more complex than meters that are purely mechanical, as they require  significant signal procedureing and computation capabilities. Ultrasonic meters measure the speed of  gas movement by measuring the speed at which sound travels in the gaseous medium within the pipe. (Source: Wikipedia)"""@en;
       rdfs:subClassOf seas:GasMeter ;
       vs:term_status "testing"  ;
       rdfs:isDefinedBy seas:SmartMeterOntology .
@@ -346,12 +347,12 @@ seas:Meter a owl:Class;
 
 seas:MeteringExecution a owl:Class ;
   rdfs:label "Metering Execution"@en ;
-  rdfs:comment """A Metering Execution is the execution of the measuring process which is executed by a meter device."""@en ;
-  rdfs:subClassOf pep:ProcessExecution ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Meter ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Metering ] ;
+  rdfs:comment """A Metering Execution is the execution of the measuring procedure which is executed by a meter device."""@en ;
+  rdfs:subClassOf pep:ProcedureExecution ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:madeBy ; owl:someValuesFrom seas:Meter ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:Metering ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:observesProperty ; owl:someValuesFrom seas:Property ] ;
-  owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Metering ] ;
+  owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:Metering ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:SmartMeterOntology .
 
@@ -359,10 +360,10 @@ seas:MeteringExecution a owl:Class ;
     rdfs:label "Water Volume Metering Execution"@en ;
     rdfs:comment """A Water Volume Metering Execution is the execution of some Water Volume Metering implemented by some Water Meter."""@en ;
     rdfs:subClassOf seas:MeteringExecution ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:WaterMeter ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:WaterVolumeMetering ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:madeBy ; owl:someValuesFrom seas:WaterMeter ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:WaterVolumeMetering ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
-    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:WaterVolumeMetering ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:WaterVolumeMetering ] ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:SmartMeterOntology . 
 
@@ -370,21 +371,21 @@ seas:MeteringExecution a owl:Class ;
     rdfs:label "Gas Volume Metering Execution"@en ;
     rdfs:comment """The Measure of the volume of the gas which flow in the meter. Generally for consumption metering but could be for production."""@en ;
     rdfs:subClassOf seas:MeteringExecution ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:GasMeter ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:GasVolumeMetering ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:madeBy ; owl:someValuesFrom seas:GasMeter ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:GasVolumeMetering ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:GasVolumeProperty ] ;
-    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:GasVolumeMetering ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:GasVolumeMetering ] ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:SmartMeterOntology . 
 
   seas:ElectricityMeteringExecution a owl:Class ;
     rdfs:label "Electricity Metering Execution"@en ;
-    rdfs:comment """An Electricity Metering Execution is the execution of some Electricity Metering process by some electricity meter."""@en ;
+    rdfs:comment """An Electricity Metering Execution is the execution of some Electricity Metering procedure by some electricity meter."""@en ;
     rdfs:subClassOf seas:MeteringExecution ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:ElectricityMeter ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ElectricityMetering ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:madeBy ; owl:someValuesFrom seas:ElectricityMeter ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:ElectricityMetering ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:ElectricEnergyProperty ] ;
-    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ElectricityMetering ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:ElectricityMetering ] ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:SmartMeterOntology . 
 
@@ -392,10 +393,10 @@ seas:MeteringExecution a owl:Class ;
     rdfs:label "Consumption Metering Execution"@en ;
     rdfs:comment """A Consumption Metering Execution is the execution of some Consumption metering implemented by some meter."""@en ;
     rdfs:subClassOf seas:MeteringExecution ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Meter ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ConsumptionMetering ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:madeBy ; owl:someValuesFrom seas:Meter ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:ConsumptionMetering ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:ConsumptionProperty ] ;
-    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ConsumptionMetering ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:ConsumptionMetering ] ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:SmartMeterOntology . 
 
@@ -403,10 +404,10 @@ seas:MeteringExecution a owl:Class ;
     rdfs:label "Production Metering Execution"@en ;
     rdfs:comment """A Production Metering Execution is the execution of some Production Metering implemented by some meter."""@en ;
     rdfs:subClassOf seas:MeteringExecution ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Meter ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ProductionMetering ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:madeBy ; owl:someValuesFrom seas:Meter ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:ProductionMetering ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:ProductionProperty ] ;
-    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:ProductionMetering ] ;
+    owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:ProductionMetering ] ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:SmartMeterOntology .
 

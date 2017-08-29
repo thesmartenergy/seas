@@ -62,10 +62,10 @@ seas:PhotovoltaicOntology rdf:type owl:Ontology  , voaf:Vocabulary ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
-  owl:imports seas:ElectricPowerSystemOntology , <https://w3id.org/seas/DeviceOntology-1.0> , <https://w3id.org/seas/ForecastingOntology-1.0> ;
-  owl:versionIRI <https://w3id.org/seas/PhotovoltaicOntology-1.0> ;
-  owl:versionInfo "v1.0" ;
-  owl:priorVersion <https://w3id.org/seas/PhotovoltaicOntology-0.9> .
+  owl:imports seas:ElectricPowerSystemOntology , seas:DeviceOntology , seas:ForecastingOntology ;
+  owl:versionIRI <https://w3id.org/seas/PhotovoltaicOntology-1.1> ;
+  owl:versionInfo "v1.1" ;
+  owl:priorVersion <https://w3id.org/seas/PhotovoltaicOntology-1.0> .
 
 
 seas:SolarArray a owl:Class ;
@@ -125,7 +125,7 @@ seas:SolarTracker a owl:Class ;
 
 seas:PVEnergyGenerationForecasting a owl:Class ;
   rdfs:label "PV Energy Generation Forecasting"@en ;
-  rdfs:comment """Process of forecasting the outgoing electric power or energy of a solar array, panel, module, or cell."""@en ;
+  rdfs:comment """Procedure of forecasting the outgoing electric power or energy of a solar array, panel, module, or cell."""@en ;
   rdfs:subClassOf seas:Forecasting ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:OptimizationOntology .
@@ -155,10 +155,10 @@ seas:PVEnergyGenerationForecast a owl:Class ;
   rdfs:label "PV Energy Generation Forecast"@en ;
   rdfs:comment """A Forecast of the outgoing electric power or energy of a solar array, panel, module, or cell."""@en ;
   rdfs:subClassOf seas:Forecast ;
-  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:PVEnergyGenerationForecaster ] ;
-  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:PVEnergyGenerationForecasting ] ;
+  rdfs:subClassOf [ owl:onProperty pep:madeBy ; owl:someValuesFrom seas:PVEnergyGenerationForecaster ] ;
+  rdfs:subClassOf [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:PVEnergyGenerationForecasting ] ;
   rdfs:subClassOf [ owl:onProperty seas:forecastsProperty ; owl:someValuesFrom seas:ElectricPowerProperty ] ;
-  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:PVEnergyGenerationForecasting ] ;
+  owl:equivalentClass [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:PVEnergyGenerationForecasting ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:OptimizationOntology .
 

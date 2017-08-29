@@ -85,47 +85,47 @@ We furthermore encourage the use of the following external ontologies:
   dcterms:contributor [a foaf:Person ; foaf:name "Lynda Temal" ] ;
   dcterms:contributor [a foaf:Person ; foaf:name "Brigida Teixeira" ] ;
   dcterms:contributor [a foaf:Person ; foaf:name "Hannu Järvinen" ] ;
-  dcterms:issued "2016-05-25"^^xsd:date ;
+  dcterms:issued "2017-08-29"^^xsd:date ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
-  owl:versionIRI <https://w3id.org/seas/seas-1.0> ;
-  owl:versionInfo "v1.0" ;
-  owl:priorVersion <https://w3id.org/seas/seas-0.9> ;
+  owl:versionIRI <https://w3id.org/seas/seas-1.1> ;
+  owl:versionInfo "v1.1" ;
+  owl:priorVersion <https://w3id.org/seas/seas-1.0> ;
   owl:imports <https://w3id.org/seas/ArchitectureOntology-2.0> ,
               <https://w3id.org/seas/BatteryOntology-1.0> ,
               <https://w3id.org/seas/BooleanPropertyOntology-1.0> ,
               <https://w3id.org/seas/BuildingOntology-1.0> ,
               <https://w3id.org/seas/CityOntology-1.0> ,
+              <https://w3id.org/seas/ClimateAndForecastOntology-1.0> ,
               <https://w3id.org/seas/ComfortOntology-1.0> ,
-              <https://w3id.org/seas/ComplexOntology-1.0> ,
               <https://w3id.org/seas/CommunicationOntology-1.0> ,
-              <https://w3id.org/seas/DeviceOntology-1.0> ,
+              <https://w3id.org/seas/ComplexOntology-1.0> ,
+              <https://w3id.org/seas/DeviceOntology-1.1> ,
+              <https://w3id.org/seas/ElectricLightSourceOntology-1.0> ,
               <https://w3id.org/seas/ElectricPowerSystemOntology-1.0> ,
               <https://w3id.org/seas/ElectricVehicleOntology-1.0> ,
-              <https://w3id.org/seas/ElectricLightSourceOntology-1.0> ,
               <https://w3id.org/seas/EnergyFormOntology-1.0> ,
               <https://w3id.org/seas/EvaluationOntology-1.0> ,
               <https://w3id.org/seas/FailableSystemOntology-1.0> ,
               <https://w3id.org/seas/FeatureOfInterestOntology-1.0> ,
               <https://w3id.org/seas/FlexibilityOntology-1.0> ,
-              <https://w3id.org/seas/ForecastingOntology-1.0> ,
-              <https://w3id.org/seas/GreenKPIOntology-1.0> ,
+              <https://w3id.org/seas/ForecastingOntology-1.1> ,
               <https://w3id.org/seas/GenericPropertyOntology-1.0> ,
-              <https://w3id.org/seas/OfferingOntology-1.0> ,
+              <https://w3id.org/seas/GreenKPIOntology-1.0> ,
+              <https://w3id.org/seas/OfferingOntology-1.1> ,
               <https://w3id.org/seas/OperatingOntology-1.0> ,
-              <https://w3id.org/seas/OptimizationOntology-1.0> ,
+              <https://w3id.org/seas/OptimizationOntology-1.1> ,
               <https://w3id.org/seas/PeriodicSignalOntology-1.0> ,
               <https://w3id.org/seas/PhotovoltaicOntology-1.0> ,
-              <https://w3id.org/seas/PlayerOntology-1.0> ,
-              <https://w3id.org/seas/SmartMeterOntology-1.0>,
+              <https://w3id.org/seas/PlayerOntology-1.1> ,
               <https://w3id.org/seas/PricingOntology-1.0> ,
+              <https://w3id.org/seas/SmartMeterOntology-1.1>,
               <https://w3id.org/seas/StatisticsOntology-1.0> ,
               <https://w3id.org/seas/StreetLightSystemOntology-1.0> ,
-              <https://w3id.org/seas/SystemOntology-1.0> ,
+              <https://w3id.org/seas/SystemOntology-1.1> ,
               <https://w3id.org/seas/ThermodynamicSystemOntology-1.0> ,
               <https://w3id.org/seas/TimeOntology-1.0> ,
-              <https://w3id.org/seas/TradingOntology-1.0> ,
-#              <https://w3id.org/seas/UpperOntology-0.10> ,
+              <https://w3id.org/seas/TradingOntology-1.1> ,
               <https://w3id.org/seas/ZoneLightingOntology-1.0> ,
               <https://w3id.org/seas/ZoneOntology-1.0> .

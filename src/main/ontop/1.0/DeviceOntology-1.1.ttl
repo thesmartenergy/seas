@@ -45,17 +45,17 @@ foaf:name a owl:DatatypeProperty .
 
 seas:DeviceOntology rdf:type voaf:Vocabulary , owl:Ontology ;
   dcterms:title "The SEAS Device ontology"@en ;
-  dcterms:description """The SEAS Device ontology defines `seas:Device` as physical system that are designed to execute one or more processes that involve the physical world.
+  dcterms:description """The SEAS Device ontology defines `seas:Device` as physical system that are designed to execute one or more procedures that involve the physical world.
 
 
 Figure below provides an overview of the concepts in this ontology:
 
 [![Overview of the Device ontology](https://w3id.org/seas/device.png)](https://w3id.org/seas/device.png)
 
-This ontology extends the [Process Execution ontology (PEP)](https://w3id.org/pep/) and defines:
+This ontology extends the [Procedure Execution Ontology (PEP)](https://w3id.org/pep/) and defines:
 
-- `seas:Actuator`s implements `seas:Actuating` processes and do `seas:Actuation`s;
-- `seas:Sensor`s implements `seas:Sensing` processes and do `seas:Observation`s.
+- `seas:Actuator`s implements `seas:Actuating` procedures and do `seas:Actuation`s;
+- `seas:Sensor`s implements `seas:Sensing` procedures and do `seas:Observation`s.
 
 Sub types of `seas:Actuator`, `seas:Actuating`, and `seas:Actuation`, may constrain the type of the value of the property. For instance ontology `seas:BooleanOntology` defines `seas:BooleanActuator`,  `seas:BooleanActuating`, and  `seas:BooleanActuation`, that constrain the acted upon property to be a `seas:BooleanProperty`. Other ontologies may define many more.
 
@@ -71,21 +71,22 @@ Alignments to the [SSN ontology](http://www.w3.org/ns/ssn/) is proposed in [SSNA
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;
-  owl:imports seas:SystemOntology , <https://w3id.org/pep/pep-1.0> ;
-  owl:versionIRI <https://w3id.org/seas/DeviceOntology-1.0> ;
-  owl:versionInfo "v1.0" .
+  owl:imports seas:SystemOntology , pep: ;
+  owl:versionIRI <https://w3id.org/seas/DeviceOntology-1.1> ;
+  owl:versionInfo "v1.1" ;
+  owl:priorVersion <https://w3id.org/seas/DeviceOntology-1.0> .
 
 
 seas:Device a owl:Class ;
   rdfs:label "Device"@en ;
-  rdfs:comment """Device is a physical system designed to execute one or more processes that invove the physical world.
+  rdfs:comment """Device is a physical system designed to execute one or more procedures that invove the physical world.
 
-A `seas:Device` is also a `pep:ProcessExecutor` from the [Process Execution ontology (PEP)](https://w3id.org/pep/). As such, it may implement processes, and generate process executions.
+A `seas:Device` is also a `pep:ProcedureExecutor` from the [Procedure Execution Ontology (PEP)](https://w3id.org/pep/). As such, it may implement procedures, and generate procedure executions.
 
 If SEAS was to be aligned to the SAREF ontology, `seas:Device` would be more generic than `saref:Device`.
 
 A `seas:Device` may also be aligned with the SSN `ssn:Device`."""@en ;
-  rdfs:subClassOf pep:ProcessExecutor ;
+  rdfs:subClassOf pep:ProcedureExecutor ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:DeviceOntology .
 
@@ -94,14 +95,14 @@ A `seas:Device` may also be aligned with the SSN `ssn:Device`."""@en ;
 
 seas:Actuating a owl:Class ;
   rdfs:label "Actuating"@en ;
-  rdfs:comment """Actuating is a process that has an impact on the physical world."""@en ;
-  rdfs:subClassOf pep:Process ;
+  rdfs:comment """Actuating is a procedure that has an impact on the physical world."""@en ;
+  rdfs:subClassOf pep:Procedure ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:DeviceOntology .
 
 seas:Actuator a owl:Class ;
   rdfs:label "Actuator"@en ;
-  rdfs:comment """An actuator is a device that implements some actuating process, and has thus an impact on the physical world."""@en ;
+  rdfs:comment """An actuator is a device that implements some actuating procedure, and has thus an impact on the physical world."""@en ;
   rdfs:subClassOf seas:Device ;
   rdfs:subClassOf [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Actuating ] ;
   owl:equivalentClass [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Actuating ] ;
@@ -110,12 +111,12 @@ seas:Actuator a owl:Class ;
 
 seas:Actuation a owl:Class ;
   rdfs:label "Actuation"@en ;
-  rdfs:comment """An actuation is the execution of some actuating process by some actuator, and has an impact on the physical world."""@en ;
-  rdfs:subClassOf pep:ProcessExecution ;
-  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Actuator ] ;
-  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Actuating ] ;
+  rdfs:comment """An actuation is the execution of some actuating procedure by some actuator, and has an impact on the physical world."""@en ;
+  rdfs:subClassOf pep:ProcedureExecution ;
+  rdfs:subClassOf [ owl:onProperty pep:madeBy ; owl:someValuesFrom seas:Actuator ] ;
+  rdfs:subClassOf [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:Actuating ] ;
   rdfs:subClassOf [ owl:onProperty seas:actsOnProperty ; owl:someValuesFrom seas:Property ] ;
-  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Actuating ] ;
+  owl:equivalentClass [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:Actuating ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:DeviceOntology .
 
@@ -127,14 +128,14 @@ If a acting acts on a property, then any actuator that implements this acting al
 
 ```
 seas:actsOnProperty < pep:implements o seas:actsOnProperty .
-seas:actsOnProperty < pep:methodUsed o seas:actsOnProperty .
-seas:actsOnProperty < pep:executedBy o seas:actsOnProperty .
+seas:actsOnProperty < pep:usedProcedure o seas:actsOnProperty .
+seas:actsOnProperty < pep:madeBy o seas:actsOnProperty .
 ```"""@en ;
   rdfs:domain [ owl:unionOf ( seas:Actuating seas:Actuator seas:Actuation ) ] ;
   rdfs:range seas:Property ;
   owl:propertyChainAxiom ( pep:implements seas:actsOnProperty ) ;
-  owl:propertyChainAxiom ( pep:methodUsed seas:actsOnProperty ) ;
-  owl:propertyChainAxiom ( pep:executedBy seas:actsOnProperty ) ;
+  owl:propertyChainAxiom ( pep:usedProcedure seas:actsOnProperty ) ;
+  owl:propertyChainAxiom ( pep:madeBy seas:actsOnProperty ) ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:DeviceOntology .
 
@@ -151,9 +152,9 @@ seas:actsOnProperty < seas:actsOn o seas:isPropertyOf .
 If a acting acts on a feature of interest, then any actuator that implements this acting also acts on this feature of interest, and any actuation that used this acting also acts on this feature of interest. Furthermore, if a actuator acts on a feature of interest, then any actuation executed by this actuator also acts on this feature of interest:
 
 ```
-seas:actsOn < pep:methodUsed o seas:actsOn .
-seas:actsOn < pep:methodUsed o seas:actsOn .
-seas:actsOn < pep:executedBy o seas:actsOn .
+seas:actsOn < pep:usedProcedure o seas:actsOn .
+seas:actsOn < pep:usedProcedure o seas:actsOn .
+seas:actsOn < pep:madeBy o seas:actsOn .
 ```
 """@en ;
   rdfs:domain [ owl:unionOf ( seas:Actuating seas:Actuator seas:Actuation ) ] ;
@@ -166,14 +167,14 @@ seas:actsOn < pep:executedBy o seas:actsOn .
 
 seas:Sensing a owl:Class ;
   rdfs:label "Sensing"@en ;
-  rdfs:comment """Sensing is a process where stimuli from the physical world are used to produce outputs."""@en ;
-  rdfs:subClassOf pep:Process ;
+  rdfs:comment """Sensing is a procedure where stimuli from the physical world are used to produce outputs."""@en ;
+  rdfs:subClassOf pep:Procedure ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:DeviceOntology .
 
 seas:Sensor a owl:Class ;
   rdfs:label "Sensor"@en ;
-  rdfs:comment """A sensor is a device that implements some sensing process, and hence uses stimuli from the physical world to produce outputs."""@en ;
+  rdfs:comment """A sensor is a device that implements some sensing procedure, and hence uses stimuli from the physical world to produce outputs."""@en ;
   rdfs:subClassOf seas:Device ;
   rdfs:subClassOf [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Sensing ] ;
   owl:equivalentClass [ owl:onProperty pep:implements ; owl:someValuesFrom seas:Sensing ] ;
@@ -182,12 +183,12 @@ seas:Sensor a owl:Class ;
 
 seas:Observation a owl:Class ;
   rdfs:label "Observation"@en ;
-  rdfs:comment """An observation is the execution of some sensing process by some sensor."""@en ;
-  rdfs:subClassOf pep:ProcessExecution ;
-  rdfs:subClassOf [ owl:onProperty pep:executedBy ; owl:someValuesFrom seas:Sensor ] ;
-  rdfs:subClassOf [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Sensing ] ;
+  rdfs:comment """An observation is the execution of some sensing procedure by some sensor."""@en ;
+  rdfs:subClassOf pep:ProcedureExecution ;
+  rdfs:subClassOf [ owl:onProperty pep:madeBy ; owl:someValuesFrom seas:Sensor ] ;
+  rdfs:subClassOf [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:Sensing ] ;
   rdfs:subClassOf [ owl:onProperty seas:observesProperty ; owl:someValuesFrom seas:Property ] ;
-  owl:equivalentClass [ owl:onProperty pep:methodUsed ; owl:someValuesFrom seas:Sensing ] ;
+  owl:equivalentClass [ owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:Sensing ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:DeviceOntology .
 
@@ -199,15 +200,15 @@ If a sensing observes a property, then any sensor that implements this sensing a
 
 ```
 seas:observesProperty < pep:implements o seas:observesProperty .
-seas:observesProperty < pep:methodUsed o seas:observesProperty .
-seas:observesProperty < pep:executedBy o seas:observesProperty .
+seas:observesProperty < pep:usedProcedure o seas:observesProperty .
+seas:observesProperty < pep:madeBy o seas:observesProperty .
 ```
 """@en ;
   rdfs:domain [ owl:unionOf ( seas:Sensing seas:Sensor seas:Observation ) ] ;
   rdfs:range seas:Property ;
   owl:propertyChainAxiom ( pep:implements seas:observesProperty ) ;
-  owl:propertyChainAxiom ( pep:methodUsed seas:observesProperty ) ;
-  owl:propertyChainAxiom ( pep:executedBy seas:observesProperty ) ;
+  owl:propertyChainAxiom ( pep:usedProcedure seas:observesProperty ) ;
+  owl:propertyChainAxiom ( pep:madeBy seas:observesProperty ) ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:DeviceOntology .
 
@@ -224,9 +225,9 @@ seas:observes < seas:observesProperty o seas:isPropertyOf .
 If a sensing observes a feature of interest, then any sensor that implements this sensing also observes this feature of interest, and any observation that used this sensing also observes this feature of interest. Furthermore, if a sensor observes a feature of interest, then any observation executed by this sensor also observes this feature of interest:
 
 ```
-seas:observes < pep:methodUsed o seas:observes .
-seas:observes < pep:methodUsed o seas:observes .
-seas:observes < pep:executedBy o seas:observes .
+seas:observes < pep:usedProcedure o seas:observes .
+seas:observes < pep:usedProcedure o seas:observes .
+seas:observes < pep:madeBy o seas:observes .
 ```
   
 """@en ;
@@ -234,7 +235,7 @@ seas:observes < pep:executedBy o seas:observes .
   rdfs:range seas:FeatureOfInterest ;
 #  owl:propertyChainAxiom ( seas:observesProperty seas:isPropertyOf ) ; # not allowed in OWL 2 DL
   owl:propertyChainAxiom ( pep:implements seas:observes ) ;
-  owl:propertyChainAxiom ( pep:methodUsed seas:observes ) ;
-  owl:propertyChainAxiom ( pep:executedBy seas:observes ) ;
+  owl:propertyChainAxiom ( pep:usedProcedure seas:observes ) ;
+  owl:propertyChainAxiom ( pep:madeBy seas:observes ) ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:DeviceOntology .

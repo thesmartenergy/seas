@@ -21,6 +21,7 @@
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix sosa: <https://www.w3.org/ns/sosa/>.
 @prefix ssn: <https://www.w3.org/ns/ssn/>.
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>.
 @prefix liner: <https://w3id.org/liner/>.
@@ -55,23 +56,50 @@ seas:SSNAlignment a owl:Ontology , voaf:Vocabulary ;
   dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
   vann:preferredNamespacePrefix "seas" ;
   vann:preferredNamespaceUri <https://w3id.org/seas/> ;  
-  owl:versionIRI <https://w3id.org/seas/SSNAlignment-1.0> ;
-  owl:versionInfo "v1.0" ;
+  owl:versionIRI <https://w3id.org/seas/SSNAlignment-1.1> ;
+  owl:versionInfo "v1.1" ;
+  owl:priorVersion <https://w3id.org/seas/SSNAlignment-1.0> ;
   owl:imports seas:FeatureOfInterestOntology ;
   owl:imports seas:DeviceOntology ;
   owl:imports <http://www.w3.org/ns/ssn> ;
   owl:imports <https://w3id.org/pep/SSNAlignment> .
 
-seas:FeatureOfInterest  owl:equivalentClass ssn:FeatureOfInterest ;
+
+
+
+seas:FeatureOfInterest  owl:equivalentClass sosa:FeatureOfInterest ;
  rdfs:comment """This concept is equivalent to ssn:FeatureOfInterest, which in the first version of the SSN ontology is defined as a subclass of the union of dul:Event and dul:Object. A dul:Event is any physical, social, or mental process, event, or state. A dul:Object is any physical, social, or mental object, or a substance."""@en .
 
 seas:Property owl:equivalentClass ssn:Property ;
   rdfs:comment """seas:Property is equivalent to ssn:Property, which in the first version of the SSN ontology is a subclass of dul:Quality. dul:Quality is any aspect of an Entity (but not a part of it), which cannot exist without that Entity. """@en .
 
-ssn:hasProperty rdfs:subPropertyOf seas:hasProperty .
+ssn:hasProperty owl:equivalentProperty seas:hasProperty .
 
-seas:Device owl:equivalentClass ssn:Device .
-seas:Sensing owl:equivalentClass ssn:Sensing .
-seas:Sensor owl:equivalentClass ssn:Sensor .
-seas:Observation owl:equivalentClass ssn:Observation .
+ssn:isPropertyOf owl:equivalentProperty seas:isPropertyOf .
 
+seas:Sensing rdfs:subClassOf sosa:Procedure .
+
+seas:Sensor owl:equivalentClass sosa:Sensor .
+
+seas:Observation owl:equivalentClass sosa:Observation .
+
+seas:observesProperty owl:equivalentProperty sosa:observesProperty ;
+  rdfs:range sosa:ObservableProperty ;
+  rdfs:subPropertyOf ssn:forProperty .
+
+seas:observes rdfs:subPropertyOf sosa:hasFeatureOfInterest .
+
+
+seas:Actuator owl:equivalentClass sosa:Actuator .
+
+seas:Actuator owl:equivalentClass sosa:Actuator .
+
+seas:Actuation owl:equivalentClass sosa:Actuation .
+
+seas:actsOnProperty owl:equivalentProperty sosa:actsOnProperty ;
+  rdfs:range sosa:ActuatableProperty ;
+  rdfs:subPropertyOf ssn:forProperty .
+
+seas:hasSubSystem owl:equivalentProperty sosa:hasSample , ssn:hasSubSystem .
+
+seas:isSubSystemOf owl:equivalentProperty sosa:isSampleOf .

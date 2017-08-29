@@ -175,7 +175,7 @@ If the property is true, then the feature of interest is open. Else, it is close
 
 seas:BooleanActuating a owl:Class ;
   rdfs:label "Boolean Actuating"@en ;
-  rdfs:comment """Process of actuating on the physical world, with an input that is a *boolean resource*, i.e., an [information resource](https://www.w3.org/TR/webarch/#def-information-resource) whose essential characteristics can be be conveyed in a boolean.
+  rdfs:comment """Procedure of actuating on the physical world, with an input that is a *boolean resource*, i.e., an [information resource](https://www.w3.org/TR/webarch/#def-information-resource) whose essential characteristics can be be conveyed in a boolean.
 
 This class combines boolean actuating processes such as on/off, open/close or start/stop, where no intermediary state is possible for the command."""@en ;
   rdfs:subClassOf seas:Actuating ;
@@ -185,7 +185,7 @@ This class combines boolean actuating processes such as on/off, open/close or st
 #      seas:Actuating 
 #      [ owl:onProperty seas:actsOn ; owl:allValuesFrom [ owl:unionOf ( seas:FeatureOfInterest seas:BooleanProperty ) ] ] ) ] ; # NO: makes actuating and booleanactuating equivalent
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:DeviceOntology .
+  rdfs:isDefinedBy seas:BooleanPropertyOntology .
 
 seas:BooleanActuator a owl:Class ;
   rdfs:label "Boolean Actuator"@en ;
@@ -199,7 +199,7 @@ This class combines boolean actuators such as on/off, open/close or start/stop, 
 #      seas:Actuator
 #      [ owl:onProperty seas:actsOn ; owl:allValuesFrom [ owl:unionOf ( seas:FeatureOfInterest seas:BooleanProperty ) ] ] ) ] ; # NO: makes actuator and booleanactuatinor equivalent
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:DeviceOntology .
+  rdfs:isDefinedBy seas:BooleanPropertyOntology .
 
 seas:BooleanActuation a owl:Class ;
   rdfs:label "Boolean Actuation"@en ;
@@ -213,11 +213,11 @@ This class combines boolean actuations such as on/off, open/close or start/stop,
 #      seas:Actuation
 #      [ owl:onProperty seas:actsOn ; owl:allValuesFrom [ owl:unionOf ( seas:FeatureOfInterest seas:BooleanProperty ) ] ] ) ] ; # NO: makes actuation and booleanactuation equivalent
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:DeviceOntology .
+  rdfs:isDefinedBy seas:BooleanPropertyOntology .
 
 seas:BooleanSensing a owl:Class ;
   rdfs:label "Boolean Sensing"@en ;
-  rdfs:comment """Process of sensing, with an output that is a *boolean resource*, i.e., an [information resource](https://www.w3.org/TR/webarch/#def-information-resource) whose essential characteristics can be be conveyed in a boolean.
+  rdfs:comment """Procedure of sensing, with an output that is a *boolean resource*, i.e., an [information resource](https://www.w3.org/TR/webarch/#def-information-resource) whose essential characteristics can be be conveyed in a boolean.
 
 This class combines boolean sensing processes such as on/off, open/close or start/stop, where no intermediary state is possible for the output."""@en ;
   rdfs:subClassOf seas:Sensing ;
@@ -227,7 +227,7 @@ This class combines boolean sensing processes such as on/off, open/close or star
 #      seas:Sensing 
 #      [ owl:onProperty seas:observes ; owl:allValuesFrom [ owl:unionOf ( [ owl:complementOf seas:Property ] seas:BooleanProperty ) ] ] ) ] ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:DeviceOntology.
+  rdfs:isDefinedBy seas:BooleanPropertyOntology.
 
 seas:BooleanSensor a owl:Class ;
   rdfs:label "Boolean Sensor"@en ;
@@ -241,7 +241,7 @@ This class combines boolean sensors that output on/off, open/close or start/stop
 #      seas:Sensor 
 #      [ owl:onProperty seas:observes ; owl:allValuesFrom [ owl:unionOf ( seas:FeatureOfInterest seas:BooleanProperty ) ] ] ) ] ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:DeviceOntology.
+  rdfs:isDefinedBy seas:BooleanPropertyOntology.
 
 seas:BooleanObservation a owl:Class ;
   rdfs:label "Boolean Observation"@en ;
@@ -255,4 +255,4 @@ This class combines boolean observations such as on/off, open/close or start/sto
 #      seas:Observation 
 #      [ owl:onProperty seas:observes ; owl:allValuesFrom [ owl:unionOf ( seas:FeatureOfInterest seas:BooleanProperty ) ] ] ) ] ;
   vs:term_status "testing" ;
-  rdfs:isDefinedBy seas:DeviceOntology.
+  rdfs:isDefinedBy seas:BooleanPropertyOntology.
