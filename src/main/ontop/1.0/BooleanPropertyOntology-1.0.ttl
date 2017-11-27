@@ -85,9 +85,8 @@ seas:BooleanProperty a owl:Class ;
 
 seas:onStatus a owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "on status"@en ;
-  rdfs:label """links a feature of interest to its on status, which is a boolean property.
-
-If the property is true, then the feature of interest is on. Else, it is off."""@en ;
+  rdfs:comment """links a feature of interest to its on status, which is a boolean property.If the property is true, then the feature of interest is on. Else, it is off.
+"""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:Property , seas:BooleanProperty ;
@@ -96,9 +95,8 @@ If the property is true, then the feature of interest is on. Else, it is off."""
 
 seas:onServiceStatus a owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "on service status"@en ;
-  rdfs:label """links a feature of interest to its on service status, which is a boolean property.
-
-If the property is true, then the feature of interest is on service. Else, it is out of service."""@en ;
+  rdfs:comment """links a feature of interest to its on service status, which is a boolean property. If the property is true, then the feature of interest is on service. Else, it is out of service.
+"""@en ;
   rdfs:subPropertyOf seas:onStatus ;
   rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:Property , seas:BooleanProperty ;
@@ -107,9 +105,8 @@ If the property is true, then the feature of interest is on service. Else, it is
 
 seas:connectedStatus a owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "connected status"@en ;
-  rdfs:label """links a feature of interest to its connected status, which is a boolean property.
-
-If the property is true, then the feature of interest is connected. Else, it is disconnected."""@en ;
+  rdfs:comment """links a feature of interest to its connected status, which is a boolean property. If the property is true, then the feature of interest is connected. Else, it is disconnected.
+"""@en ;
   rdfs:subPropertyOf seas:onStatus ;
   rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:Property , seas:BooleanProperty ;
@@ -118,9 +115,8 @@ If the property is true, then the feature of interest is connected. Else, it is 
 
 seas:refreshedStatus a owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "refreshed status"@en ;
-  rdfs:label """links a feature of interest to its refreshed status, which is a boolean property.
-
-If the property is true, then the feature of interest is refreshed. Else, it is unrefreshed."""@en ;
+  rdfs:comment """links a feature of interest to its refreshed status, which is a boolean property. If the property is true, then the feature of interest is refreshed. Else, it is unrefreshed.
+"""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:Property , seas:BooleanProperty ;
@@ -129,9 +125,8 @@ If the property is true, then the feature of interest is refreshed. Else, it is 
 
 seas:installedStatus a owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "installed status"@en ;
-  rdfs:label """links a feature of interest to its installed status, which is a boolean property.
-
-If the property is true, then the feature of interest is installed. Else, it is not installed."""@en ;
+  rdfs:comment """links a feature of interest to its installed status, which is a boolean property. If the property is true, then the feature of interest is installed. Else, it is not installed.
+"""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:Property , seas:BooleanProperty ;
@@ -140,9 +135,8 @@ If the property is true, then the feature of interest is installed. Else, it is 
 
 seas:supportedByAPIStatus a owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "supported by API status"@en ;
-  rdfs:label """links a feature of interest to its supported by API status, which is a boolean property.
-
-If the property is true, then the feature of interest is supported by the API. Else, it is not supported by the API."""@en ;
+  rdfs:comment """links a feature of interest to its supported by API status, which is a boolean property. If the property is true, then the feature of interest is supported by the API. Else, it is not supported by the API.
+"""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:Property , seas:BooleanProperty ;
@@ -151,9 +145,8 @@ If the property is true, then the feature of interest is supported by the API. E
 
 seas:recognizedByGatewayStatus a owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "recognized  by gateway status"@en ;
-  rdfs:label """links a feature of interest to its recognized by the gateway status, which is a boolean property.
-
-If the property is true, then the feature of interest is recognized by the gateway. Else, it is not recognized by the Gateway."""@en ;
+  rdfs:comment """links a feature of interest to its recognized by the gateway status, which is a boolean property. If the property is true, then the feature of interest is recognized by the gateway. Else, it is not recognized by the Gateway.
+"""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:Property , seas:BooleanProperty ;
@@ -162,9 +155,8 @@ If the property is true, then the feature of interest is recognized by the gatew
 
 seas:openStatus a owl:ObjectProperty, owl:FunctionalProperty ;
   rdfs:label "open status"@en ;
-  rdfs:label """links a feature of interest to its open status, which is a boolean property.
-
-If the property is true, then the feature of interest is open. Else, it is close."""@en ;
+  rdfs:comment """links a feature of interest to its open status, which is a boolean property. If the property is true, then the feature of interest is open. Else, it is close.
+"""@en ;
   rdfs:subPropertyOf seas:hasProperty ;
   rdfs:domain seas:FeatureOfInterest ;
   rdfs:range seas:Property , seas:BooleanProperty ;
