@@ -140,6 +140,17 @@ seas:subElectricPowerSystemOf a owl:ObjectProperty , owl:FunctionalProperty ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
 
+seas:hasSubElectricPowerSystem a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:label "has sub electric power system"@en ;
+  rdfs:comment """Links an electric power system to its sub electric power systems.
+  The electricity of a super power system is sum to the electricity of its sub electric power system."""@en ;
+  rdfs:subPropertyOf seas:subSystemOf ;
+  rdfs:domain seas:ElectricPowerSystem ;
+  rdfs:range seas:ElectricPowerSystem ;
+  vs:term_status "testing" ;
+  rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+
 ## electrical connection
 
 seas:ElectricalConnection a owl:Class ;
@@ -233,7 +244,7 @@ seas:ElectricPowerConsumer a owl:Class ;
   rdfs:label "Electric Power Consumer"@en ;
   rdfs:comment """An electric power consumer is an electric power system that is capable of consuming electricity."""@en ;
   rdfs:subClassOf seas:ElectricPowerSystem ;
-  rdfs:subClassOf [ owl:onProperty seas:consumedElectricPower ; owl:someValuesFrom seas:Property ] ;
+  rdfs:subClassOf [ owl:onProperty seas:consumedElectricPower ; owl:someValuesFrom seas:ElectricPowerProperty ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
@@ -241,7 +252,7 @@ seas:ElectricPowerProducer a owl:Class ;
   rdfs:label "Electric Power Producer"@en ;
   rdfs:comment """An electric power producer is an electric power system that is capable of producing electricity."""@en ;
   rdfs:subClassOf seas:ElectricPowerSystem ;
-  rdfs:subClassOf [ owl:onProperty seas:producedElectricPower ; owl:someValuesFrom seas:Property ] ;
+  rdfs:subClassOf [ owl:onProperty seas:producedElectricPower ; owl:someValuesFrom seas:ElectricPowerProperty ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
@@ -249,7 +260,7 @@ seas:ElectricPowerStorageSystem a owl:Class ;
   rdfs:label "Electric Power Storage System"@en ;
   rdfs:comment """An electric power storage system is an electric power system that is capable of storing electricity. Usually a battery, an electric vehicle, or a microgrid"""@en ;
   rdfs:subClassOf seas:ElectricPowerSystem ;  
-  rdfs:subClassOf [ owl:onProperty seas:storageElectricPower ; owl:someValuesFrom seas:Property ] ;
+  rdfs:subClassOf [ owl:onProperty seas:storageElectricPower ; owl:someValuesFrom seas:ElectricPowerProperty ] ;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
@@ -267,13 +278,14 @@ seas:ElectricPowerTransmissionSystem a owl:Class ;
     rdfs:label "Electric Power Line"@en ;
     rdfs:comment """An electric power line is an electric transmission system that is capable of transmitting electricity on a certain distance within an electric power network.
 
-    An electric power line must be connected to two power connections, although this requirement cannot be modeled using OWL axioms if we want to remain in a decidable fragment."""@en ;
+    An electric power line must be connected to two power connections, although this requirement cannot be modeled using OWL axioms if we want to remain in a decidable fragment."""@en, """
+    En electric power line may be composed by many electric cables which can a mixe of overhead, underground or facade cables"""@en ;
     rdfs:subClassOf seas:ElectricPowerTransmissionSystem ;
-    rdfs:subClassOf [ owl:onProperty seas:length ; owl:someValuesFrom seas:Property ] ;
-    rdfs:subClassOf [ owl:onProperty seas:temperature ; owl:someValuesFrom seas:Property ] ;
-    rdfs:subClassOf [ owl:onProperty seas:electricResistance ; owl:someValuesFrom seas:Property ] ;
-    rdfs:subClassOf [ owl:onProperty seas:electricReactance ; owl:someValuesFrom seas:Property ] ;
-    rdfs:subClassOf [ owl:onProperty seas:electricSusceptance ; owl:someValuesFrom seas:Property ] ;
+    rdfs:subClassOf [ owl:onProperty seas:length ; owl:someValuesFrom seas:LengthProperty ] ;
+    rdfs:subClassOf [ owl:onProperty seas:temperature ; owl:someValuesFrom seas:TemperatureProperty ] ;
+    rdfs:subClassOf [ owl:onProperty seas:electricResistance ; owl:someValuesFrom seas:ElectricResistanceProperty ] ;
+    rdfs:subClassOf [ owl:onProperty seas:electricReactance ; owl:someValuesFrom seas:ElectricReactanceProperty ] ;
+    rdfs:subClassOf [ owl:onProperty seas:electricSusceptance ; owl:someValuesFrom seas:ElectricSusceptanceProperty ] ;
     rdfs:subClassOf [ owl:onProperty seas:failure ; owl:someValuesFrom seas:Property ] ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
@@ -283,17 +295,39 @@ seas:ElectricPowerTransmissionSystem a owl:Class ;
     rdfs:label "Electric Cable"@en ;
     rdfs:comment """An electric cable is an assembly of one or more wires running side by side or bundled, which is used to carry electric current. (source:wikipedia)
                     An Electric Cable may be sub system of Electric Power Line which may be formed by a sucessive Electric cable"""@en ;
-    rdfs:subClassOf seas:ElectricPowerTransmissionSystem ;
-    rdfs:subClassOf [ owl:onProperty seas:length ; owl:someValuesFrom seas:Property ] ;
-    rdfs:subClassOf [ owl:onProperty seas:temperature ; owl:someValuesFrom seas:Property ] ;
-    rdfs:subClassOf [ owl:onProperty seas:electricResistance ; owl:someValuesFrom seas:Property ] ;
-    rdfs:subClassOf [ owl:onProperty seas:electricReactance ; owl:someValuesFrom seas:Property ] ;
-    rdfs:subClassOf [ owl:onProperty seas:electricSusceptance ; owl:someValuesFrom seas:Property ] ;
+    rdfs:subClassOf seas:ElectricPowerSystem ;
+    rdfs:subClassOf [ owl:onProperty seas:length ; owl:someValuesFrom seas:LengthProperty ] ;
+    rdfs:subClassOf [ owl:onProperty seas:temperature ; owl:someValuesFrom seas:TemperatureProperty ] ;
+    rdfs:subClassOf [ owl:onProperty seas:electricResistance ; owl:someValuesFrom seas:ElectricResistanceProperty ] ;
+    rdfs:subClassOf [ owl:onProperty seas:electricReactance ; owl:someValuesFrom seas:ElectricReactanceProperty ] ;
+    rdfs:subClassOf [ owl:onProperty seas:electricSusceptance ; owl:someValuesFrom seas:ElectricSusceptanceProperty ] ;
     rdfs:subClassOf [ owl:onProperty seas:failure ; owl:someValuesFrom seas:Property ] ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
 
+  seas:OverheadCable a owl:Class ;
+    rdfs:label "Overhead Cable"@en ;
+    rdfs:comment """An overhead cable is a cable which is suspended in the air, between utility poles or electricity pylons."""@en ;
+    rdfs:subClassOf seas:ElectricCable ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+  seas:UnderGroundCable a owl:Class ;
+    rdfs:label "Underground Cable"@en ;
+    rdfs:comment """An underground cable is a cable which is burned in the ground."""@en ;
+    rdfs:subClassOf seas:ElectricCable ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+  seas:FacadeCable a owl:Class ;
+    rdfs:label "Facade Cable"@en ;
+    rdfs:comment """A Facade cable is a cable which put along with a building and facade."""@en ;
+    rdfs:subClassOf seas:ElectricCable ;
+    vs:term_status "testing" ;
+    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
+
+      
   seas:LowVoltageElectricPowerLine a owl:Class ;
     rdfs:label "Low Voltage Electric Power Line"@en ;
     rdfs:comment """Low Voltage Electric Power Line is an Electric Power Line which is less than 1000 volts, used for connection 
@@ -329,21 +363,6 @@ seas:ElectricPowerTransmissionSystem a owl:Class ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
-  seas:UltraHighVoltageElectricPowerLine a owl:Class ;
-    rdfs:label "Ultra High Voltage Electric Power Line"@en ;
-    rdfs:comment """High Voltage Electric Power Line is an Electric Power Line which is higher than 800.(source:wikipedia)"""@en ;
-    rdfs:subClassOf seas:ElectricPowerLine ;
-    rdfs:subClassOf [ owl:onProperty seas:voltage ; owl:someValuesFrom seas:UltraHighVoltage ] ;
-    vs:term_status "testing" ;
-    rdfs:isDefinedBy seas:ElectricPowerSystemOntology .  
-
-    seas:length a owl:ObjectProperty , owl:FunctionalProperty;
-      rdfs:label "length"@en ;
-      rdfs:comment """The lenght of the feature of interest"""@en ;
-      rdfs:subPropertyOf seas:hasProperty ;
-      vs:term_status "testing" ;
-      rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
-
  
   seas:ElectricPowerSubStation a owl:Class;
     rdfs:label "Electric Power Substation"@en ;
@@ -352,14 +371,14 @@ seas:ElectricPowerTransmissionSystem a owl:Class ;
                     through several substations at different voltage levels. A substation may include transformers to change voltage levels between high transmission voltages and lower distribution voltages, 
                     or at the interconnection of two different transmission voltages.(source:wikipedia)"""@en ;
     rdfs:subClassOf seas:ElectricPowerSystem ;
-    rdfs:subClassOf [ owl:onProperty seas:hasSubElectricPowerSystemOf ; owl:someValuesFrom seas:ElectricPowerTransformer ] ;
+    rdfs:subClassOf [ owl:onProperty seas:hasSubElectricPowerSystem ; owl:someValuesFrom seas:ElectricPowerTransformer ] ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
   
 
   seas:ElectricPowerTransmissionSubStation  a owl:Class;
     rdfs:label "Electrical Power Transmission Substation"@en ;
-    rdfs:comment """A transmission substation' connects two or more transmission lines.[2] The simplest case is where all transmission 
+    rdfs:comment """A transmission substation' connects two or more transmission lines. The simplest case is where all transmission 
                     lines have the same voltage. In such cases, substation contains high-voltage switches that allow lines to be connected 
                     or isolated for fault clearance or maintenance. A transmission station may have transformers to convert between two 
                     transmission voltages, voltage control/power factor correction devices such as capacitors, reactors or static VAR 
@@ -374,7 +393,7 @@ seas:ElectricPowerTransmissionSystem a owl:Class ;
                     It is uneconomical to directly connect electricity consumers to the main transmission network, unless they use large 
                     amounts of power, so the distribution station reduces voltage to a level suitable for local distribution.(source:wikipedia)"""@en ;
     rdfs:subClassOf seas:ElectricalSubStation,  seas:ElectricPowerTransmissionSystem;
-    rdfs:subClassOf [ owl:onProperty seas:hasSubElectricPowerSystemOf ; owl:someValuesFrom seas:ElectricPowerTransformer ] ;
+    rdfs:subClassOf [ owl:onProperty seas:hasSubElectricPowerSystem ; owl:someValuesFrom seas:ElectricPowerTransformer ] ;
     vs:term_status "testing" ;
     rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
 
@@ -2064,17 +2083,13 @@ seas:OverheadElectricPowerDistributionNetwork   a owl:Class;
       rdfs:subClassOf seas:ElectricPowerDistributionNetwork ;
       vs:term_status "testing" ;
       rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
-## reseau connal
+## reseau facade
 seas:FacadeElectricPowerDistributionNetwork   a owl:Class;
       rdfs:label "Facade Electric Power Distribution Network"@en ;
       rdfs:comment """A Facade Electric Power DistributionNetwork is an ElectricPowerDistributionNetwork which is hanging along a facade."""@en ;
       rdfs:subClassOf seas:ElectricPowerDistributionNetwork;
       vs:term_status "testing" ;
       rdfs:isDefinedBy seas:ElectricPowerSystemOntology .
-
-
-
-
 
 seas:PowerBox a owl:Class;
       rdfs:label "Power box"@en ;
