@@ -202,12 +202,7 @@ seas:Meter a owl:Class;
   vs:term_status "testing" ;
   rdfs:isDefinedBy seas:SmartMeterOntology .
 
-  seas:hasInstallationDate  a owl:DatatypeProperty ;
-    rdfs:label "has installation date"@en; # rdfs:comment "link the smartMeter to the installation installation. "@en;
-    rdfs:domain seas:SmartMeter;
-    rdfs:range xsd:dateTime;
-    vs:term_status "unstable"  ;
-    rdfs:isDefinedBy seas:SmartMeterOntology .    
+      
 
   seas:WaterMeter a owl:Class ;
     rdfs:label "Water Meter"@en ;
@@ -361,7 +356,7 @@ seas:MeteringExecution a owl:Class ;
     rdfs:comment """A Water Volume Metering Execution is the execution of some Water Volume Metering implemented by some Water Meter."""@en ;
     rdfs:subClassOf seas:MeteringExecution ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:madeBy ; owl:someValuesFrom seas:WaterMeter ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:WaterVolumeMetering ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty pep:a ; owl:someValuesFrom seas:WaterVolumeMetering ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty seas:measuresProperty ; owl:someValuesFrom seas:WaterVolumeProperty ] ;
     owl:equivalentClass [ a owl:Restriction ; owl:onProperty pep:usedProcedure ; owl:someValuesFrom seas:WaterVolumeMetering ] ;
     vs:term_status "testing" ;
@@ -572,6 +567,23 @@ seas:MeterIndexProperty a owl:Class;
   vs:term_status "unstable" ;
   rdfs:isDefinedBy seas:SmartMeterOntology.
 
+seas:FullHoursMeterIndexProperty a owl:Class;
+  rdfs:label "Full Hours Meter Index Property"@en;
+  rdfs:comment "The full hours Meter index property is a property which is inherent in the Index of the Meter. 
+                That index indicats the consumption during the full hours schedule."@en;
+  rdfs:subClassOf seas:MeterIndexProperty;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+seas:OffHoursMeterIndexProperty a owl:Class;
+  rdfs:label "Off Hours Meter Index Property"@en;
+  rdfs:comment "The off hours Meter index property is a property which is inherent in the Index of the Meter.
+                That index indicats the consumption during the full hours schedule."@en;
+  rdfs:subClassOf seas:MeterIndexProperty;
+  vs:term_status "unstable" ;
+  rdfs:isDefinedBy seas:SmartMeterOntology.
+
+
   seas:meterIndex a owl:ObjectProperty, owl:FunctionalProperty ;
     rdfs:label "meter index"@en;
     rdfs:comment "Links the meter to its index property."@en;
@@ -580,6 +592,24 @@ seas:MeterIndexProperty a owl:Class;
     rdfs:range seas:MeterIndexProperty;
     vs:term_status "unstable" ;
     rdfs:isDefinedBy seas:SmartMeterOntology .
+
+  seas:fullHoursMeterIndex a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "full hours meter index"@en;
+    rdfs:comment "Links the meter to its full hours index property."@en;
+    rdfs:subPropertyOf seas:meterIndex;
+    rdfs:domain seas:Meter;
+    rdfs:range seas:FullHoursMeterIndexProperty;
+    vs:term_status "unstable" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .  
+
+  seas:offHoursMeterIndex a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label "off hours meter index"@en;
+    rdfs:comment "Links the meter to its off hours index property."@en;
+    rdfs:subPropertyOf seas:meterIndex;
+    rdfs:domain seas:Meter;
+    rdfs:range seas:OffHoursMeterIndexProperty;
+    vs:term_status "unstable" ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .    
 
   seas:MeterIndexEvaluation a owl:Class ;
     rdfs:label "Meter Index  Evaluation"@en ;
@@ -596,3 +626,10 @@ seas:MeterIndexProperty a owl:Class;
       rdfs:subClassOf seas:MeterIndexEvaluation;
       vs:term_status "unstable" ;
       rdfs:isDefinedBy seas:SmartMeterOntology.
+
+seas:hasInstallationDate  a owl:DatatypeProperty ;
+    rdfs:label "has installation date"@en; # rdfs:comment "link the smartMeter to the installation installation. "@en;
+    rdfs:domain seas:SmartMeter;
+    rdfs:range xsd:dateTime;
+    vs:term_status "unstable"  ;
+    rdfs:isDefinedBy seas:SmartMeterOntology .
